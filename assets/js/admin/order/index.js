@@ -41,7 +41,9 @@ const list = [
 ];
 
 const orders = document.querySelector("#list-order");
-console.log(orders);
+var modalUpdate = document.getElementById("updateOrderStatus");
+var closeBtn = document.getElementsByClassName("close-modal")[0];
+
 list.forEach((item) => {
   const row = document.createElement("tr");
   row.innerHTML += `
@@ -77,12 +79,35 @@ list.forEach((item) => {
                         }</span>
                       </td>
                       <td class="align-middle">
-                        <a href="#" style="text-decoration:underline;"
-                          class="text-secondary font-weight-bold text-xs link-primary" data-toggle="tooltip"
-                          data-original-title="Edit user">
+                        <a
+                          style="cursor: pointer;"
+                          class="updateBtn-${
+                            item.id
+                          } text-secondary font-weight-bold text-sm" 
+                          onclick=UpdateOrderStatus(${item.id})>
+                          Update <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        |
+                        <a
+                          style="cursor: pointer;"
+                          class="text-secondary font-weight-bold text-sm">
                           More Info <i class="fa fa-arrow-right" aria-hidden="true"></i>
                         </a>
                       </td>
   `;
   orders.appendChild(row);
 });
+
+function UpdateOrderStatus(id) {
+  modalUpdate.style.display = "block";
+  var inputOrderId = document.getElementById("order-id");
+  inputOrderId.value = id;
+
+  const order = list.find((item) => item.id === id);
+  const select = document.querySelector("#status_list_edit");
+  select.value = order.status;
+}
+
+closeBtn.onclick = function () {
+  modalUpdate.style.display = "none";
+};
