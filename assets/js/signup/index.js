@@ -1,3 +1,13 @@
+var isLogin = JSON.parse(localStorage.getItem("isLogin"));
+var role = localStorage.getItem("role");
+if (isLogin === true ) {
+  if (role && role === "admin" || role === "seller") {
+    location.href = `${location.origin}/admin.html`
+  } else {
+    location.href = `${location.origin}/index.html`
+  }
+}
+
 var form = document.querySelector('form');
 
 form.addEventListener('submit', async function(event) {
