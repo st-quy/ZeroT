@@ -32,14 +32,14 @@ async function displayOrder() {
                             ${
                               item.status === "Processing"
                                 ? `<span class='badge badge-sm bg-gradient-danger'>
-                                  ${item.status}
+                                  Đang chuẩn bị
                                 </span>`
                                 : item.status === "Delivering"
                                 ? `<span class='badge badge-sm bg-gradient-warning'>
-                                  ${item.status}
+                                  Đang giao hàng
                                 </span>`
                                 : `<span class='badge badge-sm bg-gradient-success'>
-                                  ${item.status}
+                                  Đã giao hàng
                                 </span>`
                             }
                             </td>
@@ -53,15 +53,15 @@ async function displayOrder() {
                                 style="cursor: pointer;"
                                 class="updateBtn-${
                                   item.id
-                                } text-secondary font-weight-bold text-sm"
+                                } text-secondary font-weight-bold text-xs"
                                 onclick=showPopupUpdate(${item.id})>
-                                Update <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                Cập nhật <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                               |
                               <a
                                 style="cursor: pointer;"
-                                class="text-secondary font-weight-bold text-sm">
-                                More Info <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                class="text-secondary font-weight-bold text-xs">
+                                Xem thêm <i class="fa fa-arrow-right" aria-hidden="true"></i>
                               </a>
                             </td>
         `;

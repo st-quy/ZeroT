@@ -66,7 +66,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Dashboard</span>
+              <span class="nav-link-text ms-1">Bảng điều khiển</span>
             </a>
           </li>
           <li class="nav-item">
@@ -92,7 +92,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Manage User</span>
+              <span class="nav-link-text ms-1">Quản lý khách hàng</span>
             </a>
           </li>
           <li class="nav-item">
@@ -118,7 +118,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Manage Product</span>
+              <span class="nav-link-text ms-1">Quản lý sản phẩm</span>
             </a>
           </li>
           <li class="nav-item">
@@ -144,7 +144,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Manage Order</span>
+              <span class="nav-link-text ms-1">Quản lý đơn hàng</span>
             </a>
           </li>
           <li class="nav-item cursor-pointer" onclick="handleSignout()">
@@ -176,33 +176,10 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Sign Out</span>
+              <span class="nav-link-text ms-1">Đăng xuất</span>
             </a>
           </li>
         </ul>
-      </div>
-      <div class="sidenav-footer mx-3">
-        <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
-          <div class="full-background" style="
-              background-image: url('../assets/img/curved-images/white-curved.jpeg');
-            "></div>
-          <div class="card-body text-start p-3 w-100">
-            <div
-              class="icon icon-shape icon-sm bg-white shadow text-center mb-3 d-flex align-items-center justify-content-center border-radius-md">
-              <i class="ni ni-diamond text-dark text-gradient text-lg top-0" aria-hidden="true"
-                id="sidenavCardIcon"></i>
-            </div>
-            <div class="docs-info">
-              <h6 class="text-white up mb-0">Need help?</h6>
-              <p class="text-xs font-weight-bold">Please check our docs</p>
-              <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard" target="_blank"
-                class="btn btn-white btn-sm w-100 mb-0">Documentation</a>
-            </div>
-          </div>
-        </div>
-        <a class="btn bg-gradient-primary mt-4 w-100"
-          href="https://www.creative-tim.com/product/soft-ui-dashboard-pro?ref=sidebarfree" type="button">Upgrade to
-          pro</a>
       </div>
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
@@ -213,13 +190,13 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
               <li class="breadcrumb-item text-sm">
-                <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                <a class="opacity-5 text-dark" href="javascript:;">Trang</a>
               </li>
               <li class="breadcrumb-item text-sm text-dark active" aria-current="page">
-                Mange Order
+                Quản lý đơn hàng
               </li>
             </ol>
-            <h6 class="font-weight-bolder mb-0">Order</h6>
+            <h6 class="font-weight-bolder mb-0">Đơn hàng</h6>
           </nav>
         </div>
       </nav>
@@ -229,20 +206,21 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Orders table</h6>
+              <h6>Tất cả đơn hàng</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">User</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Người đặt
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng
+                        thái đơn hàng
                       </th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Total
-                        Price
+                        Tổng tiền
                       </th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
@@ -256,12 +234,12 @@
         </div>
       </div>
       <div class="modalEdit" id="updateOrderModal"
-        style="display: none; position: absolute; top: 50% ;left:40%; width: 80%; transform: translateX(-25%);">
+        style="display: none; position: absolute; top: 50% ;left:40%; width: 90%; transform: translateX(-25%);">
         <!-- Modal content -->
-        <div class="modal-content bg-dark w-70 px-4 py-3" style="box-shadow: 22px 10px 158px rgba(192, 183, 183, 0.66)">
+        <div class="modal-content bg-dark w-70 px-3 py-3" style="box-shadow: 22px 10px 158px rgba(192, 183, 183, 0.66)">
           <span class="close-modal text-end fs-2" style="cursor: pointer;">&times;</span>
           <div class="col-md-8 col-xl-6 text-center mx-auto">
-            <h6 class="fw-bold text-success mb-2 fs-4">Update Order Status</h6>
+            <h6 class="fw-bold text-success mb-2 fs-3">Cập nhật trạng thái đơn hàng</h6>
           </div>
           <div class="row d-flex justify-content-center">
             <div class="col-md-12 col-xl-8">
@@ -277,16 +255,16 @@
                         oninvalid="this.setCustomValidity('Please select an item in the list')"
                         oninput="setCustomValidity('')">
                         <option disabled="disabled">Select Status</option>
-                        <option>Processing</option>
-                        <option>Delivering</option>
-                        <option>Delivered</option>
+                        <option value="Processing">Đang chuẩn bị</option>
+                        <option value="Delivering">Đang giao hàng</option>
+                        <option value="Delivered">Đã giao hàng</option>
                       </select>
                     </div>
                   </div>
                 </div>
 
                 <div class="mb-3">
-                  <button class="btn btn-primary shadow d-block w-100" onclick="handleUpdateOrder()">Update</button>
+                  <button class="btn btn-primary shadow d-block w-100" onclick="handleUpdateOrder()">Cập nhật</button>
                 </div>
               </div>
             </div>
