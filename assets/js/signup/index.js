@@ -1,6 +1,6 @@
 var form = document.querySelector('form');
 
-form.addEventListener('submit', async function(event) {
+form.addEventListener('submit', async function (event) {
   // Ngăn chặn hành vi mặc định của form (không gửi dữ liệu)
   event.preventDefault();
   var nameInput = document.querySelector('input[placeholder="Name"]');
@@ -14,40 +14,38 @@ form.addEventListener('submit', async function(event) {
   var password = passwordInput.value;
   var phone = phoneInput.value;
   var role = roleInput.value;
-  
+
   await axios
-  .post("https://api-zerot.glitch.me/user", {
-    name,
-    email,
-    password,
-    phone,
-    role,
-    status: "inactive",
-  })
-  .then((response) => {
-    toastr.success("Signup successfully", "Message", {
-      timeOut: 2000,
-      closeButton: true,
-      debug: false,
-      newestOnTop: true,
-      progressBar: true,
-      positionClass: "toast-top-right",
-      preventDuplicates: true,
-      onclick: null,
-      showDuration: "300",
-      hideDuration: "1000",
-      extendedTimeOut: "1000",
-      showEasing: "swing",
-      hideEasing: "linear",
-      showMethod: "fadeIn",
-      hideMethod: "fadeOut",
-      tapToDismiss: false,
+    .post('https://wobbly-ripe-detail.glitch.me/user', {
+      name,
+      email,
+      password,
+      phone,
+      role,
+      status: 'inactive',
+    })
+    .then((response) => {
+      toastr.success('Signup successfully', 'Message', {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: 'toast-top-right',
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: '300',
+        hideDuration: '1000',
+        extendedTimeOut: '1000',
+        showEasing: 'swing',
+        hideEasing: 'linear',
+        showMethod: 'fadeIn',
+        hideMethod: 'fadeOut',
+        tapToDismiss: false,
+      });
+      setTimeout(() => {
+        location.href = `${location.origin}/sign-in.html`;
+      }, 1000);
+      form.reset();
     });
-    setTimeout(() => {
-      location.href = `${location.origin}/sign-in.html`;
-    }, 1000);
-    form.reset();
-  });
 });
-
-
