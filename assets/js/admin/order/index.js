@@ -9,7 +9,7 @@ const list = [
       quantity: 1,
     },
     status: "Processing",
-    userid: 3,
+    userid: 4,
     id: 1,
   },
   {
@@ -44,59 +44,73 @@ const orders = document.querySelector("#list-order");
 var modalUpdate = document.getElementById("updateOrderStatus");
 var closeBtn = document.getElementsByClassName("close-modal")[0];
 
-list.forEach((item) => {
-  const row = document.createElement("tr");
-  row.innerHTML += `
-    <td class="align-middle px-4">
-                        <span class="text-secondary text-xs font-weight-bold">${
-                          item.id
-                        }</span>
-                      </td>
-                      <td>
-                        <!-- <p class="text-xs font-weight-bold mb-0">Manager</p>
-                        <p class="text-xs text-secondary mb-0">Organization</p> -->
-                        <h6 class="mb-0 text-sm">John Michael</h6>
-                        <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                      ${
-                        item.status === "Processing"
-                          ? `<span class='badge badge-sm bg-gradient-danger'>
-                            ${item.status}
-                          </span>`
-                          : item.status === "Delivering"
-                          ? `<span class='badge badge-sm bg-gradient-warning'>
-                            ${item.status}
-                          </span>`
-                          : `<span class='badge badge-sm bg-gradient-success'>
-                            ${item.status}
-                          </span>`
-                      }
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">${
-                          item.totalPrice
-                        }</span>
-                      </td>
-                      <td class="align-middle">
-                        <a
-                          style="cursor: pointer;"
-                          class="updateBtn-${
-                            item.id
-                          } text-secondary font-weight-bold text-sm" 
-                          onclick=UpdateOrderStatus(${item.id})>
-                          Update <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
-                        |
-                        <a
-                          style="cursor: pointer;"
-                          class="text-secondary font-weight-bold text-sm">
-                          More Info <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                      </td>
-  `;
-  orders.appendChild(row);
-});
+async function displayOrder() {
+  await axios.get("https://api-zerot.glitch.me/order").then((response) => {
+    response.data.forEach(async (item) => {
+      const row = document.createElement("tr");
+      const userData = await axios
+        .get("https://api-zerot.glitch.me/user")
+        .then((response) =>
+          response.data.find((user) => user.id === item.userid)
+        );
+
+      row.innerHTML += `
+          <td class="align-middle px-4">
+                              <span class="text-secondary text-xs font-weight-bold">${
+                                item.id
+                              }</span>
+                            </td>
+                            <td>
+                              <!-- <p class="text-xs font-weight-bold mb-0">Manager</p>
+                              <p class="text-xs text-secondary mb-0">Organization</p> -->
+                              <h6 class="mb-0 text-sm">${userData.name}</h6>
+                              <p class="text-xs text-secondary mb-0">${
+                                userData.email
+                              }</p>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                            ${
+                              item.status === "Processing"
+                                ? `<span class='badge badge-sm bg-gradient-danger'>
+                                  ${item.status}
+                                </span>`
+                                : item.status === "Delivering"
+                                ? `<span class='badge badge-sm bg-gradient-warning'>
+                                  ${item.status}
+                                </span>`
+                                : `<span class='badge badge-sm bg-gradient-success'>
+                                  ${item.status}
+                                </span>`
+                            }
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">${
+                                item.totalPrice
+                              }</span>
+                            </td>
+                            <td class="align-middle">
+                              <a
+                                style="cursor: pointer;"
+                                class="updateBtn-${
+                                  item.id
+                                } text-secondary font-weight-bold text-sm"
+                                onclick=UpdateOrderStatus(${item.id})>
+                                Update <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a>
+                              |
+                              <a
+                                style="cursor: pointer;"
+                                class="text-secondary font-weight-bold text-sm">
+                                More Info <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                              </a>
+                            </td>
+        `;
+      orders.appendChild(row);
+    });
+  });
+}
+
+displayOrder();
 
 function UpdateOrderStatus(id) {
   modalUpdate.style.display = "block";
