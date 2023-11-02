@@ -1,54 +1,14 @@
-const list = [
-  {
-    totalPrice: 11500,
-    orderItems: {
-      product: 1,
-      name: "product 1",
-      price: 11500,
-      image: "sample img",
-      quantity: 1,
-    },
-    status: "Processing",
-    userid: 4,
-    id: 1,
-  },
-  {
-    totalPrice: 12500,
-    orderItems: {
-      product: 1,
-      name: "product 1",
-      price: 11500,
-      image: "sample img",
-      quantity: 1,
-    },
-    status: "Delivering",
-    id: 2,
-    userid: 3,
-  },
-  {
-    totalPrice: 16000,
-    orderItems: {
-      product: 1,
-      name: "product 1",
-      price: 11500,
-      image: "sample img",
-      quantity: 1,
-    },
-    status: "Delivered",
-    id: 3,
-    userid: 3,
-  },
-];
-
 const orders = document.querySelector("#list-order");
-var modalUpdate = document.getElementById("updateOrderStatus");
+var updateModal = document.getElementById("updateOrderModal");
 var closeBtn = document.getElementsByClassName("close-modal")[0];
 
 async function displayOrder() {
   await axios.get("https://api-zerot.glitch.me/order").then((response) => {
-    response.data.forEach(async (item) => {
+    const listOrders = response.data;
+
+    listOrders.forEach(async (item) => {
       const row = document.createElement("tr");
-      const userData = await axios
+      const user = await axios
         .get("https://api-zerot.glitch.me/user")
         .then((response) =>
           response.data.find((user) => user.id === item.userid)
@@ -63,9 +23,9 @@ async function displayOrder() {
                             <td>
                               <!-- <p class="text-xs font-weight-bold mb-0">Manager</p>
                               <p class="text-xs text-secondary mb-0">Organization</p> -->
-                              <h6 class="mb-0 text-sm">${userData.name}</h6>
+                              <h6 class="mb-0 text-sm">${user.name}</h6>
                               <p class="text-xs text-secondary mb-0">${
-                                userData.email
+                                user.email
                               }</p>
                             </td>
                             <td class="align-middle text-center text-sm">
@@ -94,7 +54,7 @@ async function displayOrder() {
                                 class="updateBtn-${
                                   item.id
                                 } text-secondary font-weight-bold text-sm"
-                                onclick=UpdateOrderStatus(${item.id})>
+                                onclick=showPopupUpdate(${item.id})>
                                 Update <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a>
                               |
@@ -109,19 +69,74 @@ async function displayOrder() {
     });
   });
 }
-
 displayOrder();
 
-function UpdateOrderStatus(id) {
-  modalUpdate.style.display = "block";
+async function showPopupUpdate(id) {
+  updateModal.style.display = "block";
   var inputOrderId = document.getElementById("order-id");
   inputOrderId.value = id;
 
-  const order = list.find((item) => item.id === id);
-  const select = document.querySelector("#status_list_edit");
-  select.value = order.status;
+  await axios.get("https://api-zerot.glitch.me/order").then((response) => {
+    const order = response.data.find((item) => item.id === id);
+
+    const select = document.querySelector("#status_list_edit");
+    select.value = order.status;
+  });
 }
 
+const handleUpdateOrder = async () => {
+  const id = document.getElementById("order-id").value;
+  const updatedStatus = document.getElementById("status_list_edit").value;
+
+  await axios
+    .patch(`https://api-zerot.glitch.me/order/${id}`, {
+      status: updatedStatus,
+    })
+    .then((response) => {
+      toastr.success("Update successfully", "Success", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 2000);
+    })
+    .catch((err) => {
+      toastr.error("Update error", "Error", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+    });
+};
+
 closeBtn.onclick = function () {
-  modalUpdate.style.display = "none";
+  updateModal.style.display = "none";
 };

@@ -6,15 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
-    <title>Danh sách đơn hàng - Dashboard</title>
+    <title>Quản lý đơn hàng</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/bootstrap.css?v=1.0.3" rel="stylesheet" />
-
+    <!-- Axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <!-- Toast -->
+    <link href="assets/css/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Toastr -->
+    <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   </head>
 
   <body class="g-sidenav-show bg-gray-100">
@@ -247,7 +255,7 @@
           </div>
         </div>
       </div>
-      <div class="modalEdit" id="updateOrderStatus"
+      <div class="modalEdit" id="updateOrderModal"
         style="display: none; position: absolute; top: 50% ;left:40%; width: 80%; transform: translateX(-25%);">
         <!-- Modal content -->
         <div class="modal-content bg-dark w-70 px-4 py-3" style="box-shadow: 22px 10px 158px rgba(192, 183, 183, 0.66)">
@@ -257,7 +265,7 @@
           </div>
           <div class="row d-flex justify-content-center">
             <div class="col-md-12 col-xl-8">
-              <form>
+              <div>
                 <div class="mb-3">
                   <input class="form-control" id="order-id" hidden type="text" required="required" />
                 </div>
@@ -265,8 +273,8 @@
                 <div class="mb-3">
                   <div class="form-group">
                     <div class="input-group">
-                      <select id="status_list_edit" name="orderstatus" class="form-select order-status"
-                        required="required" oninvalid="this.setCustomValidity('Please select an item in the list')"
+                      <select id="status_list_edit" name="status" class="form-select order-status" required="required"
+                        oninvalid="this.setCustomValidity('Please select an item in the list')"
                         oninput="setCustomValidity('')">
                         <option disabled="disabled">Select Status</option>
                         <option>Processing</option>
@@ -280,7 +288,7 @@
                 <div class="mb-3">
                   <button class="btn btn-primary shadow d-block w-100" onclick="handleUpdateOrder()">Update</button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
