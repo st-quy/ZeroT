@@ -5,7 +5,7 @@ async function handleSignout() {
   }, 500);
 }
 
-// const profile = JSON.parse(localStorage.getItem('me'))
-// if (profile && profile.status !== 'active') {
-//   alert("show modal confirm email")
-// }
+const profile = JSON.parse(localStorage.getItem("me"));
+if (profile && profile.status !== "active") {
+  alert("show modal confirm email");
+}

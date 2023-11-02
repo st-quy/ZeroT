@@ -1,17 +1,17 @@
-// var isLogin = JSON.parse(localStorage.getItem("isLogin"));
-// var role = localStorage.getItem("role");
-// if (isLogin === true) {
-//   if ((role && role === "admin") || role === "seller") {
-//     location.href = `${location.origin}/admin.html`;
-//   } else {
-//     location.href = `${location.origin}/index.html`;
-//   }
-// }
+var isLogin = JSON.parse(localStorage.getItem("isLogin"));
+var role = localStorage.getItem("role");
+if (isLogin === true) {
+  if ((role && role === "admin") || role === "seller") {
+    location.href = `${location.origin}/admin.html`;
+  } else {
+    location.href = `${location.origin}/index.html`;
+  }
+}
 
 async function handleLogin() {
   var email = document.querySelector('input[name="email"]').value;
   var password = document.querySelector('input[name="password"]').value;
-  await axios.get("https://ngoctong.glitch.me/user").then((response) => {
+  await axios.get("https://api-zerot.glitch.me/user").then((response) => {
     var userExist = response.data.find((usr) => usr.email === email);
     if (userExist && userExist.password === password) {
       localStorage.setItem("isLogin", true);
@@ -30,7 +30,7 @@ async function handleLogin() {
           .then(
             async function () {
               await axios
-                .patch(`https://ngoctong.glitch.me/user/${userExist.id}`, {
+                .patch(`https://api-zerot.glitch.me/user/${userExist.id}`, {
                   code: templateParams.code,
                 })
                 .then((res) => {
