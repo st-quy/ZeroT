@@ -11,7 +11,7 @@ if (isLogin === true) {
 async function handleLogin() {
   var email = document.querySelector('input[name="email"]').value;
   var password = document.querySelector('input[name="password"]').value;
-  await axios.get("https://api-zerot.glitch.me/user").then((response) => {
+  await axios.get("https://api-zerot.onrender.com/user").then((response) => {
     var userExist = response.data.find((usr) => usr.email === email);
     if (userExist && userExist.password === password) {
       localStorage.setItem("isLogin", true);
@@ -30,7 +30,7 @@ async function handleLogin() {
           .then(
             async function () {
               await axios
-                .patch(`https://api-zerot.glitch.me/user/${userExist.id}`, {
+                .patch(`https://api-zerot.onrender.com/user/${userExist.id}`, {
                   code: templateParams.code,
                 })
                 .then((res) => {

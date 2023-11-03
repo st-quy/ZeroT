@@ -1,31 +1,30 @@
-const orders = document.querySelector("#list-order");
+const tbody = document.querySelector("#tbody");
 var updateModal = document.getElementById("updateOrderModal");
 var closeBtn = document.getElementsByClassName("close-modal")[0];
 
 async function displayOrder() {
-  await axios.get("https://api-zerot.glitch.me/order").then((response) => {
-    const listOrders = response.data;
-
-    listOrders.forEach(async (item) => {
+  await axios.get("https://api-zerot-key.glitch.me/order").then((response) => {
+    // const listOrders = response.data;
+    // console.log(listOrders);
+    response.data.forEach(async (item, index) => {
       const row = document.createElement("tr");
-      const user = await axios
-        .get("https://api-zerot.glitch.me/user")
-        .then((response) =>
-          response.data.find((user) => user.id === item.userid)
-        );
+      // const user = await axios
+      //   .get("https://api-zerot.onrender.com/user")
+      //   .then((response) =>
+      //     response.data.find((user) => user.id === item.userid)
+      //   );
 
-      row.innerHTML += `
-          <td class="align-middle px-4">
+      row.innerHTML = `<td class="align-middle px-4">
                               <span class="text-secondary text-xs font-weight-bold">${
-                                item.id
+                                index + 1
                               }</span>
                             </td>
                             <td>
                               <!-- <p class="text-xs font-weight-bold mb-0">Manager</p>
                               <p class="text-xs text-secondary mb-0">Organization</p> -->
-                              <h6 class="mb-0 text-sm">${user.name}</h6>
+                              <h6 class="mb-0 text-sm">${item.user[1]}</h6>
                               <p class="text-xs text-secondary mb-0">${
-                                user.email
+                                item.user[2]
                               }</p>
                             </td>
                             <td class="align-middle text-center text-sm">
@@ -63,9 +62,24 @@ async function displayOrder() {
                                 class="text-secondary font-weight-bold text-xs">
                                 Xem thêm <i class="fa fa-arrow-right" aria-hidden="true"></i>
                               </a>
-                            </td>
-        `;
-      orders.appendChild(row);
+                            </td>`;
+      tbody.appendChild(row);
+    });
+
+    $("#data-table-order").DataTable({
+      language: {
+        paginate: {
+          previous: "‹",
+          next: "›",
+        },
+        aria: {
+          paginate: {
+            previous: "Previous",
+            next: "Next",
+          },
+        },
+        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
+      },
     });
   });
 }
@@ -76,7 +90,7 @@ async function showPopupUpdate(id) {
   var inputOrderId = document.getElementById("order-id");
   inputOrderId.value = id;
 
-  await axios.get("https://api-zerot.glitch.me/order").then((response) => {
+  await axios.get("https://api-zerot-key.glitch.me/order").then((response) => {
     const order = response.data.find((item) => item.id === id);
 
     const select = document.querySelector("#status_list_edit");
@@ -89,11 +103,11 @@ const handleUpdateOrder = async () => {
   const updatedStatus = document.getElementById("status_list_edit").value;
 
   await axios
-    .patch(`https://api-zerot.glitch.me/order/${id}`, {
+    .patch(`https://api-zerot-key.glitch.me/order/${id}`, {
       status: updatedStatus,
     })
     .then((response) => {
-      toastr.success("Update successfully", "Success", {
+      toastr.success("Cập nhật thành công", "Thành công", {
         timeOut: 2000,
         closeButton: true,
         debug: false,
@@ -116,7 +130,7 @@ const handleUpdateOrder = async () => {
       }, 2000);
     })
     .catch((err) => {
-      toastr.error("Update error", "Error", {
+      toastr.error("Cập nhật lỗi", "Lỗi", {
         timeOut: 2000,
         closeButton: true,
         debug: false,

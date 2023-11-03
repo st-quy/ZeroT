@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/bootstrap.css?v=1.0.3" rel="stylesheet" />
+
     <!-- Axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <!-- Toast -->
@@ -23,6 +24,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
   </head>
 
   <body class="g-sidenav-show bg-gray-100" style="overflow: hidden">
@@ -209,8 +212,8 @@
               <h6>Tất cả đơn hàng</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+              <div class="table-responsive p-3">
+                <table class="table align-items-center mb-0" id="data-table-order">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
@@ -225,7 +228,7 @@
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
-                  <tbody id="list-order">
+                  <tbody id="tbody">
                   </tbody>
                 </table>
               </div>
@@ -234,7 +237,7 @@
         </div>
       </div>
       <div class="modalEdit" id="updateOrderModal"
-        style="display: none; position: absolute; top: 50% ;left:40%; width: 90%; transform: translateX(-25%);">
+        style="display: none; position: absolute; top: 30% ;left:40%; width: 90%; transform: translateX(-25%);">
         <!-- Modal content -->
         <div class="modal-content bg-dark w-70 px-3 py-3" style="box-shadow: 22px 10px 158px rgba(192, 183, 183, 0.66)">
           <span class="close-modal text-end fs-2" style="cursor: pointer;">&times;</span>
@@ -277,6 +280,9 @@
     <script src="assets/js/auth/index.js"></script>
     <script src="assets/js/admin/index.js"></script>
     <script src="assets/js/admin/order/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
   </body>
 
 </html>

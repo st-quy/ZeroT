@@ -26,7 +26,7 @@ form.addEventListener("submit", async function (event) {
   var role = roleInput.value;
 
   await axios
-    .post("https://api-zerot.glitch.me/user", {
+    .post("https://api-zerot.onrender.com/user", {
       name,
       email,
       password,
