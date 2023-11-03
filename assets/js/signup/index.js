@@ -16,7 +16,7 @@ form.addEventListener('submit', async function (event) {
   var role = roleInput.value;
 
   await axios
-    .post('https://wobbly-ripe-detail.glitch.me/user', {
+    .post('https://api-zerot-lowdb.onrender.com/users', {
       name,
       email,
       password,

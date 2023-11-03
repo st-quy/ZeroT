@@ -3,15 +3,12 @@
 const tbody = document.querySelector('#data-table tbody');
 
 axios
-  .get('https://api-zerot.onrender.com/user')
+  .get('https://api-zerot-lowdb.onrender.com/users')
   .then((response) => {
-    // Lấy dữ liệu từ phản hồi của API
     const data = response.data;
-    console.log(data);
     data
       .filter((acc) => acc.deletedAt === false || !acc.deletedAt)
       .map((item, index) => {
-        console.log(index);
         const row = document.createElement('tr');
         row.innerHTML = `<td class="align-middle text-center">
                           <span class="text-secondary text-xs font-weight-bold"
@@ -62,6 +59,7 @@ axios
             next: 'Next',
           },
         },
+        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
       },
     });
   })
@@ -72,7 +70,7 @@ axios
 async function handleEdit(userId) {
   try {
     const response = await axios.get(
-      `https://api-zerot.onrender.com/user/${userId}`
+      `https://api-zerot-lowdb.onrender.com/users/${userId}`
     );
     const userData = response.data;
 
@@ -128,13 +126,11 @@ async function handleEdit(userId) {
     saveModal.addEventListener('click', async function () {
       try {
         const response = await axios.patch(
-          `https://api-zerot.onrender.com/user/${userId}`,
+          `https://api-zerot-lowdb.onrender.com/users/${userId}`,
           {
             role: roleSelect.value,
           }
         );
-
-        console.log(response.data);
 
         const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
@@ -153,21 +149,21 @@ async function handleEdit(userId) {
 async function handleDelete(userId) {
   try {
     const response = await axios.get(
-      `https://api-zerot.onrender.com/user/${userId}`
+      `https://api-zerot-lowdb.onrender.com/users/${userId}`
     );
     const userData = response.data;
 
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
 
-    modalTitle.textContent = `Delete user ${userData.id}: ${userData.name}`;
+    modalTitle.textContent = `Xóa tài khoản ${userData.id}: ${userData.name}`;
     modalBody.innerHTML = `Are you sure you want delete account ${userData.name} ?`;
     const roleSelect = document.getElementById('selectRole');
     const saveModal = document.getElementById('btnSave');
     saveModal.addEventListener('click', async function () {
       try {
         const response = await axios.patch(
-          `https://api-zerot.onrender.com/user/${userId}`,
+          `https://api-zerot-lowdb.onrender.com/users/${userId}`,
           {
             deletedAt: true,
           }
@@ -183,6 +179,6 @@ async function handleDelete(userId) {
     const modal = new bootstrap.Modal(document.getElementById('myModal'));
     modal.show();
   } catch (error) {
-    console.error('Error fetching data: ', error);
+    console.error('Lỗi khi lưu thay đổi: ', error);
   }
 }
