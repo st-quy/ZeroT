@@ -23,13 +23,13 @@ async function confirmCode() {
   const profile = JSON.parse(localStorage.getItem("me"));
 
   await axios
-    .get("https://api-zerot.onrender.com/user")
+    .get("https://api-zerot-lowdb.onrender.com/users")
     .then(async (response) => {
       var userExist = response.data.find((usr) => usr.email === profile.email);
       if (Number(enteredCode) === userExist.code) {
         // Code is valid, show index.html or redirect to index.html
         await axios
-          .patch(`https://api-zerot.onrender.com/user/${userExist.id}`, {
+          .patch(`https://api-zerot-lowdb.onrender.com/users/${userExist.id}`, {
             status: "active",
             code: null,
           })
