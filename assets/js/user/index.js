@@ -157,7 +157,7 @@ async function handleDelete(userId) {
     const modalBody = document.getElementById('modal-body');
 
     modalTitle.textContent = `Xóa tài khoản ${userData.id}: ${userData.name}`;
-    modalBody.innerHTML = `Are you sure you want delete account ${userData.name} ?`;
+    modalBody.innerHTML = `Bạn có chắc rằng bạn muốn xóa tài khoản ${userData.name} này không ?`;
     const roleSelect = document.getElementById('selectRole');
     const saveModal = document.getElementById('btnSave');
     saveModal.addEventListener('click', async function () {
