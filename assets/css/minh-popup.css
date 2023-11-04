@@ -1,24 +1,28 @@
-:root {
-    --clr-primary: hsl(215, 99%, 66%) ;
-    --clr-secondary: hsl(259, 89%, 65%) ;
-    --clr-neutral-100: hsl(0, 0%, 100%) ;
-    --clr-neutral-900: hsl(230, 32%, 15% );
-    --gradient: linear-gradient(-155deg, var(--clr-primary), var(--clr-secondary)); 
-    --bs-blue: #63B3ED;
-  --bs-indigo: #596CFF;
+ :root {
+  --clr-primary: hsl(215, 99%, 66%);
+  --clr-secondary: hsl(314, 89%, 65%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+  --clr-neutral-900: hsl(230, 32%, 15%);
+  --gradient: linear-gradient(
+    -155deg,
+    var(--clr-primary),
+    var(--clr-secondary)
+  );
+  --bs-blue: #63b3ed;
+  --bs-indigo: #596cff;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
-  --bs-red: #F56565;
+  --bs-red: #f56565;
   --bs-orange: #fd7e14;
-  --bs-yellow: #FBD38D;
-  --bs-green: #81E6D9;
+  --bs-yellow: #fbd38d;
+  --bs-green: #81e6d9;
   --bs-teal: #20c997;
   --bs-cyan: #0dcaf0;
   --bs-white: #fff;
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
   --bs-primary: #cb0c9f;
-  --bs-secondary: #8392AB;
+  --bs-secondary: #8392ab;
   --bs-success: #82d616;
   --bs-info: #17c1e8;
   --bs-warning: #fbcf33;
@@ -27,18 +31,18 @@
   --bs-dark: #344767;
   --bs-white: #fff;
   --bs-font-sans-serif: Open Sans;
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    margin: 0;
-  font-family: var(--bs-font-sans-serif);
+body {
+  margin: 0;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -46,74 +50,71 @@ body{
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
 }
 
-.modal{
-    
-    font-family:var(--bs-font-monospace);
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.3);
-    justify-content: center;
+.minh-modal {
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
 }
 
-
-.modal-inner{
-    position: relative;
-    top: 30%;
-    margin: auto;
-    background-color: white;
-    width: 500px;
-    border-radius: 10px;
-    box-shadow: 0 0 3.5rem rgb(0 0 0 / .5);
+.minh-modal-inner {
+  position: relative;
+  top: 30%;
+  margin: auto;
+  background-color: white;
+  width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 3.5rem rgb(0 0 0 / 0.5);
 }
 
-.modal-header{
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background: var(--gradient);
-    color: var(--clr-neutral-100);
-    border-radius: 10px 10px 0 0; 
+.minh-modal-header {
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: var(--gradient);
+  color: var(--clr-neutral-100);
+  border-radius: 10px 10px 0 0;
+  font-size: 20px;
 }
 
-.modal-header h2{
-    text-align: center;
+.minh-modal-header h2 {
+  text-align: center;
 }
 
-.modal-body{
-    padding: 15px;
-    text-align: center;
+.minh-modal-body {
+  padding: 15px;
+  text-align: center;
 }
 
-.modal-body h2{
-    font-size: 20px;
-    margin-bottom: 10px;
+.minh-modal-body h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.modal-body input{
-    text-align: center;
-    width: 220px;
-    height: 35px;
-    font-size: 20px;
+.minh-modal-body input {
+  text-align: center;
+  width: 220px;
+  height: 35px;
+  font-size: 20px;
 }
-.modal-footer{
-   padding-bottom: 15px;
-   text-align: center;
-   
-}
-
-.modal-footer button{
-    padding: .75rem;
-    background: var(--gradient);
-    color: var(--clr-neutral-100);
-    border: 0;
-    border-radius: .25rem;
-    font-size: 1.05rem;
-    cursor: pointer;
-    background-size: 100%;
-
+.minh-modal-footer {
+  padding-bottom: 15px;
+  text-align: center;
 }
 
+.minh-modal-footer button {
+  padding: 0.75rem;
+  background: var(--gradient);
+  
+  color: var(--clr-neutral-100);
+  border: 0;
+  border-radius: 0.25rem;
+  font-size: 1.05rem;
+  cursor: pointer;
+  background-size: 100%;
+  width: 100px;
+  margin: 5px;
+} 

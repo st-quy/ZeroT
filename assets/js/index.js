@@ -2,19 +2,19 @@ var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var profileData = JSON.parse(localStorage.getItem("me"));
 
-var modal = document.getElementById("modal");
+var minhModal = document.getElementById("minh-modal");
 var btnCancel = document.getElementById("btnCancel");
-modal.style.display = "none";
+minhModal.style.display = "none";
 if (profileData && profileData.status === "inactive") {
-  modal.style.display = "block";
+  minhModal.style.display = "block";
 }
 
 btnCancel.onclick = function () {
-  modal.style.display = "none";
+  minhModal.style.display = "none";
 };
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == minh-modal) {
+    minhModal.style.display = "none";
   }
 };
 
@@ -38,7 +38,7 @@ async function confirmCode() {
               "me",
               JSON.stringify({ ...response.data, password: null })
             );
-            modal.style.display = "none";
+            minhModal.style.display = "none";
           });
       } else {
         // Code is invalid, show an error message or handle accordingly
