@@ -1,6 +1,6 @@
 .head{
   display: flex;
-  background: rgb(31, 6, 6);
+  background: rgb(2, 2, 2);
   padding: 0px 165px;
   margin: auto;
   justify-content: space-between;
@@ -48,7 +48,7 @@
 .relogin .dropdown-content {
   display: none;
   position: absolute;
- font-size: 13px;
+ font-size:13px;
 }
 
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
