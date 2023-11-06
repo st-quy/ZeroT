@@ -12,6 +12,7 @@ var form = document.querySelector("form");
 
 form.addEventListener("submit", async function (event) {
   // Ngăn chặn hành vi mặc định của form (không gửi dữ liệu)
+
   event.preventDefault();
   var nameInput = document.querySelector('input[placeholder="Name"]');
   var emailInput = document.querySelector('input[placeholder="Email"]');
