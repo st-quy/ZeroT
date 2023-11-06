@@ -27,7 +27,6 @@ async function confirmCode() {
     .then(async (response) => {
       var userExist = response.data.find((usr) => usr.email === profile.email);
       if (Number(enteredCode) === userExist.code) {
-        // Code is valid, show index.html or redirect to index.html
         await axios
           .patch(`https://api-zerot-lowdb.onrender.com/users/${userExist.id}`, {
             status: "active",
@@ -41,7 +40,6 @@ async function confirmCode() {
             minhModal.style.display = "none";
           });
       } else {
-        // Code is invalid, show an error message or handle accordingly
         alert("Invalid confirmation code. Please try again.");
       }
     });
