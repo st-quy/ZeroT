@@ -62,21 +62,7 @@ axios
         tbody.appendChild(row);
         index++;
       }
-      // $('#table-product').DataTable({
-      //   language: {
-      //     paginate: {
-      //       previous: '‹',
-      //       next: '›',
-      //     },
-      //     aria: {
-      //       paginate: {
-      //         previous: 'Previous',
-      //         next: 'Next',
-      //       },
-      //     },
-      //     url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
-      //   },
-      // });
+    
     });
     $('#table-product').DataTable({
       language: {
@@ -112,12 +98,13 @@ async function handleEdit(id) {
     modalTitle.textContent = `Chỉnh sửa thông tin sản phẩm: ${product.name}`;
     modalBody.innerHTML = `
           <input type="hidden" name="code" />
-          <label>ID</label>
+          
           <div class="mb-3">
               <input
                   readonly
                   class="form-control"
-                  placeholder="${product.id}"                      
+                  placeholder="${product.id}"       
+                  hidden               
               />
           </div>
           <label>Tên sản phẩm</label>
@@ -138,8 +125,11 @@ async function handleEdit(id) {
           </div>
           <label>Loại sản phẩm</label>
           <div class="mb-3">
-              <input type="text" id="categoryInput" placeholder="${product.category}" value="${product.category}" />
-          </div>
+    <select name="category" id="categoryInput" required>
+      <option value="laptop">Laptop</option>
+      <option value="accessory">Phụ kiện</option>
+    </select>
+  </div>
       `;
 
     const modal = new bootstrap.Modal(document.getElementById("myModal"));
@@ -221,27 +211,27 @@ async function createProduct() {
   modalBody.innerHTML = `
   <label>Tên sản phẩm</label>
   <div class="mb-3">
-    <input type="text" id="nameInput"  required/>
+    <input type="text" id="nameInput" placeholder="name" required/>
   </div>
 
   <label>Giá sản phẩm</label>
   <div class="mb-3">
-    <input type="number" id="priceInput"  required/>
+    <input type="number" id="priceInput" placeholder="price" required/>
   </div>
   <label>Mô tả sản phẩm</label>
   <div class="mb-3">
-    <textarea  type="text" id="description"  required></textarea>
+    <textarea  type="text" id="description" placeholder="description" required></textarea>
   </div>
  
   <label>Hàng lưu trữ</label>
   <div class="mb-3">
-    <input type="number" id="stockInput"  required/>
+    <input type="number" id="stockInput" placeholder="stock" required/>
   </div>
 
   <label>Loại sản phẩm</label>
   <div class="mb-3">
     <select name="category" id="categoryInput" required>
-      <option value="laptop">Macbook</option>
+      <option value="laptop">Laptop</option>
       <option value="accessory">Phụ kiện</option>
     </select>
   </div>
@@ -268,8 +258,8 @@ async function createProduct() {
 
   btnSave.addEventListener("click", async () => {
     var name = nameInput.value;
-    var price = priceInput.value;
-    var stock = stockInput.value;
+    var price = Number(priceInput.value);
+    var stock = Number(stockInput.value);
     var description = descriptionInput.value;
     var category = categoryInput.value;
     var urls = await uploadFile(fileInput.files);
