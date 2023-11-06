@@ -11,7 +11,6 @@ if (isLogin === true) {
 var form = document.querySelector("form");
 
 form.addEventListener("submit", async function (event) {
-  // Ngăn chặn hành vi mặc định của form (không gửi dữ liệu)
   event.preventDefault();
   var nameInput = document.querySelector('input[placeholder="Name"]');
   var emailInput = document.querySelector('input[placeholder="Email"]');
@@ -26,7 +25,7 @@ form.addEventListener("submit", async function (event) {
   var role = roleInput.value;
 
   await axios
-    .post("https://api-zerot.onrender.com/user", {
+    .post("https://api-zerot-lowdb.onrender.com/users", {
       name,
       email,
       password,
