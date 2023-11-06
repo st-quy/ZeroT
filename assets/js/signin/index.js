@@ -67,3 +67,10 @@ async function handleLogin() {
       }
     });
 }
+
+
+window.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    handleLogin();
+  }
+});
