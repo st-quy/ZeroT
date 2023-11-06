@@ -1,17 +1,18 @@
-var isLogin = JSON.parse(localStorage.getItem('isLogin'));
-var role = localStorage.getItem('role');
+var isLogin = JSON.parse(localStorage.getItem("isLogin"));
+var role = localStorage.getItem("role");
 if (isLogin === true) {
-  if ((role && role === 'admin') || role === 'seller') {
+  if ((role && role === "admin") || role === "seller") {
     location.href = `${location.origin}/admin.html`;
   } else {
     location.href = `${location.origin}/index.html`;
   }
 }
 
-var form = document.querySelector('form');
+var form = document.querySelector("form");
 
-form.addEventListener('submit', async function (event) {
+form.addEventListener("submit", async function (event) {
   // Ngăn chặn hành vi mặc định của form (không gửi dữ liệu)
+
   event.preventDefault();
   var nameInput = document.querySelector('input[placeholder="Name"]');
   var emailInput = document.querySelector('input[placeholder="Email"]');
