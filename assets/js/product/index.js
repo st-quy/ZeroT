@@ -4,7 +4,6 @@ axios
 
   .then(function (response) {
     const data = response.data;
-    console.log(data);
     data.forEach(function (product) {
       if (product.deletedAt === false || product.deletedAt === undefined) {
         const row = document.createElement("tr");
@@ -22,7 +21,7 @@ axios
                     <span class="text-secondary text-xs font-weight-bold">${product.description}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.image}</span>
+                    <image src=${product.image} style="width: 100%"/>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${product.category}</span>
@@ -155,11 +154,6 @@ async function handleDelete(id) {
   }
 }
 
-// const createProductButton = document.getElementById('btnCreateProduct');
-// createProductButton.addEventListener('click', () => {
-//     createProduct();
-// });
-
 async function createProduct() {
   const modalTitle = document.getElementById("modal-title");
   const modalBody = document.getElementById("modal-body");
@@ -167,26 +161,26 @@ async function createProduct() {
   modalBody.innerHTML = `
   <label>Name</label>
   <div class="mb-3">
-    <input type="text" id="nameInput" placeholder="name"/>
+    <input type="text" id="nameInput" placeholder="name" required/>
   </div>
 
   <label>Price</label>
   <div class="mb-3">
-    <input type="number" id="priceInput" placeholder="price"/>
+    <input type="number" id="priceInput" placeholder="price" required/>
   </div>
   <label>Description</label>
   <div class="mb-3">
-    <textarea  type="text" id="description" placeholder="description"></textarea>
+    <textarea  type="text" id="description" placeholder="description" required></textarea>
   </div>
  
   <label>STOCK</label>
   <div class="mb-3">
-    <input type="number" id="stockInput" placeholder="stock" />
+    <input type="number" id="stockInput" placeholder="stock" required/>
   </div>
 
   <label>Category</label>
   <div class="mb-3">
-    <select name="category" id="categoryInput">
+    <select name="category" id="categoryInput" required>
       <option value="laptop">Macbook</option>
       <option value="accessory">Phụ kiện</option>
     </select>
@@ -194,7 +188,7 @@ async function createProduct() {
 
    <label>Image</label>
   <div class="mb-3">
-    <input type="file" id="imageInput" multiple />
+    <input type="file" id="imageInput" multiple required/>
   </div>
 
 `;
@@ -209,14 +203,16 @@ async function createProduct() {
     'textarea[placeholder="description"'
   );
   var categoryInput = document.querySelector('select[name="category"');
-
+  var fileInput = document.querySelector('input[type="file"');
   const btnSave = document.getElementById("btnSave");
+
   btnSave.addEventListener("click", async () => {
     var name = nameInput.value;
     var price = priceInput.value;
     var stock = stockInput.value;
     var description = descriptionInput.value;
     var category = categoryInput.value;
+    var urls = await uploadFile(fileInput.files);
 
     await axios
       .post("https://api-zerot-lowdb.onrender.com/products", {
@@ -225,30 +221,37 @@ async function createProduct() {
         stock,
         description,
         category,
+        image: urls[0],
       })
       .then((response) => {
-        // toastr.success("Tạo sản phẩm mới", "Thành công", {
-        //   timeOut: 2000,
-        //   closeButton: true,
-        //   debug: false,
-        //   newestOnTop: true,
-        //   progressBar: true,
-        //   positionClass: "toast-top-right",
-        //   preventDuplicates: true,
-        //   onclick: null,
-        //   showDuration: "300",
-        //   hideDuration: "1000",
-        //   extendedTimeOut: "1000",
-        //   showEasing: "swing",
-        //   hideEasing: "linear",
-        //   showMethod: "fadeIn",
-        //   hideMethod: "fadeOut",
-        //   tapToDismiss: false,
-        // });
-        // console.log("success");
-        // const modal = new bootstrap.Modal(document.getElementById("myModal"));
-        // modal.hide();
+        const modal = new bootstrap.Modal(document.getElementById("myModal"));
+        modal.hide();
         location.reload();
       });
   });
 }
+
+const uploadFile = async (files) => {
+  const CLOUD_NAME = "dyk82loo2";
+  const PRESET_NAME = "demo-upload";
+  const FOLDER_NAME = "products";
+  const urls = [];
+  const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
+
+  const formData = new FormData();
+
+  formData.append("upload_preset", PRESET_NAME);
+  formData.append("folder", FOLDER_NAME);
+  for (const file of files) {
+    formData.append("file", file);
+    // console.log(file);
+    const response = await axios.post(api, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    urls.push(response.data.url);
+    return urls;
+  }
+};
