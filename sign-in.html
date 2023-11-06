@@ -71,6 +71,7 @@
                           placeholder="Email"
                           aria-label="Email"
                           aria-describedby="email-addon"
+                          required
                         />
                       </div>
                       <label>Password</label>
@@ -82,6 +83,7 @@
                           placeholder="Password"
                           aria-label="Password"
                           aria-describedby="password-addon"
+                          required
                         />
                       </div>
                       <div class="form-check form-switch">
@@ -89,7 +91,7 @@
                           class="form-check-input"
                           type="checkbox"
                           id="rememberMe"
-                          checked=""
+                          onchange="toggleOffer()"
                         />
                         <label class="form-check-label" for="rememberMe"
                           >Remember me</label
