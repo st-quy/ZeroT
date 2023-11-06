@@ -109,23 +109,23 @@ async function handleEdit(id) {
           </div>
           <label>Tên sản phẩm</label>
           <div class="mb-3">
-              <input type="text" id="nameInput" placeholder="${product.name}" value="${product.name}" />
+              <input type="text" class="form-control" id="nameInput" placeholder="${product.name}" value="${product.name}" />
           </div>
           <label>Giá sản phẩm</label>
           <div class="mb-3">
-              <input type="text" id="priceInput" placeholder="${product.price}" value="${product.price}" />
+              <input type="text" class="form-control" id="priceInput" placeholder="${product.price}" value="${product.price}" />
           </div>
           <label>Mô tả sản phẩm</label>
           <div class="mb-3">
-              <input type="text" id="descriptionInput" placeholder="${product.description}" value="${product.description}" />
+              <input type="text" class="form-control" id="descriptionInput" placeholder="${product.description}" value="${product.description}" />
           </div>
           <label>Hàng lưu giữ</label>
           <div class="mb-3">
-              <input type="text" id="stockInput" placeholder="${product.stock}" value="${product.stock}" />
+              <input type="text" class="form-control" id="stockInput" placeholder="${product.stock}" value="${product.stock}" />
           </div>
           <label>Loại sản phẩm</label>
           <div class="mb-3">
-    <select name="category" id="categoryInput" required>
+    <select name="category" class="form-control" id="categoryInput" required>
       <option value="laptop">Laptop</option>
       <option value="accessory">Phụ kiện</option>
     </select>
@@ -211,26 +211,26 @@ async function createProduct() {
   modalBody.innerHTML = `
   <label>Tên sản phẩm</label>
   <div class="mb-3">
-    <input type="text" id="nameInput" placeholder="name" required/>
+    <input type="text" class="form-control" id="nameInput" placeholder="name" required/>
   </div>
 
   <label>Giá sản phẩm</label>
   <div class="mb-3">
-    <input type="number" id="priceInput" placeholder="price" required/>
+    <input type="number" class="form-control" id="priceInput" placeholder="price" required/>
   </div>
   <label>Mô tả sản phẩm</label>
   <div class="mb-3">
-    <textarea  type="text" id="description" placeholder="description" required></textarea>
+    <textarea  type="text" class="form-control" id="description" placeholder="description" required></textarea>
   </div>
  
   <label>Hàng lưu trữ</label>
   <div class="mb-3">
-    <input type="number" id="stockInput" placeholder="stock" required/>
+    <input type="number" class="form-control" id="stockInput" placeholder="stock" required/>
   </div>
 
   <label>Loại sản phẩm</label>
   <div class="mb-3">
-    <select name="category" id="categoryInput" required>
+    <select name="category"class="form-control" id="categoryInput" required>
       <option value="laptop">Laptop</option>
       <option value="accessory">Phụ kiện</option>
     </select>
