@@ -1,6 +1,6 @@
  :root {
   --clr-primary: hsl(215, 99%, 66%);
-  --clr-secondary: hsl(314, 89%, 65%);
+  --clr-secondary: #596cff;
   --clr-neutral-100: hsl(0, 0%, 100%);
   --clr-neutral-900: hsl(230, 32%, 15%);
   --gradient: linear-gradient(
