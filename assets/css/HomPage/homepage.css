@@ -1,6 +1,7 @@
+
 .head{
   display: flex;
-  background: rgb(2, 2, 2);
+  background: rgb(0, 0, 0);
   padding: 0px 165px;
   margin: auto;
   justify-content: space-between;
@@ -66,4 +67,34 @@
 /* Màu khi di chuột vào liên kết */
 .dropdown-content li a:hover {
   color: #c8ff0057; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
+}
+
+body {
+  padding-bottom: 70px; /* Đặt khoảng cách phía dưới phần nội dung */
+}
+
+
+.page-content {
+  min-height: calc(100vh - 100px); /* 100px là chiều cao dự kiến của footer */
+  position: relative;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 20px 0;
+}
+
+/* Đảm bảo chữ màu trắng trong footer */
+footer h4, footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
