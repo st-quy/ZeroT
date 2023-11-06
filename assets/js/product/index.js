@@ -62,8 +62,39 @@ axios
         tbody.appendChild(row);
         index++;
       }
+      // $('#table-product').DataTable({
+      //   language: {
+      //     paginate: {
+      //       previous: '‹',
+      //       next: '›',
+      //     },
+      //     aria: {
+      //       paginate: {
+      //         previous: 'Previous',
+      //         next: 'Next',
+      //       },
+      //     },
+      //     url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
+      //   },
+      // });
+    });
+    $('#table-product').DataTable({
+      language: {
+        paginate: {
+          previous: '‹',
+          next: '›',
+        },
+        aria: {
+          paginate: {
+            previous: 'Previous',
+            next: 'Next',
+          },
+        },
+        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
+      },
     });
   })
+  
   .catch(function (error) {
     console.error("Error fetching data: ", error);
   });
