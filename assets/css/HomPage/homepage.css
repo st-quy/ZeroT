@@ -1,5 +1,4 @@
-
-.head{
+.head {
   display: flex;
   background: rgb(0, 0, 0);
   padding: 0px 165px;
@@ -7,56 +6,54 @@
   justify-content: space-between;
 }
 
-.logo a img{
+.logo a img {
   width: 33px; /* Thay đổi kích thước của logo tại đây */
   height: auto; /* Giữ tỷ lệ khung hình */
 }
 
-.menu{
+.menu {
   list-style-type: none;
   font-size: 20px;
 }
 
-.menu .nav-item{
+.menu .nav-item {
   display: inline-block;
   margin: 5px 5px 20px 20px; /* trên phải dưới trái */
   text-align: center;
   margin: 0 10px;
 }
-.cart-relogin{
+.cart-relogin {
   display: flex;
 }
-.cart-relogin .item a i{
+.cart-relogin .item a i {
   width: 40px;
   height: 20px;
-  color: white; 
+  color: white;
 }
 
-.item{
+.item {
   background-color: rgb(104, 102, 98);
   width: 30px; /* Độ rộng của vòng tròn */
   height: 30px; /* Độ cao của vòng tròn */
-  border-radius: 30px;/* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+  border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
   align-items: center;
   text-align: center;
   justify-content: center;
   display: flex;
-  margin: 12px 5px; 
+  margin: 12px 5px;
 }
-
 
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
 .relogin .dropdown-content {
   display: none;
   position: absolute;
- font-size:13px;
+  font-size: 13px;
 }
 
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
 .relogin:hover .dropdown-content {
   display: block;
 }
-
 
 /* Thay đổi màu của chữ trong dropdown-content */
 .dropdown-content li a {
@@ -68,6 +65,29 @@
 .dropdown-content li a:hover {
   color: #c8ff0057; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
 }
+
+/* PRODUCTS */
+.macbook {
+  max-width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.macbook img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carousel-inner {
+  padding: 1em;
+}
+.card {
+  margin: 0 0.5em;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  border: none;
+}
+
 
 body {
   padding-bottom: 70px; /* Đặt khoảng cách phía dưới phần nội dung */
