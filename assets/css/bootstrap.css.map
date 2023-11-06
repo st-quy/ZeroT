@@ -97,6 +97,7 @@
     "../scss/bootstrap/_close.scss",
     "../scss/bootstrap/_toasts.scss",
     "../scss/bootstrap/_minh-modal.scss",
+    "../scss/bootstrap/_modal.scss",
     "../scss/bootstrap/_tooltip.scss",
     "../scss/bootstrap/_popover.scss",
     "../scss/bootstrap/_carousel.scss",
