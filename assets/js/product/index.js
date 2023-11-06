@@ -1,17 +1,18 @@
 const tbody = document.querySelector("#table-product tbody");
 axios
-  .get("https://api-zerot-lowdb.onrender.com/products")
-  .then(function (response) {
-    const data = response.data;
-    data.forEach(function (product) {
-      if (product.deletedAt === false || product.deletedAt === undefined) {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-                  <td class="align-middle text-center data-id='${product.id}'">
-                    <span class="text-secondary text-xs font-weight-bold">${
-                      product.id
-                    }</span>
+    .get("https://api-zerot-lowdb.onrender.com/products")
+    .then(function(response) {
+            const data = response.data;
+            let index = 1;
+            data.forEach(function(product) {
+                        if (product.deletedAt === false || product.deletedAt === undefined) {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                            
+                  <td class="align-middle text-center data-id='${product.id}'>
+                  <span class="text-secondary text-xs font-weight-bold">${index}</span>
                   </td>
+                  
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
                       product.name
@@ -53,12 +54,13 @@ axios
                     <i class="fa fa-pencil cursor-pointer btn-sm" onclick=handleEdit(${
                       product.id
                     })></i>
-                    <span>&nbsp;</span>
+                    
                     <i class="fa fa-trash cursor-pointer btn-sm" onclick=handleDelete(${
                       product.id
                     })></i>
                   </td>`;
         tbody.appendChild(row);
+        index++;
       }
     });
   })
@@ -87,19 +89,23 @@ async function handleEdit(id) {
                   placeholder="${product.id}"                      
               />
           </div>
-          <label>Name</label>
+          <label>Tên sản phẩm</label>
           <div class="mb-3">
               <input type="text" id="nameInput" placeholder="${product.name}" value="${product.name}" />
           </div>
-          <label>Price</label>
+          <label>Giá sản phẩm</label>
           <div class="mb-3">
               <input type="text" id="priceInput" placeholder="${product.price}" value="${product.price}" />
           </div>
-          <label>STOCK</label>
+          <label>Mô tả sản phẩm</label>
+          <div class="mb-3">
+              <input type="text" id="descriptionInput" placeholder="${product.description}" value="${product.description}" />
+          </div>
+          <label>Hàng lưu giữ</label>
           <div class="mb-3">
               <input type="text" id="stockInput" placeholder="${product.stock}" value="${product.stock}" />
           </div>
-          <label>Category</label>
+          <label>Loại sản phẩm</label>
           <div class="mb-3">
               <input type="text" id="categoryInput" placeholder="${product.category}" value="${product.category}" />
           </div>
@@ -115,6 +121,7 @@ async function handleEdit(id) {
         const priceInput = document.getElementById("priceInput");
         const stockInput = document.getElementById("stockInput");
         const categoryInput = document.getElementById("categoryInput");
+        const descriptionInput = document.getElementById("descriptionInput");
 
         const response = await axios.patch(
           `https://api-zerot-lowdb.onrender.com/products/${id}`,
@@ -123,6 +130,7 @@ async function handleEdit(id) {
             price: priceInput.value,
             stock: stockInput.value,
             category: categoryInput.value,
+            description: descriptionInput.value,
           }
         );
 
@@ -180,26 +188,26 @@ async function createProduct() {
   const modalBody = document.getElementById("modal-body");
   modalTitle.textContent = `Thêm sản phẩm mới`;
   modalBody.innerHTML = `
-  <label>Name</label>
+  <label>Tên sản phẩm</label>
   <div class="mb-3">
-    <input type="text" id="nameInput" placeholder="name" required/>
+    <input type="text" id="nameInput"  required/>
   </div>
 
-  <label>Price</label>
+  <label>Giá sản phẩm</label>
   <div class="mb-3">
-    <input type="number" id="priceInput" placeholder="price" required/>
+    <input type="number" id="priceInput"  required/>
   </div>
-  <label>Description</label>
+  <label>Mô tả sản phẩm</label>
   <div class="mb-3">
-    <textarea  type="text" id="description" placeholder="description" required></textarea>
+    <textarea  type="text" id="description"  required></textarea>
   </div>
  
-  <label>STOCK</label>
+  <label>Hàng lưu trữ</label>
   <div class="mb-3">
-    <input type="number" id="stockInput" placeholder="stock" required/>
+    <input type="number" id="stockInput"  required/>
   </div>
 
-  <label>Category</label>
+  <label>Loại sản phẩm</label>
   <div class="mb-3">
     <select name="category" id="categoryInput" required>
       <option value="laptop">Macbook</option>
@@ -207,7 +215,7 @@ async function createProduct() {
     </select>
   </div>
 
-   <label>Image</label>
+   <label>Ảnh </label>
   <div class="mb-3">
     <input type="file" id="imageInput" multiple required/>
   </div>
