@@ -1,7 +1,6 @@
 const tbody = document.querySelector("#table-product tbody");
 axios
   .get("https://api-zerot-lowdb.onrender.com/products")
-
   .then(function (response) {
     const data = response.data;
     data.forEach(function (product) {
@@ -9,33 +8,55 @@ axios
         const row = document.createElement("tr");
         row.innerHTML = `
                   <td class="align-middle text-center data-id='${product.id}'">
-                    <span class="text-secondary text-xs font-weight-bold">${product.id}</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.id
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.name}</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.name
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.price}</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.price
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.description}</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.description
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
                     <image src=${product.image} style="width: 100%"/>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.category}</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.category
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.stock}</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.stock
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.review}</span>
+                  ${
+                    product.review?.length > 0
+                      ? `<span class='text-secondary text-xs font-weight-bold'>
+                        ${product.review}
+                      </span>`
+                      : `<span class='text-secondary text-xs font-weight-bold'>Sản phẩm chưa có review</span>`
+                  }
                   </td>
                   <td class="align-middle text-center">
-                    <i class="fa fa-pencil cursor-pointer btn-sm" onclick=handleEdit(${product.id})></i>
+                    <i class="fa fa-pencil cursor-pointer btn-sm" onclick=handleEdit(${
+                      product.id
+                    })></i>
                     <span>&nbsp;</span>
-                    <i class="fa fa-trash cursor-pointer btn-sm" onclick=handleDelete(${product.id})></i>
+                    <i class="fa fa-trash cursor-pointer btn-sm" onclick=handleDelete(${
+                      product.id
+                    })></i>
                   </td>`;
         tbody.appendChild(row);
       }
@@ -222,6 +243,7 @@ async function createProduct() {
         description,
         category,
         image: urls[0],
+        review: [],
       })
       .then((response) => {
         const modal = new bootstrap.Modal(document.getElementById("myModal"));
