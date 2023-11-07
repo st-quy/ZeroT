@@ -1,13 +1,13 @@
 const tbody = document.querySelector("#table-product tbody");
 axios
-    .get("https://api-zerot-lowdb.onrender.com/products")
-    .then(function(response) {
-            const data = response.data;
-            let index = 1;
-            data.forEach(function(product) {
-                        if (product.deletedAt === false || product.deletedAt === undefined) {
-                            const row = document.createElement("tr");
-                            row.innerHTML = `
+  .get("https://api-zerot-lowdb.onrender.com/products")
+  .then(function (response) {
+    const data = response.data;
+    let index = 1;
+    data.forEach(function (product) {
+      if (product.deletedAt === false || product.deletedAt === undefined) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
                             
                   <td class="align-middle text-center data-id='${product.id}'>
                   <span class="text-secondary text-xs font-weight-bold">${index}</span>
@@ -24,9 +24,10 @@ axios
                     } VND</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${
-                      product.description.substring(0, 15)
-                    }</span>
+                    <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
+                      0,
+                      15
+                    )}</span>
                   </td>
                   <td class="align-middle text-center">
                     <image src=${product.image[0]} style="width: 100%"/>
@@ -58,29 +59,28 @@ axios
                       product.id
                     })></i>
                   </td>`;
-                                  
+
         tbody.appendChild(row);
         index++;
       }
-    
     });
-    $('#table-product').DataTable({
+    $("#table-product").DataTable({
       language: {
         paginate: {
-          previous: '‹',
-          next: '›',
+          previous: "‹",
+          next: "›",
         },
         aria: {
           paginate: {
-            previous: 'Previous',
-            next: 'Next',
+            previous: "Previous",
+            next: "Next",
           },
         },
-        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
+        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
       },
     });
   })
-  
+
   .catch(function (error) {
     console.error("Error fetching data: ", error);
   });
@@ -136,7 +136,7 @@ async function handleEdit(id) {
     <input type="file" id="imageInput" style="display: none" />
   </div>
 `;
-const editImageButton = document.getElementById("editImageButton");
+    const editImageButton = document.getElementById("editImageButton");
     const imageInput = document.getElementById("imageInput");
     editImageButton.addEventListener("click", () => {
       imageInput.click();
@@ -185,28 +185,29 @@ const editImageButton = document.getElementById("editImageButton");
           alert("Giá sản phẩm phải là một số dương");
           return;
         }
-        if(descriptionInput.value.trim()==="") {  
+        if (descriptionInput.value.trim() === "") {
           alert("Mô tả không được để trống");
           return;
         }
         if (isNaN(Number(stockInput.value)) || Number(stockInput.value) < 0) {
           alert("Hàng lưu giữ phải là một số không âm");
           return;
-        } 
-           
+        }
+
         Swal.fire({
-          icon: 'success',
-          title: 'Thành công',
-          text: 'Sản phẩm đã được chỉnh sửa thành công',
+          icon: "success",
+          title: "Thành công",
+          text: "Sản phẩm đã được chỉnh sửa thành công",
         }).then((result) => {
           if (result.isConfirmed) {
-            const modal = new bootstrap.Modal(document.getElementById("myModal"));
+            const modal = new bootstrap.Modal(
+              document.getElementById("myModal")
+            );
             modal.hide();
             location.reload();
           }
-        });    
-      
-     } catch (error) {
+        });
+      } catch (error) {
         console.error("Lỗi khi lưu thay đổi: ", error);
       }
     });
@@ -234,14 +235,17 @@ async function handleDelete(id) {
           `https://api-zerot-lowdb.onrender.com/products/${id}`,
           {
             deletedAt: true,
-          });
+          }
+        );
         Swal.fire({
-          icon: 'success',
-          title: 'Thành công',
-          text: 'Sản phẩm đã được xóa thành công',
+          icon: "success",
+          title: "Thành công",
+          text: "Sản phẩm đã được xóa thành công",
         }).then((result) => {
           if (result.isConfirmed) {
-            const modal = new bootstrap.Modal(document.getElementById("myModal"));
+            const modal = new bootstrap.Modal(
+              document.getElementById("myModal")
+            );
             modal.hide();
             location.reload();
           }
@@ -257,7 +261,6 @@ async function handleDelete(id) {
     console.error("Lỗi khi lấy thông tin sản phẩm: ", error);
   }
 }
-
 
 async function createProduct() {
   const modalTitle = document.getElementById("modal-title");
@@ -302,7 +305,9 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm (VND)"');
+  var priceInput = document.querySelector(
+    'input[placeholder="Giá sản phẩm (VND)"'
+  );
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'
@@ -318,7 +323,6 @@ async function createProduct() {
     var description = descriptionInput.value;
     var category = categoryInput.value;
     var urls = await uploadFile(fileInput.files);
-
     await axios
       .post("https://api-zerot-lowdb.onrender.com/products", {
         name,
@@ -337,7 +341,6 @@ async function createProduct() {
   });
 }
 
-
 const uploadFile = async (files) => {
   const CLOUD_NAME = "dyk82loo2";
   const PRESET_NAME = "demo-upload";
@@ -349,6 +352,7 @@ const uploadFile = async (files) => {
 
   formData.append("upload_preset", PRESET_NAME);
   formData.append("folder", FOLDER_NAME);
+  console.log(files);
   for (const file of files) {
     formData.append("file", file);
     // console.log(file);
@@ -357,9 +361,7 @@ const uploadFile = async (files) => {
         "Content-Type": "multipart/form-data",
       },
     });
-
     urls.push(response.data.url);
-  
-    return urls;
   }
+  return urls;
 };
