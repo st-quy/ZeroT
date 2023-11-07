@@ -41,6 +41,7 @@
   justify-content: center;
   display: flex;
   margin: 12px 5px;
+  font-family: "Arial", sans-serif;
 }
 
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
@@ -136,10 +137,13 @@ html, body {
 
 .section {
   /* Ensure no margin or padding on the section */
-  margin: 0;
-  padding: 0;
+  margin: 30;
+  padding: 30;
 }
-
+.smac{
+  margin: 40;
+  padding: 40;
+}
 .carousel-inner {
   /* Remove padding for the carousel-inner */
   padding: 0;
@@ -148,6 +152,15 @@ html, body {
 .carousel-item img {
   /* Ensure the images fill the full width of the container */
   width: 100%;
+}
+/* Đặt vị trí cho nút mũi tên carousel */
+.carousel-controls {
+  position: absolute;
+  top: 50%; /* Đặt nút mũi tên ở giữa theo chiều dọc */
+  transform: translateY(-50%); /* Dịch lên trên để căn giữa */
+  display: flex;
+  justify-content: space-between; /* Canh giữa giữa các nút mũi tên */
+  width: 100%; /* Đảm bảo nút mũi tên trải dài trên toàn bề mặt carousel */
 }
 
 .carousel-inner {
@@ -159,10 +172,19 @@ html, body {
   border: 2px solid white; /* Đặt khung xung quanh slide thành màu trắng */
 }
 
+.macbook_title{
+  color: white;
+}
 
+.card-title{
+  color: yellow;
+}
 
+.card-text{
+  font-family: "Arial", sans-serif;
+}
 
-
-
-
+.font{
+  font-family: "Arial", sans-serif;
+}
 
