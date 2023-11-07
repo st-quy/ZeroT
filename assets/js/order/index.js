@@ -42,21 +42,18 @@ async function displayOrder() {
                                 item.totalPrice
                               }</span>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle text-center">
                               <a
                                 style="cursor: pointer;"
-                                class="updateBtn-${
-                                  item.id
-                                } text-secondary font-weight-bold text-xs"
+                                class="updateBtn-${item.id}"
                                 onclick=showPopupUpdate(${item.id})>
-                                Cập nhật <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <i class="fa fa-pencil cursor-pointer" aria-hidden="true"></i>
                               </a>
-                              |
                               <a
                                 style="cursor: pointer;"
-                                class="text-secondary font-weight-bold text-xs"
-                                onclick=seeMore(${item.id})>
-                                Xem thêm <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                onclick=seeMore(${item.id})
+                                class="">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                               </a>
                             </td>`;
         tbody.appendChild(row);

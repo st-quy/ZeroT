@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +11,13 @@
     <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/modal-popup/minh-popup.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <link href="assets/css/toastr/toastr.min.css" rel="stylesheet" />
+
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
@@ -22,9 +28,23 @@
       })();
     </script>
   </head>
-
   <body>
+    <div id="minh-modal" class="minh-modal">
+      <div class="minh-modal-inner">
+        <div class="minh-modal-header">
+          <h2>E-mail của bạn cần kích hoạt</h2>
+        </div>
+        <div class="minh-modal-body">
+          <h2>Vui lòng xác nhận E-mail của bạn để tiếp tục</h2>
+          <input type="text" placeholder="code" id="confirmationCode" />
+        </div>
+        <div class="minh-modal-footer">
+          <button id="btnConfirm" onclick="confirmCode()">Xác Nhận</button>
+          <button id="btnCancel">Hủy</button>
+        </div>
+      </div>
+    </div>
+    <div id="messagePopup"></div>
   </body>
   <script src="./assets/js/index.js"></script>
-
 </html>
