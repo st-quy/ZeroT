@@ -165,24 +165,32 @@ async function seeMore(orderId) {
     const modalBody = document.getElementById('modal-body');
 
     modalTitle.textContent = `Thông tin đơn hàng: ${orderData.user[1]}`;
+    orderData.orderItems.forEach((item) => {
+      let sum = 0;
+      modalBody.innerHTML = `
+      <div class="col-2">
+      <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-650x650.png" style="width: 100px"/>
+      </div>
+      <div class=" col-6"> 
+        <p>${item.name}</p>
+        <p>Màu:Đen</p>
+      </div>
+      <div class=" col-1 quantity"> 
+        <p class="border-quantity"> ${item.quantity} </p>
+      </div>
+      <div class="col-3">
+        <h5 class="font-weight-bolder mb-0">
+          ${sum += item.quantity * item.price} VNĐ
+          </h5>
+      </div>
+      <hr class="horizontal dark mt-1"/>
+        <div class="row align-items-start">
+          <div class="col-6 price">Tổng tiền: </div>
+          <div class="col-6 total-price">${sum} VNĐ</div>
+        </div>
+      `;
+    })
     
-    modalBody.innerHTML = `
-    <div class="col-2">
-    <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-650x650.png" style="width: 100px"/>
-    </div>
-    <div class=" col-6"> 
-      <p>${orderData.orderItems.name}</p>
-      <p>Màu:Đen</p>
-    </div>
-    <div class=" col-1 quantity"> 
-      <p class="border-quantity">1 </p>
-    </div>
-    <div class="col-3">
-      <h5 class="font-weight-bolder mb-0">
-        64.490.000₫ 
-        </h5>
-    </div>
-    `;
     const modal = new bootstrap.Modal(document.getElementById('myModal'));
     modal.show();
   } catch (error) {

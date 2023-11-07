@@ -19,5 +19,7 @@
     text-align: center;
 }
 .total-price{
-    text-align: center;
+    text-align: right;
+    font-weight: bold;
+    font-size:20px;
 }
