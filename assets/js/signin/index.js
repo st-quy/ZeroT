@@ -18,11 +18,10 @@ if (remember && remember.checked === true) {
   document.querySelector('input[name="email"]').value = remember.email;
   document.querySelector('input[name="password"]').value = remember.password;
 }
-  if ((role && role === "admin") || role === "seller") {
-    location.href = `${location.origin}/admin.html`;
-  } else {
-    location.href = `${location.origin}/index.html`;
-  }
+if ((role && role === "admin") || role === "seller") {
+  location.href = `${location.origin}/admin.html`;
+} else {
+  location.href = `${location.origin}/index.html`;
 }
 if (remember && remember.checked === true) {
   document.getElementById("rememberMe").checked = remember.checked;
@@ -235,8 +234,7 @@ async function handleLogin() {
 window.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     handleLogin();
-    }
-    
+  }
 });
 
 window.addEventListener("keydown", function (event) {
