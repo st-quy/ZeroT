@@ -1,12 +1,5 @@
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
-
-
-
-
-
-
-
 async function forgotPassword() {
   var email = document.querySelector('input[name="email"]').value;
   await axios
