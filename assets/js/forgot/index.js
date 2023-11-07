@@ -11,12 +11,12 @@ async function forgotPassword() {
   var email = document.getElementById("email").value;
 
   if (!email) {
-    showMessagePopup("Please enter your email.");
+    showMessagePopup("Nhập Email của bạn");
     return;
   }
 
   if (!validateEmail(email)) {
-    showMessagePopup("Only email addresses are allowed.");
+    showMessagePopup("Điền theo định dạng Email");
     return;
   }
 
@@ -33,7 +33,7 @@ async function forgotPassword() {
           .send("service_4mv8mgj", "template_69jvbsa", templateParams)
           .then(
             async function () {
-              showMessagePopup("Please check your email for the reset code.");
+              showMessagePopup("Đã gửi code về Email của bạn");
 
               // Open the code modal and wait for user input
               codeModal.style.display = "block";
@@ -56,13 +56,13 @@ async function forgotPassword() {
                         `https://api-zerot-lowdb.onrender.com/users/${userExist.id}`,
                         { password: newPassword }
                       );
-                      showMessagePopup("Password updated successfully.", true);
+                      showMessagePopup("Mật khẩu thay đổi thành công ", true);
                       closePasswordModal();
                       setTimeout(function () {
                         window.location.href = "sign-in.html";
                       }, 2000);
                     } else {
-                      showMessagePopup("Invalid password. Password update failed.");
+                      showMessagePopup("Mật khẩu sai. Vui lòng nhập lại");
                     }
                   };
 
@@ -70,7 +70,7 @@ async function forgotPassword() {
                     .getElementById("password-modal-submit")
                     .addEventListener("click", submitPassword);
                 } else {
-                  showMessagePopup("Invalid code. Password reset failed.");
+                  showMessagePopup("Code sai. Vui lòng nhập lại");
                 }
               };
 
@@ -81,12 +81,10 @@ async function forgotPassword() {
             }
           );
       } else {
-        showMessagePopup("Email does not exist.");
+        showMessagePopup("Email không tồn tại");
       }
     });
 }
-
-
 function validateEmail(email) {
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -117,3 +115,6 @@ var closeCodeModal = function () {
 var closePasswordModal = function () {
   passwordModal.style.display = "none";
 };
+
+document.getElementById("password-modal-close").addEventListener("click", closePasswordModal);
+document.getElementById("code-modal-close").addEventListener("click", closeCodeModal);
