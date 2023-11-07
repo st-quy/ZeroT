@@ -9,7 +9,6 @@ if (isLogin === true) {
     location.href = `${location.origin}/index.html`;
   }
 }
-
 if (remember && remember.checked === true) {
   document.getElementById("rememberMe").checked = remember.checked;
   document.querySelector('input[name="email"]').value = remember.email;
