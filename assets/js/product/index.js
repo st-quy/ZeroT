@@ -1,13 +1,13 @@
-const tbody = document.querySelector("#table-product tbody");
+const tbody = document.querySelector('#table-product tbody');
 axios
-    .get("https://api-zerot-lowdb.onrender.com/products")
-    .then(function(response) {
-            const data = response.data;
-            let index = 1;
-            data.forEach(function(product) {
-                        if (product.deletedAt === false || product.deletedAt === undefined) {
-                            const row = document.createElement("tr");
-                            row.innerHTML = `
+  .get('https://api-zerot-lowdb.onrender.com/products')
+  .then(function (response) {
+    let index = 1;
+    const products = response.data.reverse();
+    products.forEach(function (product) {
+      if (!product.deletedAt) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
                             
                   <td class="align-middle text-center data-id='${product.id}'>
                   <span class="text-secondary text-xs font-weight-bold">${index}</span>
@@ -51,18 +51,16 @@ axios
                   }
                   </td>
                   <td class="align-middle text-center">
-                    <i class="fa fa-pencil cursor-pointer btn-sm" onclick=handleEdit(${
-                      product.id
-                    })></i>
-                    
-                    <i class="fa fa-trash cursor-pointer btn-sm" onclick=handleDelete(${
-                      product.id
-                    })></i>
+                  <a onclick="handleEdit(${product.id})" class="">
+                  <i class="fa fa-pencil cursor-pointer" aria-hidden="true"></i>
+                  </a>
+                  <a onclick="handleDelete(${product.id})" class="">
+                  <i class="fa fa-trash cursor-pointer" ></i>
+                  </a>
                   </td>`;
         tbody.appendChild(row);
         index++;
       }
-    
     });
     $('#table-product').DataTable({
       language: {
@@ -80,9 +78,9 @@ axios
       },
     });
   })
-  
+
   .catch(function (error) {
-    console.error("Error fetching data: ", error);
+    console.error('Error fetching data: ', error);
   });
 
 async function handleEdit(id) {
@@ -92,8 +90,8 @@ async function handleEdit(id) {
     );
     const product = response.data;
 
-    const modalTitle = document.getElementById("modal-title");
-    const modalBody = document.getElementById("modal-body");
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
 
     modalTitle.textContent = `Chỉnh sửa thông tin sản phẩm: ${product.name}`;
     modalBody.innerHTML = `
@@ -132,17 +130,17 @@ async function handleEdit(id) {
   </div>
       `;
 
-    const modal = new bootstrap.Modal(document.getElementById("myModal"));
+    const modal = new bootstrap.Modal(document.getElementById('myModal'));
     modal.show();
 
-    const saveModal = document.getElementById("btnSave");
-    saveModal.addEventListener("click", async function () {
+    const saveModal = document.getElementById('btnSave');
+    saveModal.addEventListener('click', async function () {
       try {
-        const nameInput = document.getElementById("nameInput");
-        const priceInput = document.getElementById("priceInput");
-        const stockInput = document.getElementById("stockInput");
-        const categoryInput = document.getElementById("categoryInput");
-        const descriptionInput = document.getElementById("descriptionInput");
+        const nameInput = document.getElementById('nameInput');
+        const priceInput = document.getElementById('priceInput');
+        const stockInput = document.getElementById('stockInput');
+        const categoryInput = document.getElementById('categoryInput');
+        const descriptionInput = document.getElementById('descriptionInput');
 
         const response = await axios.patch(
           `https://api-zerot-lowdb.onrender.com/products/${id}`,
@@ -155,15 +153,15 @@ async function handleEdit(id) {
           }
         );
 
-        const modal = new bootstrap.Modal(document.getElementById("myModal"));
+        const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
         location.reload();
       } catch (error) {
-        console.error("Lỗi khi lưu thay đổi: ", error);
+        console.error('Lỗi khi lưu thay đổi: ', error);
       }
     });
   } catch (error) {
-    console.error("Lỗi khi lấy thông tin sản phẩm: ", error);
+    console.error('Lỗi khi lấy thông tin sản phẩm: ', error);
   }
 }
 
@@ -174,39 +172,36 @@ async function handleDelete(id) {
     );
     const product = response.data;
 
-    const modalTitle = document.getElementById("modal-title");
-    const modalBody = document.getElementById("modal-body");
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
 
     modalTitle.textContent = `Xóa sản phẩm: ${product.name}`;
     modalBody.innerHTML = `Bạn có chắc chắn rằng bạn muốn xóa sản phẩm ${product.name} không ?`;
 
-    const saveModal = document.getElementById("btnSave");
-    saveModal.addEventListener("click", async function () {
+    const saveModal = document.getElementById('btnSave');
+    saveModal.addEventListener('click', async function () {
       try {
-        const deleteResponse = await axios.patch(
-          `https://api-zerot-lowdb.onrender.com/products/${id}`,
-          {
-            deletedAt: true,
-          }
+        const deleteResponse = await axios.delete(
+          `https://api-zerot-lowdb.onrender.com/products/${id}`
         );
-        const modal = new bootstrap.Modal(document.getElementById("myModal"));
+        const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
         location.reload();
       } catch (error) {
-        console.error("Lỗi khi xóa sản phẩm: ", error);
+        console.error('Lỗi khi xóa sản phẩm: ', error);
       }
     });
 
-    const modal = new bootstrap.Modal(document.getElementById("myModal"));
+    const modal = new bootstrap.Modal(document.getElementById('myModal'));
     modal.show();
   } catch (error) {
-    console.error("Lỗi khi lấy thông tin sản phẩm: ", error);
+    console.error('Lỗi khi lấy thông tin sản phẩm: ', error);
   }
 }
 
 async function createProduct() {
-  const modalTitle = document.getElementById("modal-title");
-  const modalBody = document.getElementById("modal-body");
+  const modalTitle = document.getElementById('modal-title');
+  const modalBody = document.getElementById('modal-body');
   modalTitle.textContent = `Thêm sản phẩm mới`;
   modalBody.innerHTML = `
   <label>Tên sản phẩm</label>
@@ -243,7 +238,7 @@ async function createProduct() {
 
 `;
 
-  const modal = new bootstrap.Modal(document.getElementById("myModal"));
+  const modal = new bootstrap.Modal(document.getElementById('myModal'));
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="name"');
@@ -254,9 +249,9 @@ async function createProduct() {
   );
   var categoryInput = document.querySelector('select[name="category"');
   var fileInput = document.querySelector('input[type="file"');
-  const btnSave = document.getElementById("btnSave");
+  const btnSave = document.getElementById('btnSave');
 
-  btnSave.addEventListener("click", async () => {
+  btnSave.addEventListener('click', async () => {
     var name = nameInput.value;
     var price = Number(priceInput.value);
     var stock = Number(stockInput.value);
@@ -265,7 +260,7 @@ async function createProduct() {
     var urls = await uploadFile(fileInput.files);
 
     await axios
-      .post("https://api-zerot-lowdb.onrender.com/products", {
+      .post('https://api-zerot-lowdb.onrender.com/products', {
         name,
         price,
         stock,
@@ -275,7 +270,7 @@ async function createProduct() {
         review: [],
       })
       .then((response) => {
-        const modal = new bootstrap.Modal(document.getElementById("myModal"));
+        const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
         location.reload();
       });
@@ -283,22 +278,22 @@ async function createProduct() {
 }
 
 const uploadFile = async (files) => {
-  const CLOUD_NAME = "dyk82loo2";
-  const PRESET_NAME = "demo-upload";
-  const FOLDER_NAME = "products";
+  const CLOUD_NAME = 'dyk82loo2';
+  const PRESET_NAME = 'demo-upload';
+  const FOLDER_NAME = 'products';
   const urls = [];
   const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
 
   const formData = new FormData();
 
-  formData.append("upload_preset", PRESET_NAME);
-  formData.append("folder", FOLDER_NAME);
+  formData.append('upload_preset', PRESET_NAME);
+  formData.append('folder', FOLDER_NAME);
   for (const file of files) {
-    formData.append("file", file);
+    formData.append('file', file);
     // console.log(file);
     const response = await axios.post(api, formData, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     });
 
