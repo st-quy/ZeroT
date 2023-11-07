@@ -1,13 +1,13 @@
 const tbody = document.querySelector("#table-product tbody");
 axios
-    .get("https://api-zerot-lowdb.onrender.com/products")
-    .then(function(response) {
-            const data = response.data;
-            let index = 1;
-            data.forEach(function(product) {
-                        if (product.deletedAt === false || product.deletedAt === undefined) {
-                            const row = document.createElement("tr");
-                            row.innerHTML = `
+  .get("https://api-zerot-lowdb.onrender.com/products")
+  .then(function (response) {
+    const data = response.data;
+    let index = 1;
+    data.forEach(function (product) {
+      if (product.deletedAt === false || product.deletedAt === undefined) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
                             
                   <td class="align-middle text-center data-id='${product.id}'>
                   <span class="text-secondary text-xs font-weight-bold">${index}</span>
@@ -51,36 +51,34 @@ axios
                   }
                   </td>
                   <td class="align-middle text-center">
-                    <i class="fa fa-pencil cursor-pointer btn-sm" onclick=handleEdit(${
-                      product.id
-                    })></i>
-                    
-                    <i class="fa fa-trash cursor-pointer btn-sm" onclick=handleDelete(${
-                      product.id
-                    })></i>
+                  <a onclick="handleEdit(${product.id})" class="">
+                  <i class="fa fa-pencil cursor-pointer" aria-hidden="true"></i>
+                  </a>
+                  <a onclick="handleDelete(${product.id})" class="">
+                  <i class="fa fa-trash cursor-pointer" ></i>
+                  </a>
                   </td>`;
         tbody.appendChild(row);
         index++;
       }
-    
     });
-    $('#table-product').DataTable({
+    $("#table-product").DataTable({
       language: {
         paginate: {
-          previous: '‹',
-          next: '›',
+          previous: "‹",
+          next: "›",
         },
         aria: {
           paginate: {
-            previous: 'Previous',
-            next: 'Next',
+            previous: "Previous",
+            next: "Next",
           },
         },
-        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
+        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
       },
     });
   })
-  
+
   .catch(function (error) {
     console.error("Error fetching data: ", error);
   });
