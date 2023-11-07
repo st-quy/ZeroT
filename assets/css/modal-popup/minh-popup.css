@@ -53,7 +53,6 @@ body {
 }
 
 .minh-modal {
-  font-family: var(--bs-font-monospace);
   top: 0;
   width: 100vw;
   height: 100vh;
@@ -109,7 +108,6 @@ body {
 .minh-modal-footer button {
   padding: 0.75rem;
   background: var(--gradient);
-  
   color: var(--clr-neutral-100);
   border: 0;
   border-radius: 0.25rem;
@@ -119,3 +117,27 @@ body {
   width: 100px;
   margin: 5px;
 } 
+
+
+#messagePopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#messagePopup.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#messagePopup.big-message {
+  font-size: 32px;
+  padding: 30px;
+}

@@ -36,14 +36,15 @@
         </div>
         <div class="minh-modal-body">
           <h2>Vui lòng xác nhận E-mail của bạn để tiếp tục</h2>
-          <input type="text" id="confirmationCode" />
+          <input type="text" placeholder="code" id="confirmationCode" />
         </div>
         <div class="minh-modal-footer">
-          <button onclick="confirmCode()">Xác Nhận</button>
+          <button id="btnConfirm" onclick="confirmCode()">Xác Nhận</button>
           <button id="btnCancel">Hủy</button>
         </div>
       </div>
     </div>
+    <div id="messagePopup"></div>
   </body>
   <script src="./assets/js/index.js"></script>
 </html>
