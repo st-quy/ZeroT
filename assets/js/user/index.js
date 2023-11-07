@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 
-const tbody = document.querySelector('#data-table tbody');
+const tbody = document.querySelector("#data-table tbody");
 
 axios
-  .get('https://api-zerot-lowdb.onrender.com/users')
+  .get("https://api-zerot-lowdb.onrender.com/users")
   .then((response) => {
     const data = response.data;
     data
       .filter((acc) => !acc.deletedAt && acc.role !== 'admin')
       .map((item, index) => {
-        const row = document.createElement('tr');
+        const row = document.createElement("tr");
         row.innerHTML = `<td class="align-middle text-center">
                           <span class="text-secondary text-xs font-weight-bold"
                             >${index + 1}</span
@@ -36,35 +36,35 @@ axios
                           >
                         </td>
                         <td class="align-middle">
-                          <i class="fa fa-pencil cursor-pointer" aria-hidden="true" onclick="handleEdit(${
-                            item.id
-                          })"></i>
-                          <i class="fa fa-trash cursor-pointer" onclick="handleDelete(${
-                            item.id
-                          })"></i>
+                        <a onclick="handleEdit(${item.id})" class="">
+                          <i class="fa fa-pencil cursor-pointer" aria-hidden="true" ></i>
+                        </a>
+                        <a onclick="handleDelete(${item.id})" class="">
+                          <i class="fa fa-trash cursor-pointer"></i>
+                        </a>
                         </td>
                         `;
         tbody.appendChild(row);
       });
     // new DataTable('#data-table');
-    $('#data-table').DataTable({
+    $("#data-table").DataTable({
       language: {
         paginate: {
-          previous: '‹',
-          next: '›',
+          previous: "‹",
+          next: "›",
         },
         aria: {
           paginate: {
-            previous: 'Previous',
-            next: 'Next',
+            previous: "Previous",
+            next: "Next",
           },
         },
-        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
+        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
       },
     });
   })
   .catch((error) => {
-    console.error('Error fetching data: ', error);
+    console.error("Error fetching data: ", error);
   });
 
 async function handleEdit(userId) {
@@ -74,8 +74,8 @@ async function handleEdit(userId) {
     );
     const userData = response.data;
 
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
+    const modalTitle = document.getElementById("modal-title");
+    const modalBody = document.getElementById("modal-body");
 
     modalTitle.textContent = `Chỉnh sửa thông tin: ${userData.name.toUpperCase()}`;
     modalBody.innerHTML = `
@@ -120,9 +120,9 @@ async function handleEdit(userId) {
     <option value="delivery">Delivery Man</option>
   </select>
     `;
-    const roleSelect = document.getElementById('selectRole');
-    const saveModal = document.getElementById('btnSave');
-    saveModal.addEventListener('click', async function () {
+    const roleSelect = document.getElementById("selectRole");
+    const saveModal = document.getElementById("btnSave");
+    saveModal.addEventListener("click", async function () {
       try {
         const response = await axios.patch(
           `https://api-zerot-lowdb.onrender.com/users/${userId}`,
@@ -131,17 +131,17 @@ async function handleEdit(userId) {
           }
         );
 
-        const modal = new bootstrap.Modal(document.getElementById('myModal'));
+        const modal = new bootstrap.Modal(document.getElementById("myModal"));
         modal.hide();
         location.reload();
       } catch (error) {
-        console.error('Lỗi khi lưu thay đổi role: ', error);
+        console.error("Lỗi khi lưu thay đổi role: ", error);
       }
     });
-    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+    const modal = new bootstrap.Modal(document.getElementById("myModal"));
     modal.show();
   } catch (error) {
-    console.error('Error fetching data: ', error);
+    console.error("Error fetching data: ", error);
   }
 }
 
@@ -152,29 +152,29 @@ async function handleDelete(userId) {
     );
     const userData = response.data;
 
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
+    const modalTitle = document.getElementById("modal-title");
+    const modalBody = document.getElementById("modal-body");
 
     modalTitle.textContent = `Xóa tài khoản ${userData.id}: ${userData.name}`;
     modalBody.innerHTML = `Bạn có chắc rằng bạn muốn xóa tài khoản ${userData.name} này không ?`;
-    const roleSelect = document.getElementById('selectRole');
-    const saveModal = document.getElementById('btnSave');
-    saveModal.addEventListener('click', async function () {
+    const roleSelect = document.getElementById("selectRole");
+    const saveModal = document.getElementById("btnSave");
+    saveModal.addEventListener("click", async function () {
       try {
         const response = await axios.delete(
           `https://api-zerot-lowdb.onrender.com/users/${userId}`
         );
 
-        const modal = new bootstrap.Modal(document.getElementById('myModal'));
+        const modal = new bootstrap.Modal(document.getElementById("myModal"));
         modal.hide();
         location.reload();
       } catch (error) {
-        console.error('Lỗi khi lưu thay đổi role: ', error);
+        console.error("Lỗi khi lưu thay đổi role: ", error);
       }
     });
-    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+    const modal = new bootstrap.Modal(document.getElementById("myModal"));
     modal.show();
   } catch (error) {
-    console.error('Lỗi khi lưu thay đổi: ', error);
+    console.error("Lỗi khi lưu thay đổi: ", error);
   }
 }

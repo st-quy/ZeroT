@@ -51,13 +51,12 @@ axios
                   }
                   </td>
                   <td class="align-middle text-center">
-                    <i class="fa fa-pencil cursor-pointer btn-sm" onclick=handleEdit(${
-                      product.id
-                    })></i>
-                    
-                    <i class="fa fa-trash cursor-pointer btn-sm" onclick=handleDelete(${
-                      product.id
-                    })></i>
+                  <a onclick="handleEdit(${product.id})" class="">
+                  <i class="fa fa-pencil cursor-pointer" aria-hidden="true"></i>
+                  </a>
+                  <a onclick="handleDelete(${product.id})" class="">
+                  <i class="fa fa-trash cursor-pointer" ></i>
+                  </a>
                   </td>`;
         tbody.appendChild(row);
         index++;
