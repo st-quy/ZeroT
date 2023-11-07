@@ -113,7 +113,7 @@ axios
             </div>
             <label>Giá sản phẩm</label>
             <div class="mb-3">
-                <input type="number" type="text" class="form-control" id="priceInput" placeholder="$Giá sản phẩm" value="${product.price}" />
+                <input type="number" type="text" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${product.price}" />
             </div>
             <label>Mô tả sản phẩm</label>
             <div class="mb-3">
