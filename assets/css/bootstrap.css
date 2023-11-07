@@ -4869,7 +4869,7 @@ fieldset:disabled .btn {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #cb0c9f;
+  color: #fff;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 }
@@ -4882,7 +4882,7 @@ fieldset:disabled .btn {
 
 .nav-link:hover,
 .nav-link:focus {
-  color: #830866;
+  color: blanchedalmond;
 }
 
 .nav-link.disabled {
@@ -7180,7 +7180,7 @@ fieldset:disabled .btn {
 
 .carousel-control-prev,
 .carousel-control-next {
-  position: absolute;
+  /* position: fixed; */
   top: 0;
   bottom: 0;
   z-index: 1;
@@ -20119,33 +20119,6 @@ label,
 }
 
 .bg-gradient-dark {
-  background-image: linear-gradient(310deg, #141727 0%, #3a416f 100%);
-}
-
-/* Test */
-.bg-gradient-delivery {
-  background-image: linear-gradient(310deg, #17ad37 0%, #98ec2d 100%);
-}
-
-.bg-gradient-customer {
-  background-image: linear-gradient(310deg, #2152ff 0%, #21d4fd 100%);
-  color: var(--bs-gray-dark);
-}
-
-.bg-gradient-admin {
-  background-image: linear-gradient(310deg, #f53939 0%, #fbcf33 100%);
-}
-
-/* .bg-gradient-danger {
-  background-image: linear-gradient(310deg, #ea0606 0%, #ff667c 100%);
-} */
-
-.bg-gradient-customer {
-  background-image: linear-gradient(310deg, #ced4da 0%, #ebeff4 100%);
-  color: var(--bs-dark) !important;
-}
-
-.bg-gradient-seller {
   background-image: linear-gradient(310deg, #141727 0%, #3a416f 100%);
 }
 
