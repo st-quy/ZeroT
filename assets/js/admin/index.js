@@ -1,11 +1,12 @@
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
-const rolelist = ["admin", "seller"]
+const rolelist = ["admin", "seller"];
 
-if (role && !rolelist.includes(role)) {
-  location.href = `${location.origin}/index.html`
+if (!role || !rolelist.includes(role)) {
+  location.href = `${location.origin}/sign-in.html`;
 }
-axios.get('https://api-zerot-lowdb.onrender.com/orders')
+axios
+  .get("https://api-zerot-lowdb.onrender.com/orders")
   .then(function (response) {
     // Xử lý dữ liệu JSON từ phản hồi ở đây
     var orders = response.data;
@@ -18,18 +19,16 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
     }
 
     // Hiển thị tổng tiền trên trang
-    var totalOrderAmountElement = document.getElementById('total-order-amount');
-    totalOrderAmountElement.innerHTML = 'Tổng Tiền: ' + totalAmount + ' VNĐ';
-
+    var totalOrderAmountElement = document.getElementById("total-order-amount");
+    totalOrderAmountElement.innerHTML = "Tổng Tiền: " + totalAmount + " VNĐ";
   })
   .catch(function (error) {
-    console.error('Lỗi khi tải dữ liệu từ máy chủ:', error);
+    console.error("Lỗi khi tải dữ liệu từ máy chủ:", error);
   });
-  
-
 
 // Fetch data from the API
-axios.get('https://api-zerot-lowdb.onrender.com/users')
+axios
+  .get("https://api-zerot-lowdb.onrender.com/users")
   .then(function (response) {
     var users = response.data;
 
@@ -42,13 +41,17 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
     var totalCustomerCount = customerUsers.length;
 
     // Update the element with the total customer count
-    var totalCustomerCountElement = document.getElementById('total-customer-count');
-    totalCustomerCountElement.textContent = 'Tổng khách hàng: ' + totalCustomerCount;
+    var totalCustomerCountElement = document.getElementById(
+      "total-customer-count"
+    );
+    totalCustomerCountElement.textContent =
+      "Tổng khách hàng: " + totalCustomerCount;
   })
   .catch(function (error) {
-    console.error('Error loading data from the server:', error);
+    console.error("Error loading data from the server:", error);
   });
-axios.get('https://api-zerot-lowdb.onrender.com/orders')
+axios
+  .get("https://api-zerot-lowdb.onrender.com/orders")
   .then(function (response) {
     var orders = response.data;
 
@@ -56,13 +59,14 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
     var totalOrderCount = orders.length;
 
     // Update the element with the total order count
-    var totalOrderCountElement = document.getElementById('total-order-count');
-    totalOrderCountElement.textContent = 'Tổng Đơn Hàng: ' + totalOrderCount;
+    var totalOrderCountElement = document.getElementById("total-order-count");
+    totalOrderCountElement.textContent = "Tổng Đơn Hàng: " + totalOrderCount;
   })
   .catch(function (error) {
-    console.error('Error loading data from the server:', error);
+    console.error("Error loading data from the server:", error);
   });
-axios.get('https://api-zerot-lowdb.onrender.com/products')
+axios
+  .get("https://api-zerot-lowdb.onrender.com/products")
   .then(function (response) {
     var products = response.data;
 
@@ -70,14 +74,18 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
     var totalProductCount = products.length;
 
     // Update the element with the total product count
-    var totalProductCountElement = document.getElementById('total-product-count');
-    totalProductCountElement.textContent = 'Tổng Sản Phẩm: ' + totalProductCount;
+    var totalProductCountElement = document.getElementById(
+      "total-product-count"
+    );
+    totalProductCountElement.textContent =
+      "Tổng Sản Phẩm: " + totalProductCount;
   })
   .catch(function (error) {
-    console.error('Error loading data from the server:', error);
+    console.error("Error loading data from the server:", error);
   });
-  axios.get('https://api-zerot-lowdb.onrender.com/orders')
-  .then(response => {
+axios
+  .get("https://api-zerot-lowdb.onrender.com/orders")
+  .then((response) => {
     const data = response.data;
 
     // Tạo một đối tượng để lưu trữ tổng đơn hàng trên từng ngày và từng tháng
@@ -85,10 +93,10 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
     const monthlyTotal = {};
 
     // Lặp qua từng đơn hàng trong dữ liệu
-    data.forEach(order => {
+    data.forEach((order) => {
       const orderDate = new Date(order.createdAt);
       const monthKey = `${orderDate.getFullYear()}-${orderDate.getMonth() + 1}`;
-      
+
       // Tính tổng tiền theo ngày
       const date = orderDate.getDate();
       if (dailyTotal[date]) {
@@ -96,7 +104,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
       } else {
         dailyTotal[date] = order.totalPrice;
       }
-      
+
       // Tính tổng tiền theo tháng
       if (monthlyTotal[monthKey]) {
         monthlyTotal[monthKey] += order.totalPrice;
@@ -110,31 +118,33 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
     const dataPoints = Object.values(dailyTotal);
 
     // Vẽ biểu đồ đường
-    const ctx = document.getElementById('lineChart').getContext('2d');
+    const ctx = document.getElementById("lineChart").getContext("2d");
     let myChart = new Chart(ctx, {
-      type: 'line',
+      type: "line",
       data: {
         labels: labels,
-        datasets: [{
-          label: 'Tổng tiền theo ngày',
-          data: dataPoints,
-          backgroundColor: 'rgba(0, 123, 255, 0.2)',
-          borderColor: 'rgba(0, 123, 255, 1)',
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            label: "Tổng tiền theo ngày",
+            data: dataPoints,
+            backgroundColor: "rgba(0, 123, 255, 0.2)",
+            borderColor: "rgba(0, 123, 255, 1)",
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         scales: {
           y: {
-            beginAtZero: true
-          }
-        }
-      }
+            beginAtZero: true,
+          },
+        },
+      },
     });
 
     // Lắng nghe sự kiện thay đổi lựa chọn
-    const selectOption = document.getElementById('selectOption');
-    selectOption.addEventListener('change', function() {
+    const selectOption = document.getElementById("selectOption");
+    selectOption.addEventListener("change", function () {
       const selectedOption = selectOption.value;
 
       // Xóa biểu đồ hiện tại
@@ -143,46 +153,49 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
       // Chuẩn bị dữ liệu mới cho biểu đồ
       let newLabels, newDataPoints, label;
 
-      if (selectedOption === 'daily') {
+      if (selectedOption === "daily") {
         newLabels = labels;
         newDataPoints = dataPoints;
-        label = 'Tổng tiền theo ngày';
-      } else if (selectedOption === 'monthly') {
+        label = "Tổng tiền theo ngày";
+      } else if (selectedOption === "monthly") {
         // Chuẩn bị dữ liệu theo tháng
         newLabels = Object.keys(monthlyTotal);
         newDataPoints = Object.values(monthlyTotal);
-        label = 'Tổng tiền theo tháng';
+        label = "Tổng tiền theo tháng";
       }
 
       // Vẽ biểu đồ mới
       myChart = new Chart(ctx, {
-        type: 'line',
+        type: "line",
         data: {
           labels: newLabels,
-          datasets: [{
-            label: label,
-            data: newDataPoints,
-            backgroundColor: 'rgba(0, 123, 255, 0.2)',
-            borderColor: 'rgba(0, 123, 255, 1)',
-            borderWidth: 1
-          }]
+          datasets: [
+            {
+              label: label,
+              data: newDataPoints,
+              backgroundColor: "rgba(0, 123, 255, 0.2)",
+              borderColor: "rgba(0, 123, 255, 1)",
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           scales: {
             y: {
-              beginAtZero: true
-            }
-          }
-        }
+              beginAtZero: true,
+            },
+          },
+        },
       });
     });
   })
-  .catch(error => {
-    console.error('Lỗi khi tải dữ liệu đơn hàng:', error);
+  .catch((error) => {
+    console.error("Lỗi khi tải dữ liệu đơn hàng:", error);
   });
 
 // Sử dụng Axios để lấy dữ liệu từ API
-axios.get('https://api-zerot-lowdb.onrender.com/products')
+axios
+  .get("https://api-zerot-lowdb.onrender.com/products")
   .then(function (response) {
     var products = response.data;
 
@@ -204,37 +217,39 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
     });
 
     // Vẽ biểu đồ bánh
-    var ctx = document.getElementById('doughnut').getContext('2d');
+    var ctx = document.getElementById("doughnut").getContext("2d");
     var myChart = new Chart(ctx, {
-      type: 'doughnut',
+      type: "doughnut",
       data: {
         labels: productNames,
-        datasets: [{
-          data: productSold,
-          backgroundColor: [
-            'rgba(41, 155, 99, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(120, 46, 139, 1)',
-            'rgba( 165, 42, 42, 1 )'
-            // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
-          ],
-          borderColor: [
-            'rgba(41, 155, 99, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(120, 46, 139, 1)',
-            'rgba( 165, 42, 42, 1 )'
-            // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
-          ],
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            data: productSold,
+            backgroundColor: [
+              "rgba(41, 155, 99, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(120, 46, 139, 1)",
+              "rgba( 165, 42, 42, 1 )",
+              // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
+            ],
+            borderColor: [
+              "rgba(41, 155, 99, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(120, 46, 139, 1)",
+              "rgba( 165, 42, 42, 1 )",
+              // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
+            ],
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
-        responsive: true
-      }
+        responsive: true,
+      },
     });
   })
   .catch(function (error) {
-    console.error('Lỗi khi tải dữ liệu từ máy chủ:', error);
+    console.error("Lỗi khi tải dữ liệu từ máy chủ:", error);
   });
