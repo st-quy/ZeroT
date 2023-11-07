@@ -201,6 +201,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">
                     <div id="total-order-amount"> </div>
+                    <div id="phan-tram"></div>
                     </p>
 
                   </div>
@@ -222,7 +223,8 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">
                     <div id="total-customer-count"></div>
-
+                    <div id="customer-count-arrow"></div>
+                    
                     </p>
                     <h5 class="font-weight-bolder mb-0">
 
@@ -249,6 +251,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">
                     <div id="total-order-count"></div>
+                    <div id="percentage-change"></div>
                     </p>
                   </div>
                 </div>
@@ -269,6 +272,8 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">
                     <div id="total-product-count"></div>
+                    <div id="button"></div>
+                    <div id="total-product-last"></div>
                     </p>
                     <h5 class="font-weight-bolder mb-0">
                     </h5>
@@ -293,12 +298,12 @@
     </div>
     <div class="charts">
       <div class="chartt">
-        <label for="selectOption">Chọn kiểu thống kê theo:</label>
+        <h4> Thống kê doanh thu đơn hàng</h4>
+        
         <select id="selectOption">
-          <option value="daily">Theo ngày</option>
-          <option value="monthly">Theo tháng</option>
+        <option value="daily">Theo ngày</option>
+        <option value="monthly">Theo tháng</option>
         </select>
-        <h4> Thống kê tổng tiền theo từng tháng và ngày trong tháng hiện tại</h4>
         <canvas id="lineChart"></canvas>
       </div>
       <div class="barchart" id="doughnut-Chart">
