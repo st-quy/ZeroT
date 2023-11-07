@@ -7,7 +7,7 @@ axios
   .then((response) => {
     const data = response.data;
     data
-      .filter((acc) => acc.deletedAt === false || !acc.deletedAt)
+      .filter((acc) => !acc.deletedAt && acc.role !== 'admin')
       .map((item, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `<td class="align-middle text-center">
@@ -115,7 +115,6 @@ async function handleEdit(userId) {
                       <label>Role</label>
   <select class="form-control" id="selectRole">
     <option selected value="${userData.role}">${userData.role}</option>
-    <option value="admin">Admin</option>
     <option value="customer">Customer</option>
     <option value="seller">Seller</option>
     <option value="delivery">Delivery Man</option>
@@ -162,11 +161,8 @@ async function handleDelete(userId) {
     const saveModal = document.getElementById('btnSave');
     saveModal.addEventListener('click', async function () {
       try {
-        const response = await axios.patch(
-          `https://api-zerot-lowdb.onrender.com/users/${userId}`,
-          {
-            deletedAt: true,
-          }
+        const response = await axios.delete(
+          `https://api-zerot-lowdb.onrender.com/users/${userId}`
         );
 
         const modal = new bootstrap.Modal(document.getElementById('myModal'));
