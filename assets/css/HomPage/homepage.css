@@ -1,0 +1,258 @@
+.head {
+  display: flex;
+  background: rgba(0, 0, 0, 0.914);
+  padding: 0px 165px;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.logo a img {
+  width: 33px; /* Thay đổi kích thước của logo tại đây */
+  height: auto; /* Giữ tỷ lệ khung hình */
+}
+
+.menu {
+  list-style-type: none;
+  font-size: 20px;
+}
+
+.menu .nav-item {
+  display: inline-block;
+  margin: 5px 5px 20px 20px; /* trên phải dưới trái */
+  text-align: center;
+  margin: 0 10px;
+}
+.cart-relogin {
+  display: flex;
+}
+.cart-relogin .item a i {
+  width: 40px;
+  height: 20px;
+  color: white;
+}
+
+.item {
+  background-color: rgb(104, 102, 98);
+  width: 30px; /* Độ rộng của vòng tròn */
+  height: 30px; /* Độ cao của vòng tròn */
+  border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  margin: 12px 5px;
+  font-family: "Arial", sans-serif;
+}
+
+/* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
+.relogin .dropdown-content {
+  display: none;
+  position: absolute;
+  font-size: 13px;
+}
+
+/* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
+.relogin:hover .dropdown-content {
+  display: block;
+}
+
+/* Thay đổi màu của chữ trong dropdown-content */
+.dropdown-content li a {
+  color: #00ccff8a; /* Đổi màu chữ thành đỏ (hoặc mã màu mà bạn muốn) */
+  text-decoration: none; /* Loại bỏ gạch chân cho liên kết */
+}
+
+/* Màu khi di chuột vào liên kết */
+.dropdown-content li a:hover {
+  color: #c8ff0057; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
+}
+
+/* PRODUCTS */
+/* Căn giữa sản phẩm trong carousel */
+.carousel-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Căn giữa sản phẩm theo chiều ngang */
+}
+.item-card {
+  justify-content: center;
+}
+.col-lg-3 {
+  flex: 0 0 calc(33.333% - 1rem);
+  max-width: calc(33.333% - 1rem);
+  margin-bottom: 1rem;
+}
+.macbook {
+  max-width: 100%;
+  /* margin: 50px auto; */
+  text-align: center;
+  
+}
+
+.macbook img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carousel-inner {
+  padding: 1em;
+}
+.card {
+  margin: 0 0.5em;
+  box-shadow: 2px 6px 8px 0 rgba(0, 0, 0, 0.842);
+  border: none;
+}
+
+
+body {
+  padding-bottom: 70px; /* Đặt khoảng cách phía dưới phần nội dung */
+}
+
+
+.page-content {
+  min-height: calc(100vh - 100px); /* 100px là chiều cao dự kiến của footer */
+  position: relative;
+}
+
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.allbody{
+ background-color: rgba(0, 0, 0, 0.842);
+}
+
+
+.section {
+  /* Ensure no margin or padding on the section */
+  margin: 30;
+  padding: 30;
+}
+.smac{
+  margin: 20x;
+  padding: 25px;
+}
+.carousel-inner {
+  /* Remove padding for the carousel-inner */
+  padding: 0;
+}
+
+.carousel-item img {
+  /* Ensure the images fill the full width of the container */
+  width: 100%;
+}
+/* Đặt vị trí cho nút mũi tên carousel */
+.carousel-controls {
+  position: absolute;
+  top: 50%; /* Đặt nút mũi tên ở giữa theo chiều dọc */
+  transform: translateY(-50%); /* Dịch lên trên để căn giữa */
+  display: flex;
+  justify-content: space-between; /* Canh giữa giữa các nút mũi tên */
+  width: 100%; /* Đảm bảo nút mũi tên trải dài trên toàn bề mặt carousel */
+}
+
+.carousel-inner {
+  color: white; /* Đặt màu chữ trong slide thành trắng */
+}
+
+.carousel-inner .card {
+  background-color: black; /* Đặt màu nền xung quanh slide thành đen */
+  border: 2px solid white; /* Đặt khung xung quanh slide thành màu trắng */
+}
+
+.macbook_title{
+  color: white;
+  padding: 20px;
+}
+
+.card-title{
+  color: yellow;
+}
+
+.card-text{
+  font-family: "Arial", sans-serif;
+}
+
+.font{
+  font-family: "Arial", sans-serif;
+}
+
+/* CSS để căn giữa đoạn đầu tiên của mỗi cột và làm cho các đoạn khác căn lề bằng nhau */
+.footer-item {
+  text-align: center; /* Căn giữa nội dung trong footer */
+}
+
+.footer-col {
+  margin-bottom: 20px; /* Khoảng cách giữa các cột */
+  text-align: center; /* Căn giữa nội dung trong mỗi cột */
+}
+
+h4 {
+  font-size: 1.5rem; /* Kích thước font chữ cho tiêu đề */
+  margin-bottom: 15px; /* Khoảng cách giữa tiêu đề và danh sách */
+  text-align: justify;
+
+}
+
+.font li {
+  list-style: none; /* Ẩn dấu chấm của danh sách */
+  text-align: center; /* Căn giữa các mục trong danh sách */
+  margin-bottom: 10px; /* Khoảng cách giữa các mục trong danh sách */
+  text-align: justify; /* Căn chữ đầu dòng bằng nhau */
+}
+
+.font a {
+  color: #fff; /* Màu chữ cho các liên kết */
+  text-decoration: none; /* Loại bỏ gạch chân ở liên kết */
+  transition: color 0.3s; /* Hiệu ứng màu khi di chuột qua liên kết */
+}
+
+.font a:hover {
+  color: #ffcc00; /* Màu chữ khi di chuột qua liên kết */
+}
+
+/* Đảm bảo chữ màu trắng trong footer */
+footer, footer ul li a {
+  color: white;
+  text-decoration: none; 
+}
+
+footer ul{
+  padding: 0;
+}
+.background{
+  background-color: rgba(0, 0, 0, 0.914) ;
+  padding: 20px 50px;
+}
+
+@media screen and (max-width: 1120px) {
+  .head {
+    
+    padding: 0px 50px;
+
+    
+  }
+  .nav-link{
+    font-size: 15px;
+  }
+  
+}
+
+
+@media  screen and(max-width:800px) {
+  
+  .head {
+    
+    padding: 0px 5px;
+
+    
+  }
+  .nav-link{
+    font-size: 7px;
+  }
+}
