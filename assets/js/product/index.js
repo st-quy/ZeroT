@@ -1,13 +1,13 @@
 const tbody = document.querySelector("#table-product tbody");
 axios
-  .get("https://api-zerot-lowdb.onrender.com/products")
-  .then(function (response) {
-    const data = response.data;
-    let index = 1;
-    data.forEach(function (product) {
-      if (product.deletedAt === false || product.deletedAt === undefined) {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+    .get("https://api-zerot-lowdb.onrender.com/products")
+    .then(function(response) {
+            const data = response.data;
+            let index = 1;
+            data.forEach(function(product) {
+                        if (product.deletedAt === false || product.deletedAt === undefined) {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
                             
                   <td class="align-middle text-center data-id='${product.id}'>
                   <span class="text-secondary text-xs font-weight-bold">${index}</span>
@@ -30,8 +30,12 @@ axios
                     )}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <image src=${product.image[0]} style="width: 100%"/>
-                  </td>
+                  ${
+                    Array.isArray(product.image)
+                      ? `<img src="${product.image[0]}" style="width: 100%" />`
+                      : `<img src="${product.image}" style="width: 100%" />`}
+                </td>
+                  
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
                       product.category
@@ -84,137 +88,133 @@ axios
   .catch(function (error) {
     console.error("Error fetching data: ", error);
   });
+  async function handleEdit(id) {
+    try {
+      const response = await axios.get(`https://api-zerot-lowdb.onrender.com/products/${id}`);
+      const product = response.data;
+      const modalTitle = document.getElementById("modal-title");
+      const modalBody = document.getElementById("modal-body");
+  
+      modalTitle.textContent = `Chỉnh sửa thông tin sản phẩm: ${product.name}`;
+      modalBody.innerHTML = `
+            <input type="hidden" name="code" />
+            
+            <div class="mb-3">
+                <input
+                    readonly
+                    class="form-control"
+                    placeholder="${product.id}"       
+                    hidden               
+                />
+            </div>
+            <label>Tên sản phẩm</label>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="nameInput" placeholder="Tên sản phẩm" value="${product.name}" />
+            </div>
+            <label>Giá sản phẩm</label>
+            <div class="mb-3">
+                <input type="number" type="text" class="form-control" id="priceInput" placeholder="$Giá sản phẩm" value="${product.price}" />
+            </div>
+            <label>Mô tả sản phẩm</label>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" value="${product.description}" />
+            </div>
+            <label>Hàng lưu giữ</label>
+            <div class="mb-3">
+                <input type="number" type="text" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${product.stock}" />
+            </div>
+            <label>Loại sản phẩm</label>
+            <div class="mb-3">
+              <select name="category" class="form-control" id="categoryInput" required>
+                <option value="laptop">Laptop</option>
+                <option value="Phụ kiện">Phụ kiện</option>
+              </select>
+            </div>
+            <label>Hình ảnh sản phẩm</label>
+            <div class="mb-3">
+              <img src="${product.image}" style="width: 50%" id="productImage" />
+              <button class="btn btn-primary mt-2" id="editImageButton">Edit Image</button>
+              <input type="file" id="imageInput" style="display: none" />
+            </div>
+        `;
+  
+      const modal = new bootstrap.Modal(document.getElementById("myModal"));
+      modal.show();
 
-async function handleEdit(id) {
-  try {
-    const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/products/${id}`
-    );
-    const product = response.data;
-    const modalTitle = document.getElementById("modal-title");
-    const modalBody = document.getElementById("modal-body");
+      const editImageButton = document.getElementById("editImageButton");
+      const imageInput = document.getElementById("imageInput");
+      editImageButton.addEventListener("click", () => {
+        imageInput.click();
+      });
 
-    modalTitle.textContent = `Chỉnh sửa thông tin sản phẩm: ${product.name}`;
-    modalBody.innerHTML = `
-          <input type="hidden" name="code" />
-          
-          <div class="mb-3">
-              <input
-                  readonly
-                  class="form-control"
-                  placeholder="${product.id}"       
-                  hidden               
-              />
-          </div>
-          <label>Tên sản phẩm</label>
-          <div class="mb-3">
-              <input type="text" class="form-control" id="nameInput" placeholder="Tên sản phẩm" value="${product.name}" />
-          </div>
-          <label>Giá sản phẩm</label>
-          <div class="mb-3">
-              <input type="number" type="text" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${product.price}" />
-          </div>
-          <label>Mô tả sản phẩm</label>
-          <div class="mb-3">
-              <input type="text" class="form-control" id="descriptionInput" placeholder="Mô tả" value="${product.description}" />
-          </div>
-          <label>Hàng lưu giữ</label>
-          <div class="mb-3">
-              <input type="number" type="text" class="form-control" id="stockInput" placeholder="Hàng lữu trữ" value="${product.stock}" />
-          </div>
-          <label>Loại sản phẩm</label>
-          <div class="mb-3">
-    <select name="category" class="form-control" id="categoryInput" required>
-      <option value="laptop">Laptop</option>
-      <option value="Phụ kiện">Phụ kiện</option>
-    </select>
-  </div>
-  <label>Hình ảnh sản phẩm</label>
-  <div class="mb-3">
-    <img src="${product.image}" style="width: 100%" id="productImage" />
-    <button class="btn btn-primary mt-2" id="editImageButton">Edit Image</button>
-    <input type="file" id="imageInput" style="display: none" />
-  </div>
-`;
-    const editImageButton = document.getElementById("editImageButton");
-    const imageInput = document.getElementById("imageInput");
-    editImageButton.addEventListener("click", () => {
-      imageInput.click();
-    });
-
-    // Event listener for the file input to upload the new image
-    imageInput.addEventListener("change", async (e) => {
-      const selectedFile = e.target.files[0];
-
-      if (selectedFile) {
-        const cloudinaryUrls = await uploadFile([selectedFile]);
-        if (cloudinaryUrls.length > 0) {
-          const productImage = document.getElementById("productImage");
-          productImage.src = cloudinaryUrls[0];
+      imageInput.addEventListener("change", async (e) => {
+        const selectedFile = e.target.files[0];
+  
+        if (selectedFile) {
+          const cloudinaryUrls = await uploadFile([selectedFile]);
+          if (cloudinaryUrls.length > 0) {
+            const productImage = document.getElementById("productImage");
+            productImage.src = cloudinaryUrls[0];
+          }
         }
-      }
-    });
-    const modal = new bootstrap.Modal(document.getElementById("myModal"));
-    modal.show();
-
-    const saveModal = document.getElementById("btnSave");
-    saveModal.addEventListener("click", async function () {
-      try {
-        const nameInput = document.getElementById("nameInput");
-        const priceInput = document.getElementById("priceInput");
-        const stockInput = document.getElementById("stockInput");
-        const categoryInput = document.getElementById("categoryInput");
-        const descriptionInput = document.getElementById("descriptionInput");
-
-        const response = await axios.patch(
-          `https://api-zerot-lowdb.onrender.com/products/${id}`,
-          {
+      });
+  
+      const saveModal = document.getElementById("btnSave");
+      saveModal.addEventListener("click", async function () {
+        try {
+          const nameInput = document.getElementById("nameInput");
+          const priceInput = document.getElementById("priceInput");
+          const stockInput = document.getElementById("stockInput");
+          const categoryInput = document.getElementById("categoryInput");
+          const descriptionInput = document.getElementById("descriptionInput");
+          const productImage = document.getElementById("productImage");
+  
+          const response = await axios.patch(`https://api-zerot-lowdb.onrender.com/products/${id}`, {
             name: nameInput.value,
             price: Number(priceInput.value),
             stock: Number(stockInput.value),
             category: categoryInput.value,
             description: descriptionInput.value,
-            image: product.image,
+            image: productImage.src, 
+          });
+  
+          if (nameInput.value.trim() === "") {
+            alert("Tên sản phẩm không được để trống");
+            return;
           }
-        );
-        if (nameInput.value.trim() === "") {
-          alert("Tên sản phẩm không được để trống");
-          return;
-        }
-        if (isNaN(Number(priceInput.value)) || Number(priceInput.value) <= 0) {
-          alert("Giá sản phẩm phải là một số dương");
-          return;
-        }
-        if (descriptionInput.value.trim() === "") {
-          alert("Mô tả không được để trống");
-          return;
-        }
-        if (isNaN(Number(stockInput.value)) || Number(stockInput.value) < 0) {
-          alert("Hàng lưu giữ phải là một số không âm");
-          return;
-        }
-
-        Swal.fire({
-          icon: "success",
-          title: "Thành công",
-          text: "Sản phẩm đã được chỉnh sửa thành công",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const modal = new bootstrap.Modal(
-              document.getElementById("myModal")
-            );
-            modal.hide();
-            location.reload();
+          if (isNaN(Number(priceInput.value)) || Number(priceInput.value) <= 0) {
+            alert("Giá sản phẩm phải là một số dương");
+            return;
           }
-        });
-      } catch (error) {
-        console.error("Lỗi khi lưu thay đổi: ", error);
-      }
-    });
-  } catch (error) {
-    console.error("Lỗi khi lấy thông tin sản phẩm: ", error);
+          if (descriptionInput.value.trim() === "") {
+            alert("Mô tả không được để trống");
+            return;
+          }
+          if (isNaN(Number(stockInput.value)) || Number(stockInput.value) < 0) {
+            alert("Hàng lưu giữ phải là một số không âm");
+            return;
+          }
+  
+          Swal.fire({
+            icon: 'success',
+            title: 'Thành công',
+            text: 'Sản phẩm đã được chỉnh sửa thành công',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              const modal = new bootstrap.Modal(document.getElementById("myModal"));
+              modal.hide();
+              location.reload();
+            }
+          });
+        } catch (error) {
+          console.error("Lỗi khi lưu thay đổi: ", error);
+        }
+      });
+    } catch (error) {
+      console.error("Lỗi khi lấy thông tin sản phẩm: ", error);
+    }
   }
-}
+
 async function handleDelete(id) {
   try {
     const response = await axios.get(
@@ -355,7 +355,6 @@ const uploadFile = async (files) => {
   console.log(files);
   for (const file of files) {
     formData.append("file", file);
-    // console.log(file);
     const response = await axios.post(api, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
