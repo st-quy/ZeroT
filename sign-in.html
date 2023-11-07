@@ -43,7 +43,7 @@
     </script>
   </head>
 
-  <body class=""> 
+  <body class="">
     <main class="main-content mt-0">
       <section>
         <div class="page-header min-vh-75">
@@ -71,6 +71,7 @@
                           placeholder="Email"
                           aria-label="Email"
                           aria-describedby="email-addon"
+                          required
                         />
                       </div>
                       <label>Password</label>
@@ -82,6 +83,7 @@
                           placeholder="Password"
                           aria-label="Password"
                           aria-describedby="password-addon"
+                          required
                         />
                       </div>
                       <div class="form-check form-switch">
@@ -90,7 +92,6 @@
                           type="checkbox"
                           id="rememberMe"
                           onchange="toggleOffer()"
-                          checked=""
                         />
                         <label class="form-check-label" for="rememberMe"
                           >Remember me</label
@@ -110,10 +111,11 @@
                   <div class="card-footer text-center pt-0 px-lg-2 px-1">
                     <p class="mb-4 text-sm mx-auto">
                       Don't have an account?
-                      <a href="sign-up.html"class="text-info text-gradient font-weight-bold">Sign up</a>
-                    </p>
-                    <p class="mb-4 text-sm mx-auto">
-                      <a href="forgot-password.html" class="text-info text-gradient font-weight-bold">Forgot Password?</a>
+                      <a
+                        href="sign-up.html"
+                        class="text-info text-gradient font-weight-bold"
+                        >Sign up</a
+                      >
                     </p>
                   </div>
                 </div>
