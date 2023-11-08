@@ -42,20 +42,18 @@ async function displayOrder() {
                                 item.totalPrice
                               }</span>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle text-center">
                               <a
                                 style="cursor: pointer;"
-                                class="updateBtn-${
-                                  item.id
-                                } text-secondary font-weight-bold text-xs"
+                                class="updateBtn-${item.id}"
                                 onclick=showPopupUpdate(${item.id})>
-                                Cập nhật <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <i class="fa fa-pencil cursor-pointer" aria-hidden="true"></i>
                               </a>
-                              |
                               <a
                                 style="cursor: pointer;"
-                                class="text-secondary font-weight-bold text-xs">
-                                Xem thêm <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                onclick=seeMore(${item.id})
+                                class="">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                               </a>
                             </td>`;
         tbody.appendChild(row);
@@ -151,3 +149,48 @@ const handleUpdateOrder = async () => {
 closeBtn.onclick = function () {
   updateModal.style.display = "none";
 };
+
+async function seeMore(orderId) {
+  try {
+    const response = await axios.get(
+      `https://api-zerot-lowdb.onrender.com/orders/${orderId}`
+    );
+    const orderData = response.data;
+    console.log(orderData.orderItems);
+
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    modalTitle.textContent = `Thông tin đơn hàng: ${orderData.user[1]}`;
+    orderData.orderItems.forEach((item) => {
+      let sum = 0;
+      modalBody.innerHTML = `
+      <div class="col-2">
+      <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-650x650.png" style="width: 100px"/>
+      </div>
+      <div class=" col-6"> 
+        <p>${item.name}</p>
+        <p>Màu:Đen</p>
+      </div>
+      <div class=" col-1 quantity"> 
+        <p class="border-quantity"> ${item.quantity} </p>
+      </div>
+      <div class="col-3">
+        <h5 class="font-weight-bolder mb-0">
+          ${sum += item.quantity * item.price} VNĐ
+          </h5>
+      </div>
+      <hr class="horizontal dark mt-1"/>
+        <div class="row align-items-start">
+          <div class="col-6 price">Tổng tiền: </div>
+          <div class="col-6 total-price">${sum} VNĐ</div>
+        </div>
+      `;
+    })
+    
+    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+    modal.show();
+  } catch (error) {
+    console.error('Error fetching data: ', error);
+  }
+}
