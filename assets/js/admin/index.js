@@ -49,7 +49,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
     }
     
     const totalOrderAmountElement = document.getElementById('total-order-amount');
-    totalOrderAmountElement.textContent = `Tổng tiền tháng này: ${currentMonthRevenue} VND` ;
+    totalOrderAmountElement.textContent = `Tổng tiền : ${currentMonthRevenue} VND` ;
     
     const phantramElement = document.getElementById('phan-tram');
     phantramElement.textContent = ` ${arrow} ${percentageChange}% ` ;
