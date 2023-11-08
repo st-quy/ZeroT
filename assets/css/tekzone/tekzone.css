@@ -19,7 +19,7 @@ body {
   width: 95%;
   margin: 3rem auto 7rem;
 }
-.banner_article {
+.main .banner_article {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -27,43 +27,43 @@ body {
   grid-template-areas: "a1 a2" "a1 a3";
   margin-bottom: 3rem;
 }
-.banner_article1 {
+.main .banner_article1 {
   grid-area: a1;
 }
-.banner_article2 {
+.main .banner_article2 {
   grid-area: a2;
 }
-.banner_article3 {
+.main .banner_article3 {
   grid-area: a3;
 }
 
-.banner_article1,
-.banner_article2,
-.banner_article3 {
+.main .banner_article1,
+.main .banner_article2,
+.main .banner_article3 {
   position: relative;
   cursor: pointer;
 }
 
-.banner_article img {
+.main .banner_article img {
   width: 100%;
 }
 
-.banner_article1 {
+.main .banner_article1 {
   border-top-left-radius: 2.5rem;
   border-bottom-left-radius: 2.5rem;
 }
 
-.banner_article2 {
+.main .banner_article2 {
   border-top-right-radius: 2.5rem;
 }
 
-.banner_article3 {
+.main .banner_article3 {
   border-bottom-right-radius: 2.5rem;
 }
 
-.banner_article1::before,
-.banner_article2::before,
-.banner_article3::before {
+.main .banner_article1::before,
+.main .banner_article2::before,
+.main .banner_article3::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -73,19 +73,19 @@ body {
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 }
-.image_a1 {
+.main .image_a1 {
   height: 100%;
   border-top-left-radius: inherit;
   border-bottom-left-radius: inherit;
 }
-.image_a2 {
+.main .image_a2 {
   border-top-right-radius: inherit;
 }
-.image_a3 {
+.main .image_a3 {
   border-bottom-right-radius: inherit;
 }
 
-.banner_article .article_title {
+.main .banner_article .article_title {
   position: absolute;
   bottom: 1.2rem;
   left: 1rem;
@@ -96,18 +96,18 @@ body {
   margin: 1.5rem;
 }
 
-.banner_article1 .article_title {
+.main .banner_article1 .article_title {
   font-size: 3rem;
   line-height: 45px;
 }
 
-.banner_category {
+.main .banner_category {
   display: flex;
   gap: 1.5rem;
   margin-bottom: 6rem;
 }
 
-.banner_category > div {
+.main .banner_category > div {
   background-color: #323232;
   border-radius: 12px;
   box-shadow: #232323 4px 4px 8px 0px;
@@ -120,16 +120,16 @@ body {
   gap: 1.3rem;
   width: 15%;
 }
-.banner_category > div > img {
+.main .banner_category > div > img {
   width: 5.5rem;
 }
 
-.newest_heading {
+.main .newest_heading {
   position: relative;
   margin-bottom: 3.5rem;
 }
 
-.newest_heading > a {
+.main .newest_heading > a {
   color: #fff;
   font-size: 2.1rem;
   text-transform: uppercase;
@@ -137,7 +137,7 @@ body {
   font-weight: 600;
   padding-left: 2rem;
 }
-.newest_heading::before {
+.main .newest_heading::before {
   content: url(https://www.topzone.vn/images/topnews/desktop/after-title.png);
   width: 4px;
   height: 20px;
@@ -147,11 +147,11 @@ body {
   transform: translateY(-50%);
 }
 
-.newest_article {
+.main .newest_article {
   width: 60%;
 }
 
-.newest_article .article_item {
+.main .newest_article .article_item {
   display: flex;
   gap: 1.5rem;
   cursor: pointer;
@@ -159,29 +159,29 @@ body {
   text-decoration: none;
 }
 
-.newest_article .article_item > img {
+.main .newest_article .article_item > img {
   width: 100%;
   border-radius: 12px;
 }
-.newest_article .article_title {
+.main .newest_article .article_title {
   color: #fff;
   font-size: 2rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
   transition: all 0.3s;
 }
-.newest_article .article_title:hover {
+.main .newest_article .article_title:hover {
   color: #2997ff;
 }
-.newest_article .article_time {
+.main .newest_article .article_time {
   color: #999;
   font-size: 1.3rem;
 }
 
-.newest_article .article_item:not(:first-child) {
+.main .newest_article .article_item:not(:first-child) {
   position: relative;
 }
-.newest_article .article_item:not(:first-child)::before {
+.main .newest_article .article_item:not(:first-child)::before {
   content: " ";
   position: absolute;
   top: -17px;
