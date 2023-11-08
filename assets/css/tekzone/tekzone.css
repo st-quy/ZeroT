@@ -1,0 +1,171 @@
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bgcolor: #3e3e3f;
+}
+html {
+  font-size: 50%;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bgcolor);
+}
+.main {
+  width: 95%;
+  margin: 3rem auto 7rem;
+}
+.banner_article {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1rem;
+  grid-template-areas: "a1 a2" "a1 a3";
+  margin-bottom: 3rem;
+}
+.banner_article1 {
+  grid-area: a1;
+}
+.banner_article2 {
+  grid-area: a2;
+}
+.banner_article3 {
+  grid-area: a3;
+}
+
+.banner_article1,
+.banner_article2,
+.banner_article3 {
+  position: relative;
+}
+
+.banner_article img {
+  width: 100%;
+  position: relative;
+}
+.banner_article img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: red;
+  z-index: 10;
+}
+.image_a1 {
+  border-top-left-radius: 2.5rem;
+  border-bottom-left-radius: 2.5rem;
+  height: 100%;
+}
+.image_a2 {
+  border-top-right-radius: 2.5rem;
+}
+.image_a3 {
+  border-bottom-right-radius: 2.5rem;
+}
+
+.banner_article .article_title {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1rem;
+  font-size: 2rem;
+  line-height: 25px;
+  font-weight: 700;
+  color: #fbfbfb;
+  padding: 1.5rem;
+}
+
+.banner_article1 .article_title {
+  font-size: 3.5rem;
+  line-height: 45px;
+}
+
+.banner_category {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 6rem;
+}
+
+.banner_category > div {
+  background-color: #323232;
+  border-radius: 12px;
+  box-shadow: #232323 4px 4px 8px 0px;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 15%;
+}
+.banner_category > div > img {
+  width: 6rem;
+}
+.newest_heading {
+  position: relative;
+  margin-bottom: 3.5rem;
+}
+
+.newest_heading > a {
+  color: #fff;
+  font-size: 2.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+  padding-left: 2rem;
+}
+.newest_heading::before {
+  content: url(https://www.topzone.vn/images/topnews/desktop/after-title.png);
+  width: 4px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.newest_article {
+  width: 60%;
+}
+
+.newest_article .article_item {
+  display: flex;
+  gap: 1.5rem;
+  cursor: pointer;
+  margin-bottom: 3.6rem;
+  text-decoration: none;
+}
+
+.newest_article .article_item > img {
+  width: 100%;
+  border-radius: 12px;
+}
+.newest_article .article_title {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 500;
+  padding-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+.newest_article .article_title:hover {
+  color: #2997ff;
+}
+.newest_article .article_time {
+  color: #999;
+  font-size: 1.3rem;
+}
+
+.newest_article .article_item:not(:first-child) {
+  position: relative;
+}
+.newest_article .article_item:not(:first-child)::before {
+  content: " ";
+  position: absolute;
+  top: -17px;
+  width: 100%;
+  height: 0.1px;
+  background-color: #4f4f4f;
+}
