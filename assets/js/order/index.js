@@ -6,7 +6,8 @@ async function displayOrder() {
   await axios
     .get("https://api-zerot-lowdb.onrender.com/orders")
     .then((response) => {
-      response.data.forEach(async (item, index) => {
+      const orders = response.data.reverse();
+      orders.forEach(async (item, index) => {
         const row = document.createElement("tr");
 
         row.innerHTML = `<td class="align-middle px-4">
@@ -35,8 +36,9 @@ async function displayOrder() {
           }
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">${item.totalPrice
-          }</span>
+                              <span class="text-secondary text-xs font-weight-bold">${
+                                item.totalPrice
+                              } VND </span>
                             </td>
                             <td class="align-middle text-center">
                               <a
