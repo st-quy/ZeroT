@@ -128,7 +128,7 @@ axios
   </div>
       <div class="form-group">
         <label for="productImage">Hình ảnh sản phẩm</label>
-        <img src="${product.image}" style="width: 100%" id="productImage" />
+        <img src="${product.image}" style="width: 100px" id="productImage" />
         <button class="btn btn-primary mt-2" id="editImageButton">Edit Image</button>
         <input type="file" id="imageInput" style="display: none" />
       </div>
@@ -314,6 +314,22 @@ async function createProduct() {
   const btnSave = document.getElementById('btnSave');
 
   btnSave.addEventListener('click', async () => {
+    if (nameInput.value.trim() === "") {
+      alert("Tên sản phẩm không được để trống");
+      return;
+    }
+    if (isNaN(Number(priceInput.value)) || Number(priceInput.value) <= 0) {
+      alert("Giá sản phẩm phải là một số dương");
+      return;
+    }
+    if (descriptionInput.value.trim() === "") {
+      alert("Mô tả không được để trống");
+      return;
+    }
+    if (isNaN(Number(stockInput.value)) || Number(stockInput.value) < 0) {
+      alert("Hàng lưu giữ phải là một số không âm");
+      return;
+    }
     var name = nameInput.value;
     var price = Number(priceInput.value);
     var stock = Number(stockInput.value);
@@ -335,8 +351,10 @@ async function createProduct() {
         modal.hide();
         location.reload();
       });
+     
   });
 }
+
 
 const uploadFile = async (files) => {
   const CLOUD_NAME = 'dyk82loo2';
