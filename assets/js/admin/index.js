@@ -3,8 +3,12 @@ var role = localStorage.getItem("role");
 const rolelist = ["admin", "seller"];
 
 if (!role || !rolelist.includes(role)) {
-  location.href = `${location.origin}/sign-in.html`;
+  location.href = `${location.origin}/index.html`;
 }
+if (role === "customer") {
+  location.href = `${location.origin}/unauthorized.html`;
+}
+
 axios
   .get("https://api-zerot-lowdb.onrender.com/orders")
   .then(function (response) {
