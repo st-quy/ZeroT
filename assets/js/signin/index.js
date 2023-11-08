@@ -56,7 +56,7 @@ async function handleLogin() {
             code: (Math.random() * 100000) | 0,
           };
           emailjs
-            .send("service_4mv8mgj", "template_69jvbsa", templateParams)
+            .send("default_service", "template_5homdb2", templateParams)
             .then(
               async function () {
                 await axios

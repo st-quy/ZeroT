@@ -30,7 +30,7 @@ async function forgotPassword() {
           code: (Math.random() * 100000) | 0,
         };
         emailjs
-          .send("service_4mv8mgj", "template_69jvbsa", templateParams)
+          .send("default_service", "template_5homdb2", templateParams)
           .then(
             async function () {
               showMessagePopup("Đã gửi code về Email của bạn");
@@ -41,7 +41,10 @@ async function forgotPassword() {
 
               var submitCode = function () {
                 var enteredCode = codeInput.value;
-                if (enteredCode && enteredCode === templateParams.code.toString()) {
+                if (
+                  enteredCode &&
+                  enteredCode === templateParams.code.toString()
+                ) {
                   closeCodeModal();
 
                   // Open the password modal and wait for user input
@@ -74,7 +77,9 @@ async function forgotPassword() {
                 }
               };
 
-              document.getElementById("code-modal-submit").addEventListener("click", submitCode);
+              document
+                .getElementById("code-modal-submit")
+                .addEventListener("click", submitCode);
             },
             function (error) {
               console.log("FAILED...", error);
@@ -116,5 +121,9 @@ var closePasswordModal = function () {
   passwordModal.style.display = "none";
 };
 
-document.getElementById("password-modal-close").addEventListener("click", closePasswordModal);
-document.getElementById("code-modal-close").addEventListener("click", closeCodeModal);
+document
+  .getElementById("password-modal-close")
+  .addEventListener("click", closePasswordModal);
+document
+  .getElementById("code-modal-close")
+  .addEventListener("click", closeCodeModal);
