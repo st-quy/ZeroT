@@ -53,6 +53,7 @@ body {
 }
 
 .minh-modal {
+  font-family: var(--bs-font-monospace);
   top: 0;
   width: 100vw;
   height: 100vh;

@@ -11,32 +11,29 @@ async function displayOrder() {
         const row = document.createElement("tr");
 
         row.innerHTML = `<td class="align-middle px-4">
-                              <span class="text-secondary text-xs font-weight-bold">${
-                                index + 1
-                              }</span>
+                              <span class="text-secondary text-xs font-weight-bold">${index + 1
+          }</span>
                             </td>
                             <td>
                               <!-- <p class="text-xs font-weight-bold mb-0">Manager</p>
                               <p class="text-xs text-secondary mb-0">Organization</p> -->
                               <h6 class="mb-0 text-sm">${item.user[1]}</h6>
-                              <p class="text-xs text-secondary mb-0">${
-                                item.user[2]
-                              }</p>
+                              <p class="text-xs text-secondary mb-0">${item.user[2]
+          }</p>
                             </td>
                             <td class="align-middle text-center text-sm">
-                            ${
-                              item.status === "Processing"
-                                ? `<span class='badge badge-sm bg-gradient-danger'>
+                            ${item.status === "Processing"
+            ? `<span class='badge badge-sm bg-gradient-danger'>
                                   Đang chuẩn bị
                                 </span>`
-                                : item.status === "Delivering"
-                                ? `<span class='badge badge-sm bg-gradient-warning'>
+            : item.status === "Delivering"
+              ? `<span class='badge badge-sm bg-gradient-warning'>
                                   Đang giao hàng
                                 </span>`
-                                : `<span class='badge badge-sm bg-gradient-success'>
+              : `<span class='badge badge-sm bg-gradient-success'>
                                   Đã giao hàng
                                 </span>`
-                            }
+          }
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold">${
@@ -52,6 +49,7 @@ async function displayOrder() {
                               </a>
                               <a
                                 style="cursor: pointer;"
+                                onclick=seeMore(${item.id})
                                 class="">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                               </a>
@@ -149,3 +147,48 @@ const handleUpdateOrder = async () => {
 closeBtn.onclick = function () {
   updateModal.style.display = "none";
 };
+
+async function seeMore(orderId) {
+  try {
+    const response = await axios.get(
+      `https://api-zerot-lowdb.onrender.com/orders/${orderId}`
+    );
+    const orderData = response.data;
+    console.log(orderData.orderItems);
+
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    modalTitle.textContent = `Thông tin đơn hàng: ${orderData.user[1]}`;
+    orderData.orderItems.forEach((item) => {
+      let sum = 0;
+      modalBody.innerHTML = `
+      <div class="col-2">
+      <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-650x650.png" style="width: 100px"/>
+      </div>
+      <div class=" col-6"> 
+        <p>${item.name}</p>
+        <p>Màu:Đen</p>
+      </div>
+      <div class=" col-1 quantity"> 
+        <p class="border-quantity"> ${item.quantity} </p>
+      </div>
+      <div class="col-3">
+        <h5 class="font-weight-bolder mb-0">
+          ${sum += item.quantity * item.price} VNĐ
+          </h5>
+      </div>
+      <hr class="horizontal dark mt-1"/>
+        <div class="row align-items-start">
+          <div class="col-6 price">Tổng tiền: </div>
+          <div class="col-6 total-price">${sum} VNĐ</div>
+        </div>
+      `;
+    })
+
+    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+    modal.show();
+  } catch (error) {
+    console.error('Error fetching data: ', error);
+  }
+}
