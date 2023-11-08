@@ -97,46 +97,46 @@ axios
   
       modalTitle.textContent = `Chỉnh sửa thông tin sản phẩm: ${product.name}`;
       modalBody.innerHTML = `
-            <input type="hidden" name="code" />
-            
-            <div class="mb-3">
-                <input
-                    readonly
-                    class="form-control"
-                    placeholder="${product.id}"       
-                    hidden               
-                />
-            </div>
-            <label>Tên sản phẩm</label>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="nameInput" placeholder="Tên sản phẩm" value="${product.name}" />
-            </div>
-            <label>Giá sản phẩm</label>
-            <div class="mb-3">
-                <input type="number" type="text" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${product.price}" />
-            </div>
-            <label>Mô tả sản phẩm</label>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" value="${product.description}" />
-            </div>
-            <label>Hàng lưu giữ</label>
-            <div class="mb-3">
-                <input type="number" type="text" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${product.stock}" />
-            </div>
-            <label>Loại sản phẩm</label>
-            <div class="mb-3">
-              <select name="category" class="form-control" id="categoryInput" required>
-                <option value="laptop">Laptop</option>
-                <option value="Phụ kiện">Phụ kiện</option>
-              </select>
-            </div>
-            <label>Hình ảnh sản phẩm</label>
-            <div class="mb-3">
-              <img src="${product.image}" style="width: 50%" id="productImage" />
-              <button class="btn btn-primary mt-2" id="editImageButton">Edit Image</button>
-              <input type="file" id="imageInput" style="display: none" />
-            </div>
-        `;
+  <div class="row">
+    <div class="col-md-6">
+      
+      <div class="form-group">
+        <label for="nameInput">Tên sản phẩm</label>
+        <input type="text" class="form-control" id="nameInput" placeholder="Tên sản phẩm" value="${product.name}" />
+      </div>
+     
+      <div class="form-group">
+        <label for="priceInput">Giá sản phẩm</label>
+        <input type="number" type="text" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${product.price}" />
+      </div>
+      <div class="form-group">
+        <label for="descriptionInput">Mô tả sản phẩm</label>
+        <input type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" value="${product.description}" />
+      </div>
+      <div class="form-group">
+        <label for="stockInput">Hàng lưu giữ</label>
+        <input type="number" type="text" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${product.stock}" />
+      </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-group">
+    <label for="categoryInput">Loại sản phẩm</label>
+    <select name="category" class="form-control" id="categoryInput" required>
+      <option value="laptop">Laptop</option>
+      <option value="Phụ kiện">Phụ kiện</option>
+    </select>
+  </div>
+      <div class="form-group">
+        <label for="productImage">Hình ảnh sản phẩm</label>
+        <img src="${product.image}" style="width: 100%" id="productImage" />
+        <button class="btn btn-primary mt-2" id="editImageButton">Edit Image</button>
+        <input type="file" id="imageInput" style="display: none" />
+      </div>
+    </div>
+  </div>
+`;
+
+    
   
       const modal = new bootstrap.Modal(document.getElementById("myModal"));
       modal.show();
