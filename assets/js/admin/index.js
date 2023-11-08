@@ -12,47 +12,47 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
     const currentMonth = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
     const orders = response.data;
-    
+
     const currentMonthOrders = orders.filter(function (order) {
       const orderDate = new Date(order.createdAt);
       const orderMonth = orderDate.getMonth() + 1;
       const orderYear = orderDate.getFullYear();
       return orderMonth === currentMonth && orderYear === currentYear;
     });
-    
+
     const previousMonthOrders = orders.filter(function (order) {
       const orderDate = new Date(order.createdAt);
       const orderMonth = orderDate.getMonth() + 1;
       const orderYear = orderDate.getFullYear();
       return orderMonth === currentMonth - 1 && orderYear === currentYear;
     });
-    
+
     const currentMonthRevenue = currentMonthOrders.reduce(function (total, order) {
       return total + order.totalPrice;
     }, 0);
-    
+
     const previousMonthRevenue = previousMonthOrders.reduce(function (total, order) {
       return total + order.totalPrice;
     }, 0);
-    
+
     const revenueComparison = currentMonthRevenue - previousMonthRevenue;
     let percentageChange = 0;
     if (previousMonthRevenue !== 0) {
       percentageChange = ((revenueComparison / previousMonthRevenue) * 100).toFixed(2);
     }
-    
+
     let arrow = '';
     if (revenueComparison > 0) {
       arrow = '↑';
     } else if (revenueComparison < 0) {
       arrow = '↓';
     }
-    
+
     const totalOrderAmountElement = document.getElementById('total-order-amount');
-    totalOrderAmountElement.textContent = `Tổng tiền : ${currentMonthRevenue} VND` ;
-    
+    totalOrderAmountElement.textContent = `Tổng tiền : ${currentMonthRevenue} VND`;
+
     const phantramElement = document.getElementById('phan-tram');
-    phantramElement.textContent = ` ${arrow} ${percentageChange}% ` ;
+    phantramElement.textContent = ` ${arrow} ${percentageChange}% `;
   })
   .catch(function (error) {
     console.error('Lỗi khi tải dữ liệu từ API:', error);
@@ -98,7 +98,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
       if (isFinite(percentageChange)) {
         arrowElement.innerHTML = `↑ ${percentageChange.toFixed(2)}%`;
       } else {
-        arrowElement.innerHTML = "↑ 0%";
+        arrowElement.innerHTML = `↑ 0%`;
       }
     }
   })
@@ -107,46 +107,46 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
   });
 
 
-  axios.get('https://api-zerot-lowdb.onrender.com/orders')
+axios.get('https://api-zerot-lowdb.onrender.com/orders')
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
     const orders = response.data;
-    
+
     const currentMonthOrders = orders.filter(function (order) {
       const orderDate = new Date(order.createdAt);
       const orderMonth = orderDate.getMonth() + 1;
       const orderYear = orderDate.getFullYear();
       return orderMonth === currentMonth && orderYear === currentYear;
     });
-    
+
     const previousMonthOrders = orders.filter(function (order) {
       const orderDate = new Date(order.createdAt);
       const orderMonth = orderDate.getMonth() + 1;
       const orderYear = orderDate.getFullYear();
       return orderMonth === currentMonth - 1 && orderYear === currentYear;
     });
-    
+
     const currentMonthOrderCount = currentMonthOrders.length;
     const previousMonthOrderCount = previousMonthOrders.length;
-    
+
     let percentageChange = 0;
     if (previousMonthOrderCount !== 0) {
       const orderCountComparison = currentMonthOrderCount - previousMonthOrderCount;
       percentageChange = ((orderCountComparison / previousMonthOrderCount) * 100).toFixed(2);
     }
-    
+
     let arrow = '';
     if (currentMonthOrderCount > previousMonthOrderCount) {
       arrow = '↑';
     } else if (currentMonthOrderCount < previousMonthOrderCount) {
       arrow = '↓';
     }
-    
+
     const totalOrderAmountElement = document.getElementById('total-order-count');
-    totalOrderAmountElement.textContent = `Tổng đơn hàng : ${currentMonthOrderCount} ` ;
-    
+    totalOrderAmountElement.textContent = `Tổng đơn hàng: ${currentMonthOrderCount} `;
+
     const percentageChangeElement = document.getElementById('percentage-change');
     percentageChangeElement.textContent = ` ${arrow} ${percentageChange}% `;
   })
@@ -154,8 +154,8 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
     console.error('Lỗi khi tải dữ liệu từ API:', error);
   });
 
-  //products
-  axios.get('https://api-zerot-lowdb.onrender.com/products')
+//products
+axios.get('https://api-zerot-lowdb.onrender.com/products')
   .then(function (response) {
     const products = response.data;
     const currentDate = new Date();
@@ -210,7 +210,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
 
 
 
-  axios.get('https://api-zerot-lowdb.onrender.com/orders')
+axios.get('https://api-zerot-lowdb.onrender.com/orders')
   .then(response => {
     const data = response.data;
     // Tạo một đối tượng để lưu trữ tổng đơn hàng trên từng ngày và từng tháng
@@ -220,7 +220,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
     data.forEach(order => {
       const orderDate = new Date(order.createdAt);
       const monthKey = `${orderDate.getFullYear()}-${orderDate.getMonth() + 1}`;
-      
+
       // Tính tổng tiền theo ngày
       const date = orderDate.getDate();
       if (dailyTotal[date]) {
@@ -228,7 +228,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
       } else {
         dailyTotal[date] = order.totalPrice;
       }
-      
+
       // Tính tổng tiền theo tháng
       if (monthlyTotal[monthKey]) {
         monthlyTotal[monthKey] += order.totalPrice;
@@ -258,7 +258,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
           y: {
             beginAtZero: true,
             ticks: {
-              callback: function(value, index, values) {
+              callback: function (value, index, values) {
                 return value.toLocaleString() + ' VND';
               }
             }
@@ -267,7 +267,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
         plugins: {
           tooltip: {
             callbacks: {
-              label: function(context) {
+              label: function (context) {
                 return context.dataset.label + ': ' + context.parsed.y.toLocaleString() + ' VND';
               }
             }
@@ -277,7 +277,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
     });
     // Lắng nghe sự kiện thay đổi lựa chọn
     const selectOption = document.getElementById('selectOption');
-    selectOption.addEventListener('change', function() {
+    selectOption.addEventListener('change', function () {
       const selectedOption = selectOption.value;
       // Xóa biểu đồ hiện tại
       myChart.destroy();
@@ -311,7 +311,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
             y: {
               beginAtZero: true,
               ticks: {
-                callback: function(value, index, values) {
+                callback: function (value, index, values) {
                   return value.toLocaleString() + ' VND';
                 }
               }
@@ -320,7 +320,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
           plugins: {
             tooltip: {
               callbacks: {
-                label: function(context) {
+                label: function (context) {
                   return context.dataset.label + ': ' + context.parsed.y.toLocaleString() + ' VND';
                 }
               }
@@ -331,7 +331,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/users')
     });
   })
   .catch(error => {
-    console.error('Lỗi khi tảidữ liệu đơn hàng:', error);
+    console.error('Lỗi khi tải dữ liệu đơn hàng:', error);
   });
 
 // Sử dụng Axios để lấy dữ liệu từ API
