@@ -41,7 +41,7 @@ async function displayOrder() {
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold">${
                                 item.totalPrice
-                              }</span>
+                              } VND </span>
                             </td>
                             <td class="align-middle text-center">
                               <a
