@@ -12,7 +12,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
     const currentMonth = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
     const orders = response.data;
-
+    
     const currentMonthOrders = orders.filter(function (order) {
       const orderDate = new Date(order.createdAt);
       const orderMonth = orderDate.getMonth() + 1;
@@ -113,14 +113,12 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
     const currentMonth = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
     const orders = response.data;
-
     const currentMonthOrders = orders.filter(function (order) {
       const orderDate = new Date(order.createdAt);
       const orderMonth = orderDate.getMonth() + 1;
       const orderYear = orderDate.getFullYear();
       return orderMonth === currentMonth && orderYear === currentYear;
     });
-
     const previousMonthOrders = orders.filter(function (order) {
       const orderDate = new Date(order.createdAt);
       const orderMonth = orderDate.getMonth() + 1;
@@ -136,7 +134,6 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
       const orderCountComparison = currentMonthOrderCount - previousMonthOrderCount;
       percentageChange = ((orderCountComparison / previousMonthOrderCount) * 100).toFixed(2);
     }
-
     let arrow = '';
     if (currentMonthOrderCount > previousMonthOrderCount) {
       arrow = '↑';
@@ -331,7 +328,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
     });
   })
   .catch(error => {
-    console.error('Lỗi khi tải dữ liệu đơn hàng:', error);
+    console.error('Lỗi khi tảidữ liệu đơn hàng:', error);
   });
 
 // Sử dụng Axios để lấy dữ liệu từ API
