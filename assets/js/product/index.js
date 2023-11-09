@@ -30,12 +30,12 @@ axios
                     )}</span>
                   </td>
                   <td class="align-middle text-center">
-                  ${
-                    Array.isArray(product.image)
-                      ? `<img src="${product.image[0].url}" style="width: 100%" />`
-                      : `<img src="${product.image}" style="width: 100%" />`
-                  }
-                </td>
+                      ${
+                        Array.isArray(product.image)
+                          ? `<img src="${product.image[0]?.url}" style="width: 150px" />`
+                          : `<img src="${product.image}" style="width: 150px" />`
+                      }
+                  </td>
                   
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
@@ -139,18 +139,22 @@ async function handleEdit(id) {
       <div class="form-group">
         <label for="productImage">Hình ảnh sản phẩm</label>
         <div class="mb-3">
-              <button class="btn btn-primary mt-2" style="display:block" id="editImageButton">Edit Image</button>
+              <button class="btn btn-primary mt-1" style="display:block" id="editImageButton">Sửa hình ảnh</button>
               <input type="file" id="imageInput" style="display: none" multiple/>
             ${
               Array.isArray(product.image)
                 ? product.image
                     .map((image, index) => {
-                      return `<img src="${product.image[index].url}" style="width:150px; padding: 10px"/>`;
+                      return `<img src="${product.image[index].url}" style="width:100px; padding: 10px"/>`;
                     })
                     .join("")
-                : `<img src="${product.image}" style="width:150px; padding: 10px"/>`
+                : `<img src="${product.image}" style="width:100px; padding: 10px"/>`
             }
-            </div>
+          </div>
+          <div>
+            <label id="labelNewImage"></label>
+            <div id="previewNewImage"></div>
+          </div>
       </div>
     </div>
   </div>
@@ -164,25 +168,28 @@ async function handleEdit(id) {
     editImageButton.addEventListener("click", () => {
       imageInput.click();
     });
+    const labelNewImage = document.getElementById("labelNewImage");
+    const previewNewImage = document.getElementById("previewNewImage");
 
     imageInput.addEventListener("change", async (e) => {
-      //delete old images
-      const CLOUD_NAME = "dyk82loo2";
-      const apiKey = "277715959481595";
-      const apiSecret = "heBz5pvNQ9Pi6Oh13qjBAUOz-_c";
+      labelNewImage.innerHTML = "Hình ảnh mới";
+      previewNewImage.innerHTML = "";
+      if (imageInput.files.length > 0) {
+        for (const file of imageInput.files) {
+          const reader = new FileReader();
 
-      const deleteUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`;
+          reader.onload = function (e) {
+            const imageUrl = e.target.result;
+            const imgElement = document.createElement("img");
+            imgElement.src = imageUrl;
+            imgElement.alt = "Selected Image";
+            imgElement.style.width = "100px";
+            imgElement.style.padding = "10px";
+            previewNewImage.appendChild(imgElement);
+          };
 
-      for (const image of product.image) {
-        const timestamp = new Date().getTime();
-        const string = `public_id=${image.public_id}&timestamp=${timestamp}${apiSecret}`;
-        var signature = sha1(string);
-        const formData = new FormData();
-        formData.append("public_id", image.public_id);
-        formData.append("api_key", apiKey);
-        formData.append("signature", signature);
-        formData.append("timestamp", timestamp);
-        axios.post(deleteUrl, formData);
+          reader.readAsDataURL(file);
+        }
       }
     });
 
@@ -194,21 +201,8 @@ async function handleEdit(id) {
         const stockInput = document.getElementById("stockInput");
         const categoryInput = document.getElementById("categoryInput");
         const descriptionInput = document.getElementById("descriptionInput");
-        // const productImage = document.getElementById("productImage");
         const imageInput = document.getElementById("imageInput");
-
         const urls = await uploadFile(imageInput.files);
-        const response = await axios.patch(
-          `https://api-zerot-lowdb.onrender.com/products/${id}`,
-          {
-            name: nameInput.value,
-            price: Number(priceInput.value),
-            stock: Number(stockInput.value),
-            category: categoryInput.value,
-            description: descriptionInput.value,
-            image: urls,
-          }
-        );
 
         if (nameInput.value.trim() === "") {
           alert("Tên sản phẩm không được để trống");
@@ -226,6 +220,37 @@ async function handleEdit(id) {
           alert("Hàng lưu giữ phải là một số không âm");
           return;
         }
+
+        //delete old images
+        const CLOUD_NAME = "dyk82loo2";
+        const apiKey = "277715959481595";
+        const apiSecret = "heBz5pvNQ9Pi6Oh13qjBAUOz-_c";
+
+        const deleteUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`;
+
+        for (const image of product.image) {
+          const timestamp = new Date().getTime();
+          const string = `public_id=${image.public_id}&timestamp=${timestamp}${apiSecret}`;
+          var signature = sha1(string);
+          const formData = new FormData();
+          formData.append("public_id", image.public_id);
+          formData.append("api_key", apiKey);
+          formData.append("signature", signature);
+          formData.append("timestamp", timestamp);
+          axios.post(deleteUrl, formData);
+        }
+
+        const response = await axios.patch(
+          `https://api-zerot-lowdb.onrender.com/products/${id}`,
+          {
+            name: nameInput.value,
+            price: Number(priceInput.value),
+            stock: Number(stockInput.value),
+            category: categoryInput.value,
+            description: descriptionInput.value,
+            image: urls,
+          }
+        );
 
         Swal.fire({
           icon: "success",
@@ -322,20 +347,21 @@ async function createProduct() {
 
     <div class="col-md-6">
       <label>Loại sản phẩm</label>
-  <div class="mb-3">
-    <select name="category"class="form-control" id="categoryInput" required>
-      <option value="laptop">Laptop</option>
-      <option value="phụ kiện">Phụ kiện</option>
-    </select>
-  </div>
+      <div class="mb-3">
+        <select name="category"class="form-control" id="categoryInput" required>
+          <option value="laptop">Laptop</option>
+          <option value="phụ kiện">Phụ kiện</option>
+        </select>
+      </div>
 
-   <label>Ảnh </label>
-  <div class="mb-3">
-    <input class="form-control" type="file" id="imageInput" multiple required/>
-  </div>
+      <label>Ảnh </label>
+      <div class="mb-3">
+        <input class="form-control" type="file" id="imageInput" multiple required/>
+      </div>
+
+      <div id="previewImage"></div>
+
     </div>
-
-
     </div>
 
   
@@ -355,7 +381,29 @@ async function createProduct() {
   );
   var categoryInput = document.querySelector('select[name="category"');
   var fileInput = document.querySelector('input[type="file"');
+  var previewImage = document.getElementById("previewImage");
   const btnSave = document.getElementById("btnSave");
+
+  fileInput.addEventListener("change", () => {
+    previewImage.innerHTML = "";
+    if (fileInput.files.length > 0) {
+      for (const file of fileInput.files) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const imageUrl = e.target.result;
+          const imgElement = document.createElement("img");
+          imgElement.src = imageUrl;
+          imgElement.alt = "Selected Image";
+          imgElement.style.width = "100px";
+          imgElement.style.padding = "10px";
+          previewImage.appendChild(imgElement);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+  });
 
   btnSave.addEventListener("click", async () => {
     var name = nameInput.value;
