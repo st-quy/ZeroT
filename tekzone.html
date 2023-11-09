@@ -14,30 +14,28 @@
     <main class="main">
       <section class="banner">
         <div class="banner_article">
-          <div class="banner_article1">
-            <img src="https://cdn.tgdd.vn/Files/2023/11/02/1553880/1-061123-110858-800-resize.jpg" alt="" srcset=""
+          <a class="banner_article1" href="#">
+            <img src="https://cdn.tgdd.vn/Files/2023/11/02/1553880/1-061123-110858-800-resize.jpg" alt=""
               class="image_a1">
             <h2 class="article_title line-3">Tổng hợp 11 lỗi gõ Tiếng Việt trong Word thường xuyên gặp phải và cách khắc
               phục
               ngay trong bài viết
             </h2>
-          </div>
-          <div class="banner_article2">
-            <img src="https://cdn.tgdd.vn/Files/2023/11/03/1553976/1-041123-011832.jpg" alt="" srcset=""
-              class="image_a2">
+          </a>
+          <a class="banner_article2" href="#">
+            <img src="https://cdn.tgdd.vn/Files/2023/11/03/1553976/1-041123-011832.jpg" alt="" class="image_a2">
             <h2 class="article_title line-3">Khuyến mãi MacBook tháng 11: Giảm lên đến 1.500.000đ để bạn tha hồ lựa chọn
               chiếc
               MacBook phù hợp
             </h2>
-          </div>
-          <div class="banner_article3">
-            <img src="https://cdn.tgdd.vn/Files/2023/11/03/1553883/2-041123-011312-760x367.jpg" alt="" srcset=""
-              class="image_a3">
+          </a>
+          <a class="banner_article3" href="#">
+            <img src="https://cdn.tgdd.vn/Files/2023/11/03/1553883/2-041123-011312-760x367.jpg" alt="" class="image_a3">
             <h2 class="article_title line-3">Cách chống rung trên CapCut siêu đơn giản, giúp bạn có những thước phim
               mượt mà và
               chất lượng
             </h2>
-          </div>
+          </a>
         </div>
         <div class="banner_category">
           <div>
@@ -106,6 +104,23 @@
         </div>
       </section>
     </main>
+
+    <script>
+      const article_containers = document.querySelectorAll(".banner_article > a");
+      const article_img = document.querySelectorAll(".banner_article > a > img");
+
+      article_containers.forEach((con, index) => {
+        con.addEventListener("mouseover", () => {
+          article_img[index].style.transform = "scale(1.3)"
+        })
+      })
+
+      article_img.forEach((img, index) => {
+        article_containers[index].addEventListener("mouseleave", () => {
+          img.style.transform = "scale(1)"
+        })
+      })
+    </script>
   </body>
 
 </html>

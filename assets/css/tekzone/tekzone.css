@@ -42,10 +42,13 @@ body {
 .main .banner_article3 {
   position: relative;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .main .banner_article img {
   width: 100%;
+  transform-origin: center;
+  transition: all 0.5s ease-in-out;
 }
 
 .main .banner_article1 {
@@ -66,12 +69,16 @@ body {
 .main .banner_article3::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(255, 254, 254, 0.1), #000000);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 40%;
+  background: linear-gradient(rgba(255, 255, 255, 0.01), #000000);
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
+  z-index: 1;
 }
 .main .image_a1 {
   height: 100%;
@@ -94,6 +101,7 @@ body {
   font-weight: 700;
   color: #fbfbfb;
   margin: 1.5rem;
+  z-index: 2;
 }
 
 .main .banner_article1 .article_title {
