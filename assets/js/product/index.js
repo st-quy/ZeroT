@@ -117,9 +117,9 @@ async function handleEdit(id) {
       </div>
       <div class="form-group">
         <label for="descriptionInput">Mô tả sản phẩm</label>
-        <input type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" value="${
+        <textarea style="resize: none;"  type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" required>${
           product.description
-        }" />
+        }</textarea>
       </div>
       <div class="form-group">
         <label for="stockInput">Hàng lưu giữ</label>
@@ -311,7 +311,7 @@ async function createProduct() {
       </div>
       <label>Mô tả sản phẩm</label>
       <div class="mb-3">
-        <textarea  type="text" class="form-control" id="description" placeholder="Mô tả sản phẩm" required></textarea>
+        <textarea style="resize: none;"  type="text" class="form-control" id="description" placeholder="Mô tả sản phẩm" required></textarea>
       </div>
     
       <label>Hàng lưu trữ</label>
