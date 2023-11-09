@@ -96,8 +96,8 @@ body {
   position: absolute;
   bottom: 1.2rem;
   left: 1rem;
-  font-size: 1.8rem;
-  line-height: 25px;
+  font-size: clamp(1rem, 0.8rem + 1vw, 1.8rem);
+  line-height: 1.6;
   font-weight: 700;
   color: #fbfbfb;
   margin: 1.5rem;
@@ -105,8 +105,7 @@ body {
 }
 
 .main .banner_article1 .article_title {
-  font-size: 3rem;
-  line-height: 45px;
+  font-size: clamp(1rem, 0.52rem + 2.4vw, 3.3rem);
 }
 
 .main .banner_category {
@@ -173,7 +172,7 @@ body {
 }
 .main .newest_article .article_title {
   color: #fff;
-  font-size: 2rem;
+  font-size: clamp(1rem, 0.8rem + 1vw, 2rem);
   font-weight: 500;
   margin-bottom: 1.5rem;
   transition: all 0.3s;
@@ -205,4 +204,33 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
+}
+
+@media screen and (max-width: 1059px) {
+  .main .banner_category {
+    display: none;
+  }
+  .main .newest_article {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main .banner_article {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .main .banner_article2,
+  .main .banner_article3 {
+    display: none;
+  }
+
+  .main .banner_article1 {
+    border-top-right-radius: 2.5rem;
+    border-bottom-right-radius: 2.5rem;
+  }
+
+  .main .newest_article .article_item {
+    flex-direction: column;
+  }
 }
