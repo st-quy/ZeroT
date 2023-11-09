@@ -21,21 +21,16 @@ axios
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
                       product.price
-                    } VND</span>
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
-                      0,
-                      15
-                    )}</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.description
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                  ${
-                    Array.isArray(product.image)
-                      ? `<img src="${product.image[0]}" style="width: 100%" />`
-                      : `<img src="${product.image}" style="width: 100%" />`}
-                </td>
-                  
+                    <image src=${product.image} style="width: 150px"/>
+                  </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
                       product.category
@@ -56,31 +51,30 @@ axios
                   }
                   </td>
                   <td class="align-middle text-center">
-                    <i class="fa fa-pencil cursor-pointer"" onclick=handleEdit(${
-                      product.id
-                    })></i>                   
-                    <i class="fa fa-trash cursor-pointer"" onclick=handleDelete(${
-                      product.id
-                    })></i>
+                  <a onclick="handleEdit(${product.id})" class="">
+                  <i class="fa fa-pencil cursor-pointer" aria-hidden="true"></i>
+                  </a>
+                  <a onclick="handleDelete(${product.id})" class="">
+                  <i class="fa fa-trash cursor-pointer" ></i>
+                  </a>
                   </td>`;
-
         tbody.appendChild(row);
         index++;
       }
     });
-    $("#table-product").DataTable({
+    $('#table-product').DataTable({
       language: {
         paginate: {
-          previous: "‹",
-          next: "›",
+          previous: '‹',
+          next: '›',
         },
         aria: {
           paginate: {
-            previous: "Previous",
-            next: "Next",
+            previous: 'Previous',
+            next: 'Next',
           },
         },
-        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
+        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
       },
     });
   })
@@ -88,6 +82,7 @@ axios
   .catch(function (error) {
     console.error('Error fetching data: ', error);
   });
+
   async function handleEdit(id) {
     try {
       const response = await axios.get(`https://api-zerot-lowdb.onrender.com/products/${id}`);
@@ -128,8 +123,8 @@ axios
   </div>
       <div class="form-group">
         <label for="productImage">Hình ảnh sản phẩm</label>
-        <img src="${product.image}" style="width: 100px" id="productImage" />
-        <button class="btn btn-primary mt-2" id="editImageButton">Edit Image</button>
+        <img src="${product.image}" style="width: 100%" id="productImage" />
+        <button class="btn btn-primary mt-2" id="editImageButton">Chỉnh sửa ảnh</button>
         <input type="file" id="imageInput" style="display: none" />
       </div>
     </div>
@@ -234,19 +229,9 @@ async function handleDelete(id) {
         const deleteResponse = await axios.delete(
           `https://api-zerot-lowdb.onrender.com/products/${id}`
         );
-        Swal.fire({
-          icon: "success",
-          title: "Thành công",
-          text: "Sản phẩm đã được xóa thành công",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const modal = new bootstrap.Modal(
-              document.getElementById("myModal")
-            );
-            modal.hide();
-            location.reload();
-          }
-        });
+        const modal = new bootstrap.Modal(document.getElementById('myModal'));
+        modal.hide();
+        location.reload();
       } catch (error) {
         console.error('Lỗi khi xóa sản phẩm: ', error);
       }
@@ -271,7 +256,7 @@ async function createProduct() {
 
   <label>Giá sản phẩm</label>
   <div class="mb-3">
-    <input type="number" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" required/>
+    <input type="number" class="form-control" id="priceInput" placeholder="Giá sản phẩm" required/>
   </div>
   <label>Mô tả sản phẩm</label>
   <div class="mb-3">
@@ -287,13 +272,13 @@ async function createProduct() {
   <div class="mb-3">
     <select name="category"class="form-control" id="categoryInput" required>
       <option value="laptop">Laptop</option>
-      <option value="phụ kiện">Phụ kiện</option>
+      <option value="accessory">Phụ kiện</option>
     </select>
   </div>
 
    <label>Ảnh </label>
   <div class="mb-3">
-    <input class="form-control" type="file" id="imageInput" multiple required/>
+    <input type="file" id="imageInput" multiple required/>
   </div>
 
 `;
@@ -302,9 +287,7 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector(
-    'input[placeholder="Giá sản phẩm (VND)"'
-  );
+  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm"');
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'
@@ -314,6 +297,12 @@ async function createProduct() {
   const btnSave = document.getElementById('btnSave');
 
   btnSave.addEventListener('click', async () => {
+    var name = nameInput.value;
+    var price = Number(priceInput.value);
+    var stock = Number(stockInput.value);
+    var description = descriptionInput.value;
+    var category = categoryInput.value;
+    var urls = await uploadFile(fileInput.files);
     if (nameInput.value.trim() === "") {
       alert("Tên sản phẩm không được để trống");
       return;
@@ -330,12 +319,7 @@ async function createProduct() {
       alert("Hàng lưu giữ phải là một số không âm");
       return;
     }
-    var name = nameInput.value;
-    var price = Number(priceInput.value);
-    var stock = Number(stockInput.value);
-    var description = descriptionInput.value;
-    var category = categoryInput.value;
-    var urls = await uploadFile(fileInput.files);
+   
     await axios
       .post('https://api-zerot-lowdb.onrender.com/products', {
         name,
@@ -343,7 +327,7 @@ async function createProduct() {
         stock,
         description,
         category,
-        image: urls,
+        image: urls[0],
         review: [],
       })
       .then((response) => {
@@ -351,10 +335,8 @@ async function createProduct() {
         modal.hide();
         location.reload();
       });
-     
   });
 }
-
 
 const uploadFile = async (files) => {
   const CLOUD_NAME = 'dyk82loo2';
@@ -365,17 +347,18 @@ const uploadFile = async (files) => {
 
   const formData = new FormData();
 
-  formData.append("upload_preset", PRESET_NAME);
-  formData.append("folder", FOLDER_NAME);
-  console.log(files);
+  formData.append('upload_preset', PRESET_NAME);
+  formData.append('folder', FOLDER_NAME);
   for (const file of files) {
-    formData.append("file", file);
+    formData.append('file', file);
+    // console.log(file);
     const response = await axios.post(api, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
+
     urls.push(response.data.url);
+    return urls;
   }
-  return urls;
 };
