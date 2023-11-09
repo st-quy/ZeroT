@@ -111,7 +111,7 @@ async function handleEdit(id) {
       </div>
       <div class="form-group">
         <label for="priceInput">Giá sản phẩm</label>
-        <input type="number" type="text" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${
           product.price
         }" />
       </div>
@@ -123,7 +123,7 @@ async function handleEdit(id) {
       </div>
       <div class="form-group">
         <label for="stockInput">Hàng lưu giữ</label>
-        <input type="number" type="text" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${
+        <input type="number" min="0" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${
           product.stock
         }" />
       </div>
@@ -332,7 +332,7 @@ async function createProduct() {
     
       <label>Giá sản phẩm</label>
       <div class="mb-3">
-        <input type="number" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" required/>
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" required/>
       </div>
       <label>Mô tả sản phẩm</label>
       <div class="mb-3">
@@ -341,7 +341,7 @@ async function createProduct() {
     
       <label>Hàng lưu trữ</label>
       <div class="mb-3">
-        <input type="number" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" required/>
+        <input type="number" min="0" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" required/>
       </div>
     </div>
 
@@ -412,21 +412,38 @@ async function createProduct() {
     var description = descriptionInput.value;
     var category = categoryInput.value;
     var urls = await uploadFile(fileInput.files);
-    await axios
-      .post("https://api-zerot-lowdb.onrender.com/products", {
-        name,
-        price,
-        stock,
-        description,
-        category,
-        image: urls,
-        review: [],
-      })
-      .then((response) => {
-        const modal = new bootstrap.Modal(document.getElementById("myModal"));
-        modal.hide();
-        location.reload();
-      });
+
+    if (
+      name &&
+      price > 0 &&
+      stock > 0 &&
+      description &&
+      category &&
+      urls.length > 0
+    ) {
+      try {
+        await axios
+          .post("https://api-zerot-lowdb.onrender.com/products", {
+            name,
+            price,
+            stock,
+            description,
+            category,
+            image: urls,
+            review: [],
+          })
+          .then((response) => {
+            const modal = new bootstrap.Modal(
+              document.getElementById("myModal")
+            );
+            modal.hide();
+            location.reload();
+          });
+      } catch (error) {}
+    } else {
+      alert("Vui lòng nhập đầy đủ thông tin sản phẩm");
+      return;
+    }
   });
 }
 
