@@ -123,7 +123,7 @@ axios
   </div>
       <div class="form-group">
         <label for="productImage">Hình ảnh sản phẩm</label>
-        <img src="${product.image}" style="width: 100%" id="productImage" />
+        <img src="${product.image}" style="width: 150px" id="productImage" />
         <button class="btn btn-primary mt-2" id="editImageButton">Chỉnh sửa ảnh</button>
         <input type="file" id="imageInput" style="display: none" />
       </div>
