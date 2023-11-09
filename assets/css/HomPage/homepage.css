@@ -1,27 +1,57 @@
 .head {
   display: flex;
-  background: rgba(0, 0, 0, 0.914);
+  background: rgb(0, 0, 0);
   padding: 0px 165px;
   margin: auto;
   justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+}
+.carousel-inner {
+  margin-top: 60px;
+}
+
+.menu .nav-item.active {
+  background-color: #2d2d2d;
 }
 
 .logo a img {
-  width: 33px; /* Thay đổi kích thước của logo tại đây */
+  width: 35px; /* Thay đổi kích thước của logo tại đây */
   height: auto; /* Giữ tỷ lệ khung hình */
 }
 
 .menu {
   list-style-type: none;
   font-size: 20px;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .menu .nav-item {
   display: inline-block;
-  margin: 5px 5px 20px 20px; /* trên phải dưới trái */
   text-align: center;
-  margin: 0 10px;
+  color: white !important;
+  flex: 1;
+  white-space: nowrap;
 }
+.nav-item a {
+  color: white !important;
+  padding: 16px;
+}
+
+ul.menu li {
+  transition: all 0.4s;
+}
+
+ul.menu li:hover {
+  background-color: #2d2d2d;
+}
+
 .cart-relogin {
   display: flex;
 }
@@ -41,7 +71,7 @@
   justify-content: center;
   display: flex;
   margin: 12px 5px;
-  font-family: "Arial", sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
@@ -51,20 +81,50 @@
   font-size: 13px;
 }
 
+.dropdown-content {
+  background: #fff;
+  list-style-type: none;
+  border-radius: 10%;
+  padding: 20px;
+  margin: 5px;
+  z-index: 100;
+  white-space: nowrap;
+  overflow: auto;
+}
+.dropdown-content hr {
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: #ccc;
+  margin: 5px 0 5;
+}
+.dropdown-content span {
+  font-size: 15px;
+  color: #000;
+}
+
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
 .relogin:hover .dropdown-content {
   display: block;
 }
-
+.dropdown-content li {
+  display: flex;
+}
 /* Thay đổi màu của chữ trong dropdown-content */
 .dropdown-content li a {
-  color: #00ccff8a; /* Đổi màu chữ thành đỏ (hoặc mã màu mà bạn muốn) */
+  color: #000; /* Đổi màu chữ thành đỏ (hoặc mã màu mà bạn muốn) */
+  font-size: 15px;
   text-decoration: none; /* Loại bỏ gạch chân cho liên kết */
+  text-align: center;
+}
+.dropdown-content li img {
+  width: 40%;
+  height: 40%;
 }
 
 /* Màu khi di chuột vào liên kết */
 .dropdown-content li a:hover {
-  color: #c8ff0057; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
+  color: #f4df35; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
 }
 
 /* PRODUCTS */
@@ -86,7 +146,6 @@
   max-width: 100%;
   /* margin: 50px auto; */
   text-align: center;
-  
 }
 
 .macbook img {
@@ -104,36 +163,31 @@
   border: none;
 }
 
-
 body {
   padding-bottom: 70px; /* Đặt khoảng cách phía dưới phần nội dung */
 }
-
 
 .page-content {
   min-height: calc(100vh - 100px); /* 100px là chiều cao dự kiến của footer */
   position: relative;
 }
 
-
-
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
-.allbody{
- background-color: rgba(0, 0, 0, 0.842);
+.allbody {
+  background-color: rgba(0, 0, 0, 0.842);
 }
-
 
 .section {
   /* Ensure no margin or padding on the section */
   margin: 30;
   padding: 30;
 }
-.smac{
+.smac {
   margin: 20x;
   padding: 25px;
 }
@@ -165,21 +219,21 @@ html, body {
   border: 2px solid white; /* Đặt khung xung quanh slide thành màu trắng */
 }
 
-.macbook_title{
+.macbook_title {
   color: white;
   padding: 20px;
 }
 
-.card-title{
+.card-title {
   color: yellow;
 }
 
-.card-text{
-  font-family: "Arial", sans-serif;
+.card-text {
+  font-family: 'Arial', sans-serif;
 }
 
-.font{
-  font-family: "Arial", sans-serif;
+.font {
+  font-family: 'Arial', sans-serif;
 }
 
 /* CSS để căn giữa đoạn đầu tiên của mỗi cột và làm cho các đoạn khác căn lề bằng nhau */
@@ -196,7 +250,6 @@ h4 {
   font-size: 1.5rem; /* Kích thước font chữ cho tiêu đề */
   margin-bottom: 15px; /* Khoảng cách giữa tiêu đề và danh sách */
   text-align: justify;
-
 }
 
 .font li {
@@ -217,42 +270,34 @@ h4 {
 }
 
 /* Đảm bảo chữ màu trắng trong footer */
-footer, footer ul li a {
+footer,
+footer ul li a {
   color: white;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
-footer ul{
+footer ul {
   padding: 0;
 }
-.background{
-  background-color: rgba(0, 0, 0, 0.914) ;
+.background {
+  background-color: rgba(0, 0, 0, 0.914);
   padding: 20px 50px;
 }
 
 @media screen and (max-width: 1120px) {
   .head {
-    
     padding: 0px 50px;
-
-    
   }
-  .nav-link{
+  .nav-link {
     font-size: 15px;
   }
-  
 }
 
-
-@media  screen and(max-width:800px) {
-  
+@media screen and(max-width:800px) {
   .head {
-    
     padding: 0px 5px;
-
-    
   }
-  .nav-link{
+  .nav-link {
     font-size: 7px;
   }
 }

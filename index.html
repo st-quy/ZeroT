@@ -40,7 +40,7 @@
 
     <script type="text/javascript">
       (function () {
-        emailjs.init("cAba6hxOeNz1APEiA");
+        emailjs.init('cAba6hxOeNz1APEiA');
       })();
     </script>
     <link
@@ -53,16 +53,17 @@
     <header>
       <div class="head">
         <div class="logo">
-          <a href="index.html" class="nav-link"
-            ><img src="/assets/img/curved-images/icons/apple.jpg" alt=" Logo"
+          <a href="index.html" class="nav-link">
+            <img
+              src="/assets/img/curved-images/icons/a.png"
+              style="width: 103px"
+              alt="Logo" />
+            <img src="/assets/img/curved-images/icons/apple.jpg" alt=" Logo"
           /></a>
         </div>
 
         <ul class="menu">
-          <li class="nav-item">
-            <a href="#" class="nav-link">Trang chủ </a>
-          </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a href="#" class="nav-link">Mac</a>
           </li>
 
@@ -80,8 +81,14 @@
 
         <div class="cart-relogin">
           <div class="item">
-            <a href="" class="cart">
-              <i class="bi bi-cart"></i>
+            <a href="#" class="cart">
+              <i class="bi bi-cart position-relative">
+                <span
+                  class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1"
+                >
+                  0
+                </span>
+              </i>
             </a>
           </div>
 
@@ -91,17 +98,21 @@
                 <i class="bi bi-door-open"></i>
               </a>
               <div class="dropdown">
-                <ul class="dropdown-content">
-                  <li><a href="sign-in.html">Login</a></li>
-                  <li><a href="sign-up.html">Register</a></li>
-                </ul>
+                <div class="dropdown-content">
+                  <li>
+                    <a href="sign-in.html" id="loginLink">Đăng nhập</a>
+                  </li>
+                  <hr />
+                  <li>
+                    <a href="sign-up.html" id="registerLink">Đăng kí</a>
+                  </li>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </header>
-
     <section>
       <div
         id="carouselExampleIndicators"
