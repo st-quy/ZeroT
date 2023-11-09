@@ -202,69 +202,95 @@ async function handleEdit(id) {
         const categoryInput = document.getElementById("categoryInput");
         const descriptionInput = document.getElementById("descriptionInput");
         const imageInput = document.getElementById("imageInput");
-        const urls = await uploadFile(imageInput.files);
 
-        if (nameInput.value.trim() === "") {
+        var name = nameInput.value.trim();
+        var price = Number(priceInput.value);
+        var stock = Number(stockInput.value);
+        var category = categoryInput.value;
+        var description = descriptionInput.value.trim();
+
+        if (name === "") {
           alert("Tên sản phẩm không được để trống");
           return;
         }
-        if (isNaN(Number(priceInput.value)) || Number(priceInput.value) <= 0) {
+        if (price <= 0) {
           alert("Giá sản phẩm phải là một số dương");
           return;
         }
-        if (descriptionInput.value.trim() === "") {
+        if (description === "") {
           alert("Mô tả không được để trống");
           return;
         }
-        if (isNaN(Number(stockInput.value)) || Number(stockInput.value) < 0) {
+        if (category === "") {
+          alert("Loại sản phẩm không được để trống");
+          return;
+        }
+        if (stock < 0) {
           alert("Hàng lưu giữ phải là một số không âm");
           return;
         }
 
-        //delete old images
-        const CLOUD_NAME = "dyk82loo2";
-        const apiKey = "277715959481595";
-        const apiSecret = "heBz5pvNQ9Pi6Oh13qjBAUOz-_c";
+        if (imageInput.files.length > 0) {
+          // delete old images
+          const CLOUD_NAME = "dyk82loo2";
+          const apiKey = "277715959481595";
+          const apiSecret = "heBz5pvNQ9Pi6Oh13qjBAUOz-_c";
 
-        const deleteUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`;
+          const deleteUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`;
 
-        for (const image of product.image) {
-          const timestamp = new Date().getTime();
-          const string = `public_id=${image.public_id}&timestamp=${timestamp}${apiSecret}`;
-          var signature = sha1(string);
-          const formData = new FormData();
-          formData.append("public_id", image.public_id);
-          formData.append("api_key", apiKey);
-          formData.append("signature", signature);
-          formData.append("timestamp", timestamp);
-          axios.post(deleteUrl, formData);
+          for (const image of product.image) {
+            const timestamp = new Date().getTime();
+            const string = `public_id=${image.public_id}&timestamp=${timestamp}${apiSecret}`;
+            var signature = sha1(string);
+            const formData = new FormData();
+            formData.append("public_id", image.public_id);
+            formData.append("api_key", apiKey);
+            formData.append("signature", signature);
+            formData.append("timestamp", timestamp);
+            axios.post(deleteUrl, formData);
+          }
+          const urls = await uploadFile(imageInput.files);
+          try {
+            await axios
+              .patch(`https://api-zerot-lowdb.onrender.com/products/${id}`, {
+                name,
+                price,
+                stock,
+                category,
+                description,
+                image: urls,
+              })
+              .then((response) => {
+                const modal = new bootstrap.Modal(
+                  document.getElementById("myModal")
+                );
+                modal.hide();
+                location.reload();
+              });
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          try {
+            await axios
+              .patch(`https://api-zerot-lowdb.onrender.com/products/${id}`, {
+                name: nameInput.value,
+                price: Number(priceInput.value),
+                stock: Number(stockInput.value),
+                category: categoryInput.value,
+                description: descriptionInput.value,
+              })
+              .then((response) => {
+                const modal = new bootstrap.Modal(
+                  document.getElementById("myModal")
+                );
+                modal.hide();
+                location.reload();
+              });
+          } catch (error) {
+            console.log(error);
+          }
         }
-
-        const response = await axios.patch(
-          `https://api-zerot-lowdb.onrender.com/products/${id}`,
-          {
-            name: nameInput.value,
-            price: Number(priceInput.value),
-            stock: Number(stockInput.value),
-            category: categoryInput.value,
-            description: descriptionInput.value,
-            image: urls,
-          }
-        );
-
-        Swal.fire({
-          icon: "success",
-          title: "Thành công",
-          text: "Sản phẩm đã được chỉnh sửa thành công",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const modal = new bootstrap.Modal(
-              document.getElementById("myModal")
-            );
-            modal.hide();
-            location.reload();
-          }
-        });
       } catch (error) {
         console.error("Lỗi khi lưu thay đổi: ", error);
       }
@@ -406,12 +432,11 @@ async function createProduct() {
   });
 
   btnSave.addEventListener("click", async () => {
-    var name = nameInput.value;
+    var name = nameInput.value.trim();
     var price = Number(priceInput.value);
     var stock = Number(stockInput.value);
-    var description = descriptionInput.value;
-    var category = categoryInput.value;
-    var urls = await uploadFile(fileInput.files);
+    var description = descriptionInput.value.trim();
+    var category = categoryInput.value.trim();
 
     if (
       name &&
@@ -419,8 +444,9 @@ async function createProduct() {
       stock > 0 &&
       description &&
       category &&
-      urls.length > 0
+      fileInput.files.length > 0
     ) {
+      var urls = await uploadFile(fileInput.files);
       try {
         await axios
           .post("https://api-zerot-lowdb.onrender.com/products", {
@@ -439,8 +465,11 @@ async function createProduct() {
             modal.hide();
             location.reload();
           });
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     } else {
+      const modal = new bootstrap.Modal(document.getElementById("myModal"));
       alert("Vui lòng nhập đầy đủ thông tin sản phẩm");
       return;
     }
