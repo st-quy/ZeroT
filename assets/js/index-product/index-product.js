@@ -14,16 +14,18 @@ fetch(url)
             productItem.classList.add("product-item");
             if (!product.deletedAt) {
                 productItem.innerHTML = `
+        <div class="product-container">
             <div class="form-group">
-            <img src="${product.image[0].url}" style="width: 200px" />           
-            <h3 class="white-text">${product.name}</h3>
-            <div class="description-box">
-                <p>${product.description.substring(0, 20)}</p>
+                    <img src="${product.image[0].url}" style="width: 250px; display: block; margin: 0 auto"; />           
+                    <h3 class="white-text">${product.name}</h3>
+                <div class="description-box">
+                 <p class ="desription-text">${product.description}</p>
+                </div>
+                 <p class="white-text">${product.price}<a>₫</a></p>
+                <div class="add-to-cart">
+                 <button>Thêm vào giỏ hàng</button>
+                </div>
             </div>
-            <p class="white-text">${product.price}<a>₫</a></p>
-            <div class="add-to-cart">
-  <button>Thêm vào giỏ hàng</button>
-</div>
         </div>
             `;
 
@@ -37,9 +39,17 @@ fetch(url)
                 }
             }
         });
+
         if (count % productsPerRow !== 0) {
             productList.appendChild(productRow);
         }
+        // if (prductsPerRox > 3) {
+        //     products.interHTML = `   
+        //     <div class="abc">
+        //      <p>acb</p>   
+        //        </div>`;
+        // }
+
     })
     .catch(error => {
         console.error('Error:', error);
