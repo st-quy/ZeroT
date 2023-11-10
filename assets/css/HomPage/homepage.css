@@ -1,6 +1,6 @@
 .head {
   display: flex;
-  background: rgba(0, 0, 0, 0.914);
+  background: black;
   padding: 0px 165px;
   margin: auto;
   justify-content: space-between;
@@ -67,79 +67,52 @@
   color: #c8ff0057; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
 }
 
-/* PRODUCTS */
-/* Căn giữa sản phẩm trong carousel */
-.carousel-item {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Căn giữa sản phẩm theo chiều ngang */
-}
-.item-card {
-  justify-content: center;
-}
-.col-lg-3 {
-  flex: 0 0 calc(33.333% - 1rem);
-  max-width: calc(33.333% - 1rem);
-  margin-bottom: 1rem;
-}
-.macbook {
-  max-width: 100%;
-  /* margin: 50px auto; */
-  text-align: center;
-  
-}
-
-.macbook img {
+.carousel-slide-duy {
+  max-width: 1400px;
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
 }
-
-.carousel-inner {
-  padding: 1em;
+.carousel-inner .carousel-item {
+  border-radius: 40px; /* Đặt giá trị border radius tùy ý */
+  overflow: hidden; /* Để ẩn phần nội dung vượt ra ngoài slide */
 }
-.card {
-  margin: 0 0.5em;
-  box-shadow: 2px 6px 8px 0 rgba(0, 0, 0, 0.842);
-  border: none;
+.carousel-inner .carousel-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 
 body {
   padding-bottom: 70px; /* Đặt khoảng cách phía dưới phần nội dung */
+  background-color: rgba(0, 0, 0, 0.842);
 }
-
 
 .page-content {
   min-height: calc(100vh - 100px); /* 100px là chiều cao dự kiến của footer */
   position: relative;
 }
 
-
-
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
-}
-.allbody{
- background-color: rgba(0, 0, 0, 0.842);
+  background-color: rgba(0, 0, 0, 0.842);
 }
 
-
-.section {
-  /* Ensure no margin or padding on the section */
-  margin: 30;
-  padding: 30;
-}
-.smac{
+.smac {
   margin: 20x;
   padding: 25px;
 }
+
 .carousel-inner {
   /* Remove padding for the carousel-inner */
-  padding: 0;
+  width: 100%;
+  height: auto;
 }
 
 .carousel-item img {
@@ -165,20 +138,20 @@ html, body {
   border: 2px solid white; /* Đặt khung xung quanh slide thành màu trắng */
 }
 
-.macbook_title{
+.macbook_title {
   color: white;
   padding: 20px;
 }
 
-.card-title{
+.card-title {
   color: yellow;
 }
 
-.card-text{
+.card-text {
   font-family: "Arial", sans-serif;
 }
 
-.font{
+.font {
   font-family: "Arial", sans-serif;
 }
 
@@ -196,7 +169,6 @@ h4 {
   font-size: 1.5rem; /* Kích thước font chữ cho tiêu đề */
   margin-bottom: 15px; /* Khoảng cách giữa tiêu đề và danh sách */
   text-align: justify;
-
 }
 
 .font li {
@@ -217,42 +189,85 @@ h4 {
 }
 
 /* Đảm bảo chữ màu trắng trong footer */
-footer, footer ul li a {
+footer,
+footer ul li a {
   color: white;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
-footer ul{
+footer ul {
   padding: 0;
 }
-.background{
-  background-color: rgba(0, 0, 0, 0.914) ;
+.background {
+  background-color: rgba(0, 0, 0, 0.914);
   padding: 20px 50px;
 }
 
 @media screen and (max-width: 1120px) {
   .head {
-    
     padding: 0px 50px;
-
-    
   }
-  .nav-link{
+  .nav-link {
     font-size: 15px;
   }
-  
 }
 
-
-@media  screen and(max-width:800px) {
-  
+@media screen and(max-width:800px) {
   .head {
-    
     padding: 0px 5px;
-
-    
   }
-  .nav-link{
+  .nav-link {
     font-size: 7px;
   }
+}
+.catename {
+  display: block;
+  overflow: hidden;
+  margin: 38px;
+  cursor: default;
+  padding: 50px;
+}
+.catename i {
+  display: block;
+  margin: auto;
+}
+i.logo-category img {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  padding-top: 30px;
+ 
+  
+}
+section {
+  background-color: rgba(0, 0, 0, 0.842);
+}
+
+.carousel-inner-duy {
+  padding: 1em;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  
+  
+  border-radius: 50%;
+  background-color: white;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: gray;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+.carousel-indicators button {
+  background-color: blue;
+  border-color: blue;
+}
+
+.carousel-indicators .active {
+  background-color: blue;
+  border-color: blue;
 }

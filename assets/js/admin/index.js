@@ -40,13 +40,14 @@ axios.get('https://api-zerot-lowdb.onrender.com/orders')
     if (previousMonthRevenue !== 0) {
       percentageChange = ((revenueComparison / previousMonthRevenue) * 100).toFixed(2);
     }
-
-    let arrow = '';
-    if (revenueComparison > 0) {
-      arrow = '↑';
-    } else if (revenueComparison < 0) {
-      arrow = '↓';
-    }
+let arrow = '';
+if (revenueComparison > 0) {
+  arrow = '↑';
+  document.getElementById('arrow-element').classList.add('up-arrow');
+} else if (revenueComparison < 0) {
+  arrow = '↓';
+  document.getElementById('arrow-element').classList.add('down-arrow');
+}
 
     const totalOrderAmountElement = document.getElementById('total-order-amount');
     totalOrderAmountElement.textContent = `Tổng tiền : ${currentMonthRevenue} VND`;
