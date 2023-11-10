@@ -5,14 +5,12 @@ var minhModal = document.getElementById("minh-modal");
 
 if (profileData && profileData.status === "inactive") {
   minhModal.style.display = "block";
-} else {
-  minhModal.style.display = "none";
 }
 
-async function closeConfirmModal() {
+function closeConfirmModal() {
+  var minhModal = document.getElementById("minh-modal");
   minhModal.style.display = "none";
 }
-
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
