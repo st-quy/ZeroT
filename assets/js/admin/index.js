@@ -1,94 +1,264 @@
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
-const rolelist = ["admin", "seller"]
+const rolelist = ["admin", "seller"];
 
-if (role && !rolelist.includes(role)) {
-  location.href = `${location.origin}/index.html`
+if (!role || !rolelist.includes(role)) {
+  location.href = `${location.origin}/index.html`;
 }
-axios.get('https://api-zerot-lowdb.onrender.com/orders')
+if (role === "customer") {
+  location.href = `${location.origin}/unauthorized.html`;
+}
+
+axios
+  .get("https://api-zerot-lowdb.onrender.com/orders")
   .then(function (response) {
-    // Xử lý dữ liệu JSON từ phản hồi ở đây
-    var orders = response.data;
-    console.log(orders);
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear();
+    const orders = response.data;
 
-    // Tính tổng tiền của các đơn hàng
-    var totalAmount = 0;
-    for (var i = 0; i < orders.length; i++) {
-      totalAmount += orders[i].totalPrice;
-    }
-
-    // Hiển thị tổng tiền trên trang
-    var totalOrderAmountElement = document.getElementById('total-order-amount');
-    totalOrderAmountElement.innerHTML = 'Tổng Tiền: ' + totalAmount + ' VNĐ';
-
-  })
-  .catch(function (error) {
-    console.error('Lỗi khi tải dữ liệu từ máy chủ:', error);
-  });
-  
-
-
-// Fetch data from the API
-axios.get('https://api-zerot-lowdb.onrender.com/users')
-  .then(function (response) {
-    var users = response.data;
-
-    // Filter users with the role "customer"
-    var customerUsers = users.filter(function (user) {
-      return user.role === "customer";
+    const currentMonthOrders = orders.filter(function (order) {
+      const orderDate = new Date(order.createdAt);
+      const orderMonth = orderDate.getMonth() + 1;
+      const orderYear = orderDate.getFullYear();
+      return orderMonth === currentMonth && orderYear === currentYear;
     });
 
-    // Calculate the total customer count
-    var totalCustomerCount = customerUsers.length;
+    const previousMonthOrders = orders.filter(function (order) {
+      const orderDate = new Date(order.createdAt);
+      const orderMonth = orderDate.getMonth() + 1;
+      const orderYear = orderDate.getFullYear();
+      return orderMonth === currentMonth - 1 && orderYear === currentYear;
+    });
 
-    // Update the element with the total customer count
-    var totalCustomerCountElement = document.getElementById('total-customer-count');
-    totalCustomerCountElement.textContent = 'Tổng khách hàng: ' + totalCustomerCount;
+    const currentMonthRevenue = currentMonthOrders.reduce(function (
+      total,
+      order
+    ) {
+      return total + order.totalPrice;
+    },
+    0);
+
+    const previousMonthRevenue = previousMonthOrders.reduce(function (
+      total,
+      order
+    ) {
+      return total + order.totalPrice;
+    },
+    0);
+
+    const revenueComparison = currentMonthRevenue - previousMonthRevenue;
+    let percentageChange = 0;
+    if (previousMonthRevenue !== 0) {
+      percentageChange = (
+        (revenueComparison / previousMonthRevenue) *
+        100
+      ).toFixed(2);
+    }
+
+    let arrow = "";
+    if (revenueComparison > 0) {
+      arrow = "↑";
+    } else if (revenueComparison < 0) {
+      arrow = "↓";
+    }
+
+    const totalOrderAmountElement =
+      document.getElementById("total-order-amount");
+    totalOrderAmountElement.textContent = `Tổng tiền : ${currentMonthRevenue} VND`;
+
+    const phantramElement = document.getElementById("phan-tram");
+    phantramElement.textContent = ` ${arrow} ${percentageChange}% `;
   })
   .catch(function (error) {
-    console.error('Error loading data from the server:', error);
+    console.error("Lỗi khi tải dữ liệu từ API:", error);
   });
-axios.get('https://api-zerot-lowdb.onrender.com/orders')
+// Tổng users
+axios
+  .get("https://api-zerot-lowdb.onrender.com/users")
   .then(function (response) {
-    var orders = response.data;
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear();
+    const users = response.data;
 
-    // Calculate the total order count
-    var totalOrderCount = orders.length;
+    const previousMonthCustomers = users.filter(function (user) {
+      const userDate = new Date(user.createdAt);
+      const userMonth = userDate.getMonth() + 1;
+      const userYear = userDate.getFullYear();
+      return (
+        userMonth === currentMonth - 1 &&
+        userYear === currentYear &&
+        user.role === "customer"
+      );
+    });
 
-    // Update the element with the total order count
-    var totalOrderCountElement = document.getElementById('total-order-count');
-    totalOrderCountElement.textContent = 'Tổng Đơn Hàng: ' + totalOrderCount;
+    const currentMonthCustomers = users.filter(function (user) {
+      const userDate = new Date(user.createdAt);
+      const userMonth = userDate.getMonth() + 1;
+      const userYear = userDate.getFullYear();
+      return (
+        userMonth === currentMonth &&
+        userYear === currentYear &&
+        user.role === "customer"
+      );
+    });
+
+    const previousMonthCustomerCount = previousMonthCustomers.length;
+    const currentMonthCustomerCount = currentMonthCustomers.length;
+
+    const totalCustomerCountElement = document.getElementById(
+      "total-customer-count"
+    );
+    const totalCustomerTextElement = document.createElement("span");
+    totalCustomerTextElement.innerText = "Tổng người dùng : ";
+    totalCustomerCountElement.appendChild(totalCustomerTextElement);
+
+    const customerCountTextElement = document.createElement("span");
+    customerCountTextElement.setAttribute("id", "customer-count-text");
+    customerCountTextElement.innerText = currentMonthCustomerCount.toString();
+    totalCustomerCountElement.appendChild(customerCountTextElement);
+
+    const arrowElement = document.getElementById("customer-count-arrow");
+    if (arrowElement) {
+      const percentageChange =
+        ((currentMonthCustomerCount - previousMonthCustomerCount) /
+          previousMonthCustomerCount) *
+        100;
+      if (isFinite(percentageChange)) {
+        arrowElement.innerHTML = `↑ ${percentageChange.toFixed(2)}%`;
+      } else {
+        arrowElement.innerHTML = `↑ 0%`;
+      }
+    }
   })
   .catch(function (error) {
-    console.error('Error loading data from the server:', error);
+    console.error("Lỗi khi tải dữ liệu từ API:", error);
   });
-axios.get('https://api-zerot-lowdb.onrender.com/products')
+
+axios
+  .get("https://api-zerot-lowdb.onrender.com/orders")
   .then(function (response) {
-    var products = response.data;
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear();
+    const orders = response.data;
+    const currentMonthOrders = orders.filter(function (order) {
+      const orderDate = new Date(order.createdAt);
+      const orderMonth = orderDate.getMonth() + 1;
+      const orderYear = orderDate.getFullYear();
+      return orderMonth === currentMonth && orderYear === currentYear;
+    });
+    const previousMonthOrders = orders.filter(function (order) {
+      const orderDate = new Date(order.createdAt);
+      const orderMonth = orderDate.getMonth() + 1;
+      const orderYear = orderDate.getFullYear();
+      return orderMonth === currentMonth - 1 && orderYear === currentYear;
+    });
 
-    // Calculate the total product count
-    var totalProductCount = products.length;
+    const currentMonthOrderCount = currentMonthOrders.length;
+    const previousMonthOrderCount = previousMonthOrders.length;
 
-    // Update the element with the total product count
-    var totalProductCountElement = document.getElementById('total-product-count');
-    totalProductCountElement.textContent = 'Tổng Sản Phẩm: ' + totalProductCount;
+    let percentageChange = 0;
+    if (previousMonthOrderCount !== 0) {
+      const orderCountComparison =
+        currentMonthOrderCount - previousMonthOrderCount;
+      percentageChange = (
+        (orderCountComparison / previousMonthOrderCount) *
+        100
+      ).toFixed(2);
+    }
+    let arrow = "";
+    if (currentMonthOrderCount > previousMonthOrderCount) {
+      arrow = "↑";
+    } else if (currentMonthOrderCount < previousMonthOrderCount) {
+      arrow = "↓";
+    }
+
+    const totalOrderAmountElement =
+      document.getElementById("total-order-count");
+    totalOrderAmountElement.textContent = `Tổng đơn hàng: ${currentMonthOrderCount} `;
+
+    const percentageChangeElement =
+      document.getElementById("percentage-change");
+    percentageChangeElement.textContent = ` ${arrow} ${percentageChange}% `;
   })
   .catch(function (error) {
-    console.error('Error loading data from the server:', error);
+    console.error("Lỗi khi tải dữ liệu từ API:", error);
   });
-  axios.get('https://api-zerot-lowdb.onrender.com/orders')
-  .then(response => {
+
+//products
+axios
+  .get("https://api-zerot-lowdb.onrender.com/products")
+  .then(function (response) {
+    const products = response.data;
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear();
+    // Calculate the previous month
+    const previousMonth = currentMonth === 1 ? 12 : currentMonth - 1;
+    const previousYear = currentMonth === 1 ? currentYear - 1 : currentYear;
+    // Filter products based on current month and year
+    const currentMonthProducts = products.filter(function (product) {
+      const productDate = new Date(product.createdAt);
+      const productMonth = productDate.getMonth() + 1;
+      const productYear = productDate.getFullYear();
+      return productMonth === currentMonth && productYear === currentYear;
+    });
+    // Filter products based on previous month and year
+    const previousMonthProducts = products.filter(function (product) {
+      const productDate = new Date(product.createdAt);
+      const productMonth = productDate.getMonth() + 1;
+      const productYear = productDate.getFullYear();
+      return productMonth === previousMonth && productYear === previousYear;
+    });
+    // Get the count of products
+    const currentMonthProductCount = currentMonthProducts.length;
+    const previousMonthProductCount = previousMonthProducts.length;
+    // Calculate the percentage change
+    const percentageChange =
+      ((currentMonthProductCount - previousMonthProductCount) /
+        previousMonthProductCount) *
+      100;
+    // Display the total product count
+    const totalProductCountElement = document.getElementById(
+      "total-product-count"
+    );
+    totalProductCountElement.textContent = `Tổng sản phẩm : ${currentMonthProductCount}`;
+    // Display the percentage change and arrow
+    const percentageChangeElement =
+      document.getElementById("total-product-last");
+    percentageChangeElement.textContent = `${percentageChange.toFixed(2)}%`;
+    const arrowElement = document.createElement("span");
+    arrowElement.classList.add("arrow");
+    if (percentageChange > 0) {
+      arrowElement.textContent = "↑";
+      arrowElement.classList.add("up");
+    } else if (percentageChange < 0) {
+      arrowElement.textContent = "↓";
+      arrowElement.classList.add("down");
+    } else {
+      arrowElement.textContent = "→";
+      arrowElement.classList.add("right");
+    }
+    percentageChangeElement.insertAdjacentElement("afterbegin", arrowElement); // Chèn mũi tên vào phía trước phần trăm
+  })
+  .catch(function (error) {
+    console.error("Lỗi khi tải dữ liệu từ API:", error);
+  });
+
+axios
+  .get("https://api-zerot-lowdb.onrender.com/orders")
+  .then((response) => {
     const data = response.data;
-
     // Tạo một đối tượng để lưu trữ tổng đơn hàng trên từng ngày và từng tháng
     const dailyTotal = {};
     const monthlyTotal = {};
-
     // Lặp qua từng đơn hàng trong dữ liệu
-    data.forEach(order => {
+    data.forEach((order) => {
       const orderDate = new Date(order.createdAt);
       const monthKey = `${orderDate.getFullYear()}-${orderDate.getMonth() + 1}`;
-      
+
       // Tính tổng tiền theo ngày
       const date = orderDate.getDate();
       if (dailyTotal[date]) {
@@ -96,7 +266,7 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
       } else {
         dailyTotal[date] = order.totalPrice;
       }
-      
+
       // Tính tổng tiền theo tháng
       if (monthlyTotal[monthKey]) {
         monthlyTotal[monthKey] += order.totalPrice;
@@ -104,85 +274,121 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
         monthlyTotal[monthKey] = order.totalPrice;
       }
     });
-
     // Chuẩn bị dữ liệu ban đầu cho biểu đồ (theo ngày)
     const labels = Object.keys(dailyTotal);
     const dataPoints = Object.values(dailyTotal);
-
     // Vẽ biểu đồ đường
-    const ctx = document.getElementById('lineChart').getContext('2d');
+    const ctx = document.getElementById("lineChart").getContext("2d");
     let myChart = new Chart(ctx, {
-      type: 'line',
+      type: "line",
       data: {
         labels: labels,
-        datasets: [{
-          label: 'Tổng tiền theo ngày',
-          data: dataPoints,
-          backgroundColor: 'rgba(0, 123, 255, 0.2)',
-          borderColor: 'rgba(0, 123, 255, 1)',
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            label: "Tổng tiền theo ngày",
+            data: dataPoints,
+            backgroundColor: "rgba(0, 123, 255, 0.2)",
+            borderColor: "rgba(0, 123, 255, 1)",
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         scales: {
           y: {
-            beginAtZero: true
-          }
-        }
-      }
+            beginAtZero: true,
+            ticks: {
+              callback: function (value, index, values) {
+                return value.toLocaleString() + " VND";
+              },
+            },
+          },
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return (
+                  context.dataset.label +
+                  ": " +
+                  context.parsed.y.toLocaleString() +
+                  " VND"
+                );
+              },
+            },
+          },
+        },
+      },
     });
-
     // Lắng nghe sự kiện thay đổi lựa chọn
-    const selectOption = document.getElementById('selectOption');
-    selectOption.addEventListener('change', function() {
+    const selectOption = document.getElementById("selectOption");
+    selectOption.addEventListener("change", function () {
       const selectedOption = selectOption.value;
-
       // Xóa biểu đồ hiện tại
       myChart.destroy();
-
       // Chuẩn bị dữ liệu mới cho biểu đồ
       let newLabels, newDataPoints, label;
-
-      if (selectedOption === 'daily') {
+      if (selectedOption === "daily") {
         newLabels = labels;
         newDataPoints = dataPoints;
-        label = 'Tổng tiền theo ngày';
-      } else if (selectedOption === 'monthly') {
+        label = "Tổng tiền theo ngày";
+      } else if (selectedOption === "monthly") {
         // Chuẩn bị dữ liệu theo tháng
         newLabels = Object.keys(monthlyTotal);
         newDataPoints = Object.values(monthlyTotal);
-        label = 'Tổng tiền theo tháng';
+        label = "Tổng tiền theo tháng";
       }
-
       // Vẽ biểu đồ mới
       myChart = new Chart(ctx, {
-        type: 'line',
+        type: "line",
         data: {
           labels: newLabels,
-          datasets: [{
-            label: label,
-            data: newDataPoints,
-            backgroundColor: 'rgba(0, 123, 255, 0.2)',
-            borderColor: 'rgba(0, 123, 255, 1)',
-            borderWidth: 1
-          }]
+          datasets: [
+            {
+              label: label,
+              data: newDataPoints,
+              backgroundColor: "rgba(0, 123, 255, 0.2)",
+              borderColor: "rgba(0, 123, 255, 1)",
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           scales: {
             y: {
-              beginAtZero: true
-            }
-          }
-        }
+              beginAtZero: true,
+              ticks: {
+                callback: function (value, index, values) {
+                  return value.toLocaleString() + " VND";
+                },
+              },
+            },
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  return (
+                    context.dataset.label +
+                    ": " +
+                    context.parsed.y.toLocaleString() +
+                    " VND"
+                  );
+                },
+              },
+            },
+          },
+        },
       });
     });
   })
-  .catch(error => {
-    console.error('Lỗi khi tải dữ liệu đơn hàng:', error);
+  .catch((error) => {
+    console.error("Lỗi khi tảidữ liệu đơn hàng:", error);
   });
 
 // Sử dụng Axios để lấy dữ liệu từ API
-axios.get('https://api-zerot-lowdb.onrender.com/products')
+axios
+  .get("https://api-zerot-lowdb.onrender.com/products")
   .then(function (response) {
     var products = response.data;
 
@@ -204,37 +410,39 @@ axios.get('https://api-zerot-lowdb.onrender.com/products')
     });
 
     // Vẽ biểu đồ bánh
-    var ctx = document.getElementById('doughnut').getContext('2d');
+    var ctx = document.getElementById("doughnut").getContext("2d");
     var myChart = new Chart(ctx, {
-      type: 'doughnut',
+      type: "doughnut",
       data: {
         labels: productNames,
-        datasets: [{
-          data: productSold,
-          backgroundColor: [
-            'rgba(41, 155, 99, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(120, 46, 139, 1)',
-            'rgba( 165, 42, 42, 1 )'
-            // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
-          ],
-          borderColor: [
-            'rgba(41, 155, 99, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(120, 46, 139, 1)',
-            'rgba( 165, 42, 42, 1 )'
-            // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
-          ],
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            data: productSold,
+            backgroundColor: [
+              "rgba(41, 155, 99, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(120, 46, 139, 1)",
+              "rgba( 165, 42, 42, 1 )",
+              // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
+            ],
+            borderColor: [
+              "rgba(41, 155, 99, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(120, 46, 139, 1)",
+              "rgba( 165, 42, 42, 1 )",
+              // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
+            ],
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
-        responsive: true
-      }
+        responsive: true,
+      },
     });
   })
   .catch(function (error) {
-    console.error('Lỗi khi tải dữ liệu từ máy chủ:', error);
+    console.error("Lỗi khi tải dữ liệu từ máy chủ:", error);
   });

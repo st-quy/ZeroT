@@ -6,7 +6,8 @@ async function displayOrder() {
   await axios
     .get("https://api-zerot-lowdb.onrender.com/orders")
     .then((response) => {
-      response.data.forEach(async (item, index) => {
+      const orders = response.data.reverse();
+      orders.forEach(async (item, index) => {
         const row = document.createElement("tr");
 
         row.innerHTML = `<td class="align-middle px-4">
@@ -40,7 +41,7 @@ async function displayOrder() {
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold">${
                                 item.totalPrice
-                              }</span>
+                              } VND </span>
                             </td>
                             <td class="align-middle text-center">
                               <a
@@ -158,8 +159,8 @@ async function seeMore(orderId) {
     const orderData = response.data;
     console.log(orderData.orderItems);
 
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
+    const modalTitle = document.getElementById("modal-title");
+    const modalBody = document.getElementById("modal-body");
 
     modalTitle.textContent = `Thông tin đơn hàng: ${orderData.user[1]}`;
     orderData.orderItems.forEach((item) => {
@@ -175,9 +176,9 @@ async function seeMore(orderId) {
       <div class=" col-1 quantity"> 
         <p class="border-quantity"> ${item.quantity} </p>
       </div>
-      <div class="col-3">
+      <div class="col-3" style="padding-top: 27px">
         <h5 class="font-weight-bolder mb-0">
-          ${sum += item.quantity * item.price} VNĐ
+          ${(sum += item.quantity * item.price)} VNĐ
           </h5>
       </div>
       <hr class="horizontal dark mt-1"/>
@@ -186,11 +187,11 @@ async function seeMore(orderId) {
           <div class="col-6 total-price">${sum} VNĐ</div>
         </div>
       `;
-    })
-    
-    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+    });
+
+    const modal = new bootstrap.Modal(document.getElementById("myModal"));
     modal.show();
   } catch (error) {
-    console.error('Error fetching data: ', error);
+    console.error("Error fetching data: ", error);
   }
 }
