@@ -21,6 +21,19 @@ function closeForgotModal() {
   forgotModal.style.display = "none";
 }
 
+function closeCodeModal() {
+  var codeModal = document.getElementById("code-modal");
+  codeModal.style.display = "none";
+}
+
+
+var closePasswordModal = function () {
+  var passwordModal = document.getElementById("password-modal");
+  passwordModal.style.display = "none";
+};
+
+
+
 async function forgotPassword() {
   var email = document.getElementById("email").value;
 
@@ -182,7 +195,7 @@ async function forgotPassword() {
                       closePasswordModal();
                       setTimeout(function () {
                         window.location.href = "sign-in.html";
-                      }, 2000);
+                      }, 1000);
                     } else {
                       toastr.warning(
                         "Mật khẩu sai vui lòng nhập lại",
@@ -277,17 +290,3 @@ function validateEmail(email) {
   return emailRegex.test(email);
 }
 
-var closeCodeModal = function () {
-  codeModal.style.display = "none";
-};
-
-var closePasswordModal = function () {
-  passwordModal.style.display = "none";
-};
-
-document
-  .getElementById("password-modal")
-  .addEventListener("click", closePasswordModal);
-document
-  .getElementById("code-modal")
-  .addEventListener("click", closeCodeModal);
