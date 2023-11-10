@@ -7,9 +7,8 @@ var codeModal = document.getElementById("code-modal");
 var passwordModal = document.getElementById("password-modal");
 var codeInput = document.getElementById("code-input");
 var newPasswordInput = document.getElementById("new-password-input");
+
 forgotPasswordButton.addEventListener("click", function() {
-
-
 if (forgotMinh.style.display === "none") {
   forgotMinh.style.display = "block";
 } else {
@@ -121,6 +120,28 @@ async function forgotPassword() {
                   enteredCode &&
                   enteredCode === templateParams.code.toString()
                 ) {
+                  toastr.success(
+                    "Nhập code thành công vui long điền mật khẩu mới",
+                    "Message" , true,
+                    {
+                      timeOut: 2000,
+                      closeButton: true,
+                      debug: false,
+                      newestOnTop: true,
+                      progressBar: true,
+                      positionClass: "toast-top-right",
+                      preventDuplicates: true,
+                      onclick: null,
+                      showDuration: "300",
+                      hideDuration: "1000",
+                      extendedTimeOut: "1000",
+                      showEasing: "swing",
+                      hideEasing: "linear",
+                      showMethod: "fadeIn",
+                      hideMethod: "fadeOut",
+                      tapToDismiss: false,
+                    }
+                  );
                   closeCodeModal();
 
                   // Open the password modal and wait for user input
@@ -265,8 +286,8 @@ var closePasswordModal = function () {
 };
 
 document
-  .getElementById("password-modal-close")
+  .getElementById("password-modal")
   .addEventListener("click", closePasswordModal);
 document
-  .getElementById("code-modal-close")
+  .getElementById("code-modal")
   .addEventListener("click", closeCodeModal);
