@@ -4,6 +4,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #3e3e3f  !important;
 }
 footer{
   /* position: fixed; */
@@ -133,25 +134,22 @@ section {
 i.logo-category img {
   display: block;
   margin: 0 auto;
-  width: auto;
-  height: auto;
-  padding-top: 30px;
+  width: 150px;
+  height: 100px;
+  padding: 30px;
 }
 
-.carousel-slide-duy {
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-  justify-content: center;
-  padding: 20px;
-  align-items: center;
-}
-.carousel-inner .carousel-item {
-  border-radius: 40px; /* Đặt giá trị border radius tùy ý */
-  overflow: hidden; /* Để ẩn phần nội dung vượt ra ngoài slide */
-}
+/* .carousel-slide-duy { */
+  /* max-width: 1400px; */
+  /* width: 100%; */
+  /* margin: 0 auto; */
+  /* justify-content: center; */
+  /* padding: 20px; */
+  /* align-items: center; */
+/* } */
+
 .carousel-inner .carousel-item img {
-  width: 100%;
+  width: auto;
   height: auto;
   object-fit: contain;
 }
@@ -163,12 +161,12 @@ i.logo-category img {
   border-radius: 50%;
   background-color: white;
 }
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: gray;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
+.carousel-control-prev-icon, 
+.carousel-control-next-icon { 
+   background-color: gray; 
+   border-radius: 50%; 
+   width: 15px; 
+  height: 15px; 
 }
 .carousel-indicators button {
   background-color: blue;
@@ -180,6 +178,14 @@ i.logo-category img {
   border-color: blue;
 }
 
+
+.test{
+  width: 50%;
+  margin: 0 auto;
+border-radius: 20px;
+overflow: hidden;
+margin-bottom: 50px;
+}
 /* Slider */
 
 
