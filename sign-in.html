@@ -30,8 +30,14 @@
       rel="stylesheet"
     />
     <link href="assets/css/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Toastr -->
+    <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
-
+    <link rel="stylesheet" href="assets/css/modal-popup/minh-popup.css"/>
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
@@ -117,17 +123,73 @@
                         >Sign up</a
                       >
                     </p>
-                    <p class="mb-4 text-sm mx-auto">
-                      <a
-                        href="forgot-password.html"
-                        class="text-info text-gradient font-weight-bold"
-                        >Forgot Password?</a
-                      >
+                    <p type="submit" class="mb-4 text-sm mx-auto">
+                      <a class="text-info text-gradient font-weight-bold" id="forgotPasswordButton">Forgot Password?</a>
                     </p>
+
+                    <div id="forgot-minh" class="forgot-minh modal" style="display: none;">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h3 class="modal-title">Quên mật khẩu</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeForgotModal()">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <input type="email" id="email" class="form-control" placeholder="Email của bạn">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="forgotPassword()">Xác nhận</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Enter Code Modal -->
+                  <div id="code-modal" class="modal">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                            <h3 class="modal-title">Điền code</h3>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeCodeModal()">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                            <div class="modal-body">
+                                <input type="text" id="code-input" class="form-control" placeholder="Nhập code" />
+                            </div>
+                        <div class="modal-footer">
+                        <button id="code-modal-submit" class="btn btn-primary">Xác nhận</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                    <!-- Enter New Password Modal -->
+                  <div id="password-modal" class="modal">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title">Điền mật khẩu mới</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closePasswordModal()">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                          <div class="modal-body">
+                             <input class="form-control" type="password" id="new-password-input" placeholder="mật khẩu mới" />
+                          </div>
+                          <div class="modal-footer">
+                        <button id="password-modal-submit" class="btn btn-primary">Xác nhận</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+                <div class="col-md-6">
                 <div
                   class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8"
                 >
@@ -165,4 +227,7 @@
   <script src="./assets/js/toastr/toastr.init.js"></script>
   <script src="./assets/css/bootstrap.min.css"></script>
   <script src="./assets/js/signin/index.js"></script>
+  <script src="./assets/js/forgot/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
 </html>
