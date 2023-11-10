@@ -15,7 +15,7 @@ fetch(url)
             if (!product.deletedAt) {
                 productItem.innerHTML = `
             <div class="form-group">
-            <img src="${product.image}" style="width: 260px" />           
+            <img src="${product.image[0].url}" style="width: 200px" />           
             <h3 class="white-text">${product.name}</h3>
             <div class="description-box">
                 <p>${product.description.substring(0, 20)}</p>
