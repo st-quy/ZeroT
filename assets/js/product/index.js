@@ -2,8 +2,9 @@ const tbody = document.querySelector('#table-product tbody');
 axios
     .get('https://api-zerot-lowdb.onrender.com/products')
     .then(function(response) {
-            let index = 1;
+
             const products = response.data.reverse();
+            let index = 1;
             products.forEach(function(product) {
                         if (!product.deletedAt) {
                             const row = document.createElement('tr');
@@ -278,7 +279,7 @@ async function createProduct() {
 
    <label>Ảnh </label>
   <div class="mb-3">
-    <input type="file" id="imageInput" multiple required/>
+  <input class="form-control" type="file" id="imageInput" multiple required/>
   </div>
 
 `;
@@ -359,6 +360,7 @@ const uploadFile = async (files) => {
     });
 
     urls.push(response.data.url);
-    return urls;
+    
   }
+  return urls;
 };
