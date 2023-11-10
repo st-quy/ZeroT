@@ -1,30 +1,43 @@
-html, body {
+/* html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  flex-direction: column;
+} */
+*{
+  margin: 0;padding: 0;
+  box-sizing: border-box;
+}
+body{
+  width: 100%;
+}
+.content {
+  flex: 1;
 }
 footer{
-  position: fixed;
+  /* flex-shrink: 0; */
+  /* position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0; */
   padding-left: 100px;
   padding-right: 100px;
   padding-bottom: 30px;
   background-color: #101010;
   color: #3333;
   font-family: "Helvetica Neue", Helvetica, Arial, "SF Pro Display", sans-serif;
+  width: 100%;
 }
 
 .logo-foot {
   top: 0; /* Đặt vị trí theo chiều dọc */
   left: 0; /* Đặt vị trí theo chiều ngang */
   flex: 1;
-  padding: 30px;
+  /* padding: 30px; */
   display: flex;
   text-align: right;
-  padding-left: 40px;
-  padding-bottom: 0;
+  padding-bottom: 15px;
+  /* padding-bottom: 0; */
   
   
 }
@@ -63,18 +76,19 @@ footer-social i {
   
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #101010;
-  padding: 5px;
+  /* background-color: #101010; */
+  padding-top: 50px;
   
 }
 
 .list-foot {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-start; */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   width: 100%;
-  padding: 0px;
-  padding-left: 20px;
+  /* padding-left: 20px; */
   text-decoration: none;
 }
 
@@ -84,6 +98,16 @@ footer-social i {
   padding: 20px;
   background-color: transparent;
   color: white;
+  width: 226px;
+}
+
+.list-foot .ft {
+  flex: 1;
+  list-style: none;
+  /* padding: 20px; */
+  background-color: transparent;
+  color: white;
+  width: 226px;
 }
 
 .character{
@@ -94,6 +118,10 @@ footer-social i {
   text-decoration: none !important;
 }
 
+.columtongdai{
+  padding: 0 !important;
+  padding-top: 20px !important;
+}
 
 
 /* Tạo màu nền trắng cho nội dung chữ */
@@ -121,6 +149,22 @@ span{
 }
 .textblu{
   color: #2997ff;
-  font-size: 15px;
+  font-size: 13px;
   text-decoration: none;
 }
+
+@media screen and (max-width: 1200px) {
+  .list-foot{
+    grid-template-columns: repeat(3, 1fr);
+  }}
+
+  @media screen and (max-width: 767px) {
+    .list-foot{
+      grid-template-columns: repeat(2, 1fr);
+    }}
+
+    
+  @media screen and (max-width: 450px) {
+    .list-foot{
+      grid-template-columns: repeat(1, 1fr);
+    }}
