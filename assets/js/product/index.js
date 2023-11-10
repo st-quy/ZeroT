@@ -194,6 +194,7 @@ async function handleEdit(id) {
     });
 
     const saveModal = document.getElementById("btnSave");
+    saveModal.innerHTML = "Cập nhật";
     saveModal.addEventListener("click", async function () {
       try {
         const nameInput = document.getElementById("nameInput");
@@ -409,7 +410,7 @@ async function createProduct() {
   var fileInput = document.querySelector('input[type="file"');
   var previewImage = document.getElementById("previewImage");
   const btnSave = document.getElementById("btnSave");
-
+  btnSave.innerHTML = "Thêm mới";
   fileInput.addEventListener("change", () => {
     previewImage.innerHTML = "";
     if (fileInput.files.length > 0) {
