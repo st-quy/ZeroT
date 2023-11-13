@@ -10,10 +10,13 @@
   <link href="css/lib/font-awesome.min.css" rel="stylesheet" />
   <link href="assets/css/lib/themify-icons.css" rel="stylesheet" />
   <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet" />
-
-
+<link href="assets/css/lib/bootstrap.min.css" rel="stylesheet" />
+<link href="bootstrap.css" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/css/HomPage/homepage.css" />
-
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
   <link href="assets/css/style.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -39,7 +42,71 @@
 
 
 <body>
+<header>
+      <div class="head">
+        <div class="logo">
+          <a href="index.html" class="nav-link">
+            <img
+              class ="logo-zerot"
+              src="/assets/img/curved-images/icons/a.png"
+              alt="Logo" />
+            <img
+              src="https://cdn.tgdd.vn/mwgcart/topzone/images/APR_logo.webp"
+              alt=" Logo"
+          /></a>
+        </div>
 
+        <ul class="menu">
+          <li class="nav-item active">
+            <a href="index.html" class="nav-link">Mac</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Phụ kiện</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="tekzerot.html" class="nav-link">TekZeroT</a>
+          </li>
+          <li class="nav-item">
+            <a href="zerotcare.html" class="nav-link">ZeroTCare</a>
+          </li>
+        </ul>
+
+        <div class="cart-relogin">
+          <div class="item">
+            <a href="#" class="cart">
+              <i class="bi bi-cart position-relative">
+                <span
+                  class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1"
+                >
+                  0
+                </span>
+              </i>
+            </a>
+          </div>
+
+          <div class="relogin">
+            <div class="item">
+              <a href="#" class="relogin">
+                <i class="bi bi-door-open"></i>
+              </a>
+              <div class="dropdown">
+                <div class="dropdown-content">
+                  <li>
+                    <a href="sign-in.html" id="loginLink">Đăng nhập</a>
+                  </li>
+                  <hr />
+                  <li>
+                    <a href="sign-up.html" id="registerLink">Đăng kí</a>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   <a href="" class="catname">
     <i class="logo-category">
       <img
@@ -80,9 +147,6 @@
       </button>
     </div>
   </section>
-
-
-
       <footer>
         <div class="foot">
           <div class="logo-foot">
@@ -92,14 +156,8 @@
           <ul class="list-foot">
             <li class="columtongdai">
               <span class="rowtongdai">Tổng đài <br></span>
-            
                 <span class="character" >Mua hàng:<b class="textblu">19006558</b> (07:30-22:00)</span>
-              
-                
-            
-              
-                <span class="character" >CSKH:   <b class="textblu">0905.666.777</b>  (08:00-21:00)</span>
-                    
+                <span class="character" >CSKH:   <b class="textblu">0905.666.777</b>  (08:00-21:00)</span>     
               </a>
               <div class="footer-social">
                 <!-- <p class="txt">Kết nối với chúng tôi</p>
@@ -141,7 +199,32 @@
             </li>
           </ul>
         </div>
-    </footer>   
-  </body>
-  <script src="./assets/js/index.js"></script>
+</footer>
+<div id="minh-modal" class="minh-modal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Kiểm tra Email của bạn</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeConfirmModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" id="confirmationCode" class="form-control" placeholder="Nhập code" />
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="btnConfirm" onclick="confirmCode()">Xác Nhận</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/toastr/toastr.min.js"></script>
+<script src="./assets/js/toastr/toastr.init.js"></script>
+<script src="./assets/css/bootstrap.min.css"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./assets/js/index.js"></script>
+
 </html>
