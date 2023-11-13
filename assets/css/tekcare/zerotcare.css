@@ -2,7 +2,7 @@ body{
   /* background-color: #e5e5e5; */
   margin: auto;
   font: 14px/18px Helvetica Neue,Helvetica,Arial,SF Pro Display,sans-serif;
-  width: 100% !important;
+  width: 100vw !important;
   padding-top: 60px;
 }
 /* Header */
@@ -267,6 +267,28 @@ ul.menu li:hover {
 
 /* Header */
 
+@media screen and (max-width: 1200px) {
+  .category-item{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .category-item .type-names  {
+    padding-left: 0;
+
+  }
+}
+
+  @media screen and (max-width: 767px) {
+    .category-item{
+      grid-template-columns: repeat(2, 1fr);
+    }}
+
+    
+  @media screen and (max-width: 450px) {
+    .category-item{
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
 
 .big-title {
   font-weight: bold;
