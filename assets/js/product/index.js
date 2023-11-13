@@ -493,5 +493,4 @@ const uploadFile = async (files) => {
       public_id: response.data.public_id,
     });
   }
-  return urls;
 };
