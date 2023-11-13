@@ -342,12 +342,11 @@ ul.menu li:hover {
 
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    /* flex-direction: column; */
-    background-color: #3e3e3f !important;
+  height: 100%;
+  
+  width: 100%;
+  /* flex-direction: column; */
+  background-color: #3e3e3f !important;
 }
 
 * {
