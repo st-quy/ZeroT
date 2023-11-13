@@ -49,10 +49,6 @@
   }
 }
 
-.carousel-inner {
-  margin-top: 60px;
-}
-
 .menu .nav-item.active {
   background-color: #2d2d2d;
 }
@@ -170,11 +166,7 @@ ul.menu li:hover {
 
 /* PRODUCTS */
 /* Căn giữa sản phẩm trong carousel */
-.carousel-item {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Căn giữa sản phẩm theo chiều ngang */
-}
+
 .item-card {
   justify-content: center;
 }
@@ -195,9 +187,6 @@ ul.menu li:hover {
   object-fit: cover;
 }
 
-.carousel-inner {
-  padding: 1em;
-}
 .card {
   margin: 0 0.5em;
   box-shadow: 2px 6px 8px 0 rgba(0, 0, 0, 0.842);
@@ -218,41 +207,13 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-.allbody {
-  background-color: rgba(0, 0, 0, 0.842);
-}
-
-.section {
-  /* Ensure no margin or padding on the section */
-  margin: 30;
-  padding: 30;
-}
-.smac {
-  margin: 20x;
-  padding: 25px;
-}
-.carousel-inner {
-  /* Remove padding for the carousel-inner */
-  padding: 0;
-}
-
-.carousel-item img {
-  /* Ensure the images fill the full width of the container */
-  width: 100%;
-}
-/* Đặt vị trí cho nút mũi tên carousel */
-.carousel-controls {
-  position: absolute;
-  top: 50%; /* Đặt nút mũi tên ở giữa theo chiều dọc */
-  transform: translateY(-50%); /* Dịch lên trên để căn giữa */
+  background-color: #3e3e3f !important;
 }
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  /* position: fixed; */
+  /* bottom: 0; */
+  /* left: 0; */
+  /* right: 0; */
   padding-left: 100px;
   padding-right: 100px;
   padding-bottom: 30px;
@@ -260,7 +221,6 @@ footer {
   color: #3333;
   font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
 }
-
 .logo-foot {
   top: 0; /* Đặt vị trí theo chiều dọc */
   left: 0; /* Đặt vị trí theo chiều ngang */
@@ -282,7 +242,6 @@ footer {
 .logo-foot a {
   display: block; /* Đảm bảo logo là một phần tử khối để có thể định dạng kích thước và vị trí */
 }
-
 .logo-foot a {
   display: inline-block;
   vertical-align: middle;
@@ -290,7 +249,6 @@ footer {
 .footer-social {
   height: 0;
 }
-
 footer-social i {
   width: 30px; /* Thay đổi giá trị width theo kích thước mong muốn */
   height: auto; /* Thay đổi giá trị height theo kích thước mong muốn */
@@ -300,14 +258,12 @@ footer-social i {
   margin-bottom: 0;
   color: #888;
 }
-
 .foot {
   justify-content: space-between;
   align-items: flex-start;
   background-color: #101010;
   padding: 5px;
 }
-
 .list-foot {
   display: flex;
   justify-content: space-between;
@@ -317,7 +273,6 @@ footer-social i {
   padding-left: 20px;
   text-decoration: none;
 }
-
 .list-foot li {
   flex: 1;
   list-style: none;
@@ -325,7 +280,6 @@ footer-social i {
   background-color: transparent;
   color: white;
 }
-
 .character {
   color: white;
   display: block;
@@ -333,7 +287,6 @@ footer-social i {
   line-height: 2;
   text-decoration: none !important;
 }
-
 /* Tạo màu nền trắng cho nội dung chữ */
 .column-content {
   background-color: white;
@@ -343,7 +296,6 @@ footer-social i {
 .txt {
   color: rgb(75, 73, 73);
 }
-
 span {
   font-size: 15px;
   color: white;
@@ -361,3 +313,78 @@ span {
   font-size: 15px;
   text-decoration: none;
 }
+/* footer */
+
+/* Slider */
+section {
+  background-color: rgba(0, 0, 0, 0.842);
+}
+
+.carousel-inner-duy {
+  padding: 1em;
+}
+.catename {
+  display: block;
+  overflow: hidden;
+  margin: 38px;
+  cursor: default;
+  padding: 50px;
+}
+.catename i {
+  display: block;
+  margin: auto;
+}
+i.logo-category img {
+  display: block;
+  margin: 0 auto;
+  margin-top: 60px;
+  width: 150px;
+  height: 100px;
+  padding: 30px;
+}
+
+/* .carousel-slide-duy { */
+/* max-width: 1400px; */
+/* width: 100%; */
+/* margin: 0 auto; */
+/* justify-content: center; */
+/* padding: 20px; */
+/* align-items: center; */
+/* } */
+
+.carousel-inner .carousel-item img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  border-radius: 50%;
+  background-color: white;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: gray;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+.carousel-indicators button {
+  background-color: blue;
+  border-color: blue;
+}
+
+.carousel-indicators .active {
+  background-color: blue;
+  border-color: blue;
+}
+
+.test {
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+/* Slider */
