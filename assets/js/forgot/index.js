@@ -1,22 +1,91 @@
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 
-// Add the code for displaying the modals
+var forgotPasswordButton = document.getElementById("forgotPasswordButton");
+var forgotMinh = document.getElementById("forgot-minh");
 var codeModal = document.getElementById("code-modal");
 var passwordModal = document.getElementById("password-modal");
 var codeInput = document.getElementById("code-input");
 var newPasswordInput = document.getElementById("new-password-input");
 
+forgotPasswordButton.addEventListener("click", function() {
+if (forgotMinh.style.display === "none") {
+  forgotMinh.style.display = "block";
+} else {
+  forgotMinh.style.display = "none";
+}
+});
+
+function closeForgotModal() {
+  var forgotModal = document.getElementById("forgot-minh");
+  forgotModal.style.display = "none";
+}
+
+function closeCodeModal() {
+  var codeModal = document.getElementById("code-modal");
+  codeModal.style.display = "none";
+}
+
+
+var closePasswordModal = function () {
+  var passwordModal = document.getElementById("password-modal");
+  passwordModal.style.display = "none";
+};
+
+
+
 async function forgotPassword() {
   var email = document.getElementById("email").value;
 
   if (!email) {
-    showMessagePopup("Nhập Email của bạn");
+    toastr.warning(
+      "Email không chính xác vui lòng nhập lại",
+      "Message",
+      {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      }
+    );
     return;
   }
 
   if (!validateEmail(email)) {
-    showMessagePopup("Điền theo định dạng Email");
+    toastr.warning(
+      "Email không chính xác vui lòng nhập lại",
+      "Message",
+      {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      }
+    );
     return;
   }
 
@@ -33,9 +102,28 @@ async function forgotPassword() {
           .send("default_service", "template_5homdb2", templateParams)
           .then(
             async function () {
-              showMessagePopup("Đã gửi code về Email của bạn");
-
-              // Open the code modal and wait for user input
+              toastr.success(
+                "Đã gửi code về Email của bạn",
+                "Message",
+                {
+                  timeOut: 2000,
+                  closeButton: true,
+                  debug: false,
+                  newestOnTop: true,
+                  progressBar: true,
+                  positionClass: "toast-top-right",
+                  preventDuplicates: true,
+                  onclick: null,
+                  showDuration: "300",
+                  hideDuration: "1000",
+                  extendedTimeOut: "1000",
+                  showEasing: "swing",
+                  hideEasing: "linear",
+                  showMethod: "fadeIn",
+                  hideMethod: "fadeOut",
+                  tapToDismiss: false,
+                }
+              );
               codeModal.style.display = "block";
               codeInput.focus();
 
@@ -45,6 +133,28 @@ async function forgotPassword() {
                   enteredCode &&
                   enteredCode === templateParams.code.toString()
                 ) {
+                  toastr.success(
+                    "Nhập code thành công vui long điền mật khẩu mới",
+                    "Message" , true,
+                    {
+                      timeOut: 2000,
+                      closeButton: true,
+                      debug: false,
+                      newestOnTop: true,
+                      progressBar: true,
+                      positionClass: "toast-top-right",
+                      preventDuplicates: true,
+                      onclick: null,
+                      showDuration: "300",
+                      hideDuration: "1000",
+                      extendedTimeOut: "1000",
+                      showEasing: "swing",
+                      hideEasing: "linear",
+                      showMethod: "fadeIn",
+                      hideMethod: "fadeOut",
+                      tapToDismiss: false,
+                    }
+                  );
                   closeCodeModal();
 
                   // Open the password modal and wait for user input
@@ -59,13 +169,56 @@ async function forgotPassword() {
                         `https://api-zerot-lowdb.onrender.com/users/${userExist.id}`,
                         { password: newPassword }
                       );
-                      showMessagePopup("Mật khẩu thay đổi thành công ", true);
+                      toastr.success(
+                        "Đổi mật khẩu thành công",
+                        "Message" , true,
+                        {
+                          timeOut: 2000,
+                          closeButton: true,
+                          debug: false,
+                          newestOnTop: true,
+                          progressBar: true,
+                          positionClass: "toast-top-right",
+                          preventDuplicates: true,
+                          onclick: null,
+                          showDuration: "300",
+                          hideDuration: "1000",
+                          extendedTimeOut: "1000",
+                          showEasing: "swing",
+                          hideEasing: "linear",
+                          showMethod: "fadeIn",
+                          hideMethod: "fadeOut",
+                          tapToDismiss: false,
+                        }
+                      );
+                      
                       closePasswordModal();
                       setTimeout(function () {
                         window.location.href = "sign-in.html";
-                      }, 2000);
+                      }, 1000);
                     } else {
-                      showMessagePopup("Mật khẩu sai. Vui lòng nhập lại");
+                      toastr.warning(
+                        "Mật khẩu sai vui lòng nhập lại",
+                        "Message" ,
+                        {
+                          timeOut: 2000,
+                          closeButton: true,
+                          debug: false,
+                          newestOnTop: true,
+                          progressBar: true,
+                          positionClass: "toast-top-right",
+                          preventDuplicates: true,
+                          onclick: null,
+                          showDuration: "300",
+                          hideDuration: "1000",
+                          extendedTimeOut: "1000",
+                          showEasing: "swing",
+                          hideEasing: "linear",
+                          showMethod: "fadeIn",
+                          hideMethod: "fadeOut",
+                          tapToDismiss: false,
+                        }
+                      );
                     }
                   };
 
@@ -73,7 +226,28 @@ async function forgotPassword() {
                     .getElementById("password-modal-submit")
                     .addEventListener("click", submitPassword);
                 } else {
-                  showMessagePopup("Code sai. Vui lòng nhập lại");
+                  toastr.warning(
+                    "Code sai vui lòng nhập lại",
+                    "Message" ,
+                    {
+                      timeOut: 2000,
+                      closeButton: true,
+                      debug: false,
+                      newestOnTop: true,
+                      progressBar: true,
+                      positionClass: "toast-top-right",
+                      preventDuplicates: true,
+                      onclick: null,
+                      showDuration: "300",
+                      hideDuration: "1000",
+                      extendedTimeOut: "1000",
+                      showEasing: "swing",
+                      hideEasing: "linear",
+                      showMethod: "fadeIn",
+                      hideMethod: "fadeOut",
+                      tapToDismiss: false,
+                    }
+                  );
                 }
               };
 
@@ -86,7 +260,28 @@ async function forgotPassword() {
             }
           );
       } else {
-        showMessagePopup("Email không tồn tại");
+        toastr.warning(
+          "Email không tồn tại",
+          "Message" ,
+          {
+            timeOut: 2000,
+            closeButton: true,
+            debug: false,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+            tapToDismiss: false,
+          }
+        );
       }
     });
 }
@@ -95,35 +290,3 @@ function validateEmail(email) {
   return emailRegex.test(email);
 }
 
-function showMessagePopup(message, isSuccess = false) {
-  var popup = document.getElementById("popup");
-  var popupContent = document.getElementById("popup-content");
-
-  popupContent.textContent = message;
-
-  if (isSuccess) {
-    popup.classList.add("success");
-  } else {
-    popup.classList.remove("success");
-  }
-
-  popup.style.display = "block";
-  setTimeout(function () {
-    popup.style.display = "none";
-  }, 2000);
-}
-
-var closeCodeModal = function () {
-  codeModal.style.display = "none";
-};
-
-var closePasswordModal = function () {
-  passwordModal.style.display = "none";
-};
-
-document
-  .getElementById("password-modal-close")
-  .addEventListener("click", closePasswordModal);
-document
-  .getElementById("code-modal-close")
-  .addEventListener("click", closeCodeModal);
