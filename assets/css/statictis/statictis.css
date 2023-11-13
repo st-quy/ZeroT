@@ -59,6 +59,11 @@ select {
     padding: 20px; /* Giảm khoảng cách padding trên màn hình nhỏ hơn 480px */
   }
 }
+@media screen and (min-width: 786px) {
+  #sidenav-main {
+    overflow: hidden !important;
+  }
+}
 .line-chart {
   width: 100%;
   max-width: 800px;

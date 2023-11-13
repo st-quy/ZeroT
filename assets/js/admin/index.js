@@ -1,8 +1,7 @@
 var isLogin = JSON.parse(localStorage.getItem('isLogin'));
 var role = localStorage.getItem('role');
-const rolelist = ['admin', 'seller'];
 
-if (!role || !rolelist.includes(role)) {
+if (!role || !['admin', 'seller'].includes(role)) {
   location.href = `${location.origin}/index.html`;
 }
 if (role === 'customer') {
@@ -37,7 +36,7 @@ axios
     ) {
       return total + order.totalPrice;
     },
-    0);
+      0);
 
     const previousMonthRevenue = previousMonthOrders.reduce(function (
       total,
@@ -45,7 +44,7 @@ axios
     ) {
       return total + order.totalPrice;
     },
-    0);
+      0);
 
     const revenueComparison = currentMonthRevenue - previousMonthRevenue;
     let percentageChange = 0;
@@ -447,7 +446,7 @@ axios
     console.error("Lỗi khi tải dữ liệu từ máy chủ:", error);
   });
 
-// Toggle Sidenav
+// // Toggle Sidenav
 const iconNavbarSidenav = document.getElementById("iconNavbarSidenav");
 const iconSidenav = document.getElementById("iconSidenav");
 const sidenav = document.getElementById("sidenav-main");
