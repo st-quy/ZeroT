@@ -4,10 +4,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/tekcare/zerotcare.css" />
+  <link href="css/lib/font-awesome.min.css" rel="stylesheet" />
+  <link href="assets/css/lib/themify-icons.css" rel="stylesheet" />
+  <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet" />
+<link href="assets/css/lib/bootstrap.min.css" rel="stylesheet" />
+<link href="bootstrap.css" rel="stylesheet" />
   <!-- <link rel="stylesheet" href="./assets/css/HomPage/homepage.css" /> -->
+  <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+<link href="assets/css/style.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+<link id="pagestyle" href="../assets/css/bootstrap.css?v=1.0.3" rel="stylesheet" />
+<!-- Toastr -->
+<link rel="stylesheet" type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+<link rel="stylesheet" href="assets/css/modal-popup/minh-popup.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  (function () {
+    emailjs.init("cAba6hxOeNz1APEiA");
+  })();
+</script>
   <title>ZeroTCare</title>
 </head>
 <body>
+  <header>
+    <div class="head">
+      <div class="logo">
+        <a href="index.html" class="nav-link">
+          <img
+            class ="logo-zerot"
+            src="/assets/img/curved-images/icons/a.png"
+            alt="Logo" />
+          <img
+            src="https://cdn.tgdd.vn/mwgcart/topzone/images/APR_logo.webp"
+            alt=" Logo"
+        /></a>
+      </div>
+
+      <ul class="menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Mac</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">Phụ kiện</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="tekzerot.html" class="nav-link">TekZeroT</a>
+        </li>
+        <li class="nav-item active">
+          <a href="zerotcare.html" class="nav-link">ZeroTCare</a>
+        </li>
+      </ul>
+
+      <div class="cart-relogin">
+        <div class="item">
+          <a href="#" class="cart">
+            <i class="bi bi-cart position-relative">
+              <span
+                class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1"
+              >
+                0
+              </span>
+            </i>
+          </a>
+        </div>
+
+        <div class="relogin">
+          <div class="item">
+            <a href="#" class="relogin">
+              <i class="bi bi-door-open"></i>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <li>
+                  <a href="sign-in.html" id="loginLink">Đăng nhập</a>
+                </li>
+                <hr />
+                <li>
+                  <a href="sign-up.html" id="registerLink">Đăng kí</a>
+                </li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
   <div class="repair-service">
     <section>
       <h2 class="big-title">Dịch vụ sửa chữa TekCare</h2>
@@ -370,6 +465,7 @@
       </ul>
     </div>
 </footer>  
+<script src="./assets/js/index.js"></script>
   
 </body>
 </html>

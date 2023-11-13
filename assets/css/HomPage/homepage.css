@@ -292,8 +292,7 @@ ul.menu li:hover {
 html,
 body {
   height: 100%;
-  margin: 0;
-  padding: 0;
+  
   width: 100%;
   /* flex-direction: column; */
   background-color: #3e3e3f !important;
@@ -421,6 +420,9 @@ span {
 /* footer */
 
 /* Slider */
+section {
+  background-color: rgba(0, 0, 0, 0.842);
+}
 
 .carousel-inner-duy {
   padding: 1em;
