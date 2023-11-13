@@ -17,6 +17,14 @@
   .nav-link {
     font-size: 20px;
   }
+  .logo a img {
+    width: 35px; /* Thay đổi kích thước của logo tại đây */
+    height: auto; /* Giữ tỷ lệ khung hình */
+  }
+  .cart-relogin {
+    display: flex;
+    min-width: 142px;
+  }
 }
 
 /* CSS cho màn hình trung bình */
@@ -37,25 +45,57 @@
   .nav-link {
     font-size: 15px;
   }
+  .logo a img {
+    width: 35px; /* Thay đổi kích thước của logo tại đây */
+    height: auto; /* Giữ tỷ lệ khung hình */
+  }
+  .cart-relogin {
+    display: flex;
+  }
 }
 
 /* CSS cho màn hình nhỏ */
 @media screen and (max-width: 767px) {
   .head {
     padding: 0px 5px;
+    background: #101010;
+    margin: auto;
   }
   .nav-link {
     font-size: 12px;
+  }
+  .logo a img {
+    width: 20px; /* Thay đổi kích thước của logo tại đây */
+    height: auto; /* Giữ tỷ lệ khung hình */
+  }
+  .cart-relogin {
+    display: flex;
+  }
+  .logo a img {
+    width: 35px; /* Thay đổi kích thước của logo tại đây */
+    height: auto; /* Giữ tỷ lệ khung hình */
+  }
+}
+@media (max-width: 730px) {
+  .logo a img {
+    width: 30px; /* Thay đổi kích thước của logo tại đây */
+    height: auto; /* Giữ tỷ lệ khung hình */
+  }
+  .cart-relogin {
+    display: flex;
+  }
+  .menu {
+    list-style-type: none;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 60px;
   }
 }
 
 .menu .nav-item.active {
   background-color: #2d2d2d;
-}
-
-.logo a img {
-  width: 35px; /* Thay đổi kích thước của logo tại đây */
-  height: auto; /* Giữ tỷ lệ khung hình */
 }
 
 .menu {
@@ -89,9 +129,6 @@ ul.menu li:hover {
   background-color: #2d2d2d;
 }
 
-.cart-relogin {
-  display: flex;
-}
 .cart-relogin .item a i {
   width: 40px;
   height: 20px;
