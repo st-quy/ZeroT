@@ -2,17 +2,13 @@ var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var profileData = JSON.parse(localStorage.getItem("me"));
 var minhModal = document.getElementById("minh-modal");
-
 if (profileData && profileData.status === "inactive") {
   minhModal.style.display = "block";
-} else {
+}
+function closeConfirmModal() {
+  var minhModal = document.getElementById("minh-modal");
   minhModal.style.display = "none";
 }
-
-async function closeConfirmModal() {
-  minhModal.style.display = "none";
-}
-
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
@@ -54,7 +50,6 @@ async function confirmCode() {
               }
             );
             minhModal.style.display = "none";
-            
           });
       } else {
         toastr.warning(
