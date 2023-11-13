@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 20px;
-    width: 100%;
+    width: 100% !important;
+    height: auto !important;
     padding: 20px;
     padding-top:0;
     justify-content: center;
@@ -14,7 +15,8 @@
     padding:40px;
     border-radius: 10px;
     box-shadow: 0 7px 25px rgba(0,0,0, 0.08);
-    width: 100%;
+    width: 100% ;
+    
 
 }
 .barchart{
@@ -49,3 +51,36 @@ select {
     vertical-align: middle;
   }
   
+
+  /* Responsive CSS */
+@media screen and (max-width: 768px) {
+  .charts {
+    grid-template-columns: 1fr 1fr; /* Hiển thị hai cột trên màn hình nhỏ hơn 768px */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .chartt,
+  .barchart {
+    padding: 20px; /* Giảm khoảng cách padding trên màn hình nhỏ hơn 480px */
+  }
+}
+.line-chart {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+/* Responsive CSS */
+@media screen and (max-width: 768px) {
+  .line-chart {
+    height: 300px; /* Giảm chiều cao của biểu đồ trên màn hình nhỏ hơn 768px */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .line-chart {
+    height: 200px; /* Giảm chiều cao của biểu đồ trên màn hình nhỏ hơn 480px */
+  }
+}
