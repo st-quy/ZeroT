@@ -5,10 +5,7 @@ fetch(url)
     .then(products => {
             const productList = document.querySelector('.product-list');
 
-            // Sắp xếp mảng theo createdAt
             const sortedProducts = products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-            // Lấy thời điểm hiện tại
             const currentDate = new Date();
 
             sortedProducts.forEach(product => {
@@ -17,10 +14,9 @@ fetch(url)
                         productItem.classList.add("col-12");
                         productItem.classList.add("col-md-4");
 
-                        // Kiểm tra xem sản phẩm có được tạo trong 2 ngày gần đây không
                         const productCreatedAt = new Date(product.createdAt);
                         const timeDifference = currentDate - productCreatedAt;
-                        const twoDaysInMillis = 3 * 24 * 60 * 60 * 1000; // 2 ngày trong mili giây
+                        const twoDaysInMillis = 3 * 24 * 60 * 60 * 1000;
 
                         if (!product.deletedAt) {
                             productItem.innerHTML = `
@@ -35,8 +31,7 @@ fetch(url)
                             <div class="add-to-cart">
                                 <button>Thêm vào giỏ hàng</button>
                             </div>
-                        </div>
-                        
+                        </div> 
                         ${timeDifference <= twoDaysInMillis
                             ? `<span class="position-absolute top-0 translate-middle badge rounded-pill bg-warning badge-product">
                                     Mới
