@@ -1,58 +1,52 @@
-.charts{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 20px;
-    width: 100% !important;
-    height: auto !important;
-    padding: 20px;
-    padding-top:0;
-    justify-content: center;
-    
-
+.charts {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px;
+  width: 100% !important;
+  height: auto !important;
+  padding: 20px;
+  padding-top: 0;
+  justify-content: center;
 }
-.chartt{
-    background:white;
-    padding:40px;
-    border-radius: 10px;
-    box-shadow: 0 7px 25px rgba(0,0,0, 0.08);
-    width: 100% ;
-    
-
+.chartt {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  width: 100%;
 }
-.barchart{
-    background:white;
-padding:40px;
-border-radius: 10px;
-box-shadow: 0 7px 25px rgba(0,0,0, 0.08);
-width: 100%;
+.barchart {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  width: 100%;
 }
 
 h4 {
-    font-size: 30px;
+  font-size: 30px;
+}
 
-  }
-
-label{
-    font-size: 20px;
+label {
+  font-size: 20px;
 }
 select {
-    font-size: 15px;
-    padding: 10px;
-    width: 200px;
-    float: right;
-  }
+  font-size: 15px;
+  padding: 10px;
+  width: 200px;
+  float: right;
+}
 
-  option {
-    color: blue;
-  
-  }
-  h4, select {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  
+option {
+  color: blue;
+}
+h4,
+select {
+  display: inline-block;
+  vertical-align: middle;
+}
 
-  /* Responsive CSS */
+/* Responsive CSS */
 @media screen and (max-width: 768px) {
   .charts {
     grid-template-columns: 1fr 1fr; /* Hiển thị hai cột trên màn hình nhỏ hơn 768px */
@@ -72,15 +66,17 @@ select {
   margin: 0 auto;
 }
 
-/* Responsive CSS */
-@media screen and (max-width: 768px) {
-  .line-chart {
-    height: 300px; /* Giảm chiều cao của biểu đồ trên màn hình nhỏ hơn 768px */
-  }
+.icon {
+  position: relative;
+  display: inline-block;
 }
 
-@media screen and (max-width: 480px) {
-  .line-chart {
-    height: 200px; /* Giảm chiều cao của biểu đồ trên màn hình nhỏ hơn 480px */
-  }
+.icon i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card {
+  height: 130px !important;
 }
