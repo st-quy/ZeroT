@@ -3,7 +3,8 @@ axios
     .get("https://api-zerot-lowdb.onrender.com/products")
     .then(function(response) {
             let index = 1;
-            const products = response.data.reverse();
+            // const products = response.data.reverse();
+            const products = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             products.forEach(function(product) {
                         if (!product.deletedAt) {
                             const row = document.createElement("tr");
@@ -391,7 +392,7 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm"');
+  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm (VND)"');
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'
