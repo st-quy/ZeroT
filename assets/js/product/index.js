@@ -1,13 +1,14 @@
 const tbody = document.querySelector("#table-product tbody");
 axios
-  .get("https://api-zerot-lowdb.onrender.com/products")
-  .then(function (response) {
-    let index = 1;
-    const products = response.data.reverse();
-    products.forEach(function (product) {
-      if (!product.deletedAt) {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+    .get("https://api-zerot-lowdb.onrender.com/products")
+    .then(function(response) {
+            let index = 1;
+            // const products = response.data.reverse();
+            const products = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            products.forEach(function(product) {
+                        if (!product.deletedAt) {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
                             
                   <td class="align-middle text-center data-id='${product.id}'>
                   <span class="text-secondary text-xs font-weight-bold">${index}</span>
@@ -21,13 +22,13 @@ axios
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
                       product.price
-                    } VND</span>
+                    } VNĐ</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
-                      0,
-                      15
-                    )}</span>
+                  <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
+                    0,
+                    15
+                  )}</span>
                   </td>
                   <td class="align-middle text-center">
                       ${
@@ -64,24 +65,23 @@ axios
                     <i class="fa fa-trash cursor-pointer"></i>
                   </a>
                   </td>`;
-
         tbody.appendChild(row);
         index++;
       }
     });
-    $("#table-product").DataTable({
+    $('#table-product').DataTable({
       language: {
         paginate: {
-          previous: "‹",
-          next: "›",
+          previous: '‹',
+          next: '›',
         },
         aria: {
           paginate: {
-            previous: "Previous",
-            next: "Next",
+            previous: 'Previous',
+            next: 'Next',
           },
         },
-        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
+        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
       },
     });
   })
@@ -320,19 +320,9 @@ async function handleDelete(id) {
         const deleteResponse = await axios.delete(
           `https://api-zerot-lowdb.onrender.com/products/${id}`
         );
-        Swal.fire({
-          icon: "success",
-          title: "Thành công",
-          text: "Sản phẩm đã được xóa thành công",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const modal = new bootstrap.Modal(
-              document.getElementById("myModal")
-            );
-            modal.hide();
-            location.reload();
-          }
-        });
+        const modal = new bootstrap.Modal(document.getElementById('myModal'));
+        modal.hide();
+        location.reload();
       } catch (error) {
         console.error("Lỗi khi xóa sản phẩm: ", error);
       }
@@ -381,11 +371,15 @@ async function createProduct() {
         </select>
       </div>
 
-      <label>Ảnh </label>
-      <div class="mb-3">
-        <input class="form-control" type="file" id="imageInput" multiple required/>
-      </div>
+   <label>Ảnh </label>
+  <div class="mb-3">
+    <input class="form-control" type="file" id="imageInput" multiple required/>
+  </div>
 
+      <div id="previewImage"></div>
+
+    </div>
+    </div>
       <div id="previewImage"></div>
 
     </div>
@@ -399,9 +393,7 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector(
-    'input[placeholder="Giá sản phẩm (VND)"'
-  );
+  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm (VND)"');
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'
@@ -488,9 +480,10 @@ const uploadFile = async (files) => {
 
   formData.append("upload_preset", PRESET_NAME);
   formData.append("folder", FOLDER_NAME);
-
+  
   for (const file of files) {
-    formData.append("file", file);
+    formData.append('file', file);
+    // console.log(file);
     const response = await axios.post(api, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
