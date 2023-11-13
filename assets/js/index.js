@@ -2,25 +2,20 @@ var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var profileData = JSON.parse(localStorage.getItem("me"));
 var minhModal = document.getElementById("minh-modal");
-var btnCancel = document.getElementById("btnCancel");
-var messagePopup = document.getElementById("messagePopup");
 
-minhModal.style.display = "none";
 if (profileData && profileData.status === "inactive") {
   minhModal.style.display = "block";
-}
-btnCancel.onclick = function () {
+} else {
   minhModal.style.display = "none";
-};
+}
+
+async function closeConfirmModal() {
+  minhModal.style.display = "none";
+}
 
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
-
-  if (enteredCode.length !== 5) {
-    showMessage("Please enter a 5-digit code.");
-    return;
-  }
   await axios
     .get("https://api-zerot-lowdb.onrender.com/users")
     .then(async (response) => {
@@ -36,34 +31,54 @@ async function confirmCode() {
               "me",
               JSON.stringify({ ...response.data, password: null })
             );
+            toastr.success(
+              "Tài khoản đã được kích hoạt",
+              "Message",
+              {
+                timeOut: 2000,
+                closeButton: true,
+                debug: false,
+                newestOnTop: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                preventDuplicates: true,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut",
+                tapToDismiss: false,
+              }
+            );
             minhModal.style.display = "none";
-            showBigMessage("Account Activated");
+            
           });
       } else {
-        showMessage("Invalid confirmation code. Please try again.");
+        toastr.warning(
+          "Vui lòng nhập đúng code trong Email",
+          "Message",
+          {
+            timeOut: 2000,
+            closeButton: true,
+            debug: false,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+            tapToDismiss: false,
+          }
+        );
       }
     });
-}
-
-function showMessage(text) {
-  messagePopup.innerHTML = text;
-  messagePopup.classList.remove("big-message");
-  messagePopup.style.opacity = 1;
-  messagePopup.style.transform = "translate(-50%, -50%) scale(1)";
-  setTimeout(function () {
-    messagePopup.style.opacity = 0;
-    messagePopup.style.transform = "translate(-50%, -50%) scale(0)";
-  }, 2000);
-}
-
-function showBigMessage(text) {
-  messagePopup.innerHTML = text;
-  messagePopup.classList.add("big-message");
-  messagePopup.style.opacity = 1;
-  messagePopup.style.transform = "translate(-50%, -50%) scale(1)";
-  setTimeout(function () {
-    messagePopup.style.opacity = 0;
-    messagePopup.style.transform = "translate(-50%, -50%) scale(0)";
-    messagePopup.classList.remove("big-message");
-  }, 2000);
 }
