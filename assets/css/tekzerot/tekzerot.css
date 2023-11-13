@@ -1,6 +1,4 @@
-*,
-*:before,
-*:after {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -17,7 +15,7 @@ body {
 }
 .main {
   width: 70%;
-  margin: 3rem auto 7rem;
+  margin: 12rem auto 7rem;
 }
 .main .banner_article {
   display: grid;
@@ -127,6 +125,9 @@ body {
   gap: 1.3rem;
   width: 15%;
 }
+.main .banner_category > div > p {
+  font-size: 2rem;
+}
 .main .banner_category > div > img {
   width: 5.5rem;
 }
@@ -234,3 +235,7 @@ body {
     flex-direction: column;
   }
 }
+/* header */
+/* .item > a {
+  font-size: 2rem;
+} */

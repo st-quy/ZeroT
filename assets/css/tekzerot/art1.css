@@ -52,6 +52,7 @@ article p, article h2, article h3, article ul {
 }
 
 section {
+    background-color: #101010;
     width: 100%;
 }
 
@@ -76,6 +77,7 @@ article, .bottom {
     margin: auto;
 } 
   .warpper-title-author {
+    margin: auto;
     background: #101010;
   }
 
