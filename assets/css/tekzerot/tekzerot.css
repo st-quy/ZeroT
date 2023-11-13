@@ -17,6 +17,9 @@ body {
   width: 70%;
   margin: 12rem auto 7rem;
 }
+.main > section {
+  background-color: var(--bgcolor);
+}
 .main .banner_article {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -238,4 +241,8 @@ body {
 /* header */
 .item > a {
   font-size: 2rem;
+}
+
+.item > a > span {
+  padding: 4px;
 }
