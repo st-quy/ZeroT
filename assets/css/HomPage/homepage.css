@@ -25,6 +25,29 @@
     display: flex;
     min-width: 142px;
   }
+  .nav-link .logo-zerot {
+    width: 103px;
+  }
+  .menu {
+    list-style-type: none;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 60px;
+  }
+  .item {
+    background-color: rgb(104, 102, 98);
+    width: 35px; /* Độ rộng của vòng tròn */
+    height: 35px; /* Độ cao của vòng tròn */
+    border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin: 12px 5px;
+    font-family: 'Arial', sans-serif;
+  }
 }
 
 /* CSS cho màn hình trung bình */
@@ -52,6 +75,29 @@
   .cart-relogin {
     display: flex;
   }
+  .nav-link .logo-zerot {
+    width: 100px;
+  }
+  .menu {
+    list-style-type: none;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 60px;
+  }
+  .item {
+    background-color: rgb(104, 102, 98);
+    width: 30px; /* Độ rộng của vòng tròn */
+    height: 30px; /* Độ cao của vòng tròn */
+    border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin: 12px 5px;
+    font-family: 'Arial', sans-serif;
+  }
 }
 
 /* CSS cho màn hình nhỏ */
@@ -75,10 +121,25 @@
     width: 35px; /* Thay đổi kích thước của logo tại đây */
     height: auto; /* Giữ tỷ lệ khung hình */
   }
+  .nav-link .logo-zerot {
+    width: 70px;
+  }
+  .item {
+    background-color: rgb(104, 102, 98);
+    width: 30px; /* Độ rộng của vòng tròn */
+    height: 30px; /* Độ cao của vòng tròn */
+    border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin: 12px 5px;
+    font-family: 'Arial', sans-serif;
+  }
 }
 @media (max-width: 730px) {
   .logo a img {
-    width: 30px; /* Thay đổi kích thước của logo tại đây */
+    width: 25px; /* Thay đổi kích thước của logo tại đây */
     height: auto; /* Giữ tỷ lệ khung hình */
   }
   .cart-relogin {
@@ -86,25 +147,31 @@
   }
   .menu {
     list-style-type: none;
-    font-size: 20px;
+    font-size: 15px;
     margin: 0;
     padding: 0;
     display: flex;
     height: 60px;
   }
+  .nav-link .logo-zerot {
+    width: 60px;
+  }
+  .item {
+    background-color: rgb(104, 102, 98);
+    width: 35px; /* Độ rộng của vòng tròn */
+    height: 35px; /* Độ cao của vòng tròn */
+    border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin: 12px 5px;
+    font-family: 'Arial', sans-serif;
+  }
 }
 
 .menu .nav-item.active {
   background-color: #2d2d2d;
-}
-
-.menu {
-  list-style-type: none;
-  font-size: 20px;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 60px;
 }
 
 .menu .nav-item {
@@ -133,19 +200,6 @@ ul.menu li:hover {
   width: 40px;
   height: 20px;
   color: white;
-}
-
-.item {
-  background-color: rgb(104, 102, 98);
-  width: 35px; /* Độ rộng của vòng tròn */
-  height: 35px; /* Độ cao của vòng tròn */
-  border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  margin: 12px 5px;
-  font-family: 'Arial', sans-serif;
 }
 
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
