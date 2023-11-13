@@ -2,7 +2,7 @@
   .head {
     /* padding: 0px 165px; */
     display: flex;
-    background: rgb(0, 0, 0);
+    background: #101010;
     padding: 0px 165px;
     margin: auto;
     justify-content: space-between;
@@ -32,7 +32,7 @@
     position: fixed;
     z-index: 999;
     display: flex;
-    background: rgb(0, 0, 0);
+    background: #101010;
   }
   .nav-link {
     font-size: 15px;
@@ -143,6 +143,7 @@ ul.menu li:hover {
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
 .relogin:hover .dropdown-content {
   display: block;
+  transition: all 0.4s;
 }
 .dropdown-content li {
   display: flex;
@@ -161,7 +162,8 @@ ul.menu li:hover {
 
 /* Màu khi di chuột vào liên kết */
 .dropdown-content li a:hover {
-  color: #f4df35; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
+  color: #ff0606; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
+  transition: all 0.4s;
 }
 
 /* PRODUCTS */
