@@ -22,12 +22,13 @@ axios
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
                       product.price
-                    }</span>
+                    } VNĐ</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${
-                      product.description
-                    }</span>
+                  <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
+                    0,
+                    15
+                  )}</span>
                   </td>
                   <td class="align-middle text-center">
                       ${
@@ -493,4 +494,5 @@ const uploadFile = async (files) => {
       public_id: response.data.public_id,
     });
   }
+  return urls;
 };
