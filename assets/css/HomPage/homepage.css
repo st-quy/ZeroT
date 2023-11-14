@@ -18,8 +18,10 @@
     font-size: 20px;
   }
   .logo a img {
-    width: 35px; /* Thay đổi kích thước của logo tại đây */
-    height: auto; /* Giữ tỷ lệ khung hình */
+    width: 35px;
+    /* Thay đổi kích thước của logo tại đây */
+    height: auto;
+    /* Giữ tỷ lệ khung hình */
   }
   .cart-relogin {
     display: flex;
@@ -38,9 +40,12 @@
   }
   .item {
     background-color: rgb(104, 102, 98);
-    width: 35px; /* Độ rộng của vòng tròn */
-    height: 35px; /* Độ cao của vòng tròn */
-    border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+    width: 35px;
+    /* Độ rộng của vòng tròn */
+    height: 35px;
+    /* Độ cao của vòng tròn */
+    border-radius: 30px;
+    /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -49,7 +54,6 @@
     font-family: 'Arial', sans-serif;
   }
 }
-
 /* CSS cho màn hình trung bình */
 @media screen and (max-width: 991px) {
   .head {
@@ -69,8 +73,10 @@
     font-size: 15px;
   }
   .logo a img {
-    width: 35px; /* Thay đổi kích thước của logo tại đây */
-    height: auto; /* Giữ tỷ lệ khung hình */
+    width: 35px;
+    /* Thay đổi kích thước của logo tại đây */
+    height: auto;
+    /* Giữ tỷ lệ khung hình */
   }
   .cart-relogin {
     display: flex;
@@ -88,9 +94,12 @@
   }
   .item {
     background-color: rgb(104, 102, 98);
-    width: 30px; /* Độ rộng của vòng tròn */
-    height: 30px; /* Độ cao của vòng tròn */
-    border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+    width: 30px;
+    /* Độ rộng của vòng tròn */
+    height: 30px;
+    /* Độ cao của vòng tròn */
+    border-radius: 30px;
+    /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -99,7 +108,6 @@
     font-family: 'Arial', sans-serif;
   }
 }
-
 /* CSS cho màn hình nhỏ */
 @media screen and (max-width: 767px) {
   .head {
@@ -111,24 +119,31 @@
     font-size: 12px;
   }
   .logo a img {
-    width: 20px; /* Thay đổi kích thước của logo tại đây */
-    height: auto; /* Giữ tỷ lệ khung hình */
+    width: 20px;
+    /* Thay đổi kích thước của logo tại đây */
+    height: auto;
+    /* Giữ tỷ lệ khung hình */
   }
   .cart-relogin {
     display: flex;
   }
   .logo a img {
-    width: 35px; /* Thay đổi kích thước của logo tại đây */
-    height: auto; /* Giữ tỷ lệ khung hình */
+    width: 35px;
+    /* Thay đổi kích thước của logo tại đây */
+    height: auto;
+    /* Giữ tỷ lệ khung hình */
   }
   .nav-link .logo-zerot {
     width: 70px;
   }
   .item {
     background-color: rgb(104, 102, 98);
-    width: 30px; /* Độ rộng của vòng tròn */
-    height: 30px; /* Độ cao của vòng tròn */
-    border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+    width: 30px;
+    /* Độ rộng của vòng tròn */
+    height: 30px;
+    /* Độ cao của vòng tròn */
+    border-radius: 30px;
+    /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -139,8 +154,10 @@
 }
 @media (max-width: 730px) {
   .logo a img {
-    width: 25px; /* Thay đổi kích thước của logo tại đây */
-    height: auto; /* Giữ tỷ lệ khung hình */
+    width: 25px;
+    /* Thay đổi kích thước của logo tại đây */
+    height: auto;
+    /* Giữ tỷ lệ khung hình */
   }
   .cart-relogin {
     display: flex;
@@ -158,9 +175,12 @@
   }
   .item {
     background-color: rgb(104, 102, 98);
-    width: 35px; /* Độ rộng của vòng tròn */
-    height: 35px; /* Độ cao của vòng tròn */
-    border-radius: 30px; /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
+    width: 35px;
+    /* Độ rộng của vòng tròn */
+    height: 35px;
+    /* Độ cao của vòng tròn */
+    border-radius: 30px;
+    /* Khi sử dụng border-radius là 50%, bạn tạo ra một hình tròn */
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -169,11 +189,9 @@
     font-family: 'Arial', sans-serif;
   }
 }
-
 .menu .nav-item.active {
   background-color: #2d2d2d;
 }
-
 .menu .nav-item {
   display: inline-block;
   text-align: center;
@@ -187,28 +205,23 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
   font-size: 15px;
 }
-
 ul.menu li {
   transition: all 0.4s;
 }
-
 ul.menu li:hover {
   background-color: #2d2d2d;
 }
-
 .cart-relogin .item a i {
   width: 40px;
   height: 20px;
   color: white;
 }
-
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
 .relogin .dropdown-content {
   display: none;
   position: absolute;
   font-size: 13px;
 }
-
 .dropdown-content {
   background: #fff;
   list-style-type: none;
@@ -230,7 +243,6 @@ ul.menu li:hover {
   font-size: 15px;
   color: #000;
 }
-
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
 .relogin:hover .dropdown-content {
   display: block;
@@ -241,25 +253,25 @@ ul.menu li:hover {
 }
 /* Thay đổi màu của chữ trong dropdown-content */
 .dropdown-content li a {
-  color: #000; /* Đổi màu chữ thành đỏ (hoặc mã màu mà bạn muốn) */
+  color: #000;
+  /* Đổi màu chữ thành đỏ (hoặc mã màu mà bạn muốn) */
   font-size: 15px;
-  text-decoration: none; /* Loại bỏ gạch chân cho liên kết */
+  text-decoration: none;
+  /* Loại bỏ gạch chân cho liên kết */
   text-align: center;
 }
 .dropdown-content li img {
   width: 40%;
   height: 40%;
 }
-
 /* Màu khi di chuột vào liên kết */
 .dropdown-content li a:hover {
-  color: #ff0606; /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
+  color: #ff0606;
+  /* Đổi màu khi di chuột vào liên kết (hoặc mã màu mà bạn muốn) */
   transition: all 0.4s;
 }
-
 /* PRODUCTS */
 /* Căn giữa sản phẩm trong carousel */
-
 .item-card {
   justify-content: center;
 }
@@ -273,27 +285,22 @@ ul.menu li:hover {
   /* margin: 50px auto; */
   text-align: center;
 }
-
 .macbook img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
-
 /* body {
-  padding-bottom: 70px; /* Đặt khoảng cách phía dưới phần nội dung 
+  padding-bottom: 70px; /* Đặt khoảng cách phía dưới phần nội dung
 } */
-
 .page-content {
-  min-height: calc(100vh - 100px); /* 100px là chiều cao dự kiến của footer */
+  min-height: calc(100vh - 100px);
+  /* 100px là chiều cao dự kiến của footer */
   position: relative;
 }
-
 html,
 body {
   height: 100%;
-  margin: 0;
-  padding: 0;
   width: 100%;
   /* flex-direction: column; */
   background-color: #3e3e3f !important;
@@ -303,23 +310,24 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
 .content {
   flex: 1;
 }
 footer {
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-bottom: 30px;
-  background-color: #101010;
-  color: #3333;
-  font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
-  width: 100% !important;
-  overflow: hidden;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 30px;
+    background-color: #101010;
+    color: #3333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
+    width: 100vw !important;
+    overflow: hidden;
 }
 .logo-foot {
-  top: 0; /* Đặt vị trí theo chiều dọc */
-  left: 0; /* Đặt vị trí theo chiều ngang */
+  top: 0;
+  /* Đặt vị trí theo chiều dọc */
+  left: 0;
+  /* Đặt vị trí theo chiều ngang */
   flex: 1;
   display: flex;
   text-align: right;
@@ -335,7 +343,8 @@ footer {
   height: auto;
 }
 .logo-foot a {
-  display: block; /* Đảm bảo logo là một phần tử khối để có thể định dạng kích thước và vị trí */
+  display: block;
+  /* Đảm bảo logo là một phần tử khối để có thể định dạng kích thước và vị trí */
 }
 .logo-foot a {
   display: inline-block;
@@ -345,8 +354,10 @@ footer {
   height: 0;
 }
 footer-social i {
-  width: 30px; /* Thay đổi giá trị width theo kích thước mong muốn */
-  height: auto; /* Thay đổi giá trị height theo kích thước mong muốn */
+  width: 30px;
+  /* Thay đổi giá trị width theo kích thước mong muốn */
+  height: auto;
+  /* Thay đổi giá trị height theo kích thước mong muốn */
   margin-right: 20px;
 }
 .txt {
@@ -372,7 +383,6 @@ footer-social i {
   color: white;
   width: 226px;
 }
-
 .list-foot .ft {
   flex: 1;
   list-style: none;
@@ -387,12 +397,10 @@ footer-social i {
   line-height: 2;
   text-decoration: none !important;
 }
-
 .columtongdai {
   padding: 0 !important;
   padding-top: 20px !important;
 }
-
 .column-content {
   background-color: white;
   padding: 20px;
@@ -419,12 +427,10 @@ span {
   text-decoration: none;
 }
 /* footer */
-
 /* Slider */
 section {
   background-color: rgba(0, 0, 0, 0.842);
 }
-
 .carousel-inner-duy {
   padding: 1em;
 }
@@ -447,13 +453,11 @@ i.logo-category img {
   height: 100px;
   padding: 30px;
 }
-
 .carousel-inner .carousel-item img {
   width: auto;
   height: auto;
   object-fit: contain;
 }
-
 .carousel-control-prev,
 .carousel-control-next {
   border-radius: 50%;
@@ -470,12 +474,10 @@ i.logo-category img {
   background-color: blue;
   border-color: blue;
 }
-
 .carousel-indicators .active {
   background-color: blue;
   border-color: blue;
 }
-
 .slider-duy {
   width: 80%;
   margin: 0 auto;
@@ -484,25 +486,107 @@ i.logo-category img {
   margin-bottom: 50px;
 }
 /* Responsive footer */
-
 @media screen and (max-width: 1200px) {
   .list-foot {
     grid-template-columns: repeat(3, 1fr);
   }
-
   .list-foot .ft {
     padding-left: 0;
   }
 }
-
 @media screen and (max-width: 767px) {
   .list-foot {
     grid-template-columns: repeat(2, 1fr);
   }
+    .list-foot {
+        grid-template-columns: repeat(2, 1fr);
+        background-color: 100vw !important;
+    }
 }
-
 @media screen and (max-width: 450px) {
   .list-foot {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+.nav-bars-btn {
+  font-size: 25px;
+  display: none;
+  padding-left: 15px;
+}
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  animation: fadeIn linear 0.2s;
+}
+.nav-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  max-width: 100%;
+  background-color: #3e3e3f;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform linear 0.2s, opacity linear 0.2s;
+}
+.nav-mobile-list {
+  margin-top: 30px;
+  list-style-type: none;
+}
+
+.nav-link-mobile {
+  margin-top: 20px;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  padding: 8px 0;
+  font-size: 1.4rem;
+}
+.mobile-close {
+  font-size: 35px;
+  color: #666;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.nav-input:checked ~ .nav-overlay ~ .nav-mobile .logo {
+  display: block;
+}
+.nav-input:checked ~ .nav-overlay {
+  display: block;
+}
+.nav-input:checked ~ .nav-mobile {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.nav-link .logo-zerot-mobile {
+  width: 100px;
+}
+
+@media (max-width: 1052px) {
+  .nav-bars-btn {
+    display: block;
+  }
+  .nav-pc {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
