@@ -21,12 +21,18 @@ function loadItem() {
     let endGet = limit * thisPage - 1;
 
     let productList = document.querySelector('.product-list');
+    const sortedProducts = list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const currentDate = new Date();
     productList.innerHTML = '';
 
-    let filteredList = list.filter(product => !product.deletedAt);
+    let filteredList = sortedProducts.filter(product => !product.deletedAt);
 
     for (let i = beginGet; i <= endGet && i < filteredList.length; i++) {
         let item = filteredList[i];
+
+        // Calculate time difference
+        let productCreatedAt = new Date(item.createdAt);
+        let timeDifference = currentDate - productCreatedAt;
 
         let productItem = document.createElement('div');
         productItem.classList.add('product-item');
@@ -57,6 +63,8 @@ function loadItem() {
 
     listPage();
 }
+
+
 function listPage() {
     let count = Math.ceil(list.filter(product => !product.deletedAt).length / limit);
     let listPageElement = document.querySelector('.listPage');
@@ -65,7 +73,7 @@ function listPage() {
     if (thisPage !== 1) {
         let prev = document.createElement('li');
         prev.innerText = 'Lùi về';
-        prev.addEventListener('click', function() {
+        prev.addEventListener('click', function () {
             changePage(thisPage - 1);
         });
         listPageElement.appendChild(prev);
@@ -77,7 +85,7 @@ function listPage() {
         if (i === thisPage) {
             newPage.classList.add('active');
         }
-        newPage.addEventListener('click', function() {
+        newPage.addEventListener('click', function () {
             changePage(i);
         });
         listPageElement.appendChild(newPage);
@@ -86,7 +94,7 @@ function listPage() {
     if (thisPage !== count) {
         let next = document.createElement('li');
         next.innerText = 'Trang mới';
-        next.addEventListener('click', function() {
+        next.addEventListener('click', function () {
             changePage(thisPage + 1);
         });
         listPageElement.appendChild(next);
@@ -97,4 +105,5 @@ function changePage(pageNumber) {
     thisPage = pageNumber;
     loadItem();
 }
+
 fetchData();
