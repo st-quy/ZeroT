@@ -433,6 +433,7 @@ ul.menu li:hover {
 @media screen and (max-width: 500px) {
   .why-choose-listing {
     grid-template-columns: 1fr;
+    padding: 0;
   }
   .why-choose-item h3 {
     font-size: 13px;
