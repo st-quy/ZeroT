@@ -3,6 +3,16 @@
     margin: 0;
     padding: 0;
 }
+body {
+    min-width: 400px;
+    background: #101010 !important;
+}
+body, input, button, option, textarea, label, select, legend, h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    font: 14px/18px Helvetica Neue,Helvetica,Arial,SF Pro Display,sans-serif;
+    color: #333;
+    outline: none;
+}
+
 div {
     display: block;
 }
@@ -52,22 +62,14 @@ article p, article h2, article h3, article ul {
 }
 
 section {
-    background-color: #101010;
     width: 100%;
+    background: #101010 !important;
 }
 
-body {
-    min-width: 1024px;
-    background: #101010;
-}
-body, input, button, option, textarea, label, select, legend, h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    font: 14px/18px Helvetica Neue,Helvetica,Arial,SF Pro Display,sans-serif;
-    color: #333;
-    outline: none;
-}
 
 article {
-    padding: 20px 0 0 0;
+    padding: 80px;
+    background: #101010 !important;
   }
 
 article, .bottom {
@@ -78,7 +80,7 @@ article, .bottom {
 } 
   .warpper-title-author {
     margin: auto;
-    background: #101010;
+    background: #101010 !important;
   }
 
   .titledetail {
@@ -89,7 +91,7 @@ article, .bottom {
     color: #fff;
     font-family: 'Roboto Condensed',sans-serif;
     font-weight: 600;
-    width: 800px;
+    width: 650px;
     margin: auto;
     padding-bottom: 10px;
 }
