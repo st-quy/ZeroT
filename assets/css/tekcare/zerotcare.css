@@ -73,6 +73,10 @@ body{
     display: flex;
     background: #101010;
   }
+  .title-h3{
+    width: 30px;
+    
+  }
   .nav-link {
     font-size: 15px;
   }

@@ -344,7 +344,7 @@ html,
 body {
   height: 100%;
   
-  width: 100%;
+  width: 100vw;
   /* flex-direction: column; */
   background-color: #3e3e3f !important;
 }
