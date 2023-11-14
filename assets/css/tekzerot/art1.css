@@ -57,7 +57,7 @@ section {
 }
 
 body {
-    min-width: 1024px;
+    min-width: 400px;
     background: #101010;
 }
 body, input, button, option, textarea, label, select, legend, h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
