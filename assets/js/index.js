@@ -48,17 +48,12 @@ items.forEach((item) => {
 items.forEach((item) => {
     item.style.width = `${maxWidth}px`;
 });
-var isLogin = JSON.parse(localStorage.getItem('isLogin'));
-var role = localStorage.getItem('role');
-var profileData = JSON.parse(localStorage.getItem('me'));
+
 var minhModal = document.getElementById('minh-modal');
 
 if (profileData && profileData.status === "inactive") {
     minhModal.style.display = "block";
 }
-// } else {
-//   minhModal.style.display = "none";
-// }
 
 function closeConfirmModal() {
     var minhModal = document.getElementById("minh-modal");
