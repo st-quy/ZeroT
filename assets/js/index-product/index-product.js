@@ -50,7 +50,6 @@ fetch(url)
         productList.appendChild(productItem);
       }
     });
-
     document.getElementById('search-input').addEventListener('keyup', (e) => {
       const searchData = e.target.value.toLowerCase();
       let filterData = [];
