@@ -25,7 +25,7 @@ function loadItem() {
     const currentDate = new Date();
     productList.innerHTML = '';
 
-    let filteredList = sortedProducts.filter(product => !product.deletedAt);
+    let filteredList = sortedProducts.filter(product => !product.deletedAt && !(product.category === "laptop"));
 
     for (let i = beginGet; i <= endGet && i < filteredList.length; i++) {
         let item = filteredList[i];
@@ -38,7 +38,7 @@ function loadItem() {
         productItem.innerHTML = `
             <div class="product-container position-relative">
                 <div class="form-group">
-                    <img src="${item.image[0].url}"/>           
+                    <img src="${item.image[0].url}" style="width: 250px; display: block; margin: 0 auto" />           
                     <h3 class="white-text">${item.name}</h3>
                     <div class="description-box">
                         <p class="description-text">${item.description}</p>
@@ -63,7 +63,6 @@ function loadItem() {
     listPage();
 }
 
-
 function listPage() {
     let count = Math.ceil(list.filter(product => !product.deletedAt).length / limit);
     let listPageElement = document.querySelector('.listPage');
@@ -79,18 +78,22 @@ function listPage() {
     }
 
     for (let i = 1; i <= count; i++) {
-        let newPage = document.createElement('li');
-        newPage.innerText = i;
-        if (i === thisPage) {
-            newPage.classList.add('active');
+        if (i !== thisPage) {
+            let newPage = document.createElement('li');
+            newPage.innerText = i;
+            newPage.addEventListener('click', function () {
+                changePage(i);
+            });
+            listPageElement.appendChild(newPage);
+        } else {
+            let currentPage = document.createElement('li');
+            currentPage.innerText = i;
+            currentPage.classList.add('active');
+            listPageElement.appendChild(currentPage);
         }
-        newPage.addEventListener('click', function () {
-            changePage(i);
-        });
-        listPageElement.appendChild(newPage);
     }
 
-    if (thisPage !== count) {
+    if (thisPage !== count && count > 0) {
         let next = document.createElement('li');
         next.innerText = 'Trang mới';
         next.addEventListener('click', function () {
@@ -99,6 +102,7 @@ function listPage() {
         listPageElement.appendChild(next);
     }
 }
+
 
 function changePage(pageNumber) {
     thisPage = pageNumber;

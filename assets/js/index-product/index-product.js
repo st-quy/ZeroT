@@ -22,7 +22,7 @@ fetch(url)
                             productItem.innerHTML = `
                     <div class="product-container position-relative">
                         <div class="form-group">
-                            <img src="${product.image[0].url}" style="width: 250px; display: block; margin: 0 auto"; />           
+                            <img src="${product.image[0].url}"; />           
                             <h3 class="white-text">${product.name}</h3>
                             <div class="description-box">
                                 <p class="description-text">${product.description}</p>

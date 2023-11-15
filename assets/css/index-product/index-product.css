@@ -18,7 +18,7 @@
     background-color: #3e3e3f;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 820px) {
     .product-list {
         grid-template-columns: repeat(2, 1fr);
     }
