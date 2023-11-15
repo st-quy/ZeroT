@@ -3,6 +3,7 @@ body {
   height: 100%;
   width: 100%;
   /* flex-direction: column; */
+  flex-direction: column;
   background-color: #3e3e3f !important;
 }
 @media screen and (min-width: 992px) {
