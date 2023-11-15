@@ -13,7 +13,6 @@
     <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet" />
     <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet" />
     <link href="bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/css/HomPage/homepage.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <link href="assets/css/style.css" rel="stylesheet" />
@@ -213,29 +212,28 @@
     <section id="sort">
       <div class="sort-container">
         <div>
-          Xếp theo: Mới ra mắt
+          Xếp theo: <span id="sapxep">Mới ra mắt</span>
           <i class="fa fa-angle-down" aria-hidden="true"></i>
         </div>
       </div>
-      <ul class="choose-sort">
-        <li> <i class="fa fa-check" aria-hidden="true"></i>
-          Mới ra mắt</li>
-        <li>Bán chạy</li>
-        <li>Giá cao đến thấp</li>
-        <li>Giá thấp đến cao</li>
+      <ul class="choose-sort" id="sort-modal">
+        <li onclick="sortProducts('createdAt')">Mới ra mắt</li>
+        <li onclick="sortProducts('sold')">Bán chạy</li>
+        <li onclick="sortProducts('priceDesc')">Giá cao đến thấp</li>
+        <li onclick="sortProducts('priceAsc')">Giá thấp đến cao</li>
       </ul>
     </section>
-
+  
     <section class="macbook">
       <div class="smac">
-        <div class="products">
-          <div class="product-list">
+        <div class="products" >
+          <div class="product-list" id="productList">
           </div>
         </div>
       </div>
-
-            </div>
     </section>
+
+
     <footer>
       <div class="foot">
         <div class="logo-foot">
