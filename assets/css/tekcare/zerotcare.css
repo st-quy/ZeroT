@@ -401,10 +401,12 @@ ul.menu li:hover {
 }
 
 .why-choose-listing {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
   display: grid;
-  column-gap: 30px;
-  grid-template-columns: auto auto auto;
-  /* background-color: #e5e5e5; */
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
   padding: 0 100px;
 }
 
@@ -415,24 +417,77 @@ ul.menu li:hover {
   text-align: start;
 }
 
+@media screen and (max-width: 768px) {
+  .why-choose-listing {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .why-choose-item {
+    width: 80%;
+    margin: 0 20px;
+  }
+  .why-choose-item h3 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .why-choose-listing {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+  .why-choose-item h3 {
+    font-size: 13px;
+  }
+  .why-choose-item {
+    width: 100%;
+    margin: 0 10px;
+  }
+}
+
 .accessories {
   margin: 40px;
 }
 
 .accessory-listing {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
   display: grid;
-  column-gap: 30px;
-  grid-template-columns: auto auto auto;
-  /* background-color: #ffffff; */
-  padding: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  background-color: #ffffff;
 }
 
 .accessory-item {
   text-align: center;
-  /* background-color: #ffffff; */
+  margin: center;
   padding: 10px;
   font-size: 20px;
-  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .accessory-listing {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .accessory-item {
+    width: 80%;
+    margin: 0 20px;
+  }
+  .accessory-item h3 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .accessory-listing {
+    grid-template-columns: 1fr;
+  }
+  .accessory-item h3 {
+    font-size: 13px;
+  }
+  .accessory-item {
+    width: 70%;
+    margin: 0 10px;
+  }
 }
 
 .note {
@@ -455,6 +510,7 @@ ul.menu li:hover {
   grid-template-columns: repeat(5, 1fr);
   gap: 40px;
   grid-auto-rows: minmax(100px, auto);
+  justify-items: center;
 }
 
 .warranty-step {
@@ -466,6 +522,7 @@ ul.menu li:hover {
   height: 20px;
   display: flex;
   margin-top: 30px;
+  text-align: center;
 }
 
 .warranty_terms span {
@@ -475,6 +532,32 @@ ul.menu li:hover {
   line-height: 20px;
   color: rgba(117, 117, 117, 1);
   margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .warranty-process {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .warranty-step {
+    width: 80%;
+    margin: 0 20px;
+  }
+  .warranty-step h3 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .warranty-process {
+    grid-template-columns: 1fr;
+  }
+  .warranty-step h3 {
+    font-size: 13px;
+  }
+  .warranty-step {
+    width: 70%;
+    margin: 0 10px;
+  }
 }
 
 .repair-service {
@@ -516,7 +599,7 @@ footer {
   background-color: #101010;
   color: #3333;
   font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
-  width: 100% !important;
+  width: 100vw !important;
   overflow: hidden;
 }
 

@@ -1,0 +1,117 @@
+#category,
+#sort {
+  background-color: #3e3e3f;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  max-width: 1200px;
+}
+
+#category .category-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+#category .category-container > a {
+  text-decoration: none;
+  margin-right: 30px;
+  color: #afb7bd;
+  padding-bottom: 10px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+#category .category-container > a:hover {
+  color: #fff;
+}
+#category .category-container > a:hover:before {
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  bottom: 0;
+}
+
+/* SORT */
+#sort {
+  position: relative;
+}
+#sort .sort-container {
+  width: 15%;
+  margin-left: auto;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+#sort .sort-container > i {
+  padding-left: 10px;
+}
+
+.choose-sort {
+  background-color: #fff;
+  color: #000;
+  border-radius: 15px;
+  max-width: 250px;
+  list-style: none;
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  z-index: 10;
+  display: none;
+}
+
+ul.choose-sort {
+  padding: 10px 20px;
+}
+.choose-sort > li {
+  padding: 5px 0;
+  cursor: pointer;
+}
+.choose-sort > li:first-child,
+.choose-sort > li:hover {
+  color: #0071e3;
+}
+.show {
+  display: block;
+}
+
+/* Responsive */
+@media screen and (max-width: 1200px) {
+  #sort .sort-container {
+    width: 20%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  #sort .sort-container {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 768px) {
+  #sort,
+  #category {
+    font-size: 15px;
+  }
+  #sort .sort-container {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 500px) {
+  #sort,
+  #category {
+    font-size: 13px;
+  }
+  #sort .sort-container {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  #sort,
+  #category {
+    font-size: 12px;
+  }
+  #sort .sort-container {
+    width: 50%;
+  }
+}

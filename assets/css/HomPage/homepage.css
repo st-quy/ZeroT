@@ -300,12 +300,10 @@ ul.menu li:hover {
 }
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    /* flex-direction: column; */
-    background-color: #3e3e3f !important;
+  height: 100%;
+  width: 100%;
+  /* flex-direction: column; */
+  background-color: #3e3e3f !important;
 }
 * {
   margin: 0;
@@ -322,7 +320,8 @@ footer {
   background-color: #101010;
   color: #3333;
   font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
-  width: 100%;
+  width: 100vw !important;
+  overflow: hidden;
 }
 .logo-foot {
   top: 0;
@@ -499,6 +498,10 @@ i.logo-category img {
   .list-foot {
     grid-template-columns: repeat(2, 1fr);
   }
+  .list-foot {
+    grid-template-columns: repeat(2, 1fr);
+    background-color: 100vw !important;
+  }
 }
 @media screen and (max-width: 450px) {
   .list-foot {
@@ -590,6 +593,6 @@ i.logo-category img {
 .btn {
   margin-left: -40px;
 }
-.custom-margin-right {
-  margin-right: 190px;
+.btn .i {
+  display: none;
 }

@@ -1,5 +1,4 @@
 const url = 'https://api-zerot-lowdb.onrender.com/products';
-
 fetch(url)
   .then((response) => response.json())
   .then((products) => {
