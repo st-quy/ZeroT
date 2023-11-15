@@ -1,10 +1,12 @@
 const tbody = document.querySelector("#table-product tbody");
 axios
-  .get("https://api-zerot-lowdb.onrender.com/products")
+  .get("http://localhost:4000/products")
   .then(function (response) {
     let index = 1;
     // const products = response.data.reverse();
-    const products = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const products = response.data.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
     products.forEach(function (product) {
       if (!product.deletedAt) {
         const row = document.createElement("tr");
@@ -15,41 +17,47 @@ axios
                   </td>
                   
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.name
-          }</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.name
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.price
-          } VNĐ</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.price
+                    } VNĐ</span>
                   </td>
                   <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
-            0,
-            15
-          )}</span>
+                    0,
+                    15
+                  )}</span>
                   </td>
                   <td class="align-middle text-center">
-                      ${Array.isArray(product.image)
-            ? `<img src="${product.image[0]?.url}" style="width: 150px" />`
-            : `<img src="${product.image}" style="width: 150px" />`
-          }
+                      ${
+                        Array.isArray(product.image)
+                          ? `<img src="${product.image[0]?.url}" style="width: 150px" />`
+                          : `<img src="${product.image}" style="width: 150px" />`
+                      }
                   </td>
                   
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.category
-          }</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.category
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${product.stock
-          }</span>
+                    <span class="text-secondary text-xs font-weight-bold">${
+                      product.stock
+                    }</span>
                   </td>
                   <td class="align-middle text-center">
-                  ${product.review?.length > 0
-            ? `<span class='text-secondary text-xs font-weight-bold'>
+                  ${
+                    product.review?.length > 0
+                      ? `<span class='text-secondary text-xs font-weight-bold'>
                         ${product.review}
                       </span>`
-            : `<span class='text-secondary text-xs font-weight-bold'>Sản phẩm chưa có review</span>`
-          }
+                      : `<span class='text-secondary text-xs font-weight-bold'>Sản phẩm chưa có review</span>`
+                  }
                   </td>
                   <td class="align-middle text-center">
                   <a onclick=handleEdit(${product.id}) class="">
@@ -63,19 +71,19 @@ axios
         index++;
       }
     });
-    $('#table-product').DataTable({
+    $("#table-product").DataTable({
       language: {
         paginate: {
-          previous: '‹',
-          next: '›',
+          previous: "‹",
+          next: "›",
         },
         aria: {
           paginate: {
-            previous: 'Previous',
-            next: 'Next',
+            previous: "Previous",
+            next: "Next",
           },
         },
-        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
+        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
       },
     });
   })
@@ -86,9 +94,7 @@ axios
 
 async function handleEdit(id) {
   try {
-    const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/products/${id}`
-    );
+    const response = await axios.get(`http://localhost:4000/products/${id}`);
     const product = response.data;
     const modalTitle = document.getElementById("modal-title");
     const modalBody = document.getElementById("modal-body");
@@ -99,23 +105,27 @@ async function handleEdit(id) {
     <div class="col-md-6">
       <div class="form-group">
         <label for="nameInput">Tên sản phẩm</label>
-        <input type="text" class="form-control" id="nameInput" placeholder="Tên sản phẩm" value="${product.name
-      }" />
+        <input type="text" class="form-control" id="nameInput" placeholder="Tên sản phẩm" value="${
+          product.name
+        }" />
       </div>
       <div class="form-group">
         <label for="priceInput">Giá sản phẩm</label>
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${product.price
-      }" />
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${
+          product.price
+        }" />
       </div>
       <div class="form-group">
         <label for="descriptionInput">Mô tả sản phẩm</label>
-        <textarea style="resize: none;"  type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" required>${product.description
-      }</textarea>
+        <textarea style="resize: none;"  type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" required>${
+          product.description
+        }</textarea>
       </div>
       <div class="form-group">
         <label for="stockInput">Hàng lưu giữ</label>
-        <input type="number" min="0" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${product.stock
-      }" />
+        <input type="number" min="0" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${
+          product.stock
+        }" />
       </div>
     </div>
     <div class="col-md-6">
@@ -131,14 +141,15 @@ async function handleEdit(id) {
         <div class="mb-3">
               <button class="btn btn-primary mt-1" style="display:block" id="editImageButton">Sửa hình ảnh</button>
               <input type="file" id="imageInput" style="display: none" multiple/>
-            ${Array.isArray(product.image)
-        ? product.image
-          .map((image, index) => {
-            return `<img src="${product.image[index].url}" style="width:100px; padding: 10px"/>`;
-          })
-          .join("")
-        : `<img src="${product.image}" style="width:100px; padding: 10px"/>`
-      }
+            ${
+              Array.isArray(product.image)
+                ? product.image
+                    .map((image, index) => {
+                      return `<img src="${product.image[index].url}" style="width:100px; padding: 10px"/>`;
+                    })
+                    .join("")
+                : `<img src="${product.image}" style="width:100px; padding: 10px"/>`
+            }
           </div>
           <div>
             <label id="labelNewImage"></label>
@@ -242,7 +253,7 @@ async function handleEdit(id) {
           const urls = await uploadFile(imageInput.files);
           try {
             await axios
-              .patch(`https://api-zerot-lowdb.onrender.com/products/${id}`, {
+              .patch(`http://localhost:4000/products/${id}`, {
                 name,
                 price,
                 stock,
@@ -263,7 +274,7 @@ async function handleEdit(id) {
         } else {
           try {
             await axios
-              .patch(`https://api-zerot-lowdb.onrender.com/products/${id}`, {
+              .patch(`http://localhost:4000/products/${id}`, {
                 name: nameInput.value,
                 price: Number(priceInput.value),
                 stock: Number(stockInput.value),
@@ -292,9 +303,7 @@ async function handleEdit(id) {
 
 async function handleDelete(id) {
   try {
-    const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/products/${id}`
-    );
+    const response = await axios.get(`http://localhost:4000/products/${id}`);
     const product = response.data;
 
     const modalTitle = document.getElementById("modal-title");
@@ -307,9 +316,9 @@ async function handleDelete(id) {
     saveModal.addEventListener("click", async function () {
       try {
         const deleteResponse = await axios.delete(
-          `https://api-zerot-lowdb.onrender.com/products/${id}`
+          `http://localhost:4000/products/${id}`
         );
-        const modal = new bootstrap.Modal(document.getElementById('myModal'));
+        const modal = new bootstrap.Modal(document.getElementById("myModal"));
         modal.hide();
         location.reload();
       } catch (error) {
@@ -382,7 +391,9 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm (VND)"');
+  var priceInput = document.querySelector(
+    'input[placeholder="Giá sản phẩm (VND)"'
+  );
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'
@@ -431,7 +442,7 @@ async function createProduct() {
       var urls = await uploadFile(fileInput.files);
       try {
         await axios
-          .post("https://api-zerot-lowdb.onrender.com/products", {
+          .post("http://localhost:4000/products", {
             name,
             price,
             stock,
@@ -471,7 +482,7 @@ const uploadFile = async (files) => {
   formData.append("folder", FOLDER_NAME);
 
   for (const file of files) {
-    formData.append('file', file);
+    formData.append("file", file);
     // console.log(file);
     const response = await axios.post(api, formData, {
       headers: {

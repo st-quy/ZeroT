@@ -1,15 +1,18 @@
-var isLogin = JSON.parse(localStorage.getItem('isLogin'));
-var role = localStorage.getItem('role');
+var isLogin = JSON.parse(localStorage.getItem("isLogin"));
+var role = localStorage.getItem("role");
 
-if (!role || !['admin', 'seller'].includes(role)) {
-  location.href = `${location.origin}/index.html`;
-}
-if (role === 'customer') {
+if (!isLogin || !role || !["admin", "seller"].includes(role)) {
   location.href = `${location.origin}/unauthorized.html`;
 }
+if (!role || !["admin", "seller"].includes(role)) {
+  location.href = `${location.origin}/index.html`;
+}
+// if (role === "customer") {
+//   location.href = `${location.origin}/unauthorized.html`;
+// }
 
 axios
-  .get('https://api-zerot-lowdb.onrender.com/orders')
+  .get("http://localhost:4000/orders")
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -36,7 +39,7 @@ axios
     ) {
       return total + order.totalPrice;
     },
-      0);
+    0);
 
     const previousMonthRevenue = previousMonthOrders.reduce(function (
       total,
@@ -44,7 +47,7 @@ axios
     ) {
       return total + order.totalPrice;
     },
-      0);
+    0);
 
     const revenueComparison = currentMonthRevenue - previousMonthRevenue;
     let percentageChange = 0;
@@ -55,26 +58,26 @@ axios
       ).toFixed(2);
     }
 
-    let arrow = '';
+    let arrow = "";
     if (revenueComparison > 0) {
-      arrow = '↑';
+      arrow = "↑";
     } else if (revenueComparison < 0) {
-      arrow = '↓';
+      arrow = "↓";
     }
 
     const totalOrderAmountElement =
-      document.getElementById('total-order-amount');
+      document.getElementById("total-order-amount");
     totalOrderAmountElement.textContent = `Tổng tiền : ${currentMonthRevenue} VND`;
 
-    const phantramElement = document.getElementById('phan-tram');
+    const phantramElement = document.getElementById("phan-tram");
     phantramElement.textContent = ` ${arrow} ${percentageChange}% `;
   })
   .catch(function (error) {
-    console.error('Lỗi khi tải dữ liệu từ API:', error);
+    console.error("Lỗi khi tải dữ liệu từ API:", error);
   });
 // Tổng users
 axios
-  .get('https://api-zerot-lowdb.onrender.com/users')
+  .get("http://localhost:4000/users")
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -88,7 +91,7 @@ axios
       return (
         userMonth === currentMonth - 1 &&
         userYear === currentYear &&
-        user.role === 'customer'
+        user.role === "customer"
       );
     });
 
@@ -99,7 +102,7 @@ axios
       return (
         userMonth === currentMonth &&
         userYear === currentYear &&
-        user.role === 'customer'
+        user.role === "customer"
       );
     });
 
@@ -107,18 +110,18 @@ axios
     const currentMonthCustomerCount = currentMonthCustomers.length;
 
     const totalCustomerCountElement = document.getElementById(
-      'total-customer-count'
+      "total-customer-count"
     );
-    const totalCustomerTextElement = document.createElement('span');
-    totalCustomerTextElement.innerText = 'Tổng người dùng : ';
+    const totalCustomerTextElement = document.createElement("span");
+    totalCustomerTextElement.innerText = "Tổng người dùng : ";
     totalCustomerCountElement.appendChild(totalCustomerTextElement);
 
-    const customerCountTextElement = document.createElement('span');
-    customerCountTextElement.setAttribute('id', 'customer-count-text');
+    const customerCountTextElement = document.createElement("span");
+    customerCountTextElement.setAttribute("id", "customer-count-text");
     customerCountTextElement.innerText = currentMonthCustomerCount.toString();
     totalCustomerCountElement.appendChild(customerCountTextElement);
 
-    const arrowElement = document.getElementById('customer-count-arrow');
+    const arrowElement = document.getElementById("customer-count-arrow");
     if (arrowElement) {
       const percentageChange =
         ((currentMonthCustomerCount - previousMonthCustomerCount) /
@@ -132,11 +135,11 @@ axios
     }
   })
   .catch(function (error) {
-    console.error('Lỗi khi tải dữ liệu từ API:', error);
+    console.error("Lỗi khi tải dữ liệu từ API:", error);
   });
 
 axios
-  .get('https://api-zerot-lowdb.onrender.com/orders')
+  .get("http://localhost:4000/orders")
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -167,28 +170,28 @@ axios
         100
       ).toFixed(2);
     }
-    let arrow = '';
+    let arrow = "";
     if (currentMonthOrderCount > previousMonthOrderCount) {
-      arrow = '↑';
+      arrow = "↑";
     } else if (currentMonthOrderCount < previousMonthOrderCount) {
-      arrow = '↓';
+      arrow = "↓";
     }
 
     const totalOrderAmountElement =
-      document.getElementById('total-order-count');
+      document.getElementById("total-order-count");
     totalOrderAmountElement.textContent = `Tổng đơn hàng: ${currentMonthOrderCount} `;
 
     const percentageChangeElement =
-      document.getElementById('percentage-change');
+      document.getElementById("percentage-change");
     percentageChangeElement.textContent = ` ${arrow} ${percentageChange}% `;
   })
   .catch(function (error) {
-    console.error('Lỗi khi tải dữ liệu từ API:', error);
+    console.error("Lỗi khi tải dữ liệu từ API:", error);
   });
 
 //products
 axios
-  .get('https://api-zerot-lowdb.onrender.com/products')
+  .get("http://localhost:4000/products")
   .then(function (response) {
     const products = response.data;
     const currentDate = new Date();
@@ -221,33 +224,33 @@ axios
       100;
     // Display the total product count
     const totalProductCountElement = document.getElementById(
-      'total-product-count'
+      "total-product-count"
     );
     totalProductCountElement.textContent = `Tổng sản phẩm : ${currentMonthProductCount}`;
     // Display the percentage change and arrow
     const percentageChangeElement =
-      document.getElementById('total-product-last');
+      document.getElementById("total-product-last");
     percentageChangeElement.textContent = `${percentageChange.toFixed(2)}%`;
-    const arrowElement = document.createElement('span');
-    arrowElement.classList.add('arrow');
+    const arrowElement = document.createElement("span");
+    arrowElement.classList.add("arrow");
     if (percentageChange > 0) {
-      arrowElement.textContent = '↑';
-      arrowElement.classList.add('up');
+      arrowElement.textContent = "↑";
+      arrowElement.classList.add("up");
     } else if (percentageChange < 0) {
-      arrowElement.textContent = '↓';
-      arrowElement.classList.add('down');
+      arrowElement.textContent = "↓";
+      arrowElement.classList.add("down");
     } else {
-      arrowElement.textContent = '→';
-      arrowElement.classList.add('right');
+      arrowElement.textContent = "→";
+      arrowElement.classList.add("right");
     }
-    percentageChangeElement.insertAdjacentElement('afterbegin', arrowElement); // Chèn mũi tên vào phía trước phần trăm
+    percentageChangeElement.insertAdjacentElement("afterbegin", arrowElement); // Chèn mũi tên vào phía trước phần trăm
   })
   .catch(function (error) {
-    console.error('Lỗi khi tải dữ liệu từ API:', error);
+    console.error("Lỗi khi tải dữ liệu từ API:", error);
   });
 
 axios
-  .get('https://api-zerot-lowdb.onrender.com/orders')
+  .get("http://localhost:4000/orders")
   .then((response) => {
     const data = response.data;
     // Tạo một đối tượng để lưu trữ tổng đơn hàng trên từng ngày và từng tháng
@@ -277,17 +280,17 @@ axios
     const labels = Object.keys(dailyTotal);
     const dataPoints = Object.values(dailyTotal);
     // Vẽ biểu đồ đường
-    const ctx = document.getElementById('lineChart').getContext('2d');
+    const ctx = document.getElementById("lineChart").getContext("2d");
     let myChart = new Chart(ctx, {
-      type: 'line',
+      type: "line",
       data: {
         labels: labels,
         datasets: [
           {
-            label: 'Tổng tiền theo ngày',
+            label: "Tổng tiền theo ngày",
             data: dataPoints,
-            backgroundColor: 'rgba(0, 123, 255, 0.2)',
-            borderColor: 'rgba(0, 123, 255, 1)',
+            backgroundColor: "rgba(0, 123, 255, 0.2)",
+            borderColor: "rgba(0, 123, 255, 1)",
             borderWidth: 1,
           },
         ],
@@ -298,7 +301,7 @@ axios
             beginAtZero: true,
             ticks: {
               callback: function (value, index, values) {
-                return value.toLocaleString() + ' VND';
+                return value.toLocaleString() + " VND";
               },
             },
           },
@@ -309,9 +312,9 @@ axios
               label: function (context) {
                 return (
                   context.dataset.label +
-                  ': ' +
+                  ": " +
                   context.parsed.y.toLocaleString() +
-                  ' VND'
+                  " VND"
                 );
               },
             },
@@ -320,34 +323,34 @@ axios
       },
     });
     // Lắng nghe sự kiện thay đổi lựa chọn
-    const selectOption = document.getElementById('selectOption');
-    selectOption.addEventListener('change', function () {
+    const selectOption = document.getElementById("selectOption");
+    selectOption.addEventListener("change", function () {
       const selectedOption = selectOption.value;
       // Xóa biểu đồ hiện tại
       myChart.destroy();
       // Chuẩn bị dữ liệu mới cho biểu đồ
       let newLabels, newDataPoints, label;
-      if (selectedOption === 'daily') {
+      if (selectedOption === "daily") {
         newLabels = labels;
         newDataPoints = dataPoints;
-        label = 'Tổng tiền theo ngày';
-      } else if (selectedOption === 'monthly') {
+        label = "Tổng tiền theo ngày";
+      } else if (selectedOption === "monthly") {
         // Chuẩn bị dữ liệu theo tháng
         newLabels = Object.keys(monthlyTotal);
         newDataPoints = Object.values(monthlyTotal);
-        label = 'Tổng tiền theo tháng';
+        label = "Tổng tiền theo tháng";
       }
       // Vẽ biểu đồ mới
       myChart = new Chart(ctx, {
-        type: 'line',
+        type: "line",
         data: {
           labels: newLabels,
           datasets: [
             {
               label: label,
               data: newDataPoints,
-              backgroundColor: 'rgba(0, 123, 255, 0.2)',
-              borderColor: 'rgba(0, 123, 255, 1)',
+              backgroundColor: "rgba(0, 123, 255, 0.2)",
+              borderColor: "rgba(0, 123, 255, 1)",
               borderWidth: 1,
             },
           ],
@@ -358,7 +361,7 @@ axios
               beginAtZero: true,
               ticks: {
                 callback: function (value, index, values) {
-                  return value.toLocaleString() + ' VND';
+                  return value.toLocaleString() + " VND";
                 },
               },
             },
@@ -369,9 +372,9 @@ axios
                 label: function (context) {
                   return (
                     context.dataset.label +
-                    ': ' +
+                    ": " +
                     context.parsed.y.toLocaleString() +
-                    ' VND'
+                    " VND"
                   );
                 },
               },
@@ -382,12 +385,12 @@ axios
     });
   })
   .catch((error) => {
-    console.error('Lỗi khi tảidữ liệu đơn hàng:', error);
+    console.error("Lỗi khi tảidữ liệu đơn hàng:", error);
   });
 
 // Sử dụng Axios để lấy dữ liệu từ API
 axios
-  .get('https://api-zerot-lowdb.onrender.com/products')
+  .get("http://localhost:4000/products")
   .then(function (response) {
     var products = response.data;
 
@@ -409,28 +412,28 @@ axios
     });
 
     // Vẽ biểu đồ bánh
-    var ctx = document.getElementById('doughnut').getContext('2d');
+    var ctx = document.getElementById("doughnut").getContext("2d");
     var myChart = new Chart(ctx, {
-      type: 'doughnut',
+      type: "doughnut",
       data: {
         labels: productNames,
         datasets: [
           {
             data: productSold,
             backgroundColor: [
-              'rgba(41, 155, 99, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(120, 46, 139, 1)',
-              'rgba( 165, 42, 42, 1 )',
+              "rgba(41, 155, 99, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(120, 46, 139, 1)",
+              "rgba( 165, 42, 42, 1 )",
               // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
             ],
             borderColor: [
-              'rgba(41, 155, 99, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(120, 46, 139, 1)',
-              'rgba( 165, 42, 42, 1 )',
+              "rgba(41, 155, 99, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(120, 46, 139, 1)",
+              "rgba( 165, 42, 42, 1 )",
               // Thêm màu khác tương ứng với số lượng sản phẩm (nếu cần)
             ],
             borderWidth: 1,
