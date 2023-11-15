@@ -585,3 +585,9 @@ i.logo-category img {
     opacity: 1;
   }
 }
+.btn {
+  margin-left: -40px;
+}
+.custom-margin-right {
+  margin-right: 190px;
+}
