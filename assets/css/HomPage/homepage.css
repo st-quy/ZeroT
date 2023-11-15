@@ -314,14 +314,14 @@ body {
   flex: 1;
 }
 footer {
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-bottom: 30px;
-    background-color: #101010;
-    color: #3333;
-    font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
-    width: 100vw !important;
-    overflow: hidden;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 30px;
+  background-color: #101010;
+  color: #3333;
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
+  width: 100vw !important;
+  overflow: hidden;
 }
 .logo-foot {
   top: 0;
@@ -498,10 +498,10 @@ i.logo-category img {
   .list-foot {
     grid-template-columns: repeat(2, 1fr);
   }
-    .list-foot {
-        grid-template-columns: repeat(2, 1fr);
-        background-color: 100vw !important;
-    }
+  .list-foot {
+    grid-template-columns: repeat(2, 1fr);
+    background-color: 100vw !important;
+  }
 }
 @media screen and (max-width: 450px) {
   .list-foot {
@@ -589,4 +589,10 @@ i.logo-category img {
   to {
     opacity: 1;
   }
+}
+.btn {
+  margin-left: -40px;
+}
+.btn .i {
+  display: none;
 }
