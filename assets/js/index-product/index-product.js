@@ -121,15 +121,19 @@ function chooseCategory(category) {
       switch (category) {
         case 'tất cả':
           handleCategoryTag(0);
+          sortProducts("createdAt");
           break;
         case 'macbook':
           handleCategoryTag(1);
+          sortProducts("createdAt");
           products = products.filter(
             (p) => p.category.toLowerCase() === 'laptop'
           );
           break;
         case 'phụ kiện':
           handleCategoryTag(2);
+          sortProducts("createdAt");
+
           products = products.filter(
             (p) => p.category.toLowerCase() === 'phụ kiện'
           );
