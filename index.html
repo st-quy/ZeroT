@@ -192,26 +192,25 @@
     <section id="sort">
       <div class="sort-container">
         <div>
-          Xếp theo: Mới ra mắt
+          Xếp theo: <span id="abc">Mới ra mắt</span>
           <i class="fa fa-angle-down" aria-hidden="true"></i>
         </div>
       </div>
-      <ul class="choose-sort">
-        <li> <i class="fa fa-check" aria-hidden="true"></i>
-          Mới ra mắt</li>
-        <li>Bán chạy</li>
-        <li>Giá cao đến thấp</li>
-        <li>Giá thấp đến cao</li>
+      <ul class="choose-sort" id="sort-modal">
+        <li onclick="sortProducts('createdAt')">Mới ra mắt</li>
+        <li onclick="sortProducts('sold')">Bán chạy</li>
+        <li onclick="sortProducts('priceDesc')">Giá cao đến thấp</li>
+        <li onclick="sortProducts('priceAsc')">Giá thấp đến cao</li>
       </ul>
     </section>
-
+  
     <section class="macbook">
       <div class="smac">
-        <div class="products">
-          <div class="product-list">
-          </div>
+        <div class="products" >
+          <div class="product-list" id="productList">
         </div>
       </div>
+    </section>
 
     </section>
     <footer>
@@ -290,6 +289,7 @@
   <script src="./assets/css/bootstrap.min.css"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./assets/js/index.js"></script>
+  <script src="./assets/js/index-product/sort.js"></script>
 
 
 </html>

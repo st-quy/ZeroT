@@ -38,7 +38,7 @@
   position: relative;
 }
 #sort .sort-container {
-  width: 15%;
+  width: 17%;
   margin-left: auto;
   color: #fff;
   cursor: pointer;
@@ -68,7 +68,7 @@ ul.choose-sort {
   padding: 5px 0;
   cursor: pointer;
 }
-.choose-sort > li:first-child,
+
 .choose-sort > li:hover {
   color: #0071e3;
 }
