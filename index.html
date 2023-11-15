@@ -13,7 +13,6 @@
     <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet" />
     <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet" />
     <link href="bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/css/HomPage/homepage.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <link href="assets/css/style.css" rel="stylesheet" />
@@ -25,7 +24,6 @@
     <link href="assets/css/toastr/toastr.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/index-product/index-product.css">
     <link rel="stylesheet" href="./assets/css/HomPage/category/category.css">
-    <link rel="stylesheet" href="./assets/css/index-all-products/index-all-products.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
       (function () {
@@ -184,15 +182,15 @@
     <!-- CATEGORY -->
     <section id="category">
       <div class="category-container">
-        <a href="index.html">Tất cả</a>
-        <a href="index-macbook.html">Macbook</a>
-        <a href="index-phu-kien.html">Phụ kiện</a>
+        <a onclick="chooseCategory('tất cả')">Tất cả</a>
+        <a onclick="chooseCategory('macbook')">Macbook</a>
+        <a onclick="chooseCategory('phụ kiện')">Phụ kiện</a>
       </div>
     </section>
     <section id="sort">
       <div class="sort-container">
         <div>
-          Xếp theo: <span id="abc">Mới ra mắt</span>
+          Xếp theo: <span id="sapxep">Mới ra mắt</span>
           <i class="fa fa-angle-down" aria-hidden="true"></i>
         </div>
       </div>
@@ -212,7 +210,7 @@
       </div>
     </section>
 
-    </section>
+
     <footer>
       <div class="foot">
         <div class="logo-foot">
