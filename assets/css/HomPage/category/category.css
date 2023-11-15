@@ -20,6 +20,17 @@
   position: relative;
   transition: all 0.3s;
 }
+#category .category-container > a.active {
+  color: #fff;
+}
+#category .category-container > a.active::before {
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  bottom: 0;
+}
 
 #category .category-container > a:hover {
   color: #fff;
