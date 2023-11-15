@@ -592,13 +592,14 @@ ul.menu li:hover {
 }
 
 footer {
+  
   padding-left: 100px;
   padding-right: 100px;
   padding-bottom: 30px;
   background-color: #101010;
   color: #3333;
   font-family: "Helvetica Neue", Helvetica, Arial, "SF Pro Display", sans-serif;
-  width: 100vw !important;
+  width: 100% !important;
   overflow: hidden;
 }
 

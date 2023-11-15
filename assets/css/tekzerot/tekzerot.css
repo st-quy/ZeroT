@@ -601,13 +601,14 @@ body {
 }
 
 footer {
+  margin-top: 240px;
     padding-left: 80px;
     padding-right: 80px;
     padding-bottom: 15px;
     background-color: #101010;
     color: #3333;
     font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
-    width: 100vw !important;
+    width: 100% !important;
     overflow: hidden;
 }
 
