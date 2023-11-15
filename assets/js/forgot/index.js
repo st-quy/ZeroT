@@ -90,7 +90,7 @@ async function forgotPassword() {
   }
 
   await axios
-    .get("https://api-zerot-lowdb.onrender.com/users")
+    .get("http://localhost:4000/users")
     .then((response) => {
       var userExist = response.data.find((usr) => usr.email === email);
       if (userExist) {
@@ -166,7 +166,7 @@ async function forgotPassword() {
                     if (newPassword) {
                       // Update password in the database
                       await axios.patch(
-                        `https://api-zerot-lowdb.onrender.com/users/${userExist.id}`,
+                        `http://localhost:4000/users/${userExist.id}`,
                         { password: newPassword }
                       );
                       toastr.success(

@@ -64,12 +64,12 @@ async function confirmCode() {
   var enteredCode = document.getElementById('confirmationCode').value;
   const profile = JSON.parse(localStorage.getItem('me'));
   await axios
-    .get('https://api-zerot-lowdb.onrender.com/users')
+    .get('http://localhost:4000/users')
     .then(async (response) => {
       var userExist = response.data.find((usr) => usr.email === profile.email);
       if (Number(enteredCode) === userExist.code) {
         await axios
-          .patch(`https://api-zerot-lowdb.onrender.com/users/${userExist.id}`, {
+          .patch(`http://localhost:4000/users/${userExist.id}`, {
             status: 'active',
             code: null,
           })

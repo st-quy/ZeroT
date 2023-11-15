@@ -40,7 +40,7 @@ async function handleLogin() {
     );
   }
   await axios
-    .get("https://api-zerot-lowdb.onrender.com/users")
+    .get("http://localhost:4000/users")
     .then((response) => {
       var userExist = response.data.find((usr) => usr.email === email);
       if (userExist && userExist.password === password) {
@@ -61,7 +61,7 @@ async function handleLogin() {
               async function () {
                 await axios
                   .patch(
-                    `https://api-zerot-lowdb.onrender.com/users/${userExist.id}`,
+                    `http://localhost:4000/users/${userExist.id}`,
                     { code: templateParams.code }
                   )
                   .then((res) => {

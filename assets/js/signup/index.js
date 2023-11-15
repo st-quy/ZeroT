@@ -25,7 +25,7 @@ form.addEventListener('submit', async function (event) {
   var phone = phoneInput.value;
   var role = roleInput.value;
   await axios
-    .get("https://api-zerot-lowdb.onrender.com/users")
+    .get("http://localhost:4000/users")
     .then(async (response) => {
       var userExist = response.data.find((usr) => usr.email === email);
       if (userExist) {
@@ -53,7 +53,7 @@ form.addEventListener('submit', async function (event) {
         );
       } else {
         await axios
-          .post("https://api-zerot-lowdb.onrender.com/users", {
+          .post("http://localhost:4000/users", {
             name,
             email,
             password,
