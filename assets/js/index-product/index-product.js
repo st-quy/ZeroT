@@ -25,7 +25,7 @@ function displayProduct(products) {
                         <div class="form-group">
                             <img src="${
                               product.image[0].url
-                            }" style="width: 250px; display: block; margin: 0 auto"; />           
+                            }" style="width: auto; display: block; margin: 0 auto"; />           
                             <h3 class="white-text">${product.name}</h3>
                             <div class="description-box">
                                 <p class="description-text">${
@@ -53,8 +53,6 @@ function displayProduct(products) {
 }
 
 function chooseCategory(category) {
-  const categoriesTag = document.querySelectorAll(".category-container > a");
-
   fetch(url)
     .then((response) => response.json())
     .then((products) => {
