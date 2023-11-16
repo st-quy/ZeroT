@@ -28,7 +28,7 @@ axios
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
                       product.price
-                    } VNĐ</span>
+                    } ₫</span>
                   </td>
                   <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
@@ -115,7 +115,7 @@ async function handleEdit(id) {
       </div>
       <div class="form-group">
         <label for="priceInput">Giá sản phẩm</label>
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" value="${
           product.price
         }" />
       </div>
@@ -349,7 +349,7 @@ async function createProduct() {
     
       <label>Giá sản phẩm</label>
       <div class="mb-3">
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" required/>
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" required/>
       </div>
       <label>Mô tả sản phẩm</label>
       <div class="mb-3">
@@ -393,9 +393,7 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector(
-    'input[placeholder="Giá sản phẩm (VND)"'
-  );
+  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm ₫"');
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'

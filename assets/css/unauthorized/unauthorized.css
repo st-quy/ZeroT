@@ -1,66 +1,41 @@
-html {
-  box-sizing: border-box;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body * {
-  margin: 0;
-  padding: 0;
-}
+@import url("https://fonts.googleapis.com/css?family=Bungee");
+
 body {
-  background: #fff
-    url("https://img.freepik.com/free-vector/cancel-culture-abstract-concept-vector-illustration-cancel-person-community-social-media-platform-internet-criticism-public-figure-celebrity-group-shaming-boycott-abstract-metaphor_335657-1926.jpg?w=740&t=st=1699415770~exp=1699416370~hmac=7448d0013043f1f72bf041b1e08dc8fcd75734e64f27dd7049dfe35b205e57c0");
-}
-/* https://www.vecteezy.com/vector-art/237238-dog-family-colored-doodle-drawing */
-.box {
-  max-width: 70%;
-  min-height: 600px;
-  margin: 0 auto;
-  padding: 1em 1em;
+  background: #1b1b1b;
+  color: white;
+  font-family: "Bungee", cursive;
+  margin-top: 50px;
   text-align: center;
-  background: transparent;
 }
-h1 {
-  margin: 0 0 1rem 0;
-  font-size: 8em;
-  text-shadow: 0 0 6px #8b4d1a;
-}
-p {
-  margin-bottom: 0.5em;
-  font-size: 1.75em;
-  color: #ea8a1a;
-}
-p:first-of-type {
-  margin-top: 16em;
-  text-shadow: none;
-}
-p > a {
-  border-bottom: 1px dashed #837256;
-  font-style: italic;
+a {
+  color: #2aa7cc;
   text-decoration: none;
-  color: #837256;
 }
-p > a:hover {
-  text-shadow: 0 0 3px #8b4d1a;
+a:hover {
+  color: white;
 }
-p img {
-  vertical-align: bottom;
+svg {
+  width: 50vw;
 }
-@media screen and (max-width: 600px) {
-  .wrapper {
-    background-size: 300px 114px;
-    background-position: center top 22em;
-  }
-  .box {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0;
-    background-size: 320px 185px;
-  }
-  p:first-of-type {
-    margin-top: 12em;
+.lightblue {
+  fill: #444;
+}
+.eye {
+  cx: calc(115px + 30px * var(--mouse-x));
+  cy: calc(50px + 30px * var(--mouse-y));
+}
+#eye-wrap {
+  overflow: hidden;
+}
+.error-text {
+  font-size: 120px;
+}
+.alarm {
+  animation: alarmOn 0.5s infinite;
+}
+
+@keyframes alarmOn {
+  to {
+    fill: darkred;
   }
 }

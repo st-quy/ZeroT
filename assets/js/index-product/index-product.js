@@ -19,17 +19,17 @@ function displayProduct(products) {
     productItem.classList.add("col-12");
     productItem.classList.add("col-md-4");
 
-    const productCreatedAt = new Date(product.createdAt);
-    const timeDifference = currentDate - productCreatedAt;
-    const twoDaysInMillis = 3 * 24 * 60 * 60 * 1000;
+      const productCreatedAt = new Date(product.createdAt);
+      const timeDifference = currentDate - productCreatedAt;
+      const twoDaysInMillis = 3 * 24 * 60 * 60 * 1000;
 
-    if (!product.deletedAt) {
-      productItem.innerHTML = `
+      if (!product.deletedAt) {
+        productItem.innerHTML = `
                     <div class="product-container position-relative">
                         <div class="form-group">
                             <img src="${
                               product.image[0].url
-                            }" style="width: auto; display: block; margin: 0 auto"; />           
+                            }" style="width: 250px; display: block; margin: 0 auto"; />           
                             <h3 class="white-text">${product.name}</h3>
                             <div class="description-box">
                                 <p class="description-text">${
