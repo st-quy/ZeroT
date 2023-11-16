@@ -1,5 +1,10 @@
+html,
 body {
-  background-color: #3e3e3f;
+  height: 100%;
+  width: 100%;
+  /* flex-direction: column; */
+  flex-direction: column;
+  background-color: #3e3e3f !important;
 }
 .new {
   color: #ff9f00;

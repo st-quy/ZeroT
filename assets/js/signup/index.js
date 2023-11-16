@@ -1,3 +1,7 @@
+const apiUrl =
+  window.location.hostname === 'localhost' || '127.0.0.1'
+    ? 'http://localhost:4000'
+    : 'https://api-zerot-lowdb.onrender.com';
 var isLogin = JSON.parse(localStorage.getItem('isLogin'));
 var role = localStorage.getItem('role');
 if (isLogin === true) {
@@ -24,7 +28,7 @@ form.addEventListener('submit', async function (event) {
   var password = passwordInput.value;
   var phone = phoneInput.value;
   var role = roleInput.value;
-  await axios.get('http://localhost:4000/users').then(async (response) => {
+  await axios.get(`${apiUrl}/users`).then(async (response) => {
     var userExist = response.data.find((usr) => usr.email === email);
     if (userExist) {
       toastr.warning('Email đã tồn tại. Vui lòng nhập email khác', 'Message', {
@@ -47,7 +51,7 @@ form.addEventListener('submit', async function (event) {
       });
     } else {
       await axios
-        .post('http://localhost:4000/users', {
+        .post(`${apiUrl}/users`, {
           name,
           email,
           password,

@@ -1,9 +1,12 @@
 'use strict';
-
+const apiUrl =
+  window.location.hostname === 'localhost' || '127.0.0.1'
+    ? 'http://localhost:4000'
+    : 'https://api-zerot-lowdb.onrender.com';
 const tbody = document.querySelector('#data-table tbody');
 
 axios
-  .get('http://localhost:4000/users')
+  .get(`${apiUrl}/users`)
   .then((response) => {
     const data = response.data;
     data
@@ -59,7 +62,7 @@ axios
             next: 'Next',
           },
         },
-        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
+        url: '/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
       },
     });
   })
@@ -69,7 +72,7 @@ axios
 
 async function handleEdit(userId) {
   try {
-    const response = await axios.get(`http://localhost:4000/users/${userId}`);
+    const response = await axios.get(`${apiUrl}/users/${userId}`);
     const userData = response.data;
 
     const modalTitle = document.getElementById('modal-title');
@@ -122,12 +125,9 @@ async function handleEdit(userId) {
     const saveModal = document.getElementById('btnSave');
     saveModal.addEventListener('click', async function () {
       try {
-        const response = await axios.patch(
-          `http://localhost:4000/users/${userId}`,
-          {
-            role: roleSelect.value,
-          }
-        );
+        const response = await axios.patch(`${apiUrl}/users/${userId}`, {
+          role: roleSelect.value,
+        });
 
         const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
@@ -145,7 +145,7 @@ async function handleEdit(userId) {
 
 async function handleDelete(userId) {
   try {
-    const response = await axios.get(`http://localhost:4000/users/${userId}`);
+    const response = await axios.get(`${apiUrl}/users/${userId}`);
     const userData = response.data;
 
     const modalTitle = document.getElementById('modal-title');
@@ -157,9 +157,7 @@ async function handleDelete(userId) {
     const saveModal = document.getElementById('btnSave');
     saveModal.addEventListener('click', async function () {
       try {
-        const response = await axios.delete(
-          `http://localhost:4000/users/${userId}`
-        );
+        const response = await axios.delete(`${apiUrl}/users/${userId}`);
 
         const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();

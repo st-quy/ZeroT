@@ -1,0 +1,146 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.content {
+  flex: 1;
+}
+footer {
+    margin-top: 100px;
+    padding-left: 100px;
+    padding-right: 100px; 
+    padding-bottom: 30px;
+    background-color: #101010 !important;
+    color: #3333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
+    width: 100% !important;
+    overflow: hidden;
+}
+
+.logo-foot {
+  top: 0;
+  /* Đặt vị trí theo chiều dọc */
+  left: 0;
+  /* Đặt vị trí theo chiều ngang */
+  flex: 1;
+  display: flex;
+  text-align: right;
+  padding-bottom: 15px;
+  padding-left: 25px;
+}
+.logo-foot .zerotlogo img {
+  width: 80px;
+  height: auto;
+}
+.logo-foot .applelogo img {
+  width: 30px;
+  height: auto;
+}
+.logo-foot a {
+  display: block;
+  /* Đảm bảo logo là một phần tử khối để có thể định dạng kích thước và vị trí */
+}
+.logo-foot a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.footer-social {
+  height: 0;
+}
+footer-social i {
+  width: 30px;
+  /* Thay đổi giá trị width theo kích thước mong muốn */
+  height: auto;
+  /* Thay đổi giá trị height theo kích thước mong muốn */
+  margin-right: 20px;
+}
+.txt {
+  margin-bottom: 0;
+  color: #888;
+}
+.foot {
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 50px;
+}
+.list-foot {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  text-decoration: none;
+}
+.list-foot li {
+  flex: 1;
+  list-style: none;
+  padding: 20px;
+  background-color: transparent;
+  color: white;
+  width: 226px;
+}
+.list-foot .ft {
+  flex: 1;
+  list-style: none;
+  background-color: transparent;
+  color: white;
+  width: 226px;
+}
+.character {
+  color: white !important;
+  display: block;
+  font-size: 13px;
+  line-height: 2;
+  text-decoration: none !important;
+}
+.columtongdai {
+  padding: 0 !important;
+  padding-top: 20px !important;
+}
+.column-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+.txt {
+  color: rgb(75, 73, 73);
+}
+span {
+  font-size: 15px;
+  color: white;
+  line-height: 1.6;
+}
+.rowtongdai {
+  padding-right: 200px !important;
+}
+.phone-link {
+  display: inline-block;
+  white-space: nowrap;
+}
+.textblu {
+  color: #2997ff;
+  font-size: 13px;
+  text-decoration: none;
+}
+@media screen and (max-width: 1200px) {
+    .list-foot {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .list-foot .ft {
+      padding-left: 0;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .list-foot {
+      grid-template-columns: repeat(2, 1fr);
+    }
+      .list-foot {
+          grid-template-columns: repeat(2, 1fr);
+          background-color: 100vw !important;
+      }
+  }
+  @media screen and (max-width: 450px) {
+    .list-foot {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
