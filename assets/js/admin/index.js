@@ -1,7 +1,14 @@
+const apiUrl =
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com";
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 
-if (!isLogin || !role || !["admin", "seller"].includes(role)) {
+if (!role || !["admin", "seller"].includes(role)) {
+  location.href = `${location.origin}/index.html`;
+}
+if (role === "customer") {
   location.href = `${location.origin}/unauthorized.html`;
 }
 if (!role || !["admin", "seller"].includes(role)) {
@@ -12,7 +19,7 @@ if (!role || !["admin", "seller"].includes(role)) {
 // }
 
 axios
-  .get('http://localhost:4000/orders')
+  .get(`${apiUrl}/orders`)
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -77,7 +84,7 @@ axios
   });
 // Tổng users
 axios
-  .get('http://localhost:4000/users')
+  .get(`${apiUrl}/users`)
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -139,7 +146,7 @@ axios
   });
 
 axios
-  .get('http://localhost:4000/orders')
+  .get(`${apiUrl}/orders`)
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -191,7 +198,7 @@ axios
 
 //products
 axios
-  .get('http://localhost:4000/products')
+  .get(`${apiUrl}/products`)
   .then(function (response) {
     const products = response.data;
     const currentDate = new Date();
@@ -250,7 +257,7 @@ axios
   });
 
 axios
-  .get('http://localhost:4000/orders')
+  .get(`${apiUrl}/orders`)
   .then((response) => {
     const data = response.data;
     // Tạo một đối tượng để lưu trữ tổng đơn hàng trên từng ngày và từng tháng
@@ -385,12 +392,12 @@ axios
     });
   })
   .catch((error) => {
-    console.error("Lỗi khi tảidữ liệu đơn hàng:", error);
+    console.error("Lỗi khi tải dữ liệu đơn hàng:", error);
   });
 
 // Sử dụng Axios để lấy dữ liệu từ API
 axios
-  .get('http://localhost:4000/products')
+  .get(`${apiUrl}/products`)
   .then(function (response) {
     var products = response.data;
 

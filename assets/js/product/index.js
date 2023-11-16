@@ -1,6 +1,10 @@
-const tbody = document.querySelector('#table-product tbody');
+const apiUrl =
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com";
+const tbody = document.querySelector("#table-product tbody");
 axios
-  .get('http://localhost:4000/products')
+  .get(`${apiUrl}/products`)
   .then(function (response) {
     let index = 1;
     // const products = response.data.reverse();
@@ -9,7 +13,7 @@ axios
     );
     products.forEach(function (product) {
       if (!product.deletedAt) {
-        const row = document.createElement('tr');
+        const row = document.createElement("tr");
         row.innerHTML = `
                             
                   <td class="align-middle text-center data-id='${product.id}'>
@@ -89,17 +93,15 @@ axios
   })
 
   .catch(function (error) {
-    console.error('Error fetching data: ', error);
+    console.error("Error fetching data: ", error);
   });
 
 async function handleEdit(id) {
   try {
-    const response = await axios.get(
-      `http://localhost:4000/products/${id}`
-    );
+    const response = await axios.get(`${apiUrl}/products/${id}`);
     const product = response.data;
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
+    const modalTitle = document.getElementById("modal-title");
+    const modalBody = document.getElementById("modal-body");
 
     modalTitle.textContent = `Chỉnh sửa thông tin sản phẩm: ${product.name}`;
     modalBody.innerHTML = `
@@ -162,31 +164,31 @@ async function handleEdit(id) {
   </div>
         `;
 
-    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+    const modal = new bootstrap.Modal(document.getElementById("myModal"));
     modal.show();
 
-    const editImageButton = document.getElementById('editImageButton');
-    const imageInput = document.getElementById('imageInput');
-    editImageButton.addEventListener('click', () => {
+    const editImageButton = document.getElementById("editImageButton");
+    const imageInput = document.getElementById("imageInput");
+    editImageButton.addEventListener("click", () => {
       imageInput.click();
     });
-    const labelNewImage = document.getElementById('labelNewImage');
-    const previewNewImage = document.getElementById('previewNewImage');
+    const labelNewImage = document.getElementById("labelNewImage");
+    const previewNewImage = document.getElementById("previewNewImage");
 
-    imageInput.addEventListener('change', async (e) => {
-      labelNewImage.innerHTML = 'Hình ảnh mới';
-      previewNewImage.innerHTML = '';
+    imageInput.addEventListener("change", async (e) => {
+      labelNewImage.innerHTML = "Hình ảnh mới";
+      previewNewImage.innerHTML = "";
       if (imageInput.files.length > 0) {
         for (const file of imageInput.files) {
           const reader = new FileReader();
 
           reader.onload = function (e) {
             const imageUrl = e.target.result;
-            const imgElement = document.createElement('img');
+            const imgElement = document.createElement("img");
             imgElement.src = imageUrl;
-            imgElement.alt = 'Selected Image';
-            imgElement.style.width = '100px';
-            imgElement.style.padding = '10px';
+            imgElement.alt = "Selected Image";
+            imgElement.style.width = "100px";
+            imgElement.style.padding = "10px";
             previewNewImage.appendChild(imgElement);
           };
 
@@ -195,16 +197,16 @@ async function handleEdit(id) {
       }
     });
 
-    const saveModal = document.getElementById('btnSave');
-    saveModal.innerHTML = 'Cập nhật';
-    saveModal.addEventListener('click', async function () {
+    const saveModal = document.getElementById("btnSave");
+    saveModal.innerHTML = "Cập nhật";
+    saveModal.addEventListener("click", async function () {
       try {
-        const nameInput = document.getElementById('nameInput');
-        const priceInput = document.getElementById('priceInput');
-        const stockInput = document.getElementById('stockInput');
-        const categoryInput = document.getElementById('categoryInput');
-        const descriptionInput = document.getElementById('descriptionInput');
-        const imageInput = document.getElementById('imageInput');
+        const nameInput = document.getElementById("nameInput");
+        const priceInput = document.getElementById("priceInput");
+        const stockInput = document.getElementById("stockInput");
+        const categoryInput = document.getElementById("categoryInput");
+        const descriptionInput = document.getElementById("descriptionInput");
+        const imageInput = document.getElementById("imageInput");
 
         var name = nameInput.value.trim();
         var price = Number(priceInput.value);
@@ -212,32 +214,32 @@ async function handleEdit(id) {
         var category = categoryInput.value;
         var description = descriptionInput.value.trim();
 
-        if (name === '') {
-          alert('Tên sản phẩm không được để trống');
+        if (name === "") {
+          alert("Tên sản phẩm không được để trống");
           return;
         }
         if (price <= 0) {
-          alert('Giá sản phẩm phải là một số dương');
+          alert("Giá sản phẩm phải là một số dương");
           return;
         }
-        if (description === '') {
-          alert('Mô tả không được để trống');
+        if (description === "") {
+          alert("Mô tả không được để trống");
           return;
         }
-        if (category === '') {
-          alert('Loại sản phẩm không được để trống');
+        if (category === "") {
+          alert("Loại sản phẩm không được để trống");
           return;
         }
         if (stock < 0) {
-          alert('Hàng lưu giữ phải là một số không âm');
+          alert("Hàng lưu giữ phải là một số không âm");
           return;
         }
 
         if (imageInput.files.length > 0) {
           // delete old images
-          const CLOUD_NAME = 'dyk82loo2';
-          const apiKey = '277715959481595';
-          const apiSecret = 'heBz5pvNQ9Pi6Oh13qjBAUOz-_c';
+          const CLOUD_NAME = "dyk82loo2";
+          const apiKey = "277715959481595";
+          const apiSecret = "heBz5pvNQ9Pi6Oh13qjBAUOz-_c";
 
           const deleteUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`;
 
@@ -246,16 +248,16 @@ async function handleEdit(id) {
             const string = `public_id=${image.public_id}&timestamp=${timestamp}${apiSecret}`;
             var signature = sha1(string);
             const formData = new FormData();
-            formData.append('public_id', image.public_id);
-            formData.append('api_key', apiKey);
-            formData.append('signature', signature);
-            formData.append('timestamp', timestamp);
+            formData.append("public_id", image.public_id);
+            formData.append("api_key", apiKey);
+            formData.append("signature", signature);
+            formData.append("timestamp", timestamp);
             axios.post(deleteUrl, formData);
           }
           const urls = await uploadFile(imageInput.files);
           try {
             await axios
-              .patch(`http://localhost:4000/products/${id}`, {
+              .patch(`${apiUrl}/products/${id}`, {
                 name,
                 price,
                 stock,
@@ -265,7 +267,7 @@ async function handleEdit(id) {
               })
               .then((response) => {
                 const modal = new bootstrap.Modal(
-                  document.getElementById('myModal')
+                  document.getElementById("myModal")
                 );
                 modal.hide();
                 location.reload();
@@ -276,7 +278,7 @@ async function handleEdit(id) {
         } else {
           try {
             await axios
-              .patch(`http://localhost:4000/products/${id}`, {
+              .patch(`${apiUrl}/products/${id}`, {
                 name: nameInput.value,
                 price: Number(priceInput.value),
                 stock: Number(stockInput.value),
@@ -285,7 +287,7 @@ async function handleEdit(id) {
               })
               .then((response) => {
                 const modal = new bootstrap.Modal(
-                  document.getElementById('myModal')
+                  document.getElementById("myModal")
                 );
                 modal.hide();
                 location.reload();
@@ -295,51 +297,47 @@ async function handleEdit(id) {
           }
         }
       } catch (error) {
-        console.error('Lỗi khi lưu thay đổi: ', error);
+        console.error("Lỗi khi lưu thay đổi: ", error);
       }
     });
   } catch (error) {
-    console.error('Lỗi khi lấy thông tin sản phẩm: ', error);
+    console.error("Lỗi khi lấy thông tin sản phẩm: ", error);
   }
 }
 
 async function handleDelete(id) {
   try {
-    const response = await axios.get(
-      `http://localhost:4000/products/${id}`
-    );
+    const response = await axios.get(`${apiUrl}/products/${id}`);
     const product = response.data;
 
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
+    const modalTitle = document.getElementById("modal-title");
+    const modalBody = document.getElementById("modal-body");
 
     modalTitle.textContent = `Xóa sản phẩm: ${product.name}`;
     modalBody.innerHTML = `Bạn có chắc chắn rằng bạn muốn xóa sản phẩm ${product.name} không ?`;
 
-    const saveModal = document.getElementById('btnSave');
-    saveModal.addEventListener('click', async function () {
+    const saveModal = document.getElementById("btnSave");
+    saveModal.addEventListener("click", async function () {
       try {
-        const deleteResponse = await axios.delete(
-          `http://localhost:4000/products/${id}`
-        );
+        const deleteResponse = await axios.delete(`${apiUrl}/products/${id}`);
         const modal = new bootstrap.Modal(document.getElementById("myModal"));
         modal.hide();
         location.reload();
       } catch (error) {
-        console.error('Lỗi khi xóa sản phẩm: ', error);
+        console.error("Lỗi khi xóa sản phẩm: ", error);
       }
     });
 
-    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+    const modal = new bootstrap.Modal(document.getElementById("myModal"));
     modal.show();
   } catch (error) {
-    console.error('Lỗi khi lấy thông tin sản phẩm: ', error);
+    console.error("Lỗi khi lấy thông tin sản phẩm: ", error);
   }
 }
 
 async function createProduct() {
-  const modalTitle = document.getElementById('modal-title');
-  const modalBody = document.getElementById('modal-body');
+  const modalTitle = document.getElementById("modal-title");
+  const modalBody = document.getElementById("modal-body");
   modalTitle.textContent = `Thêm sản phẩm mới`;
   modalBody.innerHTML = `
     <div class="row">
@@ -391,7 +389,7 @@ async function createProduct() {
 
 `;
 
-  const modal = new bootstrap.Modal(document.getElementById('myModal'));
+  const modal = new bootstrap.Modal(document.getElementById("myModal"));
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
@@ -402,22 +400,22 @@ async function createProduct() {
   );
   var categoryInput = document.querySelector('select[name="category"');
   var fileInput = document.querySelector('input[type="file"');
-  var previewImage = document.getElementById('previewImage');
-  const btnSave = document.getElementById('btnSave');
-  btnSave.innerHTML = 'Thêm mới';
-  fileInput.addEventListener('change', () => {
-    previewImage.innerHTML = '';
+  var previewImage = document.getElementById("previewImage");
+  const btnSave = document.getElementById("btnSave");
+  btnSave.innerHTML = "Thêm mới";
+  fileInput.addEventListener("change", () => {
+    previewImage.innerHTML = "";
     if (fileInput.files.length > 0) {
       for (const file of fileInput.files) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
           const imageUrl = e.target.result;
-          const imgElement = document.createElement('img');
+          const imgElement = document.createElement("img");
           imgElement.src = imageUrl;
-          imgElement.alt = 'Selected Image';
-          imgElement.style.width = '100px';
-          imgElement.style.padding = '10px';
+          imgElement.alt = "Selected Image";
+          imgElement.style.width = "100px";
+          imgElement.style.padding = "10px";
           previewImage.appendChild(imgElement);
         };
 
@@ -426,7 +424,7 @@ async function createProduct() {
     }
   });
 
-  btnSave.addEventListener('click', async () => {
+  btnSave.addEventListener("click", async () => {
     var name = nameInput.value.trim();
     var price = Number(priceInput.value);
     var stock = Number(stockInput.value);
@@ -444,7 +442,7 @@ async function createProduct() {
       var urls = await uploadFile(fileInput.files);
       try {
         await axios
-          .post('http://localhost:4000/products', {
+          .post(`${apiUrl}/products`, {
             name,
             price,
             stock,
@@ -455,7 +453,7 @@ async function createProduct() {
           })
           .then((response) => {
             const modal = new bootstrap.Modal(
-              document.getElementById('myModal')
+              document.getElementById("myModal")
             );
             modal.hide();
             location.reload();
@@ -464,31 +462,31 @@ async function createProduct() {
         console.log(error);
       }
     } else {
-      const modal = new bootstrap.Modal(document.getElementById('myModal'));
-      alert('Vui lòng nhập đầy đủ thông tin sản phẩm');
+      const modal = new bootstrap.Modal(document.getElementById("myModal"));
+      alert("Vui lòng nhập đầy đủ thông tin sản phẩm");
       return;
     }
   });
 }
 
 const uploadFile = async (files) => {
-  const CLOUD_NAME = 'dyk82loo2';
-  const PRESET_NAME = 'demo-upload';
-  const FOLDER_NAME = 'products';
+  const CLOUD_NAME = "dyk82loo2";
+  const PRESET_NAME = "demo-upload";
+  const FOLDER_NAME = "products";
   const urls = [];
   const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
 
   const formData = new FormData();
 
-  formData.append('upload_preset', PRESET_NAME);
-  formData.append('folder', FOLDER_NAME);
+  formData.append("upload_preset", PRESET_NAME);
+  formData.append("folder", FOLDER_NAME);
 
   for (const file of files) {
     formData.append("file", file);
     // console.log(file);
     const response = await axios.post(api, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
     urls.push({
@@ -499,31 +497,31 @@ const uploadFile = async (files) => {
   return urls;
 };
 
-const iconNavbarSidenav = document.getElementById('iconNavbarSidenav');
-const iconSidenav = document.getElementById('iconSidenav');
-const sidenav = document.getElementById('sidenav-main');
-let body = document.getElementsByTagName('body')[0];
-let className = 'g-sidenav-pinned';
+const iconNavbarSidenav = document.getElementById("iconNavbarSidenav");
+const iconSidenav = document.getElementById("iconSidenav");
+const sidenav = document.getElementById("sidenav-main");
+let body = document.getElementsByTagName("body")[0];
+let className = "g-sidenav-pinned";
 
 if (iconNavbarSidenav) {
-  iconNavbarSidenav.addEventListener('click', toggleSidenav);
+  iconNavbarSidenav.addEventListener("click", toggleSidenav);
 }
 
 if (iconSidenav) {
-  iconSidenav.addEventListener('click', toggleSidenav);
+  iconSidenav.addEventListener("click", toggleSidenav);
 }
 
 function toggleSidenav() {
   if (body.classList.contains(className)) {
     body.classList.remove(className);
     setTimeout(function () {
-      sidenav.classList.remove('bg-white');
+      sidenav.classList.remove("bg-white");
     }, 100);
-    sidenav.classList.remove('bg-transparent');
+    sidenav.classList.remove("bg-transparent");
   } else {
     body.classList.add(className);
-    sidenav.classList.add('bg-white');
-    sidenav.classList.remove('bg-transparent');
-    iconSidenav.classList.remove('d-none');
+    sidenav.classList.add("bg-white");
+    sidenav.classList.remove("bg-transparent");
+    iconSidenav.classList.remove("d-none");
   }
 }
