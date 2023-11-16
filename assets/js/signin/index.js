@@ -1,5 +1,5 @@
 const apiUrl =
-  window.location.hostname === "localhost" || "127.0.0.1"
+window.location.hostname === "localhost" || "127.0.0.1"
     ? "http://localhost:4000"
     : "https://api-zerot-lowdb.onrender.com";
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
@@ -75,9 +75,9 @@ async function handleLogin() {
                   setTimeout(() => {
                     if (userExist.role === "admin") {
                       location.href = `${location.origin}/admin.html`;
-                    } else if (role === "seller") {
+                    } else if (userExist.role === "seller") {
                       location.href = `${location.origin}/seller.html`;
-                    } else if (role === "delivery") {
+                    } else if (userExist.role === "delivery") {
                       location.href = `${location.origin}/delivery.html`;
                     } else {
                       location.href = `${location.origin}/index.html`;
@@ -93,9 +93,9 @@ async function handleLogin() {
         setTimeout(() => {
           if (userExist.role === "admin") {
             location.href = `${location.origin}/admin.html`;
-          } else if (role === "seller") {
+          } else if (userExist.role === "seller") {
             location.href = `${location.origin}/seller.html`;
-          } else if (role === "delivery") {
+          } else if (userExist.role === "delivery") {
             location.href = `${location.origin}/delivery.html`;
           } else {
             location.href = `${location.origin}/index.html`;

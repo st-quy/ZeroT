@@ -1,7 +1,7 @@
-const apiUrl =
-  window.location.hostname === "localhost" || "127.0.0.1"
-    ? "http://localhost:4000"
-    : "https://api-zerot-lowdb.onrender.com";
+// const apiUrl =
+//   window.location.hostname === "localhost" || "127.0.0.1"
+//     ? "http://localhost:4000"
+//     : "https://api-zerot-lowdb.onrender.com";
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 
@@ -109,6 +109,7 @@ async function forgotPassword() {
             hideMethod: "fadeOut",
             tapToDismiss: false,
           });
+          closeForgotModal()
           codeModal.style.display = "block";
           codeInput.focus();
 
@@ -169,11 +170,8 @@ async function forgotPassword() {
                     hideMethod: "fadeOut",
                     tapToDismiss: false,
                   });
-
                   closePasswordModal();
-                  setTimeout(function () {
-                    window.location.href = "sign-in.html";
-                  }, 1000);
+                  
                 } else {
                   toastr.warning("Mật khẩu sai vui lòng nhập lại", "Message", {
                     timeOut: 2000,
