@@ -20,7 +20,9 @@ if (isLogin) {
       ? "http://localhost:4000"
       : "https://api-zerot-lowdb.onrender.com";
   axios.get(`${apiUrl}/users/${userData.id}`).then((res) => {
-    num.textContent = res.data.cart ? res.data.cart.length : 0;
+    num.textContent = res.data.cart
+      ? res.data.cart.reduce((acc, cur) => acc + cur.quantity, 0)
+      : 0;
   });
 } else {
   helloElement.textContent = "";
