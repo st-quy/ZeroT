@@ -1,5 +1,5 @@
 const apiUrl =
-window.location.hostname === "localhost" || "127.0.0.1"
+  window.location.hostname === "localhost" || "127.0.0.1"
     ? "http://localhost:4000"
     : "https://api-zerot-lowdb.onrender.com";
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
@@ -7,16 +7,12 @@ var role = localStorage.getItem("role");
 var remember = JSON.parse(localStorage.getItem("remember"));
 
 if (isLogin === true) {
-  if (role) {
-    if (role === "admin") {
-      location.href = `${location.origin}/admin.html`;
-    } else if (role === "seller") {
-      location.href = `${location.origin}/seller.html`;
-    } else if (role === "delivery") {
-      location.href = `${location.origin}/delivery.html`;
-    } else {
-      location.href = `${location.origin}/index.html`;
-    }
+  if ((role && role === "admin") || role === "seller") {
+    location.href = `${location.origin}/admin.html`;
+  } else if (userExist.role === "delivery") {
+    location.href = `${location.origin}/list-order-admin.html`;
+  } else {
+    location.href = `${location.origin}/index.html`;
   }
 }
 if (remember && remember.checked === true) {
@@ -73,12 +69,13 @@ async function handleLogin() {
                 })
                 .then((res) => {
                   setTimeout(() => {
-                    if (userExist.role === "admin") {
+                    if (
+                      userExist.role === "admin" ||
+                      userExist.role === "seller"
+                    ) {
                       location.href = `${location.origin}/admin.html`;
-                    } else if (userExist.role === "seller") {
-                      location.href = `${location.origin}/seller.html`;
                     } else if (userExist.role === "delivery") {
-                      location.href = `${location.origin}/delivery.html`;
+                      location.href = `${location.origin}/list-order-admin.html`;
                     } else {
                       location.href = `${location.origin}/index.html`;
                     }
@@ -91,12 +88,10 @@ async function handleLogin() {
           );
       } else {
         setTimeout(() => {
-          if (userExist.role === "admin") {
+          if (userExist.role === "admin" || userExist.role === "seller") {
             location.href = `${location.origin}/admin.html`;
-          } else if (userExist.role === "seller") {
-            location.href = `${location.origin}/seller.html`;
           } else if (userExist.role === "delivery") {
-            location.href = `${location.origin}/delivery.html`;
+            location.href = `${location.origin}/list-order-admin.html`;
           } else {
             location.href = `${location.origin}/index.html`;
           }

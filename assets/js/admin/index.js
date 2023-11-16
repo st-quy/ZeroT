@@ -5,13 +5,13 @@ const apiUrl =
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 
-if (!role || !["admin", "seller", "delivery"].includes(role)) {
+if (!role || !["admin", "seller"].includes(role)) {
   location.href = `${location.origin}/index.html`;
 }
 if (role === "customer") {
   location.href = `${location.origin}/unauthorized.html`;
 }
-if (!role || !["admin", "seller","delivery"].includes(role)) {
+if (!role || !["admin", "seller"].includes(role)) {
   location.href = `${location.origin}/index.html`;
 }
 

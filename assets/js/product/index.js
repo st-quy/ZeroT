@@ -2,6 +2,19 @@ const apiUrl =
   window.location.hostname === "localhost" || "127.0.0.1"
     ? "http://localhost:4000"
     : "https://api-zerot-lowdb.onrender.com";
+
+var isLogin = JSON.parse(localStorage.getItem("isLogin"));
+var role = localStorage.getItem("role");
+if (!role || !["admin", "seller"].includes(role)) {
+  location.href = `${location.origin}/index.html`;
+}
+if (role === "customer") {
+  location.href = `${location.origin}/unauthorized.html`;
+}
+if (!role || !["admin", "seller"].includes(role)) {
+  location.href = `${location.origin}/index.html`;
+}
+
 const tbody = document.querySelector("#table-product tbody");
 axios
   .get(`${apiUrl}/products`)
