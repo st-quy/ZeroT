@@ -5,6 +5,9 @@ var profileData = JSON.parse(localStorage.getItem("me"));
 const logoutLink = document.getElementById("registerLink");
 const loginLink = document.getElementById("loginLink");
 const helloElement = document.createElement("span");
+const num = document.getElementById("cart-items-number");
+const addToCartAction = document.getElementById("add-to-cart-action");
+
 const userData = JSON.parse(localStorage.getItem("me"));
 
 if (isLogin) {
@@ -13,6 +16,15 @@ if (isLogin) {
   loginLink.parentNode.insertBefore(helloElement, loginLink);
   logoutLink.textContent = "Đăng xuất";
   logoutLink.href = "index.html";
+  const apiUrl =
+    window.location.hostname === "localhost" || "127.0.0.1"
+      ? "http://localhost:4000"
+      : "https://api-zerot-lowdb.onrender.com";
+  axios.get(`${apiUrl}/users/${userData.id}`).then((res) => {
+    num.textContent = res.data.cart
+      ? res.data.cart.reduce((acc, cur) => acc + cur.quantity, 0)
+      : 0;
+  });
 } else {
   helloElement.textContent = "";
   loginLink.textContent = "Đăng nhập";

@@ -19,12 +19,12 @@ function displayProduct(products) {
     productItem.classList.add("col-12");
     productItem.classList.add("col-md-4");
 
-      const productCreatedAt = new Date(product.createdAt);
-      const timeDifference = currentDate - productCreatedAt;
-      const twoDaysInMillis = 3 * 24 * 60 * 60 * 1000;
+    const productCreatedAt = new Date(product.createdAt);
+    const timeDifference = currentDate - productCreatedAt;
+    const twoDaysInMillis = 3 * 24 * 60 * 60 * 1000;
 
-      if (!product.deletedAt) {
-        productItem.innerHTML = `
+    if (!product.deletedAt) {
+      productItem.innerHTML = `
                     <div class="product-container position-relative">
                         <div class="form-group">
                             <img src="${
@@ -38,7 +38,9 @@ function displayProduct(products) {
                             </div>
                             <p class="white-text">${product.price}<a>₫</a></p>
                             <div class="add-to-cart">
-                                <button>Thêm vào giỏ hàng</button>
+                                <button onclick="addToCart(${
+                                  product.id
+                                })">Thêm vào giỏ hàng</button>
                             </div>
                         </div> 
                         ${
