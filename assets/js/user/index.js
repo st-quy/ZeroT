@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
-const tbody = document.querySelector("#data-table tbody");
+const tbody = document.querySelector('#data-table tbody');
 
 axios
-  .get("https://api-zerot-lowdb.onrender.com/users")
+  .get('http://localhost:4000/users')
   .then((response) => {
     const data = response.data;
     data
       .filter((acc) => !acc.deletedAt && acc.role !== 'admin')
       .map((item, index) => {
-        const row = document.createElement("tr");
+        const row = document.createElement('tr');
         row.innerHTML = `<td class="align-middle text-center">
                           <span class="text-secondary text-xs font-weight-bold"
                             >${index + 1}</span
@@ -47,35 +47,33 @@ axios
         tbody.appendChild(row);
       });
     // new DataTable('#data-table');
-    $("#data-table").DataTable({
+    $('#data-table').DataTable({
       language: {
         paginate: {
-          previous: "‹",
-          next: "›",
+          previous: '‹',
+          next: '›',
         },
         aria: {
           paginate: {
-            previous: "Previous",
-            next: "Next",
+            previous: 'Previous',
+            next: 'Next',
           },
         },
-        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
+        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
       },
     });
   })
   .catch((error) => {
-    console.error("Error fetching data: ", error);
+    console.error('Error fetching data: ', error);
   });
 
 async function handleEdit(userId) {
   try {
-    const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/users/${userId}`
-    );
+    const response = await axios.get(`http://localhost:4000/users/${userId}`);
     const userData = response.data;
 
-    const modalTitle = document.getElementById("modal-title");
-    const modalBody = document.getElementById("modal-body");
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
 
     modalTitle.textContent = `Chỉnh sửa thông tin: ${userData.name.toUpperCase()}`;
     modalBody.innerHTML = `
@@ -120,91 +118,89 @@ async function handleEdit(userId) {
     <option value="delivery">Delivery Man</option>
   </select>
     `;
-    const roleSelect = document.getElementById("selectRole");
-    const saveModal = document.getElementById("btnSave");
-    saveModal.addEventListener("click", async function () {
+    const roleSelect = document.getElementById('selectRole');
+    const saveModal = document.getElementById('btnSave');
+    saveModal.addEventListener('click', async function () {
       try {
         const response = await axios.patch(
-          `https://api-zerot-lowdb.onrender.com/users/${userId}`,
+          `http://localhost:4000/users/${userId}`,
           {
             role: roleSelect.value,
           }
         );
 
-        const modal = new bootstrap.Modal(document.getElementById("myModal"));
+        const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
         location.reload();
       } catch (error) {
-        console.error("Lỗi khi lưu thay đổi role: ", error);
+        console.error('Lỗi khi lưu thay đổi role: ', error);
       }
     });
-    const modal = new bootstrap.Modal(document.getElementById("myModal"));
+    const modal = new bootstrap.Modal(document.getElementById('myModal'));
     modal.show();
   } catch (error) {
-    console.error("Error fetching data: ", error);
+    console.error('Error fetching data: ', error);
   }
 }
 
 async function handleDelete(userId) {
   try {
-    const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/users/${userId}`
-    );
+    const response = await axios.get(`http://localhost:4000/users/${userId}`);
     const userData = response.data;
 
-    const modalTitle = document.getElementById("modal-title");
-    const modalBody = document.getElementById("modal-body");
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
 
     modalTitle.textContent = `Xóa tài khoản ${userData.id}: ${userData.name}`;
     modalBody.innerHTML = `Bạn có chắc rằng bạn muốn xóa tài khoản ${userData.name} này không ?`;
-    const roleSelect = document.getElementById("selectRole");
-    const saveModal = document.getElementById("btnSave");
-    saveModal.addEventListener("click", async function () {
+    const roleSelect = document.getElementById('selectRole');
+    const saveModal = document.getElementById('btnSave');
+    saveModal.addEventListener('click', async function () {
       try {
         const response = await axios.delete(
-          `https://api-zerot-lowdb.onrender.com/users/${userId}`
+          `http://localhost:4000/users/${userId}`
         );
 
-        const modal = new bootstrap.Modal(document.getElementById("myModal"));
+        const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
         location.reload();
       } catch (error) {
-        console.error("Lỗi khi lưu thay đổi role: ", error);
+        console.error('Lỗi khi lưu thay đổi role: ', error);
       }
     });
-    const modal = new bootstrap.Modal(document.getElementById("myModal"));
+    const modal = new bootstrap.Modal(document.getElementById('myModal'));
     modal.show();
   } catch (error) {
-    console.error("Lỗi khi lưu thay đổi: ", error);
+    console.error('Lỗi khi lưu thay đổi: ', error);
   }
 }
 
 // // Toggle Sidenav
-const iconNavbarSidenav = document.getElementById("iconNavbarSidenav");
-const iconSidenav = document.getElementById("iconSidenav");
-const sidenav = document.getElementById("sidenav-main");
-let body = document.getElementsByTagName("body")[0];
-let className = "g-sidenav-pinned";
+const iconNavbarSidenav = document.getElementById('iconNavbarSidenav');
+const iconSidenav = document.getElementById('iconSidenav');
+const sidenav = document.getElementById('sidenav-main');
+let body = document.getElementsByTagName('body')[0];
+let className = 'g-sidenav-pinned';
 
 if (iconNavbarSidenav) {
-  iconNavbarSidenav.addEventListener("click", toggleSidenav);
+  iconNavbarSidenav.addEventListener('click', toggleSidenav);
 }
 
 if (iconSidenav) {
-  iconSidenav.addEventListener("click", toggleSidenav);
+  iconSidenav.addEventListener('click', toggleSidenav);
 }
 
 function toggleSidenav() {
   if (body.classList.contains(className)) {
     body.classList.remove(className);
     setTimeout(function () {
-      sidenav.classList.remove("bg-white");
+      sidenav.classList.remove('bg-white');
     }, 100);
-    sidenav.classList.remove("bg-transparent");
+    sidenav.classList.remove('bg-transparent');
   } else {
     body.classList.add(className);
-    sidenav.classList.add("bg-white");
-    sidenav.classList.remove("bg-transparent");
-    iconSidenav.classList.remove("d-none");
+    sidenav.classList.add('bg-white');
+    sidenav.classList.remove('bg-transparent');
+    iconSidenav.classList.remove('d-none');
   }
 }

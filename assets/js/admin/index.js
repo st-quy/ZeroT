@@ -9,7 +9,7 @@ if (role === 'customer') {
 }
 
 axios
-  .get('https://api-zerot-lowdb.onrender.com/orders')
+  .get('http://localhost:4000/orders')
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -74,7 +74,7 @@ axios
   });
 // Tổng users
 axios
-  .get('https://api-zerot-lowdb.onrender.com/users')
+  .get('http://localhost:4000/users')
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -136,7 +136,7 @@ axios
   });
 
 axios
-  .get('https://api-zerot-lowdb.onrender.com/orders')
+  .get('http://localhost:4000/orders')
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -188,7 +188,7 @@ axios
 
 //products
 axios
-  .get('https://api-zerot-lowdb.onrender.com/products')
+  .get('http://localhost:4000/products')
   .then(function (response) {
     const products = response.data;
     const currentDate = new Date();
@@ -247,7 +247,7 @@ axios
   });
 
 axios
-  .get('https://api-zerot-lowdb.onrender.com/orders')
+  .get('http://localhost:4000/orders')
   .then((response) => {
     const data = response.data;
     // Tạo một đối tượng để lưu trữ tổng đơn hàng trên từng ngày và từng tháng
@@ -387,7 +387,7 @@ axios
 
 // Sử dụng Axios để lấy dữ liệu từ API
 axios
-  .get('https://api-zerot-lowdb.onrender.com/products')
+  .get('http://localhost:4000/products')
   .then(function (response) {
     var products = response.data;
 
@@ -443,7 +443,7 @@ axios
     });
   })
   .catch(function (error) {
-    console.error("Lỗi khi tải dữ liệu từ máy chủ:", error);
+    console.error('Lỗi khi tải dữ liệu từ máy chủ:', error);
   });
 
 // // Toggle Sidenav

@@ -1,4 +1,4 @@
-const url = 'https://api-zerot-lowdb.onrender.com/products';
+const url = 'http://localhost:4000/products';
 chooseCategory('tất cả');
 
 function displayProduct(products) {
