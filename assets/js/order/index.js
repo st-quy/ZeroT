@@ -1,9 +1,14 @@
+const apiUrl =
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com";
+
 const tbody = document.querySelector("#tbody");
 var updateModal = document.getElementById("updateOrderModal");
 var closeBtn = document.getElementsByClassName("close-modal")[0];
 
 async function displayOrder() {
-  await axios.get("http://localhost:4000/orders").then((response) => {
+  await axios.get(`${apiUrl}/orders`).then((response) => {
     const orders = response.data.reverse();
     orders.forEach(async (item, index) => {
       const row = document.createElement("tr");
@@ -82,7 +87,7 @@ async function showPopupUpdate(id) {
   var inputOrderId = document.getElementById("order-id");
   inputOrderId.value = id;
 
-  await axios.get("http://localhost:4000/orders").then((response) => {
+  await axios.get(`${apiUrl}/orders`).then((response) => {
     const order = response.data.find((item) => item.id === id);
 
     const select = document.querySelector("#status_list_edit");
@@ -95,7 +100,7 @@ const handleUpdateOrder = async () => {
   const updatedStatus = document.getElementById("status_list_edit").value;
 
   await axios
-    .patch(`http://localhost:4000/orders/${id}`, {
+    .patch(`${apiUrl}/orders/${id}`, {
       status: updatedStatus,
     })
     .then((response) => {
@@ -149,7 +154,7 @@ closeBtn.onclick = function () {
 
 async function seeMore(orderId) {
   try {
-    const response = await axios.get(`http://localhost:4000/orders/${orderId}`);
+    const response = await axios.get(`${apiUrl}/orders/${orderId}`);
     const orderData = response.data;
     console.log(orderData.orderItems);
 

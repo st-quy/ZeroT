@@ -1,3 +1,7 @@
+const apiUrl =
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com";
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 
@@ -78,7 +82,7 @@ async function forgotPassword() {
     return;
   }
 
-  await axios.get("http://localhost:4000/users").then((response) => {
+  await axios.get(`${apiUrl}/users`).then((response) => {
     var userExist = response.data.find((usr) => usr.email === email);
     if (userExist) {
       var templateParams = {
@@ -144,10 +148,9 @@ async function forgotPassword() {
                 var newPassword = newPasswordInput.value;
                 if (newPassword) {
                   // Update password in the database
-                  await axios.patch(
-                    `http://localhost:4000/users/${userExist.id}`,
-                    { password: newPassword }
-                  );
+                  await axios.patch(`${apiUrl}/users/${userExist.id}`, {
+                    password: newPassword,
+                  });
                   toastr.success("Đổi mật khẩu thành công", "Message", true, {
                     timeOut: 2000,
                     closeButton: true,

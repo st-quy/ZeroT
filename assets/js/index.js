@@ -15,8 +15,11 @@ if (isLogin) {
   loginLink.parentNode.insertBefore(helloElement, loginLink);
   logoutLink.textContent = "Đăng xuất";
   logoutLink.href = "index.html";
-
-  axios.get(`http://localhost:4000/users/${userData.id}`).then((res) => {
+  const apiUrl =
+    window.location.hostname === "localhost" || "127.0.0.1"
+      ? "http://localhost:4000"
+      : "https://api-zerot-lowdb.onrender.com";
+  axios.get(`${apiUrl}/users/${userData.id}`).then((res) => {
     num.textContent = res.data.cart ? res.data.cart.length : 0;
   });
 } else {
@@ -69,58 +72,73 @@ function closeConfirmModal() {
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
-  await axios.get("http://localhost:4000/users").then(async (response) => {
-    var userExist = response.data.find((usr) => usr.email === profile.email);
-    if (Number(enteredCode) === userExist.code) {
-      await axios
-        .patch(`http://localhost:4000/users/${userExist.id}`, {
-          status: "active",
-          code: null,
-        })
-        .then((response) => {
-          localStorage.setItem(
-            "me",
-            JSON.stringify({ ...response.data, password: null })
-          );
-          toastr.success("Tài khoản đã được kích hoạt", "Message", {
-            timeOut: 2000,
-            closeButton: true,
-            debug: false,
-            newestOnTop: true,
-            progressBar: true,
-            positionClass: "toast-top-right",
-            preventDuplicates: true,
-            onclick: null,
-            showDuration: "300",
-            hideDuration: "1000",
-            extendedTimeOut: "1000",
-            showEasing: "swing",
-            hideEasing: "linear",
-            showMethod: "fadeIn",
-            hideMethod: "fadeOut",
-            tapToDismiss: false,
+  await axios
+    .get(
+      `${
+        window.location.hostname === "localhost" || "127.0.0.1"
+          ? "http://localhost:4000"
+          : "https://api-zerot-lowdb.onrender.com"
+      }/users`
+    )
+    .then(async (response) => {
+      var userExist = response.data.find((usr) => usr.email === profile.email);
+      if (Number(enteredCode) === userExist.code) {
+        await axios
+          .patch(
+            `${
+              window.location.hostname === "localhost" || "127.0.0.1"
+                ? "http://localhost:4000"
+                : "https://api-zerot-lowdb.onrender.com"
+            }/users/${userExist.id}`,
+            {
+              status: "active",
+              code: null,
+            }
+          )
+          .then((response) => {
+            localStorage.setItem(
+              "me",
+              JSON.stringify({ ...response.data, password: null })
+            );
+            toastr.success("Tài khoản đã được kích hoạt", "Message", {
+              timeOut: 2000,
+              closeButton: true,
+              debug: false,
+              newestOnTop: true,
+              progressBar: true,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+              tapToDismiss: false,
+            });
+            minhModal.style.display = "none";
           });
-          minhModal.style.display = "none";
+      } else {
+        toastr.warning("Vui lòng nhập đúng code trong Email", "Message", {
+          timeOut: 2000,
+          closeButton: true,
+          debug: false,
+          newestOnTop: true,
+          progressBar: true,
+          positionClass: "toast-top-right",
+          preventDuplicates: true,
+          onclick: null,
+          showDuration: "300",
+          hideDuration: "1000",
+          extendedTimeOut: "1000",
+          showEasing: "swing",
+          hideEasing: "linear",
+          showMethod: "fadeIn",
+          hideMethod: "fadeOut",
+          tapToDismiss: false,
         });
-    } else {
-      toastr.warning("Vui lòng nhập đúng code trong Email", "Message", {
-        timeOut: 2000,
-        closeButton: true,
-        debug: false,
-        newestOnTop: true,
-        progressBar: true,
-        positionClass: "toast-top-right",
-        preventDuplicates: true,
-        onclick: null,
-        showDuration: "300",
-        hideDuration: "1000",
-        extendedTimeOut: "1000",
-        showEasing: "swing",
-        hideEasing: "linear",
-        showMethod: "fadeIn",
-        hideMethod: "fadeOut",
-        tapToDismiss: false,
-      });
-    }
-  });
+      }
+    });
 }

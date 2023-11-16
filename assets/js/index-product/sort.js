@@ -1,4 +1,8 @@
-const apiUrl = "http://localhost:4000/products";
+const apiUrl = `${
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com"
+}/products`;
 const sapxep = document.getElementById("sapxep");
 const sortModal = document.getElementById("sort-modal");
 const sortOptions = document.querySelectorAll(".choose-sort li");

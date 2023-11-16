@@ -1,5 +1,10 @@
-const url = "http://localhost:4000/products";
+const url = `${
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com"
+}/products`;
 chooseCategory("tất cả");
+
 function displayProduct(products) {
   const productList = document.querySelector(".product-list");
   productList.innerHTML = "";
