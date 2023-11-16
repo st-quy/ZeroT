@@ -235,10 +235,23 @@ async function addToCart(prdId) {
 
   const userId = user?.id;
 
-  if (!isLogin || (isLogin && role !== "customer")) {
+  if (!isLogin) {
     addToCartModal.style.display = "block";
   }
 
+  if (isLogin && role !== "customer") {
+    addToCartAction.textContent = "Đăng xuất";
+    addToCartAction.href = `${location.origin}/index.html`;
+    addToCartModal.style.display = "block";
+    addToCartAction.addEventListener("click", () => {
+      localStorage.removeItem("me");
+      localStorage.removeItem("role");
+      localStorage.removeItem("isLogin");
+      setTimeout(function () {
+        location.href = `${location.origin}/index.html`;
+      }, 500);
+    });
+  }
   if (isLogin && role === "customer") {
     await axios.get("http://localhost:4000/users").then(async (response) => {
       const user = response.data.find((u) => u.id === userId);
