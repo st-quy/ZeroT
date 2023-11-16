@@ -5,7 +5,7 @@ let timeDifference = 0;
 let twoDaysInMillis = 3 * 24 * 60 * 60 * 1000;
 
 function fetchData() {
-    fetch('https://api-zerot-lowdb.onrender.com/products')
+    fetch('http://localhost:4000/products')
         .then(response => response.json())
         .then(data => {
             list = data;

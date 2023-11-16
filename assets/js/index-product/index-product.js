@@ -1,5 +1,6 @@
-const url = "https://api-zerot-lowdb.onrender.com/products";
-chooseCategory("tất cả");
+const url = 'http://localhost:4000/products';
+chooseCategory('tất cả');
+
 function displayProduct(products) {
   const productList = document.querySelector('.product-list');
   productList.innerHTML = '';
@@ -67,7 +68,7 @@ function displayProduct(products) {
       productList.innerHTML = `Không tìm thấy sản phẩm có từ khóa '${searchData}'`;
       productList.style.fontSize = '20px';
       productList.style.color = 'white';
-    }
+      }
   });
   const displayItem = (items) => {
     productList.innerHTML = '';
@@ -87,7 +88,7 @@ function displayProduct(products) {
         <div class="form-group">
           <img src="${
             item.image[0].url
-          }" style="width: 250px; display: block; margin: 0 auto;" />
+          }" style="width: auto; display: block; margin: 0 auto;" />
           <h3 class="white-text">${item.name}</h3>
           <div class="description-box">
             <p class="description-text">${item.description}</p>
