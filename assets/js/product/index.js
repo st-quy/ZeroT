@@ -1,10 +1,6 @@
 const tbody = document.querySelector('#table-product tbody');
 axios
-<<<<<<< HEAD
   .get("http://localhost:4000/products")
-=======
-  .get('https://api-zerot-lowdb.onrender.com/products')
->>>>>>> develop
   .then(function (response) {
     let index = 1;
     // const products = response.data.reverse();
@@ -151,11 +147,7 @@ async function handleEdit(id) {
                     .map((image, index) => {
                       return `<img src="${product.image[index].url}" style="width:100px; padding: 10px"/>`;
                     })
-<<<<<<< HEAD
-                    .join("")
-=======
                     .join('')
->>>>>>> develop
                 : `<img src="${product.image}" style="width:100px; padding: 10px"/>`
             }
           </div>
@@ -450,11 +442,7 @@ async function createProduct() {
       var urls = await uploadFile(fileInput.files);
       try {
         await axios
-<<<<<<< HEAD
           .post("http://localhost:4000/products", {
-=======
-          .post('https://api-zerot-lowdb.onrender.com/products', {
->>>>>>> develop
             name,
             price,
             stock,
