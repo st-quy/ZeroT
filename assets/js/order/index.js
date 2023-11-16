@@ -1,16 +1,19 @@
+const apiUrl =
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com";
+
 const tbody = document.querySelector("#tbody");
 var updateModal = document.getElementById("updateOrderModal");
 var closeBtn = document.getElementsByClassName("close-modal")[0];
 
 async function displayOrder() {
-  await axios
-    .get("http://localhost:4000/orders")
-    .then((response) => {
-      const orders = response.data.reverse();
-      orders.forEach(async (item, index) => {
-        const row = document.createElement("tr");
+  await axios.get(`${apiUrl}/orders`).then((response) => {
+    const orders = response.data.reverse();
+    orders.forEach(async (item, index) => {
+      const row = document.createElement("tr");
 
-        row.innerHTML = `<td class="align-middle px-4">
+      row.innerHTML = `<td class="align-middle px-4">
                               <span class="text-secondary text-xs font-weight-bold">${
                                 index + 1
                               }</span>
@@ -57,25 +60,25 @@ async function displayOrder() {
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                               </a>
                             </td>`;
-        tbody.appendChild(row);
-      });
-
-      $("#data-table-order").DataTable({
-        language: {
-          paginate: {
-            previous: "‹",
-            next: "›",
-          },
-          aria: {
-            paginate: {
-              previous: "Previous",
-              next: "Next",
-            },
-          },
-          url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
-        },
-      });
+      tbody.appendChild(row);
     });
+
+    $("#data-table-order").DataTable({
+      language: {
+        paginate: {
+          previous: "‹",
+          next: "›",
+        },
+        aria: {
+          paginate: {
+            previous: "Previous",
+            next: "Next",
+          },
+        },
+        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
+      },
+    });
+  });
 }
 displayOrder();
 
@@ -84,14 +87,12 @@ async function showPopupUpdate(id) {
   var inputOrderId = document.getElementById("order-id");
   inputOrderId.value = id;
 
-  await axios
-    .get("http://localhost:4000/orders")
-    .then((response) => {
-      const order = response.data.find((item) => item.id === id);
+  await axios.get(`${apiUrl}/orders`).then((response) => {
+    const order = response.data.find((item) => item.id === id);
 
-      const select = document.querySelector("#status_list_edit");
-      select.value = order.status;
-    });
+    const select = document.querySelector("#status_list_edit");
+    select.value = order.status;
+  });
 }
 
 const handleUpdateOrder = async () => {
@@ -99,7 +100,7 @@ const handleUpdateOrder = async () => {
   const updatedStatus = document.getElementById("status_list_edit").value;
 
   await axios
-    .patch(`http://localhost:4000/orders/${id}`, {
+    .patch(`${apiUrl}/orders/${id}`, {
       status: updatedStatus,
     })
     .then((response) => {
@@ -153,9 +154,7 @@ closeBtn.onclick = function () {
 
 async function seeMore(orderId) {
   try {
-    const response = await axios.get(
-      `http://localhost:4000/orders/${orderId}`
-    );
+    const response = await axios.get(`${apiUrl}/orders/${orderId}`);
     const orderData = response.data;
     console.log(orderData.orderItems);
 

@@ -1,6 +1,10 @@
-const tbody = document.querySelector('#table-product tbody');
+const apiUrl =
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com";
+const tbody = document.querySelector("#table-product tbody");
 axios
-  .get('http://localhost:4000/products')
+  .get(`${apiUrl}/products`)
   .then(function (response) {
     let index = 1;
     // const products = response.data.reverse();
@@ -71,19 +75,19 @@ axios
         index++;
       }
     });
-    $('#table-product').DataTable({
+    $("#table-product").DataTable({
       language: {
         paginate: {
-          previous: '‹',
-          next: '›',
+          previous: "‹",
+          next: "›",
         },
         aria: {
           paginate: {
-            previous: 'Previous',
-            next: 'Next',
+            previous: "Previous",
+            next: "Next",
           },
         },
-        url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json',
+        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
       },
     });
   })
@@ -94,9 +98,7 @@ axios
 
 async function handleEdit(id) {
   try {
-    const response = await axios.get(
-      `http://localhost:4000/products/${id}`
-    );
+    const response = await axios.get(`${apiUrl}/products/${id}`);
     const product = response.data;
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
@@ -149,7 +151,7 @@ async function handleEdit(id) {
                     .map((image, index) => {
                       return `<img src="${product.image[index].url}" style="width:100px; padding: 10px"/>`;
                     })
-                    .join('')
+                    .join("")
                 : `<img src="${product.image}" style="width:100px; padding: 10px"/>`
             }
           </div>
@@ -255,7 +257,7 @@ async function handleEdit(id) {
           const urls = await uploadFile(imageInput.files);
           try {
             await axios
-              .patch(`http://localhost:4000/products/${id}`, {
+              .patch(`${apiUrl}/products/${id}`, {
                 name,
                 price,
                 stock,
@@ -276,7 +278,7 @@ async function handleEdit(id) {
         } else {
           try {
             await axios
-              .patch(`http://localhost:4000/products/${id}`, {
+              .patch(`${apiUrl}/products/${id}`, {
                 name: nameInput.value,
                 price: Number(priceInput.value),
                 stock: Number(stockInput.value),
@@ -305,9 +307,7 @@ async function handleEdit(id) {
 
 async function handleDelete(id) {
   try {
-    const response = await axios.get(
-      `http://localhost:4000/products/${id}`
-    );
+    const response = await axios.get(`${apiUrl}/products/${id}`);
     const product = response.data;
 
     const modalTitle = document.getElementById('modal-title');
@@ -319,10 +319,8 @@ async function handleDelete(id) {
     const saveModal = document.getElementById('btnSave');
     saveModal.addEventListener('click', async function () {
       try {
-        const deleteResponse = await axios.delete(
-          `http://localhost:4000/products/${id}`
-        );
-        const modal = new bootstrap.Modal(document.getElementById('myModal'));
+        const deleteResponse = await axios.delete(`${apiUrl}/products/${id}`);
+        const modal = new bootstrap.Modal(document.getElementById("myModal"));
         modal.hide();
         location.reload();
       } catch (error) {
@@ -446,7 +444,7 @@ async function createProduct() {
       var urls = await uploadFile(fileInput.files);
       try {
         await axios
-          .post('http://localhost:4000/products', {
+          .post(`${apiUrl}/products`, {
             name,
             price,
             stock,
@@ -486,7 +484,7 @@ const uploadFile = async (files) => {
   formData.append('folder', FOLDER_NAME);
 
   for (const file of files) {
-    formData.append('file', file);
+    formData.append("file", file);
     // console.log(file);
     const response = await axios.post(api, formData, {
       headers: {
