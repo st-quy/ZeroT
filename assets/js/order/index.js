@@ -222,3 +222,12 @@ function toggleSidenav() {
     iconSidenav.classList.remove("d-none");
   }
 }
+
+const userManagementItem = document.getElementById("userManager");
+const productManagementItem = document.getElementById("productManager");
+const dashBoardManagementItem = document.getElementById("dashBoard");
+if (role === "delivery") {
+  userManagementItem.style.display = "none";
+  productManagementItem.style.display = "none";
+  dashBoardManagementItem.style.display = "none"; 
+}
