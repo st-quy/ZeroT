@@ -1,3 +1,7 @@
+const apiUrl =
+  window.location.hostname === "localhost" || "127.0.0.1"
+    ? "http://localhost:4000"
+    : "https://api-zerot-lowdb.onrender.com";
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var remember = JSON.parse(localStorage.getItem("remember"));
@@ -46,7 +50,7 @@ async function handleLogin() {
       JSON.stringify({ checked: true, email: email, password: password })
     );
   }
-  await axios.get("http://localhost:4000/users").then((response) => {
+  await axios.get(`${apiUrl}/users`).then((response) => {
     var userExist = response.data.find((usr) => usr.email === email);
     if (userExist && userExist.password === password) {
       localStorage.setItem("isLogin", true);
@@ -65,19 +69,16 @@ async function handleLogin() {
           .then(
             async function () {
               await axios
-                .patch(`http://localhost:4000/users/${userExist.id}`, {
+                .patch(`${apiUrl}/users/${userExist.id}`, {
                   code: templateParams.code,
                 })
                 .then((res) => {
                   setTimeout(() => {
                     if (
-                      userExist.role === "admin" 
+                      userExist.role === "admin" ||
+                      userExist.role === "seller"
                     ) {
                       location.href = `${location.origin}/admin.html`;
-                    } else if (userExist.role === "delivery") {
-                      location.href = `${location.origin}/delivery.html`;
-                    } else if (userExist.role === "seller") {
-                      location.href = `${location.origin}/seller.html`;
                     } else {
                       location.href = `${location.origin}/index.html`;
                     }
@@ -90,12 +91,8 @@ async function handleLogin() {
           );
       } else {
         setTimeout(() => {
-          if (userExist.role === "admin") {
+          if (userExist.role === "admin" || userExist.role === "seller") {
             location.href = `${location.origin}/admin.html`;
-          } else if (userExist.role === "delivery") {
-            location.href = `${location.origin}/delivery.html`;
-          } else if (userExist.role === "seller") {
-            location.href = `${location.origin}/seller.html`;
           } else {
             location.href = `${location.origin}/index.html`;
           }
