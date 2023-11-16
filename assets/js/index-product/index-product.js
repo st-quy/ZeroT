@@ -89,7 +89,7 @@ function displayProduct(products) {
         <div class="form-group">
           <img src="${
             item.image[0].url
-          }" style="width: 250px; display: block; margin: 0 auto;" />
+          }" style="width: auto; display: block; margin: 0 auto;" />
           <h3 class="white-text">${item.name}</h3>
           <div class="description-box">
             <p class="description-text">${item.description}</p>
