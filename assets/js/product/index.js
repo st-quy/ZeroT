@@ -1,14 +1,14 @@
 const tbody = document.querySelector("#table-product tbody");
 axios
-  .get("https://api-zerot-lowdb.onrender.com/products")
-  .then(function (response) {
-    let index = 1;
-    // const products = response.data.reverse();
-    const products = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    products.forEach(function (product) {
-      if (!product.deletedAt) {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+    .get("http://localhost:4000/products")
+    .then(function(response) {
+            let index = 1;
+            // const products = response.data.reverse();
+            const products = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            products.forEach(function(product) {
+                        if (!product.deletedAt) {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
                             
                   <td class="align-middle text-center data-id='${product.id}'>
                   <span class="text-secondary text-xs font-weight-bold">${index}</span>
@@ -87,7 +87,7 @@ axios
 async function handleEdit(id) {
   try {
     const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/products/${id}`
+      `http://localhost:4000/products/${id}`
     );
     const product = response.data;
     const modalTitle = document.getElementById("modal-title");
@@ -242,7 +242,7 @@ async function handleEdit(id) {
           const urls = await uploadFile(imageInput.files);
           try {
             await axios
-              .patch(`https://api-zerot-lowdb.onrender.com/products/${id}`, {
+              .patch(`http://localhost:4000/products/${id}`, {
                 name,
                 price,
                 stock,
@@ -263,7 +263,7 @@ async function handleEdit(id) {
         } else {
           try {
             await axios
-              .patch(`https://api-zerot-lowdb.onrender.com/products/${id}`, {
+              .patch(`http://localhost:4000/products/${id}`, {
                 name: nameInput.value,
                 price: Number(priceInput.value),
                 stock: Number(stockInput.value),
@@ -293,7 +293,7 @@ async function handleEdit(id) {
 async function handleDelete(id) {
   try {
     const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/products/${id}`
+      `http://localhost:4000/products/${id}`
     );
     const product = response.data;
 
@@ -307,7 +307,7 @@ async function handleDelete(id) {
     saveModal.addEventListener("click", async function () {
       try {
         const deleteResponse = await axios.delete(
-          `https://api-zerot-lowdb.onrender.com/products/${id}`
+          `http://localhost:4000/products/${id}`
         );
         const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
@@ -431,7 +431,7 @@ async function createProduct() {
       var urls = await uploadFile(fileInput.files);
       try {
         await axios
-          .post("https://api-zerot-lowdb.onrender.com/products", {
+          .post("http://localhost:4000/products", {
             name,
             price,
             stock,

@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="./assets/css/index-product/index-product.css">
     <link rel="stylesheet" href="./assets/css/index-product/pagination.css">
     <link rel="stylesheet" href="./assets/css/HomPage/category/category.css">
-    <link rel="stylesheet" href="./assets/css/index-all-products/index-all-products.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
         (function() {
@@ -181,9 +180,9 @@
     <!-- CATEGORY -->
     <section id="category">
         <div class="category-container">
-            <a href="index.html">Tất cả</a>
-            <a href="index-macbook.html">Macbook</a>
-            <a href="index-phu-kien.html">Phụ kiện</a>
+            <a onclick="chooseCategory('tất cả')">Tất cả</a>
+            <a onclick="chooseCategory('macbook')">Macbook</a>
+            <a onclick="chooseCategory('phụ kiện')">Phụ kiện</a>
         </div>
     </section>
     <section id="sort">
@@ -200,14 +199,13 @@
             <li>Giá thấp đến cao</li>
         </ul>
     </section>
-
+    <!-- product -->
     <section class="macbook">
         <div class="smac">
             <div class="products">
                 <div class="product-list">
                 </div>
                 <ul class="listPage"> </ul>
-
             </div>
         </div>
     </section>
@@ -286,6 +284,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./assets/js/index.js"></script>
 <script src="./assets/js/index-product/pagination.js"></script>
+
 
 
 
