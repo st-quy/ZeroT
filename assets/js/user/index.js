@@ -6,7 +6,7 @@ const apiUrl =
 const tbody = document.querySelector("#data-table tbody");
 
 var role = localStorage.getItem("role");
-if (role === "seller") {
+if (role ===  "seller") {
   location.href = `${location.origin}/unauthorized.html`;
 }
 
