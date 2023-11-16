@@ -6,7 +6,14 @@ const apiUrl =
 const tbody = document.querySelector("#tbody");
 var updateModal = document.getElementById("updateOrderModal");
 var closeBtn = document.getElementsByClassName("close-modal")[0];
+var role = localStorage.getItem("role");
 
+
+const userManagementItem = document.getElementById("userManager");
+
+if (role === "seller") {
+  userManagementItem.style.display = "none"; // Ẩn phần tử quản lý người dùng
+}
 async function displayOrder() {
   await axios.get(`${apiUrl}/orders`).then((response) => {
     const orders = response.data.reverse();
@@ -222,3 +229,4 @@ function toggleSidenav() {
     iconSidenav.classList.remove("d-none");
   }
 }
+

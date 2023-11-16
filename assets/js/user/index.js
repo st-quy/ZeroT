@@ -5,6 +5,11 @@ const apiUrl =
     : "https://api-zerot-lowdb.onrender.com";
 const tbody = document.querySelector("#data-table tbody");
 
+var role = localStorage.getItem("role");
+if (role === "seller") {
+  location.href = `${location.origin}/unauthorized.html`;
+}
+
 axios
   .get(`${apiUrl}/users`)
   .then((response) => {
