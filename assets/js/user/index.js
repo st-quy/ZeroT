@@ -3,6 +3,7 @@
 const tbody = document.querySelector("#data-table tbody");
 
 axios
+
   .get("http://localhost:4000/users")
   .then((response) => {
     const data = response.data;
@@ -59,7 +60,7 @@ axios
             next: "Next",
           },
         },
-        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
+        url: "/cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Vietnamese.json",
       },
     });
   })

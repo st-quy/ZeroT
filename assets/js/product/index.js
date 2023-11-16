@@ -1,6 +1,6 @@
 const tbody = document.querySelector('#table-product tbody');
 axios
-  .get("http://localhost:4000/products")
+  .get('http://localhost:4000/products')
   .then(function (response) {
     let index = 1;
     // const products = response.data.reverse();
@@ -24,7 +24,7 @@ axios
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${
                       product.price
-                    } VNĐ</span>
+                    } ₫</span>
                   </td>
                   <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
@@ -94,7 +94,9 @@ axios
 
 async function handleEdit(id) {
   try {
-    const response = await axios.get(`http://localhost:4000/products/${id}`);
+    const response = await axios.get(
+      `http://localhost:4000/products/${id}`
+    );
     const product = response.data;
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
@@ -111,7 +113,7 @@ async function handleEdit(id) {
       </div>
       <div class="form-group">
         <label for="priceInput">Giá sản phẩm</label>
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" value="${
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" value="${
           product.price
         }" />
       </div>
@@ -147,7 +149,7 @@ async function handleEdit(id) {
                     .map((image, index) => {
                       return `<img src="${product.image[index].url}" style="width:100px; padding: 10px"/>`;
                     })
-                    .join('')
+                    .join("")
                 : `<img src="${product.image}" style="width:100px; padding: 10px"/>`
             }
           </div>
@@ -303,7 +305,9 @@ async function handleEdit(id) {
 
 async function handleDelete(id) {
   try {
-    const response = await axios.get(`http://localhost:4000/products/${id}`);
+    const response = await axios.get(
+      `http://localhost:4000/products/${id}`
+    );
     const product = response.data;
 
     const modalTitle = document.getElementById('modal-title');
@@ -347,7 +351,7 @@ async function createProduct() {
     
       <label>Giá sản phẩm</label>
       <div class="mb-3">
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm (VND)" required/>
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" required/>
       </div>
       <label>Mô tả sản phẩm</label>
       <div class="mb-3">
@@ -391,9 +395,7 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector(
-    'input[placeholder="Giá sản phẩm (VND)"'
-  );
+  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm ₫"');
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'
@@ -442,7 +444,7 @@ async function createProduct() {
       var urls = await uploadFile(fileInput.files);
       try {
         await axios
-          .post("http://localhost:4000/products", {
+          .post('http://localhost:4000/products', {
             name,
             price,
             stock,

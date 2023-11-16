@@ -148,29 +148,76 @@ async function forgotPassword() {
                     `http://localhost:4000/users/${userExist.id}`,
                     { password: newPassword }
                   );
-                  toastr.success("Đổi mật khẩu thành công", "Message", true, {
-                    timeOut: 2000,
-                    closeButton: true,
-                    debug: false,
-                    newestOnTop: true,
-                    progressBar: true,
-                    positionClass: "toast-top-right",
-                    preventDuplicates: true,
-                    onclick: null,
-                    showDuration: "300",
-                    hideDuration: "1000",
-                    extendedTimeOut: "1000",
-                    showEasing: "swing",
-                    hideEasing: "linear",
-                    showMethod: "fadeIn",
-                    hideMethod: "fadeOut",
-                    tapToDismiss: false,
-                  });
+                  closeCodeModal();
 
-                  closePasswordModal();
-                  setTimeout(function () {
-                    window.location.href = "sign-in.html";
-                  }, 1000);
+                  // Open the password modal and wait for user input
+                  passwordModal.style.display = "block";
+                  newPasswordInput.focus();
+
+                  var submitPassword = async function () {
+                    var newPassword = newPasswordInput.value;
+                    if (newPassword) {
+                      // Update password in the database
+                      await axios.patch(
+                        `http://localhost:4000/users/${userExist.id}`,
+                        { password: newPassword }
+                      );
+                      toastr.success(
+                        "Đổi mật khẩu thành công",
+                        "Message" , true,
+                        {
+                          timeOut: 2000,
+                          closeButton: true,
+                          debug: false,
+                          newestOnTop: true,
+                          progressBar: true,
+                          positionClass: "toast-top-right",
+                          preventDuplicates: true,
+                          onclick: null,
+                          showDuration: "300",
+                          hideDuration: "1000",
+                          extendedTimeOut: "1000",
+                          showEasing: "swing",
+                          hideEasing: "linear",
+                          showMethod: "fadeIn",
+                          hideMethod: "fadeOut",
+                          tapToDismiss: false,
+                        }
+                      );
+                      
+                      closePasswordModal();
+                      setTimeout(function () {
+                        window.location.href = "sign-in.html";
+                      }, 1000);
+                    } else {
+                      toastr.warning(
+                        "Mật khẩu sai vui lòng nhập lại",
+                        "Message" ,
+                        {
+                          timeOut: 2000,
+                          closeButton: true,
+                          debug: false,
+                          newestOnTop: true,
+                          progressBar: true,
+                          positionClass: "toast-top-right",
+                          preventDuplicates: true,
+                          onclick: null,
+                          showDuration: "300",
+                          hideDuration: "1000",
+                          extendedTimeOut: "1000",
+                          showEasing: "swing",
+                          hideEasing: "linear",
+                          showMethod: "fadeIn",
+                          hideMethod: "fadeOut",
+                          tapToDismiss: false,
+                        }
+                      );
+                    }
+                  };
+
+                  document
+                    .getElementById("password-modal-submit")
+                    .addEventListener("click", submitPassword);
                 } else {
                   toastr.warning("Mật khẩu sai vui lòng nhập lại", "Message", {
                     timeOut: 2000,

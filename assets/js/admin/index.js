@@ -12,7 +12,7 @@ if (!role || !["admin", "seller"].includes(role)) {
 // }
 
 axios
-  .get("http://localhost:4000/orders")
+  .get('http://localhost:4000/orders')
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -77,7 +77,7 @@ axios
   });
 // Tổng users
 axios
-  .get("http://localhost:4000/users")
+  .get('http://localhost:4000/users')
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -139,7 +139,7 @@ axios
   });
 
 axios
-  .get("http://localhost:4000/orders")
+  .get('http://localhost:4000/orders')
   .then(function (response) {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1;
@@ -191,7 +191,7 @@ axios
 
 //products
 axios
-  .get("http://localhost:4000/products")
+  .get('http://localhost:4000/products')
   .then(function (response) {
     const products = response.data;
     const currentDate = new Date();
@@ -250,7 +250,7 @@ axios
   });
 
 axios
-  .get("http://localhost:4000/orders")
+  .get('http://localhost:4000/orders')
   .then((response) => {
     const data = response.data;
     // Tạo một đối tượng để lưu trữ tổng đơn hàng trên từng ngày và từng tháng
@@ -390,7 +390,7 @@ axios
 
 // Sử dụng Axios để lấy dữ liệu từ API
 axios
-  .get("http://localhost:4000/products")
+  .get('http://localhost:4000/products')
   .then(function (response) {
     var products = response.data;
 

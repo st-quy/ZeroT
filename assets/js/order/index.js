@@ -3,10 +3,12 @@ var updateModal = document.getElementById("updateOrderModal");
 var closeBtn = document.getElementsByClassName("close-modal")[0];
 
 async function displayOrder() {
-  await axios.get("http://localhost:4000/orders").then((response) => {
-    const orders = response.data.reverse();
-    orders.forEach(async (item, index) => {
-      const row = document.createElement("tr");
+  await axios
+    .get("http://localhost:4000/orders")
+    .then((response) => {
+      const orders = response.data.reverse();
+      orders.forEach(async (item, index) => {
+        const row = document.createElement("tr");
 
       row.innerHTML = `<td class="align-middle px-4">
                               <span class="text-secondary text-xs font-weight-bold">${
@@ -82,8 +84,10 @@ async function showPopupUpdate(id) {
   var inputOrderId = document.getElementById("order-id");
   inputOrderId.value = id;
 
-  await axios.get("http://localhost:4000/orders").then((response) => {
-    const order = response.data.find((item) => item.id === id);
+  await axios
+    .get("http://localhost:4000/orders")
+    .then((response) => {
+      const order = response.data.find((item) => item.id === id);
 
     const select = document.querySelector("#status_list_edit");
     select.value = order.status;
@@ -149,7 +153,9 @@ closeBtn.onclick = function () {
 
 async function seeMore(orderId) {
   try {
-    const response = await axios.get(`http://localhost:4000/orders/${orderId}`);
+    const response = await axios.get(
+      `http://localhost:4000/orders/${orderId}`
+    );
     const orderData = response.data;
     console.log(orderData.orderItems);
 
