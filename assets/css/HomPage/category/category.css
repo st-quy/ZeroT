@@ -19,6 +19,18 @@
   padding-bottom: 10px;
   position: relative;
   transition: all 0.3s;
+  cursor: pointer;
+}
+#category .category-container > a.active {
+  color: #fff;
+}
+#category .category-container > a.active::before {
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  bottom: 0;
 }
 
 #category .category-container > a:hover {
@@ -38,7 +50,7 @@
   position: relative;
 }
 #sort .sort-container {
-  width: 15%;
+  width: 17%;
   margin-left: auto;
   color: #fff;
   cursor: pointer;
@@ -68,12 +80,29 @@ ul.choose-sort {
   padding: 5px 0;
   cursor: pointer;
 }
-.choose-sort > li:first-child,
 .choose-sort > li:hover {
   color: #0071e3;
 }
 .show {
   display: block;
+}
+.choose-sort li.active {
+  position: relative;
+}
+
+.choose-sort li.active::before {
+  content: '\2713'; /* Unicode character for checkmark */
+  position: absolute;
+  top: 50%;
+  left: 10px; /* Adjust the position as needed */
+  transform: translateY(-50%);
+  font-size: 1.2em; /* Adjust the font size as needed */
+  color: #0071e3; /* Change the color as needed */
+}
+
+/* Adjust the padding to make room for the checkmark */
+.choose-sort li.active {
+  padding-left: 30px; /* Adjust the padding as needed */
 }
 
 /* Responsive */

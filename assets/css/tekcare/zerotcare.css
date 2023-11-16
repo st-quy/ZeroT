@@ -61,7 +61,7 @@ body {
     justify-content: center;
     display: flex;
     margin: 12px 5px;
-    font-family: "Arial", sans-serif;
+    font-family: 'Arial', sans-serif;
   }
 }
 
@@ -117,7 +117,7 @@ body {
     justify-content: center;
     display: flex;
     margin: 12px 5px;
-    font-family: "Arial", sans-serif;
+    font-family: 'Arial', sans-serif;
   }
 }
 
@@ -163,7 +163,7 @@ body {
     justify-content: center;
     display: flex;
     margin: 12px 5px;
-    font-family: "Arial", sans-serif;
+    font-family: 'Arial', sans-serif;
   }
 }
 
@@ -201,7 +201,7 @@ body {
     justify-content: center;
     display: flex;
     margin: 12px 5px;
-    font-family: "Arial", sans-serif;
+    font-family: 'Arial', sans-serif;
   }
 }
 
@@ -220,7 +220,7 @@ body {
 .nav-item a {
   color: white !important;
   padding: 16px;
-  font-family: "Helvetica Neue", Helvetica, Arial, "SF Pro Display", sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
   font-size: 15px;
 }
 
@@ -489,6 +489,7 @@ ul.menu li:hover {
     margin: 0 10px;
   }
 }
+
 .note {
   font-style: italic;
   font-size: 14px;
@@ -597,7 +598,7 @@ footer {
   padding-bottom: 30px;
   background-color: #101010;
   color: #3333;
-  font-family: "Helvetica Neue", Helvetica, Arial, "SF Pro Display", sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
   width: 100vw !important;
   overflow: hidden;
 }
@@ -750,4 +751,89 @@ span {
   .list-foot {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+.nav-bars-btn {
+  font-size: 25px;
+  display: none;
+  padding-left: 15px;
+}
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  animation: fadeIn linear 0.2s;
+}
+.nav-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  max-width: 100%;
+  background-color: #3e3e3f;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform linear 0.2s, opacity linear 0.2s;
+}
+.nav-mobile-list {
+  margin-top: 30px;
+  list-style-type: none;
+}
+
+.nav-link-mobile {
+  margin-top: 20px;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  padding: 8px 0;
+  font-size: 1.4rem;
+}
+.mobile-close {
+  font-size: 35px;
+  color: #666;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.nav-input:checked ~ .nav-overlay ~ .nav-mobile .logo {
+  display: block;
+}
+.nav-input:checked ~ .nav-overlay {
+  display: block;
+}
+.nav-input:checked ~ .nav-mobile {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.nav-link .logo-zerot-mobile {
+  width: 100px;
+}
+
+@media (max-width: 1052px) {
+  .nav-bars-btn {
+    display: block;
+  }
+  .nav-pc {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.btn {
+  margin-left: -40px;
 }
