@@ -1,0 +1,29 @@
+.pagination {
+  justify-content: center !important;
+  background: #3e3e3f;
+}
+.page-link {
+  background-color: #323232;
+  border: 1px solid #323232;
+  &:hover {
+    background-color: #050e11;
+    border-color: #050e11;
+    color: white;
+  }
+  &:focus {
+    background-color: #050e11;
+    border-color: #050e11;
+    color: white;
+    box-shadow: unset;
+  }
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #050e11;
+  border-color: #050e11;
+}
+#sapxep {
+  font-size: 14px;
+}
