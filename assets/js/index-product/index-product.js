@@ -68,7 +68,7 @@ function displayProduct(products) {
       productList.innerHTML = `Không tìm thấy sản phẩm có từ khóa '${searchData}'`;
       productList.style.fontSize = '20px';
       productList.style.color = 'white';
-    }
+      }
   });
   const displayItem = (items) => {
     productList.innerHTML = '';
