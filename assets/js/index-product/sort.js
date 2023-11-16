@@ -116,7 +116,6 @@ function sortProducts(criteria) {
         return products;
       })
       .then((products) => {
-        console.log(products);
         switch (criteria) {
           case "createdAt":
             handleSortModal(0);
@@ -160,7 +159,6 @@ function sortProducts(criteria) {
         return products;
       })
       .then((products) => {
-        console.log(products);
         switch (criteria) {
           case "createdAt":
             handleSortModal(0);
