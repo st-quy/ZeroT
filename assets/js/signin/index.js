@@ -14,7 +14,6 @@ if (isLogin === true) {
       location.href = `${location.origin}/seller.html`;
     } else if (role === "delivery") {
       location.href = `${location.origin}/delivery.html`;
-      alert("delivery");
     } else {
       location.href = `${location.origin}/index.html`;
     }
@@ -74,11 +73,12 @@ async function handleLogin() {
                 })
                 .then((res) => {
                   setTimeout(() => {
-                    if (
-                      userExist.role === "admin" ||
-                      userExist.role === "seller"
-                    ) {
+                    if (userExist.role === "admin") {
                       location.href = `${location.origin}/admin.html`;
+                    } else if (role === "seller") {
+                      location.href = `${location.origin}/seller.html`;
+                    } else if (role === "delivery") {
+                      location.href = `${location.origin}/delivery.html`;
                     } else {
                       location.href = `${location.origin}/index.html`;
                     }
@@ -91,8 +91,12 @@ async function handleLogin() {
           );
       } else {
         setTimeout(() => {
-          if (userExist.role === "admin" || userExist.role === "seller") {
+          if (userExist.role === "admin") {
             location.href = `${location.origin}/admin.html`;
+          } else if (role === "seller") {
+            location.href = `${location.origin}/seller.html`;
+          } else if (role === "delivery") {
+            location.href = `${location.origin}/delivery.html`;
           } else {
             location.href = `${location.origin}/index.html`;
           }
