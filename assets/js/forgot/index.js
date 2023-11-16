@@ -90,7 +90,7 @@ async function forgotPassword() {
   }
 
   await axios
-    .get("https://api-zerot-lowdb.onrender.com/users")
+    .get("http://localhost:4000/users")
     .then((response) => {
       var userExist = response.data.find((usr) => usr.email === email);
       if (userExist) {
@@ -124,6 +124,7 @@ async function forgotPassword() {
                   tapToDismiss: false,
                 }
               );
+              closeForgotModal();
               codeModal.style.display = "block";
               codeInput.focus();
 
@@ -166,7 +167,7 @@ async function forgotPassword() {
                     if (newPassword) {
                       // Update password in the database
                       await axios.patch(
-                        `https://api-zerot-lowdb.onrender.com/users/${userExist.id}`,
+                        `http://localhost:4000/users/${userExist.id}`,
                         { password: newPassword }
                       );
                       toastr.success(
@@ -193,9 +194,6 @@ async function forgotPassword() {
                       );
                       
                       closePasswordModal();
-                      setTimeout(function () {
-                        window.location.href = "sign-in.html";
-                      }, 1000);
                     } else {
                       toastr.warning(
                         "Mật khẩu sai vui lòng nhập lại",

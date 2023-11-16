@@ -14,7 +14,7 @@ const profile = JSON.parse(localStorage.getItem('me'));
 
 var isLogin = JSON.parse(localStorage.getItem('isLogin'));
 var role = localStorage.getItem('role');
-const rolelist = ['admin', 'seller'];
+const rolelist = ['admin', 'seller', 'delivery'];
 
 if (!role || !rolelist.includes(role)) {
   location.href = `${location.origin}/index.html`;
