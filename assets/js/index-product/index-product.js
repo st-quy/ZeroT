@@ -1,18 +1,18 @@
-const url = "https://api-zerot-lowdb.onrender.com/products";
+const url = "http://localhost:4000/products";
 chooseCategory("tất cả");
 function displayProduct(products) {
-  const productList = document.querySelector('.product-list');
-  productList.innerHTML = '';
+  const productList = document.querySelector(".product-list");
+  productList.innerHTML = "";
   const sortedProducts = products.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
   const currentDate = new Date();
 
   sortedProducts.forEach((product) => {
-    const productItem = document.createElement('div');
-    productItem.classList.add('product-item');
-    productItem.classList.add('col-12');
-    productItem.classList.add('col-md-4');
+    const productItem = document.createElement("div");
+    productItem.classList.add("product-item");
+    productItem.classList.add("col-12");
+    productItem.classList.add("col-md-4");
 
     const productCreatedAt = new Date(product.createdAt);
     const timeDifference = currentDate - productCreatedAt;
@@ -33,7 +33,9 @@ function displayProduct(products) {
                             </div>
                             <p class="white-text">${product.price}<a>₫</a></p>
                             <div class="add-to-cart">
-                                <button>Thêm vào giỏ hàng</button>
+                                <button onclick="addToCart(${
+                                  product.id
+                                })">Thêm vào giỏ hàng</button>
                             </div>
                         </div> 
                         ${
@@ -42,17 +44,17 @@ function displayProduct(products) {
                                     Mới
                                     <span class="visually-hidden">unread messages</span>
                                 </span>`
-                            : ''
+                            : ""
                         }
                     </div>
                 `;
       productList.appendChild(productItem);
     }
   });
-  document.getElementById('search-input').addEventListener('keyup', (e) => {
+  document.getElementById("search-input").addEventListener("keyup", (e) => {
     const searchData = e.target.value.toLowerCase();
     let filterData = [];
-    if (searchData.trim() !== '') {
+    if (searchData.trim() !== "") {
       filterData = products.filter((item) => {
         return !item.deletedAt && item.name.toLowerCase().includes(searchData);
       });
@@ -65,18 +67,18 @@ function displayProduct(products) {
       displayItem(filterData);
     } else {
       productList.innerHTML = `Không tìm thấy sản phẩm có từ khóa '${searchData}'`;
-      productList.style.fontSize = '20px';
-      productList.style.color = 'white';
+      productList.style.fontSize = "20px";
+      productList.style.color = "white";
     }
   });
   const displayItem = (items) => {
-    productList.innerHTML = '';
+    productList.innerHTML = "";
 
     items.forEach((item) => {
-      const productItem = document.createElement('div');
-      productItem.classList.add('product-item');
-      productItem.classList.add('col-12');
-      productItem.classList.add('col-md-4');
+      const productItem = document.createElement("div");
+      productItem.classList.add("product-item");
+      productItem.classList.add("col-12");
+      productItem.classList.add("col-md-4");
 
       const productCreatedAt = new Date(item.createdAt);
       const timeDifference = currentDate - productCreatedAt;
@@ -103,7 +105,7 @@ function displayProduct(products) {
                 Mới
                 <span class="visually-hidden">unread messages</span>
               </span>`
-            : ''
+            : ""
         }
       </div>
     `;
@@ -118,23 +120,23 @@ function chooseCategory(category) {
     .then((response) => response.json())
     .then((products) => {
       switch (category) {
-        case 'tất cả':
+        case "tất cả":
           handleCategoryTag(0);
           sortProducts("createdAt");
           break;
-        case 'macbook':
+        case "macbook":
           handleCategoryTag(1);
           sortProducts("createdAt");
           products = products.filter(
-            (p) => p.category.toLowerCase() === 'laptop'
+            (p) => p.category.toLowerCase() === "laptop"
           );
           break;
-        case 'phụ kiện':
+        case "phụ kiện":
           handleCategoryTag(2);
           sortProducts("createdAt");
 
           products = products.filter(
-            (p) => p.category.toLowerCase() === 'phụ kiện'
+            (p) => p.category.toLowerCase() === "phụ kiện"
           );
           break;
       }
@@ -143,12 +145,16 @@ function chooseCategory(category) {
 }
 
 function handleCategoryTag(active) {
-  const categoriesTag = document.querySelectorAll('.category-container > a');
+  const categoriesTag = document.querySelectorAll(".category-container > a");
   for (var i = 0; i < categoriesTag.length; i++) {
     if (i === active) {
-      categoriesTag[i].classList.add('active');
+      categoriesTag[i].classList.add("active");
       continue;
     }
-    categoriesTag[i].classList.remove('active');
+    categoriesTag[i].classList.remove("active");
   }
+}
+
+function addToCart(id) {
+  console.log(id);
 }

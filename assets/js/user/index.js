@@ -3,11 +3,11 @@
 const tbody = document.querySelector("#data-table tbody");
 
 axios
-  .get("https://api-zerot-lowdb.onrender.com/users")
+  .get("http://localhost:4000/users")
   .then((response) => {
     const data = response.data;
     data
-      .filter((acc) => !acc.deletedAt && acc.role !== 'admin')
+      .filter((acc) => !acc.deletedAt && acc.role !== "admin")
       .map((item, index) => {
         const row = document.createElement("tr");
         row.innerHTML = `<td class="align-middle text-center">
@@ -69,9 +69,7 @@ axios
 
 async function handleEdit(userId) {
   try {
-    const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/users/${userId}`
-    );
+    const response = await axios.get(`http://localhost:4000/users/${userId}`);
     const userData = response.data;
 
     const modalTitle = document.getElementById("modal-title");
@@ -125,7 +123,7 @@ async function handleEdit(userId) {
     saveModal.addEventListener("click", async function () {
       try {
         const response = await axios.patch(
-          `https://api-zerot-lowdb.onrender.com/users/${userId}`,
+          `http://localhost:4000/users/${userId}`,
           {
             role: roleSelect.value,
           }
@@ -147,9 +145,7 @@ async function handleEdit(userId) {
 
 async function handleDelete(userId) {
   try {
-    const response = await axios.get(
-      `https://api-zerot-lowdb.onrender.com/users/${userId}`
-    );
+    const response = await axios.get(`http://localhost:4000/users/${userId}`);
     const userData = response.data;
 
     const modalTitle = document.getElementById("modal-title");
@@ -162,7 +158,7 @@ async function handleDelete(userId) {
     saveModal.addEventListener("click", async function () {
       try {
         const response = await axios.delete(
-          `https://api-zerot-lowdb.onrender.com/users/${userId}`
+          `http://localhost:4000/users/${userId}`
         );
 
         const modal = new bootstrap.Modal(document.getElementById("myModal"));
