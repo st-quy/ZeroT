@@ -235,9 +235,10 @@ async function addToCart(prdId) {
 
   const userId = user?.id;
 
-  if (!isLogin) {
+  if (!isLogin || (isLogin && role !== "customer")) {
     addToCartModal.style.display = "block";
   }
+
   if (isLogin && role === "customer") {
     await axios.get("http://localhost:4000/users").then(async (response) => {
       const user = response.data.find((u) => u.id === userId);
