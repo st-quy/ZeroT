@@ -225,8 +225,6 @@ function handleSortModal(index) {
 
 // ADD TO CART
 
-// const num = document.getElementById("cart-items-number");
-
 const addToCartModal = document.getElementById("add-to-cart-alert");
 async function addToCart(prdId) {
   const isLogin = JSON.parse(localStorage.getItem("isLogin"));
@@ -239,17 +237,14 @@ async function addToCart(prdId) {
     addToCartModal.style.display = "block";
   }
   if (isLogin && role === "customer") {
-    //thêm vào giỏ hàng
-    //1. find customer by id
     await axios.get("http://localhost:4000/users").then(async (response) => {
       const user = response.data.find((u) => u.id === userId);
 
-      //2. find product
       await axios
         .get("http://localhost:4000/products")
         .then(async (response) => {
           const product = response.data.find((p) => Number(p.id) === prdId);
-          //3. add product to cart
+
           var prdObject = {
             id: product.id,
             image: product.image,
