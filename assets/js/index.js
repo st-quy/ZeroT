@@ -51,13 +51,13 @@ items.forEach((item) => {
 
 var minhModal = document.getElementById('minh-modal');
 
-if (profileData && profileData.status === "inactive") {
-    minhModal.style.display = "block";
+if (profileData && profileData.status === 'inactive') {
+    minhModal.style.display = 'block';
 }
 
 function closeConfirmModal() {
-    var minhModal = document.getElementById("minh-modal");
-    minhModal.style.display = "none";
+    var minhModal = document.getElementById('minh-modal');
+    minhModal.style.display = 'none';
 }
 
 async function confirmCode() {
