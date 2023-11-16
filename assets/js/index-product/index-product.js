@@ -266,3 +266,124 @@ function createPageButton(pageNumber, label) {
   li.appendChild(a);
   return li;
 }
+
+// Add to cart
+const addToCartModal = document.getElementById("add-to-cart-alert");
+async function addToCart(prdId) {
+  const apiUrl =
+    window.location.hostname === "localhost" || "127.0.0.1"
+      ? "http://localhost:4000"
+      : "https://api-zerot-lowdb.onrender.com";
+  const isLogin = JSON.parse(localStorage.getItem("isLogin"));
+  const role = localStorage.getItem("role");
+  const user = JSON.parse(localStorage.getItem("me"));
+
+  const userId = user?.id;
+
+  if (!isLogin) {
+    addToCartModal.style.display = "block";
+  }
+
+  if (isLogin && role !== "customer") {
+    addToCartAction.textContent = "Đăng xuất";
+    addToCartAction.href = `${location.origin}/index.html`;
+    addToCartModal.style.display = "block";
+    addToCartAction.addEventListener("click", () => {
+      localStorage.removeItem("me");
+      localStorage.removeItem("role");
+      localStorage.removeItem("isLogin");
+      setTimeout(function () {
+        location.href = `${location.origin}/index.html`;
+      }, 500);
+    });
+  }
+  if (isLogin && role === "customer") {
+    await axios.get(`${apiUrl}/users`).then(async (response) => {
+      const user = response.data.find((u) => u.id === userId);
+
+      await axios.get(`${apiUrl}/products`).then(async (response) => {
+        const product = response.data.find((p) => Number(p.id) === prdId);
+
+        var prdObject = {
+          id: product.id,
+          image: product.image,
+          price: product.price,
+          description: product.description,
+          name: product.name,
+          category: product.category,
+          quantity: 1,
+        };
+        if (user.cartItems) {
+          if (user.cartItems.length > 0) {
+            let prdFound = false;
+            for (let i = 0; i < user.cartItems.length; i++) {
+              if (user.cartItems[i].id === prdObject.id) {
+                user.cartItems[i].quantity += 1;
+                prdFound = true;
+                break;
+              }
+            }
+            if (!prdFound) user.cartItems.push(prdObject);
+          } else {
+            user.cartItems.push(prdObject);
+          }
+        } else {
+          user.cartItems = [prdObject];
+        }
+
+        await axios
+          .patch(`${apiUrl}/users/${userId}`, {
+            cartItems: user.cartItems,
+          })
+          .then((res) => {
+            toastr.success("Thêm vào giỏ hàng thành công", "Message", {
+              timeOut: 2000,
+              closeButton: true,
+              debug: false,
+              newestOnTop: true,
+              progressBar: true,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+              tapToDismiss: false,
+            });
+            num.textContent = user.cartItems.reduce(
+              (acc, cur) => acc + cur.quantity,
+              0
+            );
+          })
+          .catch((err) => {
+            toastr.error("Không thể thêm vào giỏ hàng", "Message", {
+              timeOut: 2000,
+              closeButton: true,
+              debug: false,
+              newestOnTop: true,
+              progressBar: true,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+              tapToDismiss: false,
+            });
+          });
+      });
+    });
+  }
+}
+
+function closeAddToCartAlert() {
+  addToCartModal.style.display = "none";
+}
