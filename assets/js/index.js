@@ -75,11 +75,11 @@ function closeConfirmModal() {
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
-  await axios.get("http://localhost:4000/users").then(async (response) => {
+  await axios.get(`${apiUrl}/users/${userData.id}`).then(async (response) => {
     var userExist = response.data.find((usr) => usr.email === profile.email);
     if (Number(enteredCode) === userExist.code) {
       await axios
-        .patch(`http://localhost:4000/users/${userExist.id}`, {
+        .patch(`${apiUrl}/users/${userExist.id}`, {
           status: "active",
           code: null,
         })
