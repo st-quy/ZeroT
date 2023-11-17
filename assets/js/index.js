@@ -5,26 +5,23 @@ var profileData = JSON.parse(localStorage.getItem("me"));
 const logoutLink = document.getElementById("registerLink");
 const loginLink = document.getElementById("loginLink");
 const helloElement = document.createElement("span");
-const num = document.getElementById("cart-items-number");
-const addToCartAction = document.getElementById("add-to-cart-action");
-
 const userData = JSON.parse(localStorage.getItem("me"));
 
 if (isLogin) {
-  helloElement.textContent = `Xin chào ${userData.name.toUpperCase()} !`;
-  loginLink.textContent = "";
-  loginLink.parentNode.insertBefore(helloElement, loginLink);
-  logoutLink.textContent = "Đăng xuất";
-  logoutLink.href = "index.html";
-  const apiUrl =
-    window.location.hostname === "localhost" || "127.0.0.1"
-      ? "http://localhost:4000"
-      : "https://api-zerot-lowdb.onrender.com";
-  axios.get(`${apiUrl}/users/${userData.id}`).then((res) => {
-    num.textContent = res.data.cartItems
-      ? res.data.cartItems.reduce((acc, cur) => acc + cur.quantity, 0)
-      : 0;
-  });
+  if (role === "admin") {
+    console.log(123);
+    loginLink.parentNode.insertBefore(helloElement, loginLink);
+    loginLink.href = "admin.html";
+    logoutLink.textContent = "Đăng xuất";
+    logoutLink.href = "index.html";
+    loginLink.textContent = "Trang admin";
+  } else {
+    helloElement.textContent = `Xin chào ${userData.name.toUpperCase()} !`;
+    loginLink.textContent = "";
+    loginLink.parentNode.insertBefore(helloElement, loginLink);
+    logoutLink.textContent = "Đăng xuất";
+    logoutLink.href = "index.html";
+  }
 } else {
   helloElement.textContent = "";
   loginLink.textContent = "Đăng nhập";
@@ -75,11 +72,14 @@ function closeConfirmModal() {
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
-  await axios.get("http://localhost:4000/users").then(async (response) => {
-    var userExist = response.data.find((usr) => usr.email === profile.email);
-    if (Number(enteredCode) === userExist.code) {
+  const apiUrl =
+    window.location.hostname === "localhost" || "127.0.0.1"
+      ? "http://localhost:4000"
+      : "https://api-zerot-lowdb.onrender.com";
+  await axios.get(`${apiUrl}/users/${userData.id}`).then(async (response) => {
+    if (Number(enteredCode) === response.data.code) {
       await axios
-        .patch(`http://localhost:4000/users/${userExist.id}`, {
+        .patch(`${apiUrl}/users/${userData.id}`, {
           status: "active",
           code: null,
         })
