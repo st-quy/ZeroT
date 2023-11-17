@@ -76,10 +76,10 @@ async function confirmCode() {
     window.location.hostname === "localhost" || "127.0.0.1"
       ? "http://localhost:4000"
       : "https://api-zerot-lowdb.onrender.com";
-  await axios.get(`${apiUrl}/users/${userData.id}`).then(async (response) => {
-    if (Number(enteredCode) === response.data.code) {
-      await axios
-        .patch(`${apiUrl}/users/${userData.id}`, {
+      await axios.get(`${apiUrl}/users/${userData.id}`).then(async (response) => {
+        if (Number(enteredCode) === response.data.code) {
+          await axios
+            .patch(`${apiUrl}/users/${userData.id}`, {
           status: "active",
           code: null,
         })
