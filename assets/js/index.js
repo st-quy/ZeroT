@@ -1,7 +1,6 @@
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var profileData = JSON.parse(localStorage.getItem("me"));
-
 const logoutLink = document.getElementById("registerLink");
 const loginLink = document.getElementById("loginLink");
 const helloElement = document.createElement("span");
@@ -13,6 +12,9 @@ if (isLogin) {
   loginLink.parentNode.insertBefore(helloElement, loginLink);
   logoutLink.textContent = "Đăng xuất";
   logoutLink.href = "index.html";
+
+  loginLink.textContent = `ho so `;
+  loginLink.href = "profile.html";
 } else {
   helloElement.textContent = "";
   loginLink.textContent = "Đăng nhập";
