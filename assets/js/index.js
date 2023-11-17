@@ -13,7 +13,7 @@ if (isLogin) {
   logoutLink.textContent = "Đăng xuất";
   logoutLink.href = "index.html";
 
-  loginLink.textContent = `ho so `;
+  loginLink.textContent = `Hồ Sơ `;
   loginLink.href = "profile.html";
 } else {
   helloElement.textContent = "";

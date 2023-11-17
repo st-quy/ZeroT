@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="assets/css/profile/profile.css" />
-    
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile Page</title>
@@ -15,12 +15,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
   </head>
   <body>
     <!-- Navbar top -->
     <div class="navbar-top">
       <div class="title">
-        <h1>Profile</h1>
+        <h1>Thông tin tài khoản</h1>
       </div>
 
       <!-- Navbar -->
@@ -36,7 +37,7 @@
     <!-- End -->
 
     <!-- Sidenav -->
-    <div class="sidenav">
+    <!-- <div class="sidenav">
       <div class="profile">
         <img
           src="https://lamanzanamordida.net/app/uploads-lamanzanamordida.net/2021/11/logo-apple-1.jpg?x=480&y=375&quality=40"
@@ -54,27 +55,38 @@
           <hr align="center" />
         </div>
       </div>
-    </div>
-    <!-- End -->
-
-    <!-- Main -->
+    </div> -->
     <div class="main">
-      <h2>IDENTITY</h2>
       <div class="card">
         <div class="card-body">
           <i class="fa fa-pen fa-xs edit"></i>
-          <table class='addd' id="table-profile">
-            <thead>
-              <tr>
-                <th class ="username-1"></th>
-              </tr>
-            </thead>
-            
-            
-              
+          <table class="addd" id="table-profile">
+            <tbody id="table-body">
+              <!-- Dữ liệu người dùng sẽ được thêm vào đây -->
+            </tbody>
           </table>
+          <button class="change" onclick="openModal()">
+            Thay đổi mật khẩu
+          </button>
+
+          <!-- <div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <form id="changePasswordForm">
+                <label for="newPassword">Mật khẩu mới:</label>
+                <input
+                  type="password"
+                  id="newPassword"
+                  name="newPassword"
+                  required
+                />
+                <button type="button" onclick="submitForm()">Xác nhận</button>
+              </form>
+            </div>
+          </div> -->
         </div>
-    <!-- End -->
-    <script src="./assets/js/profile/prolife.js"></script>
+      </div>
+    </div>
   </body>
+  <script src="./assets/js/profile/prolife.js"></script>
 </html>

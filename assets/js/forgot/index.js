@@ -1,7 +1,4 @@
-const apiUrl =
-  window.location.hostname === "localhost" || "127.0.0.1"
-    ? "http://localhost:4000"
-    : "https://api-zerot-lowdb.onrender.com";
+
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 
