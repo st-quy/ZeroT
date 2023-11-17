@@ -226,8 +226,10 @@ function toggleSidenav() {
 const userManagementItem = document.getElementById("userManager");
 const productManagementItem = document.getElementById("productManager");
 const dashBoardManagementItem = document.getElementById("dashBoard");
+const backHome = document.getElementById("back");
 if (role === "delivery") {
   userManagementItem.style.display = "none";
   productManagementItem.style.display = "none";
   dashBoardManagementItem.style.display = "none"; 
+  backHome.style.display = "none";
 }
