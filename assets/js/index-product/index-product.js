@@ -256,7 +256,7 @@ function createPageButton(pageNumber, label) {
   a.href = "javascript:;";
   a.setAttribute("aria-label", label);
   a.innerHTML = `<span aria-hidden="true">${label}</span>
-                 <span class="sr-only">${label}</span>`;
+                <span class="sr-only">${label}</span>`;
   a.setAttribute("data-page", pageNumber);
   li.appendChild(a);
   return li;
@@ -264,6 +264,7 @@ function createPageButton(pageNumber, label) {
 
 // Add to cart
 const addToCartModal = document.getElementById("add-to-cart-alert");
+const addToCartMessage = document.getElementById("add-to-cart-message");
 async function addToCart(prdId) {
   const apiUrl =
     window.location.hostname === "localhost" || "127.0.0.1"
@@ -277,6 +278,7 @@ async function addToCart(prdId) {
 
   if (!isLogin) {
     addToCartModal.style.display = "block";
+    return;
   }
 
   if (isLogin && role !== "customer") {
@@ -291,11 +293,27 @@ async function addToCart(prdId) {
         location.href = `${location.origin}/index.html`;
       }, 500);
     });
+    return;
   }
-  if (isLogin && role === "customer") {
+  if (isLogin && role === "customer" && user.status === "inactive") {
+    addToCartAction.textContent = "Kích hoạt tài khoản";
+    addToCartAction.href = `${location.origin}/index.html`;
+    addToCartMessage.textContent =
+      "Tài khoản của bạn chưa active. Vui lòng nhập code để kích hoạt tài khoản";
+
+    addToCartModal.style.display = "block";
+    addToCartAction.addEventListener("click", () => {
+      setTimeout(function () {
+        location.href = `${location.origin}/index.html`;
+      }, 500);
+    });
+    return;
+  }
+
+  if (isLogin && role === "customer" && user.status === "active") {
     await axios.get(`${apiUrl}/users`).then(async (response) => {
       const user = response.data.find((u) => u.id === userId);
-
+      console.log(user);
       await axios.get(`${apiUrl}/products`).then(async (response) => {
         const product = response.data.find((p) => Number(p.id) === prdId);
 

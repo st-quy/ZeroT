@@ -10,18 +10,8 @@ if (role === "seller") {
 }
 
 if (!role || !["admin", "seller"].includes(role)) {
-  location.href = `${location.origin}/index.html`;
-}
-if (role === "customer") {
   location.href = `${location.origin}/unauthorized.html`;
 }
-if (!role || !["admin", "seller"].includes(role)) {
-  location.href = `${location.origin}/index.html`;
-}
-
-// if (role === "customer") {
-//   location.href = `${location.origin}/unauthorized.html`;
-// }
 
 axios
   .get(`${apiUrl}/orders`)
