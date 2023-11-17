@@ -1,8 +1,7 @@
-const url = `${
-  window.location.hostname === "localhost" || "127.0.0.1"
+const url = `${window.location.hostname === "localhost" || "127.0.0.1"
     ? "http://localhost:4000"
     : "https://api-zerot-lowdb.onrender.com"
-}/products`;
+  }/products`;
 
 var currentPage = 1;
 const productsPerPage = 6;
@@ -99,30 +98,26 @@ async function displayProduct(products) {
       productItem.innerHTML = `
                     <div class="product-container position-relative">
                         <div class="form-group">
-                            <img src="${
-                              product.image[0].url
-                            }" style="width: 250px; display: block; margin: 0 auto"; />           
+                            <img src="${product.image[0].url
+        }" style="width: auto; display: block; margin: 0 auto"; />           
                             <h3 class="white-text">${product.name}</h3>
                             <div class="description-box">
-                                <p class="description-text">${
-                                  product.description
-                                }</p>
+                                <p class="description-text">${product.description
+        }</p>
                             </div>
-                            <p class="white-text">${product.price}<a>₫</a></p>
+                            <p class="white-text">${product.price}<a>VND</a></p>
                             <div class="add-to-cart">
-                                <button onclick="addToCart(${
-                                  product.id
-                                })">Thêm vào giỏ hàng</button>
+                                <button onclick="addToCart(${product.id
+        })">Thêm vào giỏ hàng</button>
                             </div>
                         </div> 
-                        ${
-                          timeDifference <= twoDaysInMillis
-                            ? `<span class="position-absolute top-0 translate-middle badge rounded-pill bg-warning badge-product">
+                        ${timeDifference <= twoDaysInMillis
+          ? `<span class="position-absolute top-0 translate-middle badge rounded-pill bg-warning badge-product">
                                     Mới
                                     <span class="visually-hidden">unread messages</span>
                                 </span>`
-                            : ""
-                        }
+          : ""
+        }
                     </div>
                 `;
       productList.appendChild(productItem);

@@ -230,3 +230,12 @@ function toggleSidenav() {
   }
 }
 
+
+const productManagementItem = document.getElementById("productManager");
+const dashBoardManagementItem = document.getElementById("dashBoard");
+if (role === "delivery") {
+  userManagementItem.style.display = "none";
+  productManagementItem.style.display = "none";
+  dashBoardManagementItem.style.display = "none"; 
+}
+

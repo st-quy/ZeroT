@@ -9,6 +9,8 @@ var remember = JSON.parse(localStorage.getItem("remember"));
 if (isLogin === true) {
   if ((role && role === "admin") || role === "seller") {
     location.href = `${location.origin}/admin.html`;
+  } else if (userExist.role === "delivery") {
+    location.href = `${location.origin}/list-order-admin.html`;
   } else {
     location.href = `${location.origin}/index.html`;
   }
@@ -72,6 +74,8 @@ async function handleLogin() {
                       userExist.role === "seller"
                     ) {
                       location.href = `${location.origin}/admin.html`;
+                    } else if (userExist.role === "delivery") {
+                      location.href = `${location.origin}/list-order-admin.html`;
                     } else {
                       location.href = `${location.origin}/index.html`;
                     }
@@ -86,6 +90,8 @@ async function handleLogin() {
         setTimeout(() => {
           if (userExist.role === "admin" || userExist.role === "seller") {
             location.href = `${location.origin}/admin.html`;
+          } else if (userExist.role === "delivery") {
+            location.href = `${location.origin}/list-order-admin.html`;
           } else {
             location.href = `${location.origin}/index.html`;
           }

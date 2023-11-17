@@ -2,6 +2,19 @@ const apiUrl =
   window.location.hostname === "localhost" || "127.0.0.1"
     ? "http://localhost:4000"
     : "https://api-zerot-lowdb.onrender.com";
+
+var isLogin = JSON.parse(localStorage.getItem("isLogin"));
+var role = localStorage.getItem("role");
+if (!role || !["admin", "seller"].includes(role)) {
+  location.href = `${location.origin}/index.html`;
+}
+if (role === "customer") {
+  location.href = `${location.origin}/unauthorized.html`;
+}
+if (!role || !["admin", "seller"].includes(role)) {
+  location.href = `${location.origin}/index.html`;
+}
+
 const tbody = document.querySelector("#table-product tbody");
 var role = localStorage.getItem("role");
 
@@ -115,7 +128,7 @@ async function handleEdit(id) {
       </div>
       <div class="form-group">
         <label for="priceInput">Giá sản phẩm</label>
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" value="${product.price
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm VND" value="${product.price
       }" />
       </div>
       <div class="form-group">
@@ -345,7 +358,7 @@ async function createProduct() {
     
       <label>Giá sản phẩm</label>
       <div class="mb-3">
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" required/>
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm VND" required/>
       </div>
       <label>Mô tả sản phẩm</label>
       <div class="mb-3">
@@ -389,7 +402,7 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm ₫"');
+  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm VND"');
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'

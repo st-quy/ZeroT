@@ -18,6 +18,7 @@ if (role === "customer") {
 if (!role || !["admin", "seller"].includes(role)) {
   location.href = `${location.origin}/index.html`;
 }
+
 // if (role === "customer") {
 //   location.href = `${location.origin}/unauthorized.html`;
 // }
