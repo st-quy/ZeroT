@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 
   </head>
   <body>
@@ -135,24 +136,24 @@
         <div class="col-md-6">	
           <div class="d-flex flex-column justify-content-center mt-2">	
             <div class="main_image">	
-              <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/5698/318449/s16/imac-silver-650x650.png" class="main_product_image" id="main_product_image" width="350">	
+              <img id="img" src="" class="main_product_image" id="main_product_image" width="350">	
             </div>	
             </div>	
           </div>	
           <div class="col-md-6 mt-2">	
             <div class="p-3 right-side">	
               <div class="d-flex justify-content-between align-items-center">	
-                  <h1 class="title-product">iMac 24 inch M3 2023 8CPU - 8GPU</h1>	
+                  <h1 class="title-product" id="title-product"></h1>	
               </div>	
               <i class="new">Mới</i>
               <div class="main-price">
                 <h3 class="price-product">Giá dự kiến:</h3>	
-                <h3 class="price">41.990.000₫</h3>
+                <h3 class="price" id="price"></h3>
               </div>
               <div class="capacity callout">
                 <ul>
                   <li class="active">
-                    <a>RAM 8 GB - SSD 512 GB</a>
+                    <a id="description"></a>
                   </li>
                 </ul>
               </div>

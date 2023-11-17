@@ -28,7 +28,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/index-product/pagination.css">
     <link rel="stylesheet" href="./assets/css/HomPage/category/category.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/panigation/index.css">
+
     <script type="text/javascript">
       (function () {
         emailjs.init("cAba6hxOeNz1APEiA");
@@ -221,10 +222,10 @@
         </div>
       </div>
       <ul class="choose-sort" id="sort-modal">
-        <li onclick="sortProducts('createdAt')">Mới ra mắt</li>
-        <li onclick="sortProducts('sold')">Bán chạy</li>
-        <li onclick="sortProducts('priceDesc')">Giá cao đến thấp</li>
-        <li onclick="sortProducts('priceAsc')">Giá thấp đến cao</li>
+        <li onclick="handleSort(this)" value="0">Mới ra mắt</li>
+        <li onclick="handleSort(this)" value="1">Bán chạy</li>
+        <li onclick="handleSort(this)" value="2">Giá cao đến thấp</li>
+        <li onclick="handleSort(this)" value="3">Giá thấp đến cao</li>
       </ul>
     </section>
 
@@ -234,6 +235,12 @@
           <div class="product-list" id="productList">
           </div>
         </div>
+        <!-- <div id="pagination" class="pagination"></div> -->
+
+        <nav class="pagination-container">
+          <ul class="pagination" id="pagination">
+          </ul>
+        </nav>
       </div>
     </section>
     <footer style="width: 100% !important;">
@@ -328,7 +335,7 @@
     </div>
   </body>
   <script src="/assets/js/index-product/index-product.js"></script>
-  <script src="/assets/js/index-product/sort.js"></script>
+  <!-- <script src="/assets/js/index-product/sort.js"></script> -->
   <script src="./assets/js/jquery.min.js"></script>
   <script src="./assets/js/toastr/toastr.min.js"></script>
   <script src="./assets/js/toastr/toastr.init.js"></script>
