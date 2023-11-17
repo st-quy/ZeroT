@@ -47,8 +47,8 @@ if (isLogin) {
   //     ? "http://localhost:4000"
   //     : "https://api-zerot-lowdb.onrender.com";
   axios.get(`${apiUrl}/users/${userData.id}`).then((res) => {
-    num.textContent = res.data.cartItems
-      ? res.data.cartItems.reduce((acc, cur) => acc + cur.quantity, 0)
+    num.textContent = res.data
+      ? res.data.cartItems.length
       : 0;
   });
 } else {

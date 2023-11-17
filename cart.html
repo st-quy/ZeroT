@@ -4,26 +4,31 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/cart/index.css" type="text/css" />
+    <title>ZeroT Cart</title>
+    <!-- Styles -->
     <link href="assets/css/HomPage/homepage.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="/assets/css/HomPage/footer.css"> -->
+    <link rel="stylesheet" href="/assets/css/HomPage/header.css">
     <link href="css/lib/font-awesome.min.css" rel="stylesheet" />
     <link href="assets/css/lib/themify-icons.css" rel="stylesheet" />
-    <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet" />
     <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet" />
+    <link href="bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
-    <link href="assets/css/style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/modal-popup/bootstrap.min.css" rel="stylesheet" /> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="assets/css/toastr/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/cart/index.css">
+
     <script type="text/javascript">
         (function () {
             emailjs.init("cAba6hxOeNz1APEiA");
         })();
     </script>
-    <title>Cart</title>
 </head>
 
 <body>
@@ -39,10 +44,6 @@
                 <ul class="menu">
                     <li class="nav-item active">
                         <a href="index.html" class="nav-link">Mac</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Phụ kiện</a>
                     </li>
 
                     <li class="nav-item">
@@ -86,11 +87,6 @@
                     <li class="nav-item-mobile">
                         <a href="index.html" class="nav-link-mobile">Mac</a>
                     </li>
-
-                    <li class="nav-item-mobile">
-                        <a href="#" class="nav-link-mobile">Phụ kiện</a>
-                    </li>
-
                     <li class="nav-item-mobile">
                         <a href="tekzerot.html" class="nav-link-mobile">TekZeroT</a>
                     </li>
@@ -101,33 +97,24 @@
             </nav>
             <div class="cart-relogin">
                 <div class="item">
-                    <a href="#" class="cart">
+                    <a href="cart.html" class="cart">
                         <i class="bi bi-cart position-relative">
-                            <span
+                            <span id="count-badge"
                                 class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1">
                                 0
                             </span>
                         </i>
                     </a>
                 </div>
-
-                <div class="relogin">
-                    <div class="item">
-                        <a href="#" class="relogin">
-                            <i class="bi bi-door-open"></i>
-                        </a>
-                        <div class="dropdown">
-                            <div class="dropdown-content">
-                                <li>
-                                    <a href="sign-in.html" id="loginLink">Đăng nhập</a>
-                                </li>
-                                <hr />
-                                <li>
-                                    <a href="sign-up.html" id="registerLink">Đăng kí</a>
-                                </li>
-                            </div>
-                        </div>
-                    </div>
+                <div class="item">
+                    <a href="order-details.html" class="orderDetails">
+                        <i class="bi bi-truck position-relative">
+                            <span id="orderDetails-count"
+                                class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1">
+                                0
+                            </span>
+                        </i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -141,160 +128,85 @@
             </div>
             <div class="middleCart">
                 <div class="listing-cart">
-                    <div class="row pt-2">
-                        <div class="col-2">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-200x200.png"
-                                        src="https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-200x200.png"
-                                        alt="MacBook Pro 16 inch 2023 M2 Pro 12CPU/16GB/1TB/19GPU" loading="lazy"
-                                        class="imgProduct">
-                                </div>
-                                <div class="btn-clear col-12">
-                                    Xóa
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <div class="col-8">
-                                    <span class="nameProduct"> MacBook Pro 16 inch 2023 M2 Pro 12CPU/16GB/1TB/19GPU
-                                    </span>
-                                </div>
-                                <div class="col-4 d-flex align-items-end flex-column justify-content-end">
-
-                                    <p class="price-key"> 62.490.000₫ </p>
-                                    <p class="price-subkey"><s>65.990.000₫</s></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 pt-2 d-flex align-items-center justify-content-between">
-                                    <select class="form-select">
-                                        <option value="1">Bạc</option>
-                                        <option value="2">Xanh</option>
-                                    </select>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="button-addon1">-</button>
-                                        </div>
-                                        <input type="text" value="2" id="input-number">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="button-addon2">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row pt-2">
-                        <div class="col-2">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-200x200.png"
-                                        src="https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-200x200.png"
-                                        alt="MacBook Pro 16 inch 2023 M2 Pro 12CPU/16GB/1TB/19GPU" loading="lazy"
-                                        class="imgProduct">
-                                </div>
-                                <div class="btn-clear col-12">
-                                    Xóa
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <div class="col-8">
-                                    <span class="nameProduct"> MacBook Pro 16 inch 2023 M2 Pro 12CPU/16GB/1TB/19GPU
-                                    </span>
-                                </div>
-                                <div class="col-4 d-flex align-items-end flex-column justify-content-end">
-
-                                    <p class="price-key"> 62.490.000₫ </p>
-                                    <p class="price-subkey"><s>65.990.000₫</s></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 pt-2 d-flex align-items-center justify-content-between">
-                                    <select class="form-select">
-                                        <option value="1">Bạc</option>
-                                        <option value="2">Xanh</option>
-                                    </select>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="button-addon1">-</button>
-                                        </div>
-                                        <input type="text" value="2" id="input-number">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="button-addon2">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row pt-2">
-                        <div class="col-2">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-200x200.png"
-                                        src="https://cdn.tgdd.vn/Products/Images/44/302150/s16/mac-pro-16-m2-xam-200x200.png"
-                                        alt="MacBook Pro 16 inch 2023 M2 Pro 12CPU/16GB/1TB/19GPU" loading="lazy"
-                                        class="imgProduct">
-                                </div>
-                                <div class="btn-clear col-12">
-                                    Xóa
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <div class="col-8">
-                                    <span class="nameProduct"> MacBook Pro 16 inch 2023 M2 Pro 12CPU/16GB/1TB/19GPU
-                                    </span>
-                                </div>
-                                <div class="col-4 d-flex align-items-end flex-column justify-content-end">
-
-                                    <p class="price-key"> 62.490.000₫ </p>
-                                    <p class="price-subkey"><s>65.990.000₫</s></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 pt-2 d-flex align-items-center justify-content-between">
-                                    <select class="form-select">
-                                        <option value="1">Bạc</option>
-                                        <option value="2">Xanh</option>
-                                    </select>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="button-addon1">-</button>
-                                        </div>
-                                        <input type="text" value="2" id="input-number">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="button-addon2">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row total">
                     <div class="col-8">
-                        <span class="total-product-quantity "><span class="total-label">Tạm
-                                tính </span>(3 sản phẩm): </span>
+                        <span class="total-product-quantity"><span class="total-label">Tạm
+                                tính </span>(<span id="quanlity-product"></span> sản phẩm): </span>
                     </div>
                     <div class="col-4 d-flex justify-content-end" style="padding-right: 40px">
-                        <span class="temp-total-money">187.470.000₫</span>
+                        <span class="temp-total-money" id="temp-total-money"></span>
+                    </div>
+                </div>
+                <div class="row btn-payment">
+                    <button type="button" class="btn btn-success" onclick="handlePaymentDisplay('Thanh Toán')">Thanh Toán</button>
+                </div>
+            </div>
+        </div>
+        <div class="cartempty-content">
+            <div class="cartempty">
+                <img src="assets/img/curved-images/cart.png" alt="" class="img-cart">
+                <span class="content">Giỏ hàng của bạn chưa có sản phẩm nào!</span>
+                <a href="index.html" class="backhome">Về trang chủ</a>
+            </div>
+        </div>
+        <div class="payment-container">
+            <div class="payment-content">
+                <div class="infor-customer">
+                    <h4>Thông tin khách hàng</h4>
+                    <form class="form-customer row">
+                        <div class="sex-customer">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Nam">
+                                <label class="form-check-label" for="inlineRadio1">Nam</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Nữ">
+                                <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <input type="text" class="form-control" id="inputName" placeholder="Họ và Tên" required>
+                        </div>
+                        <div class="form-group col-6">
+                            <input type="text" class="form-control" id="inputPhone" placeholder="Số điện thoại" required>
+                        </div>
+                        <div class="form-group col-12 pt-3">
+                            <input type="text" class="form-control" id="inputAdd" placeholder="Địa chỉ nhận hàng (bao gồm Phường/Quận/Thành Phố)" required>
+                        </div>
+                    </form>
+                    <h4>Chọn hình thức nhận hàng</h4>
+                    <form class="row">
+                        <div class="sex-customer">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="deliveryOptions" id="atHome" value="home">
+                                <label class="form-check-label" for="inlineRadio3">Thanh toán khi nhận hàng</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="deliveryOptions" id="momoPay" value="momo">
+                                <label class="form-check-label" for="inlineRadio4">Momo Pay</label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row btn-order">
+                        <button type="button" class="btn btn-dark" onclick="handlePaymentDisplay('Đặt Hàng')">Đặt Hàng</button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="order-success">
+            <div class="cartempty">
+                <img src="assets/img/curved-images/success.png" alt="" class="img-cart">
+                <span class="content">Đơn hàng đã được đặt thành công!</span>
+                <a href="index.html" class="backhome">Về trang chủ</a>
+            </div>
+        </div>
     </main>
 </body>
+<script src="/assets/js/cart/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/toastr/toastr.min.js"></script>
+<script src="./assets/js/toastr/toastr.init.js"></script>
 
 </html>
