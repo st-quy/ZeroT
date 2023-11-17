@@ -367,10 +367,7 @@ async function addToCart(prdId) {
               hideMethod: "fadeOut",
               tapToDismiss: false,
             });
-            num.textContent = user.cartItems.reduce(
-              (acc, cur) => acc + cur.quantity,
-              0
-            );
+            num.textContent = user.cartItems.length
           })
           .catch((err) => {
             toastr.error("Không thể thêm vào giỏ hàng", "Message", {
