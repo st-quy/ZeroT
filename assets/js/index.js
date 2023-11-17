@@ -35,6 +35,12 @@ if (isLogin) {
     logoutLink.textContent = "Đăng xuất";
     logoutLink.href = "index.html";
   }
+  if (role == "seller") {
+    loginLink.innerHTML = "Trang Seller";
+    loginLink.href = "admin.html";
+    logoutLink.textContent = "Đăng xuất";
+    logoutLink.href = "index.html";
+  }
 
   // const apiUrl =
   //   window.location.hostname === "localhost" || "127.0.0.1"

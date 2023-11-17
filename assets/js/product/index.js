@@ -41,7 +41,7 @@ axios
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-xs font-weight-bold">${product.price
-          } ₫</span>
+          } VND</span>
                   </td>
                   <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
