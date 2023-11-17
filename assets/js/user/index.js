@@ -12,6 +12,11 @@ if (!role || !["admin", "seller"].includes(role)) {
 
 const tbody = document.querySelector("#data-table tbody");
 
+var role = localStorage.getItem("role");
+if (role ===  "seller") {
+  location.href = `${location.origin}/unauthorized.html`;
+}
+
 axios
   .get(`${apiUrl}/users`)
   .then((response) => {

@@ -5,6 +5,10 @@ const apiUrl =
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 
+if (role === "seller") {
+  document.getElementById("userManager").style.display = "none";
+}
+
 if (!role || !["admin", "seller"].includes(role)) {
   location.href = `${location.origin}/unauthorized.html`;
 }
@@ -37,7 +41,7 @@ axios
     ) {
       return total + order.totalPrice;
     },
-    0);
+      0);
 
     const previousMonthRevenue = previousMonthOrders.reduce(function (
       total,
@@ -45,7 +49,7 @@ axios
     ) {
       return total + order.totalPrice;
     },
-    0);
+      0);
 
     const revenueComparison = currentMonthRevenue - previousMonthRevenue;
     let percentageChange = 0;

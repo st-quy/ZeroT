@@ -6,7 +6,14 @@ const apiUrl =
 const tbody = document.querySelector("#tbody");
 var updateModal = document.getElementById("updateOrderModal");
 var closeBtn = document.getElementsByClassName("close-modal")[0];
+var role = localStorage.getItem("role");
 
+
+const userManagementItem = document.getElementById("userManager");
+
+if (role === "seller") {
+  userManagementItem.style.display = "none"; // Ẩn phần tử quản lý người dùng
+}
 async function displayOrder() {
   await axios.get(`${apiUrl}/orders`).then((response) => {
     const orders = response.data.reverse();
@@ -223,7 +230,7 @@ function toggleSidenav() {
   }
 }
 
-const userManagementItem = document.getElementById("userManager");
+
 const productManagementItem = document.getElementById("productManager");
 const dashBoardManagementItem = document.getElementById("dashBoard");
 if (role === "delivery") {
@@ -231,3 +238,4 @@ if (role === "delivery") {
   productManagementItem.style.display = "none";
   dashBoardManagementItem.style.display = "none"; 
 }
+

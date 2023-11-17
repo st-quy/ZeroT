@@ -11,6 +11,13 @@ if (!role || !["admin", "seller"].includes(role)) {
 }
 
 const tbody = document.querySelector("#table-product tbody");
+var role = localStorage.getItem("role");
+
+const userManagementItem = document.getElementById("userManager");
+
+if (role === "seller") {
+  userManagementItem.style.display = "none"; // Ẩn phần tử quản lý người dùng
+}
 axios
   .get(`${apiUrl}/products`)
   .then(function (response) {
@@ -29,47 +36,41 @@ axios
                   </td>
                   
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${
-                      product.name
-                    }</span>
+                    <span class="text-secondary text-xs font-weight-bold">${product.name
+          }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${
-                      product.price
-                    } ₫</span>
+                    <span class="text-secondary text-xs font-weight-bold">${product.price
+          } VND</span>
                   </td>
                   <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
-                    0,
-                    15
-                  )}</span>
+            0,
+            15
+          )}</span>
                   </td>
                   <td class="align-middle text-center">
-                      ${
-                        Array.isArray(product.image)
-                          ? `<img src="${product.image[0]?.url}" style="width: 150px" />`
-                          : `<img src="${product.image}" style="width: 150px" />`
-                      }
+                      ${Array.isArray(product.image)
+            ? `<img src="${product.image[0]?.url}" style="width: 150px" />`
+            : `<img src="${product.image}" style="width: 150px" />`
+          }
                   </td>
                   
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${
-                      product.category
-                    }</span>
+                    <span class="text-secondary text-xs font-weight-bold">${product.category
+          }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${
-                      product.stock
-                    }</span>
+                    <span class="text-secondary text-xs font-weight-bold">${product.stock
+          }</span>
                   </td>
                   <td class="align-middle text-center">
-                  ${
-                    product.review?.length > 0
-                      ? `<span class='text-secondary text-xs font-weight-bold'>
+                  ${product.review?.length > 0
+            ? `<span class='text-secondary text-xs font-weight-bold'>
                         ${product.review}
                       </span>`
-                      : `<span class='text-secondary text-xs font-weight-bold'>Sản phẩm chưa có review</span>`
-                  }
+            : `<span class='text-secondary text-xs font-weight-bold'>Sản phẩm chưa có review</span>`
+          }
                   </td>
                   <td class="align-middle text-center">
                   <a onclick=handleEdit(${product.id}) class="">
@@ -117,27 +118,23 @@ async function handleEdit(id) {
     <div class="col-md-6">
       <div class="form-group">
         <label for="nameInput">Tên sản phẩm</label>
-        <input type="text" class="form-control" id="nameInput" placeholder="Tên sản phẩm" value="${
-          product.name
-        }" />
+        <input type="text" class="form-control" id="nameInput" placeholder="Tên sản phẩm" value="${product.name
+      }" />
       </div>
       <div class="form-group">
         <label for="priceInput">Giá sản phẩm</label>
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" value="${
-          product.price
-        }" />
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm VND" value="${product.price
+      }" />
       </div>
       <div class="form-group">
         <label for="descriptionInput">Mô tả sản phẩm</label>
-        <textarea style="resize: none;"  type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" required>${
-          product.description
-        }</textarea>
+        <textarea style="resize: none;"  type="text" class="form-control" id="descriptionInput" placeholder="Mô tả sản phẩm" required>${product.description
+      }</textarea>
       </div>
       <div class="form-group">
         <label for="stockInput">Hàng lưu giữ</label>
-        <input type="number" min="0" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${
-          product.stock
-        }" />
+        <input type="number" min="0" class="form-control" id="stockInput" placeholder="Hàng lưu trữ" value="${product.stock
+      }" />
       </div>
     </div>
     <div class="col-md-6">
@@ -153,15 +150,14 @@ async function handleEdit(id) {
         <div class="mb-3">
               <button class="btn btn-primary mt-1" style="display:block" id="editImageButton">Sửa hình ảnh</button>
               <input type="file" id="imageInput" style="display: none" multiple/>
-            ${
-              Array.isArray(product.image)
-                ? product.image
-                    .map((image, index) => {
-                      return `<img src="${product.image[index].url}" style="width:100px; padding: 10px"/>`;
-                    })
-                    .join("")
-                : `<img src="${product.image}" style="width:100px; padding: 10px"/>`
-            }
+            ${Array.isArray(product.image)
+        ? product.image
+          .map((image, index) => {
+            return `<img src="${product.image[index].url}" style="width:100px; padding: 10px"/>`;
+          })
+          .join("")
+        : `<img src="${product.image}" style="width:100px; padding: 10px"/>`
+      }
           </div>
           <div>
             <label id="labelNewImage"></label>
@@ -357,7 +353,7 @@ async function createProduct() {
     
       <label>Giá sản phẩm</label>
       <div class="mb-3">
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" required/>
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm VND" required/>
       </div>
       <label>Mô tả sản phẩm</label>
       <div class="mb-3">
@@ -401,7 +397,7 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm ₫"');
+  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm VND"');
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'
@@ -533,3 +529,6 @@ function toggleSidenav() {
     iconSidenav.classList.remove("d-none");
   }
 }
+
+
+
