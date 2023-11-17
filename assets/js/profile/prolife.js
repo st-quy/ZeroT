@@ -11,77 +11,236 @@ const tbody = document.getElementById("table-body");
 const row = document.createElement("tr");
 row.innerHTML = `
                       <td class="table-profile">
-                          <span class="username-1">Tên người dùng: ${
-                            me.name
-                          }</span>
+                          <span>Tên người dùng: ${me.name}</span>
                           <br>
-                          <span class="username-2">Email người dùng: ${
-                            me.email
-                          }</span>
+                          <span>Email người dùng: ${me.email}</span>
                           <br>
-                          <span class="username-3">Số điện thoại người dùng: ${
-                            me.phone
-                          }</span>
+                          <span >Số điện thoại người dùng: ${me.phone}</span>
                           <br>
-                          <span class="username-4">Địa chỉ người dùng: ${
+                          <span>Địa chỉ người dùng: ${
                             me.address ? me.address : ""
                           }</span>                                                                     
                       </td>`;
 tbody.appendChild(row);
 
-// function openModal() {
-//   var modal = document.getElementById("myModal");
-//   modal.style.display = "flex";
-// }
+var modal = document.getElementById("changePassModal");
+var newPassModal = document.getElementById("newPassModal");
 
-// // Đóng modal
-// function closeModal() {
-//   //   var modal = document.getElementById("myModal");
-//   //   modal.style.display = "none";
-//   //   // Xóa giá trị ô input mật khẩu cũ khi đóng modal
-//   //   document.getElementById("oldPassword").value = "";
-// }
+var confirmOldPassInput = document.getElementById("confirmOldPassInput");
+var newPassInput = document.getElementById("newPassInput");
+var confirmNewPassInput = document.getElementById("confirmNewPassInput");
 
-// Hàm thực hiện cập nhật mật khẩu mới
-async function submitForm() {
-  // Lấy giá trị mật khẩu mới từ input
-  var newPassword = document.getElementById("newPassword").value;
+var infoModal = document.getElementById("infoModal");
+var infoName = document.getElementById("info-name");
+var infoEmail = document.getElementById("info-email");
+var infoPhone = document.getElementById("info-phone");
+var infoAddress = document.getElementById("info-address");
 
-  // Lấy thông tin người dùng từ local storage
-  const profile = JSON.parse(localStorage.getItem("me"));
+modal.style.display = "none";
+newPassModal.style.display = "none";
+infoModal.style.display = "none";
 
-  try {
-    // Gửi yêu cầu GET để lấy thông tin người dùng từ server
-    const response = await axios.get(`${apiUrl}/users`);
+function openModal() {
+  modal.style.display = "block";
+}
 
-    // Lấy danh sách người dùng từ kết quả trả về
-    const users = response.data;
+// Đóng modal
+function closeModal() {
+  modal.style.display = "none";
+  newPassModal.style.display = "none";
+  infoModal.style.display = "none";
+}
 
-    // Tìm kiếm người dùng trong danh sách
-    const userExist = users.find((user) => user.id === profile.id);
+async function confirmOldPass() {
+  await axios.get(`${apiUrl}/users/${me.id}`).then((res) => {
+    if (confirmOldPassInput.value === res.data.password) {
+      confirmOldPassInput.value = "";
+      confirmOldPassInput.focus();
+      confirmOldPassInput.placeholder = "Nhập mật khẩu mới";
+      toastr.info("Nhập mật khẩu mới", "Thông báo", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
 
-    // Kiểm tra mật khẩu hiện tại
-    if (userExist && userExist.password === profile.password) {
-      // Nếu mật khẩu hiện tại đúng, thực hiện cập nhật mật khẩu mới
-      const updatedUser = {
-        ...userExist,
-        password: newPassword,
-      };
-
-      // Gửi yêu cầu PUT để cập nhật thông tin người dùng
-      await axios.put(`${apiUrl}/users/${profile.id}`, updatedUser);
-
-      // Thông báo cập nhật thành công (thực hiện theo ý của bạn)
-      alert("Cập nhật mật khẩu thành công");
-
-      // Đóng modal sau khi cập nhật thành công
-      closeModal();
+      modal.style.display = "none";
+      newPassModal.style.display = "block";
     } else {
-      // Thông báo mật khẩu hiện tại không đúng (thực hiện theo ý của bạn)
-      alert("Mật khẩu hiện tại không đúng");
+      toastr.error("Nhập mật khẩu sai", "Lỗi", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+      confirmOldPassInput.value = "";
+      confirmOldPassInput.focus();
     }
-  } catch (error) {
-    // Xử lý lỗi nếu có
-    console.error("Error updating password:", error);
+  });
+}
+
+async function confirmNewPass() {
+  if (newPassInput.value === confirmNewPassInput.value) {
+    try {
+      await axios.patch(`${apiUrl}/users/${me.id}`, {
+        password: newPassInput.value,
+      });
+      toastr.success("Đổi mật khẩu thành công", "Thành công", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+      newPassModal.style.display = "none";
+    } catch (error) {
+      toastr.error("Đổi mật khẩu không thành công", "Lỗi", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+    }
+  } else {
+    toastr.error("Mật khẩu không trùng khớp", "Lỗi", {
+      timeOut: 2000,
+      closeButton: true,
+      debug: false,
+      newestOnTop: true,
+      progressBar: true,
+      positionClass: "toast-top-right",
+      preventDuplicates: true,
+      onclick: null,
+      showDuration: "300",
+      hideDuration: "1000",
+      extendedTimeOut: "1000",
+      showEasing: "swing",
+      hideEasing: "linear",
+      showMethod: "fadeIn",
+      hideMethod: "fadeOut",
+      tapToDismiss: false,
+    });
+    newPassInput.value = "";
+    confirmNewPassInput.value = "";
+  }
+}
+
+function openModalInfo() {
+  infoModal.style.display = "block";
+  me = JSON.parse(localStorage.getItem("me"));
+  infoName.value = me.name;
+  infoEmail.value = me.email;
+  infoPhone.value = me.phone;
+  infoAddress.value = me.address ? me.address : "";
+}
+
+async function changeInfo() {
+  var name = infoName.value;
+  var email = infoEmail.value;
+  var phone = infoPhone.value;
+  var address = infoAddress.value;
+
+  if (!name || !email || !phone) {
+    toastr.warning("Vui lòng nhập các thông tin bắt buộc", "Lỗi", {
+      timeOut: 2000,
+      closeButton: true,
+      debug: false,
+      newestOnTop: true,
+      progressBar: true,
+      positionClass: "toast-top-right",
+      preventDuplicates: true,
+      onclick: null,
+      showDuration: "300",
+      hideDuration: "1000",
+      extendedTimeOut: "1000",
+      showEasing: "swing",
+      hideEasing: "linear",
+      showMethod: "fadeIn",
+      hideMethod: "fadeOut",
+      tapToDismiss: false,
+    });
+    return;
+  }
+
+  if (name && email && phone) {
+    try {
+      await axios.patch(`${apiUrl}/users/${me.id}`, {
+        name,
+        email,
+        phone,
+        address,
+      });
+
+      localStorage.setItem(
+        "me",
+        JSON.stringify({ ...me, password: null, name, email, phone, address })
+      );
+      toastr.success("Chỉnh sửa thông tin thành công", "Thành công", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+      infoModal.style.display = "none";
+    } catch (error) {}
   }
 }
