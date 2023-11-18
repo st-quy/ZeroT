@@ -42,6 +42,9 @@ infoModal.style.display = "none";
 
 function openModal() {
   modal.style.display = "block";
+  confirmOldPassInput.value = "";
+  newPassInput.value = "";
+  confirmNewPassInput.value = "";
 }
 
 // Đóng modal
@@ -222,6 +225,7 @@ async function changeInfo() {
         "me",
         JSON.stringify({ ...me, password: null, name, email, phone, address })
       );
+      infoModal.style.display = "none";
       toastr.success("Chỉnh sửa thông tin thành công", "Thành công", {
         timeOut: 2000,
         closeButton: true,
@@ -240,7 +244,25 @@ async function changeInfo() {
         hideMethod: "fadeOut",
         tapToDismiss: false,
       });
-      infoModal.style.display = "none";
-    } catch (error) {}
+    } catch (error) {
+      toastr.warning("Cập nhật lỗi", "Lỗi", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+    }
   }
 }

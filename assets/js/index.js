@@ -4,6 +4,13 @@ var profileData = JSON.parse(localStorage.getItem("me"));
 const logoutLink = document.getElementById("registerLink");
 const loginLink = document.getElementById("loginLink");
 const helloElement = document.createElement("span");
+const dropdownContent = document.querySelector(
+  ".dropdown-content li:first-child"
+);
+const profileElement = document.createElement("li");
+const profileLink = document.createElement("a");
+const line = document.createElement("hr");
+
 const userData = JSON.parse(localStorage.getItem("me"));
 
 if (isLogin) {
@@ -13,8 +20,11 @@ if (isLogin) {
   logoutLink.textContent = "Đăng xuất";
   logoutLink.href = "index.html";
 
-  loginLink.textContent = `Hồ Sơ `;
-  loginLink.href = "profile.html";
+  profileElement.appendChild(profileLink);
+  profileLink.textContent = `Hồ Sơ`;
+  profileLink.href = "profile.html";
+  dropdownContent.after(profileElement);
+  dropdownContent.after(line);
 } else {
   helloElement.textContent = "";
   loginLink.textContent = "Đăng nhập";
