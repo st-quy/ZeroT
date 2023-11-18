@@ -1,5 +1,5 @@
 const apiUrl =
-  window.location.hostname === "localhost" || "127.0.0.1"
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? `http://localhost:4000`
     : "https://api-zerot-lowdb.onrender.com";
 
@@ -65,13 +65,12 @@ async function handlePaymentDisplay(params) {
               }
             }
             const numberd = parseFloat(document.getElementById('temp-total-money').textContent.replace(/\./g, '').replace('VNĐ', ''))
-
             if (selectedDeliveryOption === "momo") {
                 await axios.post("https://momo-payment.onrender.com/checkout",
                   {
                     amount: numberd / 100,
-                    redirectUrl: `${window.location.hostname === "localhost" || "127.0.0.1"
-                    ? `http://127.0.0.1:5501`
+                    redirectUrl: `${window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+                    ? `http://${window.location.hostname}:5501`
                     : "https://zerot.onrender.com"}/cart.html`,
                     orderId: numberd / 100
                   },

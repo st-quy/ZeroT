@@ -9,8 +9,8 @@ const num = document.getElementById("cart-items-number");
 const cometoAdmin = document.getElementById("cometoAdmin");
 const addToCartAction = document.getElementById("add-to-cart-action");
 const apiUrl =
-  window.location.hostname === "localhost" || "127.0.0.1"
-    ? "http://localhost:4000"
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? `http://localhost:4000`
     : "https://api-zerot-lowdb.onrender.com";
 
 const userData = JSON.parse(localStorage.getItem("me"));
