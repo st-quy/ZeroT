@@ -112,18 +112,18 @@ async function handlePaymentDisplay(params) {
     }
 }
 function displayCart(data) {
-    if (data && data.length <= 0) {
+    if (!data || data && data.length <= 0) {
         document.querySelector('.cart-content').style.display = 'none';
         document.querySelector('.payment-container').style.display = 'none';
         document.querySelector('.cartempty-content').style.display = 'block';
     }
-    document.getElementById('count-badge').textContent = data.length
-    document.getElementById('quanlity-product').textContent = data.length
-    document.getElementById('temp-total-money').textContent = `${data.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("vi-VN")}VNĐ`;
+    document.getElementById('count-badge').textContent = data ? data.length : 0
+    document.getElementById('quanlity-product').textContent = data ? data.length : 0
+    document.getElementById('temp-total-money').textContent = data && `${data.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("vi-VN")}VNĐ`;
     const productList = document.querySelector('.listing-cart');
     if (data && data.length > 0) curItems = data;
     
-    data.forEach((product, index) => {
+    data && data.forEach((product, index) => {
       const productItem = document.createElement("div");
       productItem.innerHTML = `<div class="row pt-2">
               <div class="col-2">
