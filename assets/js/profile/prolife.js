@@ -337,6 +337,7 @@ async function changeInfo() {
         tapToDismiss: false,
       });
       displayInfo();
+      helloElement.textContent = `Xin chào ${me.name.toUpperCase()} !`;
     } catch (error) {
       toastr.warning("Cập nhật lỗi", "Lỗi", {
         timeOut: 2000,
