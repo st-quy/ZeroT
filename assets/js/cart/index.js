@@ -71,7 +71,7 @@ async function handlePaymentDisplay(params) {
                   {
                     amount: numberd / 100,
                     redirectUrl: `${window.location.hostname === "localhost" || "127.0.0.1"
-                    ? `http://${window.location.hostname}:5501`
+                    ? `http://127.0.0.1:5501`
                     : "https://zerot.onrender.com"}/cart.html`,
                     orderId: numberd / 100
                   },
