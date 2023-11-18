@@ -7,22 +7,34 @@ var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var me = JSON.parse(localStorage.getItem("me"));
 
-const tbody = document.getElementById("table-body");
-const row = document.createElement("tr");
-row.innerHTML = `
-                      <td class="table-profile">
-                          <span>Tên người dùng: ${me.name}</span>
-                          <br>
-                          <span>Email người dùng: ${me.email}</span>
-                          <br>
-                          <span >Số điện thoại người dùng: ${me.phone}</span>
-                          <br>
-                          <span>Địa chỉ người dùng: ${
-                            me.address ? me.address : ""
-                          }</span>                                                                     
-                      </td>`;
-tbody.appendChild(row);
+function displayInfo() {
+  const tbody = document.getElementById("table-body");
+  tbody.innerHTML = "";
+  const row = document.createElement("tr");
+  me = JSON.parse(localStorage.getItem("me"));
 
+  row.innerHTML = `
+                      <td class="table-profile">
+                        <span>Tên người dùng: ${me.name}</span>
+                        <br>
+                            <span>Email người dùng: ${me.email}</span>
+                            <br>
+                            <span >Số điện thoại người dùng: ${me.phone}</span>
+                            <br>
+                            ${
+                              me.address
+                                ? `
+                            <span>Địa chỉ người dùng: ${
+                              me.address ? me.address : ""
+                            }</span> 
+                            `
+                                : ""
+                            }
+                                                                                                
+                      </td>`;
+  tbody.appendChild(row);
+}
+displayInfo();
 var modal = document.getElementById("changePassModal");
 var newPassModal = document.getElementById("newPassModal");
 
@@ -212,6 +224,86 @@ async function changeInfo() {
     return;
   }
 
+  if (email && email !== me.email) {
+    var validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (!email.match(validRegex)) {
+      toastr.warning("Email không hợp lệ", "Lỗi", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+      return;
+    }
+    var userExist;
+    await axios.get(`${apiUrl}/users`).then((response) => {
+      userExist = response.data.find((u) => u.email === email);
+      return userExist;
+    });
+
+    if (userExist) {
+      toastr.warning("Email đã tồn tại", "Lỗi", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+      return;
+    }
+  }
+
+  if (phone && phone !== me.phone) {
+    var validRegex = /^0\d{9}$/;
+
+    if (!phone.match(validRegex)) {
+      toastr.warning("Số điện thoại không hợp lệ", "Lỗi", {
+        timeOut: 2000,
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: false,
+      });
+      return;
+    }
+  }
+
   if (name && email && phone) {
     try {
       await axios.patch(`${apiUrl}/users/${me.id}`, {
@@ -244,6 +336,7 @@ async function changeInfo() {
         hideMethod: "fadeOut",
         tapToDismiss: false,
       });
+      displayInfo();
     } catch (error) {
       toastr.warning("Cập nhật lỗi", "Lỗi", {
         timeOut: 2000,
