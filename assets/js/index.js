@@ -101,7 +101,6 @@ function closeConfirmModal() {
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
-  console.log(profile);
   await axios.get(`${apiUrl}/users`).then(async (response) => {
     var userExist = response.data.find((usr) => usr.email === profile.email);
     if (Number(enteredCode) === userExist.code) {
