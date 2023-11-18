@@ -1,6 +1,6 @@
 const apiUrl =
   window.location.hostname === "localhost" || "127.0.0.1"
-    ? `http://${window.location.hostname}:4000`
+    ? `http://localhost:4000`
     : "https://api-zerot-lowdb.onrender.com";
 
 var profileData = JSON.parse(localStorage.getItem("me"));
@@ -69,11 +69,11 @@ async function handlePaymentDisplay(params) {
             if (selectedDeliveryOption === "momo") {
                 await axios.post("https://momo-payment.onrender.com/checkout",
                   {
-                    amount: numberd / 1000,
+                    amount: numberd / 100,
                     redirectUrl: `${window.location.hostname === "localhost" || "127.0.0.1"
                     ? `http://${window.location.hostname}:5501`
                     : "https://zerot.onrender.com"}/cart.html`,
-                    orderId: numberd / 1000
+                    orderId: numberd / 100
                   },
                 )
                 .then((response) => {
@@ -108,11 +108,7 @@ async function handlePaymentDisplay(params) {
                 });
               
             }
-            //   console.log('Họ và Tên:', inputName);
-            //   console.log('Số điện thoại:', inputPhone);
-            //   console.log('Địa chỉ nhận hàng:', inputAddress);
-            //   console.log('Giới tính:', selectedGender);
-            //   console.log('Hình thức nhận hàng:', selectedDeliveryOption);
+           
             break;
     }
 }
@@ -246,7 +242,7 @@ async function handleDelete(id) {
 
   var message = parsedUrl.searchParams.get("message");
   if (message === "Thành công.") {
-    var totalAmount = parseFloat(parsedUrl.searchParams.get("amount")) * 1000;
+    var totalAmount = parseFloat(parsedUrl.searchParams.get("amount")) * 100;
 
        axios.post(`${apiUrl}/orders`,
                   {
@@ -269,5 +265,4 @@ async function handleDelete(id) {
                       },500)
                   })
      
-      // Xử lý thêm order tại đây
   }
