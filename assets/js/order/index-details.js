@@ -8,13 +8,16 @@ function showDetail(id) {
   const productList = document.querySelector('.listing-cart');
   productList.innerHTML = ''; // Xóa bỏ các phần tử con hiện tại
   const orderDetail = curOrders.find(order => Number(order.user[0]) === Number(id));
+
   if (orderDetail) {
     displayCart(orderDetail.orderItems)
   }
+
   var modal = document.getElementById('exampleModalCenter');
   // Tạo một đối tượng modal từ tham chiếu
   var myModal = new bootstrap.Modal(modal);
   myModal.show();
+
 }
 function hideFunc() {
   const modal = document.getElementById('exampleModalCenter');
@@ -59,7 +62,7 @@ async function displayOrder() {
                             <td class="align-middle text-center">
                               <a
                                 style="cursor: pointer;"
-                                onclick=showDetail(${item.id})
+                                onclick=showDetail(${item.user[0]})
                                 class="">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                               </a>

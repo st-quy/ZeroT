@@ -163,8 +163,6 @@ async function seeMore(orderId) {
   try {
     const response = await axios.get(`${apiUrl}/orders/${orderId}`);
     const orderData = response.data;
-    console.log(orderData.orderItems);
-
     const modalTitle = document.getElementById("modal-title");
     const modalBody = document.getElementById("modal-body");
 

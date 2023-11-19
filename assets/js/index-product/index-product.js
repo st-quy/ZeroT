@@ -313,7 +313,6 @@ async function addToCart(prdId) {
   if (isLogin && role === "customer" && user.status === "active") {
     await axios.get(`${apiUrl}/users`).then(async (response) => {
       const user = response.data.find((u) => u.id === userId);
-      console.log(user);
       await axios.get(`${apiUrl}/products`).then(async (response) => {
         const product = response.data.find((p) => Number(p.id) === prdId);
 

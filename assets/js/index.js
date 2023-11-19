@@ -110,7 +110,6 @@ async function confirmCode() {
           code: null,
         })
         .then((response) => {
-          console.log(response.data);
           localStorage.setItem(
             "me",
             JSON.stringify({ ...profile, password: null, status: "active" })
