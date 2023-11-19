@@ -126,7 +126,7 @@ function displayCart(data) {
     data && data.forEach((product, index) => {
       const productItem = document.createElement("div");
       productItem.innerHTML = `<div class="row pt-2">
-              <div class="col-2">
+              <div class="col-4 col-md-2">
                   <div class="row">
                       <div class="col-12">
                           <img src="${product.image[0].url}"
@@ -138,18 +138,18 @@ function displayCart(data) {
                       </div>
                   </div>
               </div>
-              <div class="col-10">
+              <div class="col-8 col-md-10">
                   <div class="row">
-                      <div class="col-8">
+                      <div class="col-12 col-md-8">
                           <span class="nameProduct">${product.name} ${product.description}</span>
                       </div>
-                      <div class="col-4 d-flex align-items-end flex-column justify-content-end">
+                      <div class="col-12 col-md-4 d-flex align-items-end flex-column justify-content-end">
                           <p class="price-key">${product.price.toLocaleString("vi-VN")}VNĐ</p>
                           <p class="price-subkey"><s>${(product.price * 1.2).toLocaleString("vi-VN")}VNĐ</s></p>
                       </div>
                   </div>
                   <div class="row">
-                      <div class="col-12 pt-2 d-flex align-items-center justify-content-between">
+                      <div class="col-12 col-md-12 pt-2 d-flex align-items-center justify-content-between">
                           <select class="form-select">
                               <option value="1">Bạc</option>
                           </select>
