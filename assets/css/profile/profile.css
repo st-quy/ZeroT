@@ -167,9 +167,10 @@ hr {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  border: 2px solid #ccc;
+  border: 2px solid #c7c6c6;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(134, 134, 134, 0.6);
+  margin-top: 100px;
 }
 .tableprofile {
   /* Tối ưu hóa vị trí và khoảng cách của phần tử con bên trong */
@@ -186,10 +187,13 @@ hr {
 .addd th,
 .addd td {
   padding: 10px; /* Khoảng cách giữa nội dung và đường viền của ô */
-  border: 1px solid #ddd; /* Đường viền của ô */
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(134, 134, 134, 0.6);
-  background-color: #333333;
+  box-shadow: 0 0 10px rgba(160, 159, 159, 0.6);
+  background-color: #302f2f;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .change {
