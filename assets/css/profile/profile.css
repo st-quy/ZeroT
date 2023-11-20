@@ -167,7 +167,7 @@ hr {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  border: 2px solid #c7c6c6;
+  border: 2px solid #8f8e8e;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(134, 134, 134, 0.6);
   margin-top: 100px;
@@ -177,6 +177,7 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 .addd {
   width: 100%; /* Chiều rộng bảng là 100% của cha nó */
@@ -188,8 +189,8 @@ hr {
 .addd td {
   padding: 10px; /* Khoảng cách giữa nội dung và đường viền của ô */
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(160, 159, 159, 0.6);
-  background-color: #302f2f;
+  box-shadow: 0 0 10px rgba(134, 134, 134, 0.6);
+  background-color: #313131;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
