@@ -80,9 +80,11 @@ async function addToCart() {
       const user = response.data.find((u) => u.id === userId);
       await axios.get(`${apiUrl}/products`).then(async (response) => {
         var prdId = localStorage.getItem("idProduct");
+        console.log(typeof prdId);
         const product = response.data.find(
           (p) => Number(p.id) === Number(prdId)
         );
+        console.log(product);
 
         var prdObject = {
           id: product.id,
