@@ -181,3 +181,12 @@ a {
   text-decoration: none;
   transition: 0.3s;
 }
+
+.logo-mobile .nav-link > img:first-child {
+  width: 100px;
+  height: 40px;
+}
+.logo-mobile .nav-link > img:last-child {
+  width: 64px;
+  height: 80px;
+}

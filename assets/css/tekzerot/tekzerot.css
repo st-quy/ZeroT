@@ -217,7 +217,9 @@ body {
 .relogin {
   font-size: 2rem;
 }
-
+.nav-link-mobile {
+  font-size: 3rem !important;
+}
 @media screen and (max-width: 1059px) {
   .main .banner_category {
     display: none;
