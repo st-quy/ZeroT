@@ -2,24 +2,22 @@ const apiUrl =
   window.location.hostname === "localhost" || "127.0.0.1"
     ? "http://localhost:4000"
     : "https://api-zerot-lowdb.onrender.com";
-
+var profileData = JSON.parse(localStorage.getItem("me"));
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var me = JSON.parse(localStorage.getItem("me"));
-console.log(role);
-if (String(role) === "customer") {
-  helloElement.textContent = `Xin chào ${userData.name.toUpperCase()} !`;
-  loginLink.textContent = "";
-  loginLink.parentNode.insertBefore(helloElement, loginLink);
-  logoutLink.textContent = "Đăng xuất";
-  logoutLink.href = "index.html";
-  profileElement.appendChild(profileLink);
-  profileLink.textContent = `Hồ Sơ`;
-  profileLink.href = "profile.html";
-  dropdownContent.after(profileElement);
-  dropdownContent.after(line);
-}
 
+axios.get(`${apiUrl}/users/${profileData.id}`).then((response) => {
+  document.getElementById("count-badge").textContent = response.data
+    ? response.data.cartItems.length
+    : 0;
+});
+axios.get(`${apiUrl}/orders`).then((response) => {
+  const orders = response.data.filter(
+    (order) => Number(order.user[0]) === Number(profileData.id)
+  );
+  document.getElementById("orderDetails-count").textContent = orders.length;
+});
 function displayInfo() {
   const tbody = document.getElementById("table-body");
   tbody.innerHTML = "";
