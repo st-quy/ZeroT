@@ -99,7 +99,7 @@ async function displayProduct(products) {
                     <div class="product-container position-relative">
                         <div class="form-group">
                             <img src="${product.image[0].url
-        }" style =" with: 100%; " />           
+        }" style ="with: 100%"; " />           
                             <h3 class="white-text">${product.name}</h3>
                             <div class="description-box">
                                 <p class="description-text">${product.description
