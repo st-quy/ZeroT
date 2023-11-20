@@ -99,7 +99,7 @@ async function displayProduct(products) {
     if (!product.deletedAt) {
       productItem.innerHTML = `
                     <div class="product-container position-relative">
-                        <div class="form-group"onclick="clickItem(${
+                        <div class="form-group" onclick="clickItem(${
                           product.id
                         })">
                             <img src="${
@@ -114,12 +114,12 @@ async function displayProduct(products) {
                             <p class="white-text">${product.price.toLocaleString(
                               'vi-VN'
                             )}<a>VNĐ</a></p>
+                            </div> 
                             <div class="add-to-cart">
                                 <button onclick="addToCart(${
                                   product.id
                                 })">Thêm vào giỏ hàng</button>
                             </div>
-                        </div> 
                         ${
                           timeDifference <= twoDaysInMillis
                             ? `<span class="position-absolute top-0 translate-middle badge rounded-pill bg-warning badge-product">
