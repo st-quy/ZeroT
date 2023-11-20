@@ -84,10 +84,7 @@ async function confirmCode() {
           code: null,
         })
         .then((response) => {
-          localStorage.setItem(
-            "me",
-            JSON.stringify({ ...response.data, password: null })
-          );
+         
           toastr.success("Tài khoản đã được kích hoạt", "Message", {
             timeOut: 2000,
             closeButton: true,
