@@ -4,7 +4,7 @@
   padding: 0;
 }
 body {
-  min-width: 400px;
+  min-width: 300px;
   background: #101010 !important;
 }
 body,
@@ -78,26 +78,29 @@ article p,
 article h2,
 article h3,
 article ul {
-  width: 600px;
+  width: auto;
   margin: 20px auto;
   color: #333;
 }
 
 section {
-  width: 100%;
+  /* width: 100%; */
   background: #101010 !important;
 }
 
 article {
-  padding: 80px;
+  padding-top: 80px;
+  padding-left: 5px;
+  padding-right: 5px;
   background: #101010 !important;
+  width: 100%;
 }
 
 article,
 .bottom {
   display: block;
   overflow: hidden;
-  width: 800px;
+  width: 75%;
   margin: auto;
 }
 .warpper-title-author {
@@ -113,7 +116,7 @@ article,
   color: #fff;
   font-family: "Roboto Condensed", sans-serif;
   font-weight: 600;
-  width: 650px;
+  width: auto;
   margin: auto;
   padding-bottom: 10px;
 }
@@ -132,6 +135,7 @@ img {
   overflow-clip-margin: content-box;
   overflow: clip;
   width: 100%;
+  height: auto;
 }
 article .imgwrap {
   position: relative;
@@ -180,4 +184,12 @@ article a {
 a {
   text-decoration: none;
   transition: 0.3s;
+}
+.logo-mobile .nav-link > img:first-child {
+  width: 100px;
+  height: 40px;
+}
+.logo-mobile .nav-link > img:last-child {
+  width: 64px;
+  height: 80px;
 }

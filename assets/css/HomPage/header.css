@@ -51,7 +51,7 @@
     justify-content: center;
     display: flex;
     margin: 12px 5px;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
   }
 }
 /* CSS cho màn hình trung bình */
@@ -105,7 +105,7 @@
     justify-content: center;
     display: flex;
     margin: 12px 5px;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
   }
 }
 /* CSS cho màn hình nhỏ */
@@ -149,7 +149,7 @@
     justify-content: center;
     display: flex;
     margin: 12px 5px;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
   }
 }
 @media (max-width: 730px) {
@@ -186,7 +186,7 @@
     justify-content: center;
     display: flex;
     margin: 12px 5px;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
   }
 }
 .menu .nav-item.active {
@@ -202,7 +202,7 @@
 .nav-item a {
   color: white !important;
   padding: 16px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, 'SF Pro Display', sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "SF Pro Display", sans-serif;
   font-size: 15px;
 }
 ul.menu li {
@@ -217,10 +217,16 @@ ul.menu li:hover {
   color: white;
 }
 /* Hiển thị dropdown-content khi di chuột vào bi bi-door-open */
+.relogin {
+  position: relative;
+}
 .relogin .dropdown-content {
   display: none;
   position: absolute;
   font-size: 13px;
+  top: 20px;
+  left: 0;
+  transform: translateX(-90%);
 }
 .dropdown-content {
   background: #fff;
