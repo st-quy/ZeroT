@@ -136,12 +136,13 @@ async function displayProduct(products) {
   const totalPages = Math.ceil(dataSort.length / productsPerPage);
   updatePaginationButtons(totalPages);
 }
-document.getElementById('search-input').addEventListener('input', (event) => {
-  if (event.target.value === '') {
-    filterData = curProducts;
-    displayProduct(filterData);
-  }
-});
+function resetProduct(products) {
+  document.getElementById('search-input').addEventListener('input', (event) => {
+    if (event.target.value === '') {
+      displayProduct(products);
+    }
+  });
+}
 
 document.getElementById('search-input').addEventListener('keyup', (e) => {
   const searchData = e.target.value.toLowerCase();
@@ -173,18 +174,21 @@ function chooseCategory(category) {
       switch (category) {
         case 'tất cả':
           handleCategoryTag(0);
+          resetProduct(products);
           break;
         case 'macbook':
           handleCategoryTag(1);
           products = products.filter(
             (p) => p.category.toLowerCase() === 'laptop'
           );
+          resetProduct(products);
           break;
         case 'phụ kiện':
           handleCategoryTag(2);
           products = products.filter(
             (p) => p.category.toLowerCase() === 'phụ kiện'
           );
+          resetProduct(products);
           break;
       }
       displayProduct(products);
