@@ -6,8 +6,19 @@ const apiUrl =
 var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var me = JSON.parse(localStorage.getItem("me"));
-
-
+console.log(role);
+if (String(role) === "customer") {
+  helloElement.textContent = `Xin chào ${userData.name.toUpperCase()} !`;
+  loginLink.textContent = "";
+  loginLink.parentNode.insertBefore(helloElement, loginLink);
+  logoutLink.textContent = "Đăng xuất";
+  logoutLink.href = "index.html";
+  profileElement.appendChild(profileLink);
+  profileLink.textContent = `Hồ Sơ`;
+  profileLink.href = "profile.html";
+  dropdownContent.after(profileElement);
+  dropdownContent.after(line);
+}
 
 function displayInfo() {
   const tbody = document.getElementById("table-body");
