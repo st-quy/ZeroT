@@ -9,8 +9,8 @@ const num = document.getElementById("cart-items-number");
 const cometoAdmin = document.getElementById("cometoAdmin");
 const addToCartAction = document.getElementById("add-to-cart-action");
 const apiUrl =
-  window.location.hostname === "localhost" || "127.0.0.1"
-    ? "http://localhost:4000"
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? `http://localhost:4000`
     : "https://api-zerot-lowdb.onrender.com";
 
 const userData = JSON.parse(localStorage.getItem("me"));
@@ -89,19 +89,18 @@ items.forEach((item) => {
 
 var minhModal = document.getElementById("minh-modal");
 
-if (profileData && profileData.status === "inactive") {
-  minhModal.style.display = "block";
+if (profileData && profileData.status === 'inactive') {
+  minhModal.style.display = 'block';
 }
 
 function closeConfirmModal() {
-  var minhModal = document.getElementById("minh-modal");
-  minhModal.style.display = "none";
+  var minhModal = document.getElementById('minh-modal');
+  minhModal.style.display = 'none';
 }
 
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
-  console.log(profile);
   await axios.get(`${apiUrl}/users`).then(async (response) => {
     var userExist = response.data.find((usr) => usr.email === profile.email);
     if (Number(enteredCode) === userExist.code) {
@@ -111,7 +110,6 @@ async function confirmCode() {
           code: null,
         })
         .then((response) => {
-          console.log(response.data);
           localStorage.setItem(
             "me",
             JSON.stringify({ ...profile, password: null, status: "active" })

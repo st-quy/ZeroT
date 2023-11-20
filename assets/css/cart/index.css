@@ -263,3 +263,20 @@ h4 {
     margin: auto;
     min-width: 0;
 }
+
+.close_btn{
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.3s;
+  &:hover {
+    color: #cb0c9f;
+    font-weight: bold;
+    transform: rotate(180deg);
+  }
+}
+@media only screen and (max-width:768px) {
+  .mycart{
+    display: none;
+  }
+ }

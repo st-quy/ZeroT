@@ -1,5 +1,5 @@
 const apiUrl =
-  window.location.hostname === "localhost" || "127.0.0.1"
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? `http://localhost:4000`
     : "https://api-zerot-lowdb.onrender.com";
 
@@ -65,13 +65,12 @@ async function handlePaymentDisplay(params) {
               }
             }
             const numberd = parseFloat(document.getElementById('temp-total-money').textContent.replace(/\./g, '').replace('VNĐ', ''))
-
             if (selectedDeliveryOption === "momo") {
                 await axios.post("https://momo-payment.onrender.com/checkout",
                   {
                     amount: numberd / 100,
-                    redirectUrl: `${window.location.hostname === "localhost" || "127.0.0.1"
-                    ? `http://127.0.0.1:5501`
+                    redirectUrl: `${window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+                    ? `http://${window.location.hostname}:5501`
                     : "https://zerot.onrender.com"}/cart.html`,
                     orderId: numberd / 100
                   },
@@ -113,21 +112,21 @@ async function handlePaymentDisplay(params) {
     }
 }
 function displayCart(data) {
-    if (data && data.length <= 0) {
+    if (!data || data && data.length <= 0) {
         document.querySelector('.cart-content').style.display = 'none';
         document.querySelector('.payment-container').style.display = 'none';
         document.querySelector('.cartempty-content').style.display = 'block';
     }
-    document.getElementById('count-badge').textContent = data.length
-    document.getElementById('quanlity-product').textContent = data.length
-    document.getElementById('temp-total-money').textContent = `${data.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("vi-VN")}VNĐ`;
+    document.getElementById('count-badge').textContent = data ? data.length : 0
+    document.getElementById('quanlity-product').textContent = data ? data.length : 0
+    document.getElementById('temp-total-money').textContent = data && `${data.reduce((acc, item) => acc + (item.price * item.quantity), 0).toLocaleString("vi-VN")}VNĐ`;
     const productList = document.querySelector('.listing-cart');
     if (data && data.length > 0) curItems = data;
     
-    data.forEach((product, index) => {
+    data && data.forEach((product, index) => {
       const productItem = document.createElement("div");
       productItem.innerHTML = `<div class="row pt-2">
-              <div class="col-2">
+              <div class="col-4 col-md-2">
                   <div class="row">
                       <div class="col-12">
                           <img src="${product.image[0].url}"
@@ -139,18 +138,18 @@ function displayCart(data) {
                       </div>
                   </div>
               </div>
-              <div class="col-10">
+              <div class="col-8 col-md-10">
                   <div class="row">
-                      <div class="col-8">
+                      <div class="col-12 col-md-8">
                           <span class="nameProduct">${product.name} ${product.description}</span>
                       </div>
-                      <div class="col-4 d-flex align-items-end flex-column justify-content-end">
+                      <div class="col-12 col-md-4 d-flex align-items-end flex-column justify-content-end">
                           <p class="price-key">${product.price.toLocaleString("vi-VN")}VNĐ</p>
                           <p class="price-subkey"><s>${(product.price * 1.2).toLocaleString("vi-VN")}VNĐ</s></p>
                       </div>
                   </div>
                   <div class="row">
-                      <div class="col-12 pt-2 d-flex align-items-center justify-content-between">
+                      <div class="col-12 col-md-12 pt-2 d-flex align-items-center justify-content-between">
                           <select class="form-select">
                               <option value="1">Bạc</option>
                           </select>

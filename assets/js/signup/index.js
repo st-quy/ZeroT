@@ -1,20 +1,21 @@
 const apiUrl =
-  window.location.hostname === "localhost" || "127.0.0.1"
-    ? "http://localhost:4000"
-    : "https://api-zerot-lowdb.onrender.com";
-var isLogin = JSON.parse(localStorage.getItem("isLogin"));
-var role = localStorage.getItem("role");
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+    ? `http://localhost:4000`
+    : 'https://api-zerot-lowdb.onrender.com';
+var isLogin = JSON.parse(localStorage.getItem('isLogin'));
+var role = localStorage.getItem('role');
 if (isLogin === true) {
-  if ((role && role === "admin") || role === "seller") {
+  if ((role && role === 'admin') || role === 'seller') {
     location.href = `${location.origin}/admin.html`;
   } else {
     location.href = `${location.origin}/index.html`;
   }
 }
 
-var form = document.querySelector("form");
+var form = document.querySelector('form');
 
-form.addEventListener("submit", async function (event) {
+form.addEventListener('submit', async function (event) {
   // Ngăn chặn hành vi mặc định của form (không gửi dữ liệu)
   event.preventDefault();
   var nameInput = document.querySelector('input[placeholder="Name"]');
@@ -31,22 +32,22 @@ form.addEventListener("submit", async function (event) {
   await axios.get(`${apiUrl}/users`).then(async (response) => {
     var userExist = response.data.find((usr) => usr.email === email);
     if (userExist) {
-      toastr.warning("Email đã tồn tại. Vui lòng nhập email khác", "Message", {
+      toastr.warning('Email đã tồn tại. Vui lòng nhập email khác', 'Message', {
         timeOut: 2000,
         closeButton: true,
         debug: false,
         newestOnTop: true,
         progressBar: true,
-        positionClass: "toast-top-right",
+        positionClass: 'toast-top-right',
         preventDuplicates: true,
         onclick: null,
-        showDuration: "300",
-        hideDuration: "1000",
-        extendedTimeOut: "1000",
-        showEasing: "swing",
-        hideEasing: "linear",
-        showMethod: "fadeIn",
-        hideMethod: "fadeOut",
+        showDuration: '300',
+        hideDuration: '1000',
+        extendedTimeOut: '1000',
+        showEasing: 'swing',
+        hideEasing: 'linear',
+        showMethod: 'fadeIn',
+        hideMethod: 'fadeOut',
         tapToDismiss: false,
       });
     } else {
@@ -57,25 +58,25 @@ form.addEventListener("submit", async function (event) {
           password,
           phone,
           role,
-          status: "inactive",
+          status: 'inactive',
         })
         .then((response) => {
-          toastr.success("Signup successfully", "Message", {
+          toastr.success('Signup successfully', 'Message', {
             timeOut: 2000,
             closeButton: true,
             debug: false,
             newestOnTop: true,
             progressBar: true,
-            positionClass: "toast-top-right",
+            positionClass: 'toast-top-right',
             preventDuplicates: true,
             onclick: null,
-            showDuration: "300",
-            hideDuration: "1000",
-            extendedTimeOut: "1000",
-            showEasing: "swing",
-            hideEasing: "linear",
-            showMethod: "fadeIn",
-            hideMethod: "fadeOut",
+            showDuration: '300',
+            hideDuration: '1000',
+            extendedTimeOut: '1000',
+            showEasing: 'swing',
+            hideEasing: 'linear',
+            showMethod: 'fadeIn',
+            hideMethod: 'fadeOut',
             tapToDismiss: false,
           });
           setTimeout(() => {
