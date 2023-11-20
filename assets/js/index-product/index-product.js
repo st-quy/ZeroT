@@ -18,88 +18,88 @@ chooseCategory("tất cả");
 handleSortModal(0);
 
 function handleSortModal(index) {
-  const checkselection = document.querySelectorAll("#sort-modal > li");
-  for (let i = 0; i < checkselection.length; i++) {
-    if (i === index) {
-      checkselection[i].classList.add("active");
-      continue;
+    const checkselection = document.querySelectorAll("#sort-modal > li");
+    for (let i = 0; i < checkselection.length; i++) {
+        if (i === index) {
+            checkselection[i].classList.add("active");
+            continue;
+        }
+        checkselection[i].classList.remove("active");
     }
-    checkselection[i].classList.remove("active");
-  }
 }
 
 function handleSortClick(products) {
-  const sortType = document.getElementById("sapxep").textContent;
-  if (products && products.length > 0) {
-    switch (sortType) {
-      case "Mới ra mắt":
-        products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        break;
-      case "Bán chạy":
-        break;
-      case "Giá thấp đến cao":
-        products.sort((a, b) => a.price - b.price);
-        break;
-      case "Giá cao đến thấp":
-        products.sort((a, b) => b.price - a.price);
-        break;
-      default:
-        break;
+    const sortType = document.getElementById("sapxep").textContent;
+    if (products && products.length > 0) {
+        switch (sortType) {
+            case "Mới ra mắt":
+                products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                break;
+            case "Bán chạy":
+                break;
+            case "Giá thấp đến cao":
+                products.sort((a, b) => a.price - b.price);
+                break;
+            case "Giá cao đến thấp":
+                products.sort((a, b) => b.price - a.price);
+                break;
+            default:
+                break;
+        }
+        return products;
     }
-    return products;
-  }
-  switch (sortType) {
-    case "Mới ra mắt":
-      curProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      break;
-    case "Bán chạy":
-      break;
-    case "Giá thấp đến cao":
-      products.sort((a, b) => a.price - b.price);
-      break;
-    case "Giá cao đến thấp":
-      products.sort((a, b) => b.price - a.price);
-      break;
-    default:
-      break;
-  }
-  return curProducts;
+    switch (sortType) {
+        case "Mới ra mắt":
+            curProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            break;
+        case "Bán chạy":
+            break;
+        case "Giá thấp đến cao":
+            products.sort((a, b) => a.price - b.price);
+            break;
+        case "Giá cao đến thấp":
+            products.sort((a, b) => b.price - a.price);
+            break;
+        default:
+            break;
+    }
+    return curProducts;
 }
 
 async function displayProduct(products) {
-  const productList = document.querySelector(".product-list");
-  productList.innerHTML = "";
+    const productList = document.querySelector(".product-list");
+    productList.innerHTML = "";
 
-  const sortedProducts = (
-    products && products.length > 0 ? products : curProducts
-  ).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const sortedProducts = (
+        products && products.length > 0 ? products : curProducts
+    ).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  const dataSort = await handleSortClick(sortedProducts);
+    const dataSort = await handleSortClick(sortedProducts);
 
-  if (dataSort) curProducts = dataSort;
+    if (dataSort) curProducts = dataSort;
 
-  const currentDate = new Date();
+    const currentDate = new Date();
 
-  const startIndex = (currentPage - 1) * productsPerPage;
-  const endIndex = startIndex + productsPerPage;
-  const currentProducts = dataSort.slice(startIndex, endIndex);
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const currentProducts = dataSort.slice(startIndex, endIndex);
 
-  currentProducts.forEach((product) => {
-    const productItem = document.createElement("div");
-    productItem.classList.add("product-item");
-    productItem.classList.add("col-12");
-    productItem.classList.add("col-md-4");
+    currentProducts.forEach((product) => {
+                const productItem = document.createElement("div");
+                productItem.classList.add("product-item");
+                productItem.classList.add("col-12");
+                productItem.classList.add("col-md-4");
 
-    const productCreatedAt = new Date(product.createdAt);
-    const timeDifference = currentDate - productCreatedAt;
-    const twoDaysInMillis = 3 * 24 * 60 * 60 * 1000;
+                const productCreatedAt = new Date(product.createdAt);
+                const timeDifference = currentDate - productCreatedAt;
+                const twoDaysInMillis = 3 * 24 * 60 * 60 * 1000;
 
-    if (!product.deletedAt) {
-      productItem.innerHTML = `
+                if (!product.deletedAt) {
+                    productItem.innerHTML = `
                     <div class="product-container position-relative">
                         <div class="form-group">
                             <img src="${product.image[0].url
-        }" style="width: auto; display: block; margin: 0 auto"; />           
+        }" style =" with: 100%; " />           
                             <h3 class="white-text">${product.name}</h3>
                             <div class="description-box">
                                 <p class="description-text">${product.description
