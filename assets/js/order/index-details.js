@@ -1,68 +1,78 @@
 const apiUrl =
-  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1"
     ? `http://localhost:4000`
     : "https://api-zerot-lowdb.onrender.com";
 var profileData = JSON.parse(localStorage.getItem("me"));
 var curOrders;
+const tbody = document.querySelector("#tbody");
+
 function showDetail(id) {
-  const productList = document.querySelector('.listing-cart');
-  productList.innerHTML = ''; // Xóa bỏ các phần tử con hiện tại
-  const orderDetail = curOrders.find(order => Number(order.user[0]) === Number(id));
-
+  const productList = document.querySelector(".listing-cart");
+  productList.innerHTML = ""; // Xóa bỏ các phần tử con hiện tại
+  const orderDetail = curOrders.find(
+    (order) => Number(order.id) === Number(id)
+  );
   if (orderDetail) {
-    displayCart(orderDetail.orderItems)
+    displayCart(orderDetail.orderItems);
+    var modal = document.getElementById("exampleModalCenter");
+    // Tạo một đối tượng modal từ tham chiếu
+    var myModal = new bootstrap.Modal(modal);
+    myModal.show();
   }
-
-  var modal = document.getElementById('exampleModalCenter');
-  // Tạo một đối tượng modal từ tham chiếu
-  var myModal = new bootstrap.Modal(modal);
-  myModal.show();
-
 }
 function hideFunc() {
-  const modal = document.getElementById('exampleModalCenter');
+  const productList = document.querySelector(".listing-cart");
+  productList.innerHTML = ""; // Xóa bỏ các phần tử con hiện tại
+  const modal = document.getElementById("exampleModalCenter");
   var myModal = bootstrap.Modal.getInstance(modal);
   myModal.hide();
 }
 
 async function displayOrder() {
   await axios.get(`${apiUrl}/orders`).then((response) => {
-    const orders = response.data.filter(order => Number(order.user[0]) === Number(profileData.id)).reverse();
-    document.getElementById('orderDetails-count').textContent = orders.length
-    curOrders = orders
+    const orders = response.data
+      .filter((order) => Number(order.user[0]) === Number(profileData.id))
+      .reverse();
+    document.getElementById("orderDetails-count").textContent = orders.length;
+    curOrders = orders;
     orders.forEach(async (item, index) => {
       const row = document.createElement("tr");
 
       row.innerHTML = `<td class="align-middle px-4">
-                              <span class="text-secondary text-xs font-weight-bold">${index + 1
-        }</span>
+                              <span class="text-secondary text-xs font-weight-bold">${
+                                index + 1
+                              }</span>
                             </td>
                             <td>
-                              <p class="text-xs font-weight-bold mb-0">OID-${item.totalPrice
-        }</p>
+                              <p class="text-xs font-weight-bold mb-0">OID-${
+                                item.totalPrice
+                              }</p>
                             </td>
                             <td class="align-middle text-center text-sm">
-                            ${item.status === "Processing"
-          ? `<span class='badge badge-sm bg-gradient-danger'>
+                            ${
+                              item.status === "Processing"
+                                ? `<span class='badge badge-sm bg-gradient-danger'>
                                   Đang chuẩn bị
                                 </span>`
-          : item.status === "Delivering"
-            ? `<span class='badge badge-sm bg-gradient-warning'>
+                                : item.status === "Delivering"
+                                ? `<span class='badge badge-sm bg-gradient-warning'>
                                   Đang giao hàng
                                 </span>`
-            : `<span class='badge badge-sm bg-gradient-success'>
+                                : `<span class='badge badge-sm bg-gradient-success'>
                                   Đã giao hàng
                                 </span>`
-        }
+                            }
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">${item.totalPrice.toLocaleString("vi-VN")
-        } VND </span>
+                              <span class="text-secondary text-xs font-weight-bold">${item.totalPrice.toLocaleString(
+                                "vi-VN"
+                              )} VND </span>
                             </td>
                             <td class="align-middle text-center">
                               <a
                                 style="cursor: pointer;"
-                                onclick=showDetail(${item.user[0]})
+                                onclick=showDetail(${item.id})
                                 class="">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                               </a>
@@ -118,12 +128,14 @@ function toggleSidenav() {
   }
 }
 function displayCart(data) {
-  const productList = document.querySelector('.listing-cart');
+  const productList = document.querySelector(".listing-cart");
+  productList.innerHTML = ""; // Xóa bỏ các phần tử con hiện tại
   if (data && data.length > 0) curItems = data;
 
-  data && data.forEach((product, index) => {
-    const productItem = document.createElement("div");
-    productItem.innerHTML = `<div class="row pt-2">
+  data &&
+    data.forEach((product, index) => {
+      const productItem = document.createElement("div");
+      productItem.innerHTML = `<div class="row pt-2">
             <div class="col-4 col-md-2">
                 <div class="row">
                     <div class="col-12">
@@ -136,23 +148,31 @@ function displayCart(data) {
             <div class="col-8 col-md-10 pt-2">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <span class="nameProduct">${product.name} ${product.description}</span>
+                        <span class="nameProduct">${product.name} ${
+        product.description
+      }</span>
                     </div>
                     <div class="col-4 col-md-4 d-flex justify-content-center">
-                    <input disabled type="text" value="${product.quantity}" class="product-quantity" id="input-number" name="${product.id}">
+                    <input disabled type="text" value="${
+                      product.quantity
+                    }" class="product-quantity" id="input-number" name="${
+        product.id
+      }">
                     </div>
                     <div class="col-6 col-md-2 d-flex justify-content-center">
-                        <p class="price-key">${product.price.toLocaleString("vi-VN")}VNĐ</p>
+                        <p class="price-key">${product.price.toLocaleString(
+                          "vi-VN"
+                        )}VNĐ</p>
                     </div>
                 </div>
             </div>
         </div>`;
-    productList.appendChild(productItem);
-  });
+      productList.appendChild(productItem);
+    });
 }
 
-axios
-  .get(`${apiUrl}/users/${profileData.id}`)
-  .then((response) => {
-    document.getElementById('count-badge').textContent = response.data ? response.data.cartItems.length : 0
-  });
+axios.get(`${apiUrl}/users/${profileData.id}`).then((response) => {
+  document.getElementById("count-badge").textContent = response.data
+    ? response.data.cartItems.length
+    : 0;
+});
