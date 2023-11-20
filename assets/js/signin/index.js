@@ -1,6 +1,7 @@
 const apiUrl =
-  window.location.hostname === 'localhost' || '127.0.0.1'
-    ? 'http://localhost:4000'
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+    ? `http://localhost:4000`
     : 'https://api-zerot-lowdb.onrender.com';
 var isLogin = JSON.parse(localStorage.getItem('isLogin'));
 var role = localStorage.getItem('role');
@@ -9,6 +10,8 @@ var remember = JSON.parse(localStorage.getItem('remember'));
 if (isLogin === true) {
   if ((role && role === 'admin') || role === 'seller') {
     location.href = `${location.origin}/admin.html`;
+  } else if (userExist.role === 'delivery') {
+    location.href = `${location.origin}/list-order-admin.html`;
   } else {
     location.href = `${location.origin}/index.html`;
   }
@@ -72,6 +75,8 @@ async function handleLogin() {
                       userExist.role === 'seller'
                     ) {
                       location.href = `${location.origin}/admin.html`;
+                    } else if (userExist.role === 'delivery') {
+                      location.href = `${location.origin}/list-order-admin.html`;
                     } else {
                       location.href = `${location.origin}/index.html`;
                     }
@@ -86,6 +91,8 @@ async function handleLogin() {
         setTimeout(() => {
           if (userExist.role === 'admin' || userExist.role === 'seller') {
             location.href = `${location.origin}/admin.html`;
+          } else if (userExist.role === 'delivery') {
+            location.href = `${location.origin}/list-order-admin.html`;
           } else {
             location.href = `${location.origin}/index.html`;
           }

@@ -40,7 +40,9 @@ function loadItem() {
                     <div class="description-box">
                         <p class="description-text">${item.description}</p>
                     </div>
-                    <p class="white-text">${item.price}<a>₫</a></p>
+                    <p class="white-text">${item.price.toLocaleString(
+                      'vi-VN'
+                    )}<a>VNĐ</a></p>
                     <div class="add-to-cart">
                         <button>Thêm vào giỏ hàng</button>
                     </div>

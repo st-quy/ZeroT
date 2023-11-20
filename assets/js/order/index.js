@@ -1,12 +1,19 @@
 const apiUrl =
-  window.location.hostname === 'localhost' || '127.0.0.1'
-    ? 'http://localhost:4000'
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+    ? `http://localhost:4000`
     : 'https://api-zerot-lowdb.onrender.com';
 
 const tbody = document.querySelector('#tbody');
 var updateModal = document.getElementById('updateOrderModal');
 var closeBtn = document.getElementsByClassName('close-modal')[0];
+var role = localStorage.getItem('role');
 
+const userManagementItem = document.getElementById('userManager');
+
+if (role === 'seller') {
+  userManagementItem.style.display = 'none'; // Ẩn phần tử quản lý người dùng
+}
 async function displayOrder() {
   await axios.get(`${apiUrl}/orders`).then((response) => {
     const orders = response.data.reverse();
@@ -42,9 +49,9 @@ async function displayOrder() {
                             }
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">${
-                                item.totalPrice
-                              } VND </span>
+                              <span class="text-secondary text-xs font-weight-bold">${item.totalPrice.toLocaleString(
+                                'vi-VN'
+                              )} VNĐ </span>
                             </td>
                             <td class="align-middle text-center">
                               <a
@@ -156,8 +163,6 @@ async function seeMore(orderId) {
   try {
     const response = await axios.get(`${apiUrl}/orders/${orderId}`);
     const orderData = response.data;
-    console.log(orderData.orderItems);
-
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
 
@@ -177,13 +182,15 @@ async function seeMore(orderId) {
       </div>
       <div class="col-3" style="padding-top: 27px">
         <h5 class="font-weight-bolder mb-0">
-          ${(sum += item.quantity * item.price)} VNĐ
+          ${(sum += item.quantity * item.price).toLocaleString('vi-VN')} VNĐ
           </h5>
       </div>
       <hr class="horizontal dark mt-1"/>
         <div class="row align-items-start">
           <div class="col-6 price">Tổng tiền: </div>
-          <div class="col-6 total-price">${sum} VNĐ</div>
+          <div class="col-6 total-price">${sum.toLocaleString(
+            'vi-VN'
+          )} VNĐ</div>
         </div>
       `;
     });
@@ -221,4 +228,12 @@ function toggleSidenav() {
     sidenav.classList.remove('bg-transparent');
     iconSidenav.classList.remove('d-none');
   }
+}
+
+const productManagementItem = document.getElementById('productManager');
+const dashBoardManagementItem = document.getElementById('dashBoard');
+if (role === 'delivery') {
+  userManagementItem.style.display = 'none';
+  productManagementItem.style.display = 'none';
+  dashBoardManagementItem.style.display = 'none';
 }

@@ -1,8 +1,24 @@
 const apiUrl =
-  window.location.hostname === 'localhost' || '127.0.0.1'
-    ? 'http://localhost:4000'
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+    ? `http://localhost:4000`
     : 'https://api-zerot-lowdb.onrender.com';
+
+var isLogin = JSON.parse(localStorage.getItem('isLogin'));
+var role = localStorage.getItem('role');
+
+if (!role || !['admin', 'seller'].includes(role)) {
+  location.href = `${location.origin}/unauthorized.html`;
+}
+
 const tbody = document.querySelector('#table-product tbody');
+var role = localStorage.getItem('role');
+
+const userManagementItem = document.getElementById('userManager');
+
+if (role === 'seller') {
+  userManagementItem.style.display = 'none'; // Ẩn phần tử quản lý người dùng
+}
 axios
   .get(`${apiUrl}/products`)
   .then(function (response) {
@@ -26,9 +42,9 @@ axios
                     }</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">${
-                      product.price
-                    } ₫</span>
+                    <span class="text-secondary text-xs font-weight-bold">${product.price.toLocaleString(
+                      'vi-VN'
+                    )} VNĐ</span>
                   </td>
                   <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">${product.description.substring(
@@ -115,7 +131,7 @@ async function handleEdit(id) {
       </div>
       <div class="form-group">
         <label for="priceInput">Giá sản phẩm</label>
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" value="${
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm VND" value="${
           product.price
         }" />
       </div>
@@ -349,7 +365,7 @@ async function createProduct() {
     
       <label>Giá sản phẩm</label>
       <div class="mb-3">
-        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm ₫" required/>
+        <input type="number" min="1" class="form-control" id="priceInput" placeholder="Giá sản phẩm VND" required/>
       </div>
       <label>Mô tả sản phẩm</label>
       <div class="mb-3">
@@ -393,7 +409,9 @@ async function createProduct() {
   modal.show();
 
   var nameInput = document.querySelector('input[placeholder="Tên sản phẩm"');
-  var priceInput = document.querySelector('input[placeholder="Giá sản phẩm ₫"');
+  var priceInput = document.querySelector(
+    'input[placeholder="Giá sản phẩm VND"'
+  );
   var stockInput = document.querySelector('input[placeholder="Hàng lưu trữ"');
   var descriptionInput = document.querySelector(
     'textarea[placeholder="Mô tả sản phẩm"'
@@ -483,7 +501,6 @@ const uploadFile = async (files) => {
 
   for (const file of files) {
     formData.append('file', file);
-    // console.log(file);
     const response = await axios.post(api, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',

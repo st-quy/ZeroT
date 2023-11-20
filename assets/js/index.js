@@ -6,23 +6,49 @@ const logoutLink = document.getElementById("registerLink");
 const loginLink = document.getElementById("loginLink");
 const helloElement = document.createElement("span");
 const num = document.getElementById("cart-items-number");
+const cometoAdmin = document.getElementById("cometoAdmin");
 const addToCartAction = document.getElementById("add-to-cart-action");
+const apiUrl =
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? `http://localhost:4000`
+    : "https://api-zerot-lowdb.onrender.com";
 
 const userData = JSON.parse(localStorage.getItem("me"));
 
 if (isLogin) {
-  helloElement.textContent = `Xin chào ${userData.name.toUpperCase()} !`;
-  loginLink.textContent = "";
-  loginLink.parentNode.insertBefore(helloElement, loginLink);
-  logoutLink.textContent = "Đăng xuất";
-  logoutLink.href = "index.html";
-  const apiUrl =
-    window.location.hostname === "localhost" || "127.0.0.1"
-      ? "http://localhost:4000"
-      : "https://api-zerot-lowdb.onrender.com";
+  if (role == "admin") {
+    loginLink.innerHTML = "Trang Admin";
+    loginLink.href = "admin.html";
+    logoutLink.textContent = "Đăng xuất";
+    logoutLink.href = "index.html";
+  }
+  if (role == "delivery") {
+    loginLink.innerHTML = "Trang Order";
+    loginLink.href = "list-order-admin.html";
+    logoutLink.textContent = "Đăng xuất";
+    logoutLink.href = "index.html";
+  }
+  if (role == "customer") {
+    helloElement.textContent = `Xin chào ${userData.name.toUpperCase()} !`;
+    loginLink.textContent = "";
+    loginLink.parentNode.insertBefore(helloElement, loginLink);
+    logoutLink.textContent = "Đăng xuất";
+    logoutLink.href = "index.html";
+  }
+  if (role == "seller") {
+    loginLink.innerHTML = "Trang Seller";
+    loginLink.href = "admin.html";
+    logoutLink.textContent = "Đăng xuất";
+    logoutLink.href = "index.html";
+  }
+
+  // const apiUrl =
+  //   window.location.hostname === "localhost" || "127.0.0.1"
+  //     ? "http://localhost:4000"
+  //     : "https://api-zerot-lowdb.onrender.com";
   axios.get(`${apiUrl}/users/${userData.id}`).then((res) => {
-    num.textContent = res.data.cart
-      ? res.data.cart.reduce((acc, cur) => acc + cur.quantity, 0)
+    num.textContent = res.data
+      ? res.data.cartItems.length
       : 0;
   });
 } else {
@@ -75,18 +101,18 @@ function closeConfirmModal() {
 async function confirmCode() {
   var enteredCode = document.getElementById("confirmationCode").value;
   const profile = JSON.parse(localStorage.getItem("me"));
-  await axios.get("http://localhost:4000/users").then(async (response) => {
+  await axios.get(`${apiUrl}/users`).then(async (response) => {
     var userExist = response.data.find((usr) => usr.email === profile.email);
     if (Number(enteredCode) === userExist.code) {
       await axios
-        .patch(`http://localhost:4000/users/${userExist.id}`, {
+        .patch(`${apiUrl}/users/${userExist.id}`, {
           status: "active",
           code: null,
         })
         .then((response) => {
           localStorage.setItem(
             "me",
-            JSON.stringify({ ...response.data, password: null })
+            JSON.stringify({ ...profile, password: null, status: "active" })
           );
           toastr.success("Tài khoản đã được kích hoạt", "Message", {
             timeOut: 2000,
