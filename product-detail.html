@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/tekzerot/tekzerot.css">
-    <link rel="stylesheet" href="./assets/css/HomPage/homepage.css" />
-    <link rel="stylesheet" href="./assets/css/HomPage/header.css" />
-    <link rel="stylesheet" href="./assets/css/HomPage/footer.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZeroT Apple Center</title>
+    <link rel="stylesheet" href="/assets/css/HomPage/footer.css">
+    <link rel="stylesheet" href="/assets/css/HomPage/header.css">
+    <link rel="stylesheet" href="./assets/css/product-detail/product-detail.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-    <link id="pagestyle" href="/assets/css/bootstrap.css" rel="stylesheet" />
-    <link href="css/lib/font-awesome.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
-    <title>Tin tức về Macbook mới nhất</title>
-  </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="assets/css/toastr/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 
+  </head>
   <body>
     <header>
       <div class="head">
@@ -35,11 +36,11 @@
         <!-- NAV-PC -->
         <nav class="nav-pc">
           <ul class="menu">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a href="index.html" class="nav-link">Mac</a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
               <a href="tekzerot.html" class="nav-link">TekZeroT</a>
             </li>
             <li class="nav-item">
@@ -91,10 +92,9 @@
         </nav>
         <div class="cart-relogin">
           <div class="item">
-            <a href="cart.html" class="cart">
+            <a href="#" class="cart">
               <i class="bi bi-cart position-relative">
-                <span class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-2"
-                  id="cart-items-number">
+                <span class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1">
                   0
                 </span>
               </i>
@@ -122,100 +122,74 @@
         </div>
       </div>
     </header>
-    <main class="main">
-      <section class="banner">
-        <div class="banner_article">
-          <a class="banner_article1" href="article1.html">
-            <img src="https://cdn.tgdd.vn/Files/2023/11/02/1553880/1-061123-110858-800-resize.jpg" alt=""
-              class="image_a1">
-            <h2 class="article_title line-3">Tổng hợp 11 lỗi gõ Tiếng Việt trong Word thường xuyên gặp phải và cách khắc
-              phục ngay trong bài viết
-            </h2>
-          </a>
-          <a class="banner_article2" href="article2.html">
-            <img src="https://cdn.tgdd.vn/Files/2023/10/30/1553537/2-311023-140349-318x154.jpg" alt="" class="image_a2">
-            <h2 class="article_title line-3">MacBook có cài Windows được không? Đây là đáp án cũng như các hướng dẫn để
-              sử dụng tốt nhất
-            </h2>
-          </a>
-          <a class="banner_article3" href="article3.html">
-            <img src="https://cdn.tgdd.vn/Files/2023/10/29/1553454/2-011123-235641-318x154.jpg" alt="" class="image_a3">
-            <h2 class="article_title line-3">MacBook có bền không? Liệu MacBook có xài được nhiều năm không? Đây là câu
-              trả lời cho bạn
-            </h2>
-          </a>
-        </div>
-        <div class="banner_category">
-          <div>
-            <img src="https://cdn.tgdd.vn/newscategory/2157/Ipad.png" alt="iPad">
-            <p>iPad</p>
-          </div>
-          <div>
-            <img src="https://cdn.tgdd.vn/newscategory/2156/Mac.png" alt="Mac">
-            <p>Mac</p>
-          </div>
-          <div>
-            <img src="https://cdn.tgdd.vn/newscategory/2159/AirPods.png" alt="am thanh">
-            <p>Âm thanh</p>
-          </div>
-          <div>
-            <img src="https://cdn.tgdd.vn/newscategory/2155/iPhone.png" alt="iPhone">
-            <p>iPhone</p>
-          </div>
-          <div>
-            <img src="https://cdn.tgdd.vn/newscategory/2158/Watch.png" alt="watch">
-            <p>Watch</p>
-          </div>
-          <div>
-            <img src="https://cdn.tgdd.vn/newscategory/2160/PK.png" alt="phụ kiện">
-            <p>Phụ kiện</p>
-          </div>
-          <div>
-            <img src="https://cdn.tgdd.vn/newscategory/2161/Dich-vu.png" alt="dịch vụ">
-            <p>Dịch vụ</p>
-          </div>
-        </div>
-      </section>
-      <section class="newest">
-        <div class="newest_heading">
-          <a href="tekzone.html">mới nhất</a>
-        </div>
-
-        <div class="newest_article">
-          <div class="space">
-            <a class="article_item" href="article1.html">
-              <img src="https://cdn.tgdd.vn/Files/2023/11/02/1553880/2-061123-110915-318x154.jpg" alt="">
-              <div class="article_info">
-                <h3 class="article_title line-3">Tổng hợp 11 lỗi gõ Tiếng Việt trong Word thường xuyên gặp phải và cách
-                  khắc phục ngay trong bài viết</h3>
-                <span class="article_time">2 ngày trước</span>
+<section class="product-detail">
+  <div class="container mt-5">	
+      <div class="row g-0">	
+        <div class="col-md-6">	
+          <div class="d-flex flex-column justify-content-center mt-2">	
+            <div class="main_image">	
+              <img id="img" src="" class="main_product_image" id="main_product_image" width="350">	
+            </div>	
+            </div>	
+          </div>	
+          <div class="col-md-6 mt-2">	
+            <div class="p-3 right-side">	
+              <div class="d-flex justify-content-between align-items-center">	
+                  <h1 class="title-product" id="title-product"></h1>	
+              </div>	
+              <i class="new">Mới</i>
+              <div class="main-price">
+                <h3 class="price-product">Giá dự kiến:</h3>	
+                <h3 class="price" id="price"></h3>
               </div>
-            </a>
-          </div>
-          <div class="space">
-            <a class="article_item" href="article2.html">
-              <img src="https://cdn.tgdd.vn/Files/2023/10/30/1553537/2-311023-140349-318x154.jpg" alt="">
-              <div class="article_info">
-                <h3 class="article_title line-3">MacBook có cài Windows được không? Đây là đáp án cũng như các hướng dẫn
-                  để sử dụng tốt nhất</h3>
-                <span class="article_time">3 ngày trước</span>
+              <div class="capacity callout">
+                <ul>
+                  <li class="active">
+                    <a id="description"></a>
+                  </li>
+                </ul>
               </div>
-            </a>
-          </div>
-          <div class="space">
-            <a class="article_item" href="article3.html">
-              <img src="https://cdn.tgdd.vn/Files/2023/10/29/1553454/2-011123-235641-318x154.jpg" alt="">
-              <div class="article_info">
-                <h3 class="article_title line-3">MacBook có bền không? Liệu MacBook có xài được nhiều năm không? Đây là
-                  câu trả lời cho bạn</h3>
-                <span class="article_time">4 ngày trước</span>
+            
+              <div class="buttons d-flex flex-row m-4 gap-3 p-3">	
+                <button class="btn btn-dark">Add to Cart</button>	
               </div>
-            </a>
-          </div>
-
-        </div>
-      </section>
-    </main>
+              <ul class="policy">
+                <li>
+                  <span>
+                    <i class="topzone-boxtskt"></i>
+                    Bộ sản phẩm gồm: Adapter sạc ( 143W ), Bàn phím ( Magic Keyboard ), Chuột ( Magic Mouse ), Cáp chuyển ( USB-C to Lightning ), Dây nguồn ( 2m )
+                  </span>
+                </li>
+                  <li>
+                  <span>
+                    <i class="topzone-doitra"></i>
+                    Hư gì đổi nấy <b>12 tháng</b> trên toàn quốc <a href="zerotcare.html"> Xem chi tiết chính sách bảo hành, đổi trả </a>
+                  </span>
+                  </li>
+                <li>
+                  <span>
+                    <i class="topzone-baohanhpolicy"></i>
+                    Bảo hành chính hãng 1 năm
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <i class="topzone-giaohang"></i>
+                    Giao hàng nhanh toàn quốc <a href="tekzerot.html">Xem chi tiết</a>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <i class="topzone-tongdai"></i>
+                    Tổng đài: <a href="tel:1900969642">1900.9696.42</a> (9h00 - 21h00 mỗi ngày)
+                  </span>
+                </li>
+              </ul>	
+            </div>	
+          </div>	
+        </div>	 
+    </div>
+</section>
     <footer>
       <div class="foot">
         <div class="logo-foot">
@@ -226,9 +200,7 @@
         <ul class="list-foot">
           <li class="columtongdai">
             <span class="rowtongdai">Tổng đài <br></span>
-
             <span class="character">Mua hàng:<b class="textblu">19006558</b> (07:30-22:00)</span>
-
             <span class="character">CSKH: <b class="textblu">0905.666.777</b> (08:00-21:00)</span>
             </a>
             <div class="footer-social">
@@ -265,24 +237,8 @@
         </ul>
       </div>
     </footer>
-    <script>
-      const article_containers = document.querySelectorAll(".banner_article > a");
-      const article_img = document.querySelectorAll(".banner_article > a > img");
-
-      article_containers.forEach((con, index) => {
-        con.addEventListener("mouseover", () => {
-          article_img[index].style.transform = "scale(1.3)"
-        })
-      })
-
-      article_img.forEach((img, index) => {
-        article_containers[index].addEventListener("mouseleave", () => {
-          img.style.transform = "scale(1)"
-        })
-      })
-    </script>
   </body>
-  <script src="./assets/css/bootstrap.min.css"></script>
   <script src="./assets/js/index.js"></script>
+  <script src="./assets/js/product-detail/product-detail.js"></script>
 
 </html>

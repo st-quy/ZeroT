@@ -26,10 +26,10 @@
     <link href="assets/css/toastr/toastr.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/index-product/index-product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
     <link rel="stylesheet" href="./assets/css/index-product/pagination.css">
     <link rel="stylesheet" href="./assets/css/HomPage/category/category.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/panigation/index.css">
+
     <script type="text/javascript">
       (function () {
         emailjs.init("cAba6hxOeNz1APEiA");
@@ -57,10 +57,6 @@
           <ul class="menu">
             <li class="nav-item active">
               <a href="index.html" class="nav-link">Mac</a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">Phụ kiện</a>
             </li>
 
             <li class="nav-item">
@@ -106,10 +102,6 @@
             </li>
 
             <li class="nav-item-mobile">
-              <a href="#" class="nav-link-mobile">Phụ kiện</a>
-            </li>
-
-            <li class="nav-item-mobile">
               <a href="tekzerot.html" class="nav-link-mobile">TekZeroT</a>
             </li>
             <li class="nav-item-mobile">
@@ -119,9 +111,10 @@
         </nav>
         <div class="cart-relogin">
           <div class="item">
-            <a href="#" class="cart">
+            <a href="cart.html" class="cart">
               <i class="bi bi-cart position-relative">
-                <span class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1">
+                <span class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1"
+                  id="cart-items-number">
                   0
                 </span>
               </i>
@@ -142,6 +135,10 @@
                   <li>
                     <a href="sign-up.html" id="registerLink">Đăng kí</a>
                   </li>
+
+                  <!-- <li>
+                                    <a href="admin.html" id="cometoAdmin">Admin</a>
+                                </li> -->
                 </div>
               </div>
             </div>
@@ -198,18 +195,20 @@
         <a onclick="chooseCategory('phụ kiện')">Phụ kiện</a>
         <!-- SEARCH -->
         <div class="col-md-3 ms-auto">
-            <div class="input-group">
-                <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="Search" id="search-input">
-                  <span class="input-group-append">
-                      <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
-                        <i class="fa fa-search"></i>
-                      </button>
-                  </span>
-              </div>
+          <div class="input-group">
+            <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="Search"
+              id="search-input">
+            <span class="input-group-append">
+              <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
+                type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
         </div>
-        
+
       </div>
-  
+
     </section>
     <section id="sort">
       <div class="sort-container">
@@ -219,19 +218,25 @@
         </div>
       </div>
       <ul class="choose-sort" id="sort-modal">
-        <li onclick="sortProducts('createdAt')">Mới ra mắt</li>
-        <li onclick="sortProducts('sold')">Bán chạy</li>
-        <li onclick="sortProducts('priceDesc')">Giá cao đến thấp</li>
-        <li onclick="sortProducts('priceAsc')">Giá thấp đến cao</li>
+        <li onclick="handleSort(this)" value="0">Mới ra mắt</li>
+        <li onclick="handleSort(this)" value="1">Bán chạy</li>
+        <li onclick="handleSort(this)" value="2">Giá cao đến thấp</li>
+        <li onclick="handleSort(this)" value="3">Giá thấp đến cao</li>
       </ul>
     </section>
-  
+
     <section class="macbook">
       <div class="smac">
-        <div class="products" >
+        <div class="products">
           <div class="product-list" id="productList">
           </div>
         </div>
+        <!-- <div id="pagination" class="pagination"></div> -->
+
+        <nav class="pagination-container">
+          <ul class="pagination" id="pagination">
+          </ul>
+        </nav>
       </div>
     </section>
     <footer style="width: 100% !important;">
@@ -300,10 +305,33 @@
         </div>
       </div>
     </div>
-  
+    </div>
+
+
+    <div id="add-to-cart-alert" class="modal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Thông báo</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeAddToCartAlert()">
+              <span aria-hidden="true" style="font-size: 20px;" class="close">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="add-to-cart-message">
+            Vui lòng đăng nhập bằng <b>tài khoản khách hàng</b> để thêm sản phẩm vào giỏ hàng
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" style="background-color: #CB0C9F; color: white; border:#CB0C9F"
+              id="add-to-cart-action" href="./sign-in.html">Đăng nhập</a>
+
+            <button class="btn btn-secondary" id="btnConfirm" onclick="closeAddToCartAlert()">Đóng</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="/assets/js/index-product/index-product.js"></script>
-  <script src="/assets/js/index-product/sort.js"></script>
+  <!-- <script src="/assets/js/index-product/sort.js"></script> -->
   <script src="./assets/js/jquery.min.js"></script>
   <script src="./assets/js/toastr/toastr.min.js"></script>
   <script src="./assets/js/toastr/toastr.init.js"></script>

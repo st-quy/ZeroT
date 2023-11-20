@@ -1,100 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/tekzerot/art1.css" />
     <link rel="stylesheet" href="./assets/css/tekzerot/art2.css" />
-    
 
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-/>
-<link id="pagestyle" href="../assets/css/bootstrap.css?v=1.0.3" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link id="pagestyle" href="../assets/css/bootstrap.css?v=1.0.3" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <title>Lỗi gõ tiếng Việt trong Word</title>
   </head>
+
   <body>
     <header>
       <div class="head">
         <div class="logo">
           <a href="index.html" class="nav-link">
-            <img
-              class ="logo-zerot"
-              src="/assets/img/curved-images/icons/a.png"
-              alt="Logo" />
-            <img
-              src="https://cdn.tgdd.vn/mwgcart/topzone/images/APR_logo.webp"
-              alt=" Logo"
-          /></a>
+            <img class="logo-zerot" src="/assets/img/curved-images/icons/a.png" alt="Logo" />
+            <img src="https://cdn.tgdd.vn/mwgcart/topzone/images/APR_logo.webp" alt=" Logo" /></a>
         </div>
         <!-- NAV-PC -->
         <nav class="nav-pc">
           <ul class="menu">
-          <li class="nav-item">
-            <a href="index.html" class="nav-link">Mac</a>
-          </li>
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Mac</a>
+            </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">Phụ kiện</a>
-          </li>
-
-          <li class="nav-item active">
-            <a href="tekzerot.html" class="nav-link">TekZeroT</a>
-          </li>
-          <li class="nav-item">
-            <a href="zerotcare.html" class="nav-link">ZeroTCare</a>
-          </li>
+            <li class="nav-item active">
+              <a href="tekzerot.html" class="nav-link">TekZeroT</a>
+            </li>
+            <li class="nav-item">
+              <a href="zerotcare.html" class="nav-link">ZeroTCare</a>
+            </li>
           </ul>
         </nav>
-        
+
         <label for="nav-mobile-input" class="nav-bars-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
-        </label >
-        
-        <input type="checkbox" name="" class="nav-input" id ="nav-mobile-input" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+            <style>
+              svg {
+                fill: #ffffff
+              }
+            </style>
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+          </svg>
+        </label>
+
+        <input type="checkbox" name="" class="nav-input" id="nav-mobile-input" hidden>
         <label for="nav-mobile-input" class="nav-overlay"></label>
         <nav class="nav-mobile">
           <div class="logo-mobile">
-          <a href="index.html" class="nav-link">
-            <img
-              class ="logo-zerot-mobile"
-              src="/assets/img/curved-images/icons/a.png"
-              alt="Logo" />
-            <img
-              src="https://cdn.tgdd.vn/mwgcart/topzone/images/APR_logo.webp"
-              alt="Logo"
-          /></a>
-        </div> 
-      </hr>
+            <a href="index.html" class="nav-link">
+              <img class="logo-zerot-mobile" src="/assets/img/curved-images/icons/a.png" alt="Logo" />
+              <img src="https://cdn.tgdd.vn/mwgcart/topzone/images/APR_logo.webp" alt="Logo" /></a>
+          </div>
+          </hr>
           <label for="nav-mobile-input" class="mobile-close">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
           </label>
           <ul class="nav-mobile-list">
 
-          <li class="nav-item-mobile">
-            <a href="index.html" class="nav-link-mobile">Mac</a>
-          </li>
+            <li class="nav-item-mobile">
+              <a href="index.html" class="nav-link-mobile">Mac</a>
+            </li>
 
-          <li class="nav-item-mobile">
-            <a href="#" class="nav-link-mobile">Phụ kiện</a>
-          </li>
-
-          <li class="nav-item-mobile">
-            <a href="tekzerot.html" class="nav-link-mobile">TekZeroT</a>
-          </li>
-          <li class="nav-item-mobile">
-            <a href="zerotcare.html" class="nav-link-mobile">ZeroTCare</a>
-          </li>
+            <li class="nav-item-mobile">
+              <a href="tekzerot.html" class="nav-link-mobile">TekZeroT</a>
+            </li>
+            <li class="nav-item-mobile">
+              <a href="zerotcare.html" class="nav-link-mobile">ZeroTCare</a>
+            </li>
           </ul>
         </nav>
         <div class="cart-relogin">
           <div class="item">
-            <a href="#" class="cart">
+            <a href="cart.html" class="cart">
               <i class="bi bi-cart position-relative">
-                <span
-                  class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1"
-                >
+                <span class="position-absolute start-100 end-30 translate-middle badge rounded-circle bg-danger p-1"
+                  id="cart-items-number">
                   0
                 </span>
               </i>
@@ -123,7 +113,7 @@
       </div>
     </header>
     <section>
-      
+
       <article>
         <div class="warpper-title-author">
           <h1 class="titledetail">
@@ -144,10 +134,8 @@
             khắc phục nhé!
           </h2>
           <h3>
-            <strong
-              >1. Chữ hoa đầu câu là nguyên âm có dấu tiếng Việt bị thụt
-              xuống</strong
-            >
+            <strong>1. Chữ hoa đầu câu là nguyên âm có dấu tiếng Việt bị thụt
+              xuống</strong>
           </h3>
           <p>
             Khi bạn viết một từ in hoa ở đầu câu, có dấu nhưng nó lại hiện
@@ -170,8 +158,10 @@
             <img src="assets/img/curved-images/article/art4.jpg" />
           </div>
           <h3><strong>2. Muốn gõ chữ thường ở đầu dòng nhưng Word tự sửa thành chữ hoa </strong></h3>
-          <p>Word sẽ tự sửa thành chữ hoa bằng chức năng tự động nếu bạn viết chữ đầu là chữ cái thường. Bạn muốn khắc phục tình trạng này hãy làm theo 3 bước đơn giản sau:</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
+          <p>Word sẽ tự sửa thành chữ hoa bằng chức năng tự động nếu bạn viết chữ đầu là chữ cái thường. Bạn muốn khắc
+            phục tình trạng này hãy làm theo 3 bước đơn giản sau:</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art5.jpg" />
           </div>
@@ -184,8 +174,11 @@
             <img src="assets/img/curved-images/article/art7.jpg" />
           </div>
           <h3><strong>3. Bỏ dấu gạch chân dạng sóng dưới dòng chữ </strong></h3>
-          <p>Khi soạn thảo văn bản Tiếng Việt bạn sẽ gặp phải tình trạng dấu gạch chân dạng sóng màu đỏ dưới dòng chữ. Đó chính là tính năng&nbsp;soát lỗi chính tả và ngữ pháp tiếng Anh của Word và điều đó làm bạn không thích hãy thực hiện các bước sau để tắt nó nhé!</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
+          <p>Khi soạn thảo văn bản Tiếng Việt bạn sẽ gặp phải tình trạng dấu gạch chân dạng sóng màu đỏ dưới dòng chữ.
+            Đó chính là tính năng&nbsp;soát lỗi chính tả và ngữ pháp tiếng Anh của Word và điều đó làm bạn không thích
+            hãy thực hiện các bước sau để tắt nó nhé!</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art8.jpg" />
           </div>
@@ -198,8 +191,12 @@
             <img src="assets/img/curved-images/article/art10.jpg" />
           </div>
           <h3><strong>4. Hiện tượng cách chữ khi gõ tiếng Việt có dấu </strong></h3>
-          <p>Trong lúc gõ và soạn thảo văn bản thì bạn sẽ gặp phải hiện tượng cách chữ khi gõ Tiếng Việt có dấu. Hiện tượng này sẽ làm các chữ của bạn bị tách nhau ra và có một khoảng trắng giữa các chữ cái. Khi gặp phải trường hợp này có thể bạn đã sao chép và dán một đoạn văn bản có định dạng khác với văn bản đầu hoặc có thể là do tự nhiên.&nbsp;Bạn muốn khắc phục tình trạng này hãy làm theo 4 bước đơn giản sau:</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
+          <p>Trong lúc gõ và soạn thảo văn bản thì bạn sẽ gặp phải hiện tượng cách chữ khi gõ Tiếng Việt có dấu. Hiện
+            tượng này sẽ làm các chữ của bạn bị tách nhau ra và có một khoảng trắng giữa các chữ cái. Khi gặp phải
+            trường hợp này có thể bạn đã sao chép và dán một đoạn văn bản có định dạng khác với văn bản đầu hoặc có thể
+            là do tự nhiên.&nbsp;Bạn muốn khắc phục tình trạng này hãy làm theo 4 bước đơn giản sau:</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art11.jpg" />
           </div>
@@ -207,17 +204,21 @@
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art12.jpg" />
           </div>
-          <p><strong>Bước 3</strong>: Ở mục <strong>Cut and Paste Option</strong>, bạn ấn vào <strong>Settings</strong>.</p>
+          <p><strong>Bước 3</strong>: Ở mục <strong>Cut and Paste Option</strong>, bạn ấn vào <strong>Settings</strong>.
+          </p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art13.jpg" />
           </div>
-          <p><strong>Bước 4</strong>:&nbsp;Bạn ấn bỏ tích&nbsp;<strong>Adjust sentence and word spacing automatically</strong>&nbsp;&gt;&nbsp;<strong>OK</strong>.</p>
+          <p><strong>Bước 4</strong>:&nbsp;Bạn ấn bỏ tích&nbsp;<strong>Adjust sentence and word spacing
+              automatically</strong>&nbsp;&gt;&nbsp;<strong>OK</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art14.jpg" />
           </div>
           <h3><strong>5. Hiện tượng ký tự i thành I </strong></h3>
-          <p>Tình trạng ký tự i thành I hay xảy ra với những người sử dụng công cụ Unikey bởi chức năng sửa lỗi thông minh của Word. Thực hiện 3 bước sau để khắc phục lỗi này ngay:</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
+          <p>Tình trạng ký tự i thành I hay xảy ra với những người sử dụng công cụ Unikey bởi chức năng sửa lỗi thông
+            minh của Word. Thực hiện 3 bước sau để khắc phục lỗi này ngay:</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art15.jpg" />
           </div>
@@ -230,8 +231,11 @@
             <img src="assets/img/curved-images/article/art17.jpg" />
           </div>
           <h3><strong>6. Đổi đơn vị đo lường trong MS Word </strong></h3>
-          <p>Đơn vị đo lường trong MS Word được mặc định là inch. Tuy nhiên ở Việt Nam, đơn vị đo là cn là đơn vị được sử dụng thường xuyên. Ngay cả trong các quy định về thể thức văn bản của nhà nước cũng được đo bằng cm. Ba bước thực hiện sau đây sẽ hướng dẫn bạn cách đổi đơn vị đo lường trong MS Word.</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
+          <p>Đơn vị đo lường trong MS Word được mặc định là inch. Tuy nhiên ở Việt Nam, đơn vị đo là cn là đơn vị được
+            sử dụng thường xuyên. Ngay cả trong các quy định về thể thức văn bản của nhà nước cũng được đo bằng cm. Ba
+            bước thực hiện sau đây sẽ hướng dẫn bạn cách đổi đơn vị đo lường trong MS Word.</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art18.jpg" />
           </div>
@@ -244,27 +248,39 @@
             <img src="assets/img/curved-images/article/art20.jpg" />
           </div>
           <h3><strong>7. Font chữ mặc định trong MS Word </strong></h3>
-          <p>Bạn nên thống nhất sử dụng một font chữ mặc định cho cả một văn bản. Điều đó giúp tiết kiệm thời gian và làm cho văn bản của bạn chuyên nghiệp, đẹp mắt hơn. Thực hiện ba bước sau đây để thống nhất font chữ mặc định cho tất cả các văn bản nhé!</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Format</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Font</strong>.</p>
+          <p>Bạn nên thống nhất sử dụng một font chữ mặc định cho cả một văn bản. Điều đó giúp tiết kiệm thời gian và
+            làm cho văn bản của bạn chuyên nghiệp, đẹp mắt hơn. Thực hiện ba bước sau đây để thống nhất font chữ mặc
+            định cho tất cả các văn bản nhé!</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Format</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Font</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art21.jpg" />
           </div>
-          <p><strong>Bước 2</strong>: Bạn ấn chọn&nbsp;<strong>Font</strong> để chọn tên Font chữ &gt; <strong>Font style</strong> &gt; <strong>Size</strong> để chọn cỡ chữ &gt; <strong>Default</strong>.</p>
+          <p><strong>Bước 2</strong>: Bạn ấn chọn&nbsp;<strong>Font</strong> để chọn tên Font chữ &gt; <strong>Font
+              style</strong> &gt; <strong>Size</strong> để chọn cỡ chữ &gt; <strong>Default</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art22.jpg" />
           </div>
-          <p><strong>Bước 3</strong>: Bạn ấn vào&nbsp;<strong>All documents based on the Normal template?</strong> &gt; <strong>OK</strong>.</p>
+          <p><strong>Bước 3</strong>: Bạn ấn vào&nbsp;<strong>All documents based on the Normal template?</strong> &gt;
+            <strong>OK</strong>.
+          </p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art23.jpg" />
           </div>
           <h3><strong>8. Tắt khung bao quanh hình vẽ khi vẽ một đối tượng đồ họa vào văn bản </strong></h3>
-          <p>Tính năng mới của MS Word giúp tạo một khung viền bao quanh hình vẽ đối tượng đồ họa vào văn bản khá tiện ích.Tính năng mới này giúp gom các đối tượng đồ họa thành một khối thống nhất để lúc di chuyển hay thay đổi thì cả nhóm đối tượng đồ họa sẽ di chuyển và thay đổi theo. Để&nbsp;tạm thời tắt khung viền bao quanh thì bạn chỉ cần nhấn phím ESC trên bàn phím nhé!</p>
+          <p>Tính năng mới của MS Word giúp tạo một khung viền bao quanh hình vẽ đối tượng đồ họa vào văn bản khá tiện
+            ích.Tính năng mới này giúp gom các đối tượng đồ họa thành một khối thống nhất để lúc di chuyển hay thay đổi
+            thì cả nhóm đối tượng đồ họa sẽ di chuyển và thay đổi theo. Để&nbsp;tạm thời tắt khung viền bao quanh thì
+            bạn chỉ cần nhấn phím ESC trên bàn phím nhé!</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art24.jpg" />
           </div>
           <h3><strong>9. Xuất hiện mũi tên trong văn bản MS Word </strong></h3>
-          <p>Sự xuất hiện dấu mũi tên trong văn bản Word là do chế độ hiển thị các ký tự định dạng. Trong màn hình soạn thảo bạn có thể thấy các mũi tên màu đen nằm giữa các khoảng trống trong văn bản, đó là các ký tự thể hiện định dạng điểm dừng của phím Tab (Tab Stop).</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
+          <p>Sự xuất hiện dấu mũi tên trong văn bản Word là do chế độ hiển thị các ký tự định dạng. Trong màn hình soạn
+            thảo bạn có thể thấy các mũi tên màu đen nằm giữa các khoảng trống trong văn bản, đó là các ký tự thể hiện
+            định dạng điểm dừng của phím Tab (Tab Stop).</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art25.jpg" />
           </div>
@@ -277,8 +293,10 @@
             <img src="assets/img/curved-images/article/art27.jpg" />
           </div>
           <h3><strong>10. Xuất hiện ký tự đánh dấu đầu dòng </strong></h3>
-          <p>Trong quá trình soạn thảo văn bản đôi khi sẽ có các ký tự đánh dấu đầu dòng xuất hiện mà bạn cảm thấy nó không thật sự cần thiết. Tham khảo 3 bước sau đây để khắc phục:</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
+          <p>Trong quá trình soạn thảo văn bản đôi khi sẽ có các ký tự đánh dấu đầu dòng xuất hiện mà bạn cảm thấy nó
+            không thật sự cần thiết. Tham khảo 3 bước sau đây để khắc phục:</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art28.jpg" />
           </div>
@@ -291,8 +309,10 @@
             <img src="assets/img/curved-images/article/art30.jpg" />
           </div>
           <h3><strong>11. Nhấn phím cách (Space) xuất hiện dấu chấm </strong></h3>
-          <p>Trong quá trình gõ và soạn thảo văn bản, có bao giờ bạn đã gặp tình trạng dấu chấm xuất hiện ở vị trí vừa cách chưa? Để khắc phục lỗi này bạn chỉ cần:</p>
-          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
+          <p>Trong quá trình gõ và soạn thảo văn bản, có bao giờ bạn đã gặp tình trạng dấu chấm xuất hiện ở vị trí vừa
+            cách chưa? Để khắc phục lỗi này bạn chỉ cần:</p>
+          <p><strong>Bước 1</strong>: Bạn ấn vào&nbsp;<strong>Word</strong>&nbsp;ở&nbsp;<strong>thanh
+              menu</strong>&nbsp;&gt;&nbsp;<strong>Preferences</strong>.</p>
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art31.jpg" />
           </div>
@@ -304,39 +324,47 @@
           <div class="imgwrap">
             <img src="assets/img/curved-images/article/art33.jpg" />
           </div>
-          <p>Bài viết ở trên đã hướng dẫn các bạn khi xuất hiện lỗi gõ Tiếng Việt trong Word cực kỳ chi tiết. Nếu bạn thấy hay và bổ ích hãy chia sẻ bài viết này nhé!</p>
-          <p>Bạn đang tìm mua một chiếc laptop cao cấp với con chip Apple mạnh mẽ và những cải tiến về thiết kế, hiệu năng khi sử dụng ứng dụng Word? <a href="index.html" target="_blank">MacBook Pro</a>&nbsp;là sự lựa chọn cực kỳ phù hợp với bạn đó!</p>
-          <p><strong><strong style="line-height: 1.6;"><a class="postarticle" href="index.html" rel="nofollow" style="margin: auto; width: 250px; text-align: center; line-height: 20.8px;" target="_blank" title="MUA NGAY MACBOOK PRO GIÁ SIÊU HẤP DẪN" type="MUA NGAY MACBOOK PRO GIÁ SIÊU HẤP DẪN"><span style="color: rgb(255, 255, 0);">MUA NGAY MACBOOK PRO GIÁ SIÊU HẤP DẪN</span></a></strong></strong></p>
+          <p>Bài viết ở trên đã hướng dẫn các bạn khi xuất hiện lỗi gõ Tiếng Việt trong Word cực kỳ chi tiết. Nếu bạn
+            thấy hay và bổ ích hãy chia sẻ bài viết này nhé!</p>
+          <p>Bạn đang tìm mua một chiếc laptop cao cấp với con chip Apple mạnh mẽ và những cải tiến về thiết kế, hiệu
+            năng khi sử dụng ứng dụng Word? <a href="index.html" target="_blank">MacBook Pro</a>&nbsp;là sự lựa chọn cực
+            kỳ phù hợp với bạn đó!</p>
+          <p><strong><strong style="line-height: 1.6;"><a class="postarticle" href="index.html" rel="nofollow"
+                  style="margin: auto; width: 250px; text-align: center; line-height: 20.8px;" target="_blank"
+                  title="MUA NGAY MACBOOK PRO GIÁ SIÊU HẤP DẪN" type="MUA NGAY MACBOOK PRO GIÁ SIÊU HẤP DẪN"><span
+                    style="color: rgb(255, 255, 0);">MUA NGAY MACBOOK PRO GIÁ SIÊU HẤP DẪN</span></a></strong></strong>
+          </p>
         </div>
       </article>
     </section>
     <footer>
       <div class="foot">
         <div class="logo-foot">
-          <a href="index.html" class="zerotlogo"><img src="/assets/img/curved-images/icons/ZeroT.jpg " alt=" Logo"/></a>  
-          <a href="index.html" class="applelogo"><img src="/assets/img/curved-images/icons/apple.jpg" alt=" Logo"/></a>         
+          <a href="index.html" class="zerotlogo"><img src="/assets/img/curved-images/icons/ZeroT.jpg "
+              alt=" Logo" /></a>
+          <a href="index.html" class="applelogo"><img src="/assets/img/curved-images/icons/apple.jpg" alt=" Logo" /></a>
         </div>
         <ul class="list-foot">
           <li class="columtongdai">
             <span class="rowtongdai">Tổng đài <br></span>
-          
-              <span class="character" >Mua hàng:<b class="textblu">19006558</b> (07:30-22:00)</span>
-            
-              <span class="character" >CSKH:   <b class="textblu">0905.666.777</b>  (08:00-21:00)</span>           
+
+            <span class="character">Mua hàng:<b class="textblu">19006558</b> (07:30-22:00)</span>
+
+            <span class="character">CSKH: <b class="textblu">0905.666.777</b> (08:00-21:00)</span>
             </a>
             <div class="footer-social">
             </div>
           </li>
           <li class="ft">
             <span>Hệ thống ZeroT<br></span>
-            <a class="character" >Uy tín 100% </a>
+            <a class="character">Uy tín 100% </a>
             <a class="character">Chất lượng cao</a>
             <a class="character">Tư vấn 24/24</a>
             <a class="character">Chính sách, uy tín</a>
           </li>
           <li class="ft">
             <span>Hỗ trợ khách hàng<br></span>
-            
+
             <a class="character">Giao dịch liền tay</a>
             <a class="character">Mua bán Online</a>
             <a class="character">Thu cũ đổi mới</a>
@@ -344,11 +372,11 @@
           </li>
           <li class="ft">
             <span>Về thương hiệu ZeroT<br></span>
-            <a class="character" ><span class="textblu">Tích điểm đổi quà</span></a>
-            <a class="character" >Dịch vụ số một Việt Nam</a>
-            <a class="character" >Bán hàng cho doanh nghiệp</a>
-            <a class="character" >Bảo mật cao</a>
-            <a class="character" >Chăm sóc & đãi ngộ</a>
+            <a class="character"><span class="textblu">Tích điểm đổi quà</span></a>
+            <a class="character">Dịch vụ số một Việt Nam</a>
+            <a class="character">Bán hàng cho doanh nghiệp</a>
+            <a class="character">Bảo mật cao</a>
+            <a class="character">Chăm sóc & đãi ngộ</a>
           </li>
           <li class="ft">
             <span>Trung tâm bảo hành ZeroT<br></span>
@@ -357,7 +385,8 @@
           </li>
         </ul>
       </div>
-  </footer>   
+    </footer>
   </body>
   <script src="./assets/js/index.js"></script>
+
 </html>
