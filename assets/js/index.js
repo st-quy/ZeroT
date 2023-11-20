@@ -9,11 +9,18 @@ const num = document.getElementById("cart-items-number");
 const cometoAdmin = document.getElementById("cometoAdmin");
 const addToCartAction = document.getElementById("add-to-cart-action");
 const apiUrl =
-  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1"
     ? `http://localhost:4000`
     : "https://api-zerot-lowdb.onrender.com";
 
+const profileElement = document.createElement("li");
+const profileLink = document.createElement("a");
+const line = document.createElement("hr");
 const userData = JSON.parse(localStorage.getItem("me"));
+const dropdownContent = document.querySelector(
+  ".dropdown-content li:first-child"
+);
 
 if (isLogin) {
   if (role == "admin") {
@@ -34,6 +41,11 @@ if (isLogin) {
     loginLink.parentNode.insertBefore(helloElement, loginLink);
     logoutLink.textContent = "Đăng xuất";
     logoutLink.href = "index.html";
+    profileElement.appendChild(profileLink);
+    profileLink.textContent = `Hồ Sơ`;
+    profileLink.href = "profile.html";
+    dropdownContent.after(profileElement);
+    dropdownContent.after(line);
   }
   if (role == "seller") {
     loginLink.innerHTML = "Trang Seller";
@@ -47,9 +59,7 @@ if (isLogin) {
   //     ? "http://localhost:4000"
   //     : "https://api-zerot-lowdb.onrender.com";
   axios.get(`${apiUrl}/users/${userData.id}`).then((res) => {
-    num.textContent = res.data
-      ? res.data.cartItems.length
-      : 0;
+    num.textContent = res.data ? res.data.cartItems.length : 0;
   });
 } else {
   helloElement.textContent = "";
@@ -89,13 +99,13 @@ items.forEach((item) => {
 
 var minhModal = document.getElementById("minh-modal");
 
-if (profileData && profileData.status === 'inactive') {
-  minhModal.style.display = 'block';
+if (profileData && profileData.status === "inactive") {
+  minhModal.style.display = "block";
 }
 
 function closeConfirmModal() {
-  var minhModal = document.getElementById('minh-modal');
-  minhModal.style.display = 'none';
+  var minhModal = document.getElementById("minh-modal");
+  minhModal.style.display = "none";
 }
 
 async function confirmCode() {
