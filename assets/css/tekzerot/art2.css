@@ -531,7 +531,7 @@ i.logo-category img {
   bottom: 0;
   width: 50%;
   max-width: 100%;
-  background-color: #000000;
+  background-color: #3e3e3f;
   opacity: 0;
   transform: translateX(-100%);
   transition: transform linear 0.2s, opacity linear 0.2s;
