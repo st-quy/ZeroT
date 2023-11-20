@@ -7,6 +7,8 @@ var isLogin = JSON.parse(localStorage.getItem("isLogin"));
 var role = localStorage.getItem("role");
 var me = JSON.parse(localStorage.getItem("me"));
 
+
+
 function displayInfo() {
   const tbody = document.getElementById("table-body");
   tbody.innerHTML = "";
