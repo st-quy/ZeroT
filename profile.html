@@ -131,110 +131,109 @@
         </div>
       </div>
     </header>
-    <div class="">
-      <div class="">
-        <div class="">
-          <table class="addd" id="table-profile">
-            <tbody id="table-body">
-              <!-- Dữ liệu người dùng sẽ được thêm vào đây -->
-            </tbody>
-          </table>
-          <button class="change" onclick="openModal()">
-            Thay đổi mật khẩu
-          </button>
+    <div class="container">
+          <div class="tableprofile">
+            <table class="addd" id="table-profile">
+              <tbody id="table-body">
+              </tbody>
+            </table>
+             <div class="change-container">
+            <button class="change" onclick="openModal()">
+              Thay đổi mật khẩu
+            </button>
+            <button class="change" onclick="openModalInfo()">
+              Thay đổi thông tin
+            </button>
+            </div>
+            <!-- confirm old pass -->
+            <div id="changePassModal" class="modal">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title">Nhập mật khẩu</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+                      <span aria-hidden="true" style="font-size: 20px;" class="close">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <input type="password" id="confirmOldPassInput" class="form-control"
+                      placeholder="Nhập mật khẩu hiện tại" />
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" style="background-color: #CB0C9F; color: white; border:#CB0C9F"
+                      id="btnConfirmOldPass" onclick="confirmOldPass()">Xác Nhận</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- new pass-->
+            <div id="newPassModal" class="modal">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title">Nhập mật khẩu mới</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+                      <span aria-hidden="true" style="font-size: 20px;" class="close">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <input type="password" id="newPassInput" class="form-control" placeholder="Nhập mật khẩu mới" />
+                    <input type="password" id="confirmNewPassInput" class="form-control" style="margin-top:20px"
+                      placeholder="Xác nhận mật khẩu" />
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" style="background-color: #CB0C9F; color: white; border:#CB0C9F;"
+                      id="btnConfirmNewPass" onclick="confirmNewPass()">Xác Nhận</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- modal info -->
+            <div id="infoModal" class="modal">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title">Chỉnh sửa thông tin tài khoản</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+                      <span aria-hidden="true" style="font-size: 20px;" class="close">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="d-flex">
+                      <label for="info-name" style="text-align: left; width: 28%;">Name<sup
+                          style="color: red; font-size: 15px;">*</sup></label>
+                      <input type="text" id="info-name" class="form-control" placeholder="Nhập tên người dùng" required
+                        style="flex: 1" />
+                    </div>
+                    <div class="d-flex pt-3">
+                      <label for="info-email" style="text-align: left; width: 40%;">Email<sup
+                          style="color: red; font-size: 15px;">*</sup></label>
+                      <input type="email" id="info-email" class="form-control" style="" placeholder="Nhập email" required
+                        style="flex: 1" />
+                    </div>
+                    <div class="d-flex pt-3">
+                      <label for="info-phone" style="text-align: left; width: 40%;">Phone number<sup
+                          style="color: red; font-size: 15px;">*</sup></label>
+                      <input type="number" id="info-phone" class="form-control" style="" placeholder="Nhập số điện thoại"
+                        style="flex: 1" required />
+                    </div>
+                    <div class="d-flex pt-3">
+                      <label for="info-address" style="text-align: left; width: 40%;">Address</label>
+                      <input type="text" id="info-address" class="form-control" style="" placeholder="Nhập địa chỉ"
+                        style="flex: 1" />
+                    </div>
 
-          <button class="change" onclick="openModalInfo()">
-            Thay đổi thông tin
-          </button>
-          <!-- confirm old pass -->
-          <div id="changePassModal" class="modal">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 class="modal-title">Nhập mật khẩu</h3>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
-                    <span aria-hidden="true" style="font-size: 20px;" class="close">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <input type="password" id="confirmOldPassInput" class="form-control"
-                    placeholder="Nhập mật khẩu hiện tại" />
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-primary" style="background-color: #CB0C9F; color: white; border:#CB0C9F"
-                    id="btnConfirmOldPass" onclick="confirmOldPass()">Xác Nhận</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" style="background-color: #CB0C9F; color: white; border:#CB0C9F;"
+                      id="btnConfirmNewPass" onclick="changeInfo()">Chỉnh sửa</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- new pass-->
-          <div id="newPassModal" class="modal">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 class="modal-title">Nhập mật khẩu mới</h3>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
-                    <span aria-hidden="true" style="font-size: 20px;" class="close">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <input type="password" id="newPassInput" class="form-control" placeholder="Nhập mật khẩu mới" />
-                  <input type="password" id="confirmNewPassInput" class="form-control" style="margin-top:20px"
-                    placeholder="Xác nhận mật khẩu" />
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-primary" style="background-color: #CB0C9F; color: white; border:#CB0C9F;"
-                    id="btnConfirmNewPass" onclick="confirmNewPass()">Xác Nhận</button>
-                </div>
-              </div>
-            </div>
           </div>
-          <!-- modal info -->
-          <div id="infoModal" class="modal">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 class="modal-title">Chỉnh sửa thông tin tài khoản</h3>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
-                    <span aria-hidden="true" style="font-size: 20px;" class="close">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="d-flex">
-                    <label for="info-name" style="text-align: left; width: 28%;">Name<sup
-                        style="color: red; font-size: 15px;">*</sup></label>
-                    <input type="text" id="info-name" class="form-control" placeholder="Nhập tên người dùng" required
-                      style="flex: 1" />
-                  </div>
-                  <div class="d-flex pt-3">
-                    <label for="info-email" style="text-align: left; width: 40%;">Email<sup
-                        style="color: red; font-size: 15px;">*</sup></label>
-                    <input type="email" id="info-email" class="form-control" style="" placeholder="Nhập email" required
-                      style="flex: 1" />
-                  </div>
-                  <div class="d-flex pt-3">
-                    <label for="info-phone" style="text-align: left; width: 40%;">Phone number<sup
-                        style="color: red; font-size: 15px;">*</sup></label>
-                    <input type="number" id="info-phone" class="form-control" style="" placeholder="Nhập số điện thoại"
-                      style="flex: 1" required />
-                  </div>
-                  <div class="d-flex pt-3">
-                    <label for="info-address" style="text-align: left; width: 40%;">Address</label>
-                    <input type="text" id="info-address" class="form-control" style="" placeholder="Nhập địa chỉ"
-                      style="flex: 1" />
-                  </div>
-
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-primary" style="background-color: #CB0C9F; color: white; border:#CB0C9F;"
-                    id="btnConfirmNewPass" onclick="changeInfo()">Chỉnh sửa</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  
     <footer style="width: 100% !important;">
       <div class="foot">
         <div class="logo-foot">

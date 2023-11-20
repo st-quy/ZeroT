@@ -23,10 +23,9 @@ function displayInfo() {
                             <br>
                             ${
                               me.address
-                                ? `
-                            <span>Địa chỉ người dùng: ${
-                              me.address ? me.address : ""
-                            }</span> 
+                                ? `<span>Địa chỉ người dùng: ${
+                                    me.address ? me.address : ""
+                                  }</span> 
                             `
                                 : ""
                             }
