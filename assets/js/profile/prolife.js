@@ -212,28 +212,6 @@ async function changeInfo() {
   var phone = infoPhone.value;
   var address = infoAddress.value;
 
-  if (!name || !email || !phone) {
-    toastr.warning("Vui lòng nhập các thông tin bắt buộc", "Lỗi", {
-      timeOut: 2000,
-      closeButton: true,
-      debug: false,
-      newestOnTop: true,
-      progressBar: true,
-      positionClass: "toast-top-right",
-      preventDuplicates: true,
-      onclick: null,
-      showDuration: "300",
-      hideDuration: "1000",
-      extendedTimeOut: "1000",
-      showEasing: "swing",
-      hideEasing: "linear",
-      showMethod: "fadeIn",
-      hideMethod: "fadeOut",
-      tapToDismiss: false,
-    });
-    return;
-  }
-
   if (email && email !== me.email) {
     var validRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -349,24 +327,7 @@ async function changeInfo() {
       displayInfo();
       helloElement.textContent = `Xin chào ${me.name.toUpperCase()} !`;
     } catch (error) {
-      toastr.warning("Cập nhật lỗi", "Lỗi", {
-        timeOut: 2000,
-        closeButton: true,
-        debug: false,
-        newestOnTop: true,
-        progressBar: true,
-        positionClass: "toast-top-right",
-        preventDuplicates: true,
-        onclick: null,
-        showDuration: "300",
-        hideDuration: "1000",
-        extendedTimeOut: "1000",
-        showEasing: "swing",
-        hideEasing: "linear",
-        showMethod: "fadeIn",
-        hideMethod: "fadeOut",
-        tapToDismiss: false,
-      });
+      throw error
     }
   }
 }

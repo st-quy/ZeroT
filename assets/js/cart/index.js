@@ -183,10 +183,7 @@ function displayCart(data) {
                       </div>
                   </div>
                   <div class="row">
-                      <div class="col-12 col-md-12 pt-2 d-flex align-items-center justify-content-between">
-                          <select class="form-select">
-                              <option value="1">Bạc</option>
-                          </select>
+                      <div class="col-12 col-md-12 pt-2 d-flex align-items-center justify-content-end">
                           <div class="input-group">
                               <div class="input-group-prepend">
                                   <button class=" btn-outline-secondary btn-decrease" type="button"
@@ -231,7 +228,7 @@ async function handleClick(button, action) {
         (product) => parseInt(product.id) === parseInt(input.name)
       );
       if (productToUpdate) {
-        productToUpdate.quality = quantity;
+        productToUpdate.quantity = quantity;
         await axios
           .patch(`${apiUrl}/users/${profileData.id}`, {
             cartItems: curItems,

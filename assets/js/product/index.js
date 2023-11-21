@@ -322,6 +322,7 @@ async function handleEdit(id) {
 }
 
 async function handleDelete(id) {
+  
   try {
     const response = await axios.get(`${apiUrl}/products/${id}`);
     const product = response.data;
@@ -335,10 +336,34 @@ async function handleDelete(id) {
     const saveModal = document.getElementById('btnSave');
     saveModal.addEventListener('click', async function () {
       try {
-        const deleteResponse = await axios.delete(`${apiUrl}/products/${id}`);
+        await axios.delete(`${apiUrl}/products/${id}`).then(async function () {
+    await axios.get(`${apiUrl}/users`).then((response) => {
+      var usersWithProduct = response.data.filter(function(user) {
+        return user.cartItems && user.cartItems.some(function(product) {
+            return Number(product.id) === Number(id);
+        });
+
+    });
+
+    usersWithProduct.map(async function(user) {
+      var productIndex = user.cartItems.findIndex(function(product) {
+        return Number(product.id) === Number(id);
+    });
+    if (productIndex !== -1) {
+        user.cartItems.splice(productIndex, 1);
+        await axios.patch(`${apiUrl}/users/${user.id}`, {
+          cartItems: user.cartItems
+        });
+    } else {
+        console.log("Không tìm thấy sản phẩm trong cartItems của người dùng có ID:", userId);
+    }
+  });
+      });
+        });
         const modal = new bootstrap.Modal(document.getElementById('myModal'));
         modal.hide();
         location.reload();
+
       } catch (error) {
         console.error('Lỗi khi xóa sản phẩm: ', error);
       }
