@@ -84,6 +84,8 @@ axios
   });
 
 async function handleEdit(userId) {
+  document.getElementById('btnSave').textContent = "Cập nhật"
+
   try {
     const response = await axios.get(`${apiUrl}/users/${userId}`);
     const userData = response.data;
@@ -158,6 +160,7 @@ async function handleEdit(userId) {
 
 async function handleDelete(userId) {
   try {
+    document.getElementById('btnSave').textContent = "Xoá"
     const response = await axios.get(`${apiUrl}/users/${userId}`);
     const userData = response.data;
 

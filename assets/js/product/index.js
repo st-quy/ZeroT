@@ -322,7 +322,7 @@ async function handleEdit(id) {
 }
 
 async function handleDelete(id) {
-  
+document.getElementById('btnSave').textContent = "Xoá";
   try {
     const response = await axios.get(`${apiUrl}/products/${id}`);
     const product = response.data;
